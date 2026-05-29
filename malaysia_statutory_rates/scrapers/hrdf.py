@@ -35,30 +35,33 @@ class HRDFScraper(BaseScraper):
         # Parse levy formula
         formula = self._parse_formula(text)
 
+        # Extract act reference from page
+        act = self._extract_act(text)
+
+        # Extract section descriptions from page
+        mandatory_desc = self._extract_section_description(text, "section 14")
+        optional_desc = self._extract_section_description(text, "section 15")
+
         data = {
             "source": self.SOURCE_URL,
-            "act": "PSMB Act 2001 (Act 612)",
+            "act": act,
             "rates": {
                 "mandatory": {
                     "rate": mandatory_rate,
-                    "description": "Employers with 10 or more Malaysian employees",
-                    "section": "Section 14, PSMB Act 2001",
+                    "description": mandatory_desc,
+                    "section": self._extract_section_ref(text, "14"),
                 },
                 "optional": {
                     "rate": optional_rate,
-                    "description": "Employers with fewer than 10 Malaysian employees (voluntary registration)",
-                    "section": "Section 15, PSMB Act 2001",
+                    "description": optional_desc,
+                    "section": self._extract_section_ref(text, "15"),
                 },
             },
             "wage_components": {
                 "included": included,
                 "excluded": excluded,
             },
-            "notes": [
-                formula if formula else "Formula not found on page",
-                "Payment due by 15th of following month",
-                "Exempted sectors may change — check hrdcorp.gov.my/circulars",
-            ],
+            "notes": self._extract_notes(text, formula),
         }
 
         if self.has_changed("hrdf_rates.json", data):
@@ -163,7 +166,7 @@ class HRDFScraper(BaseScraper):
 
         return included, excluded
 
-    def _parse_formula(self, text: str) -> str:
+    def _parse_formula(self, text: str) -> str | None:
         """Parse the levy formula from the page."""
         # Look for "LEVY = [(BASIC SALARY - UNPAID LEAVE) + FIXED ALLOWANCE] x 1%"
         formula_match = re.search(
@@ -180,3 +183,84 @@ class HRDFScraper(BaseScraper):
             return formula
 
         return None
+
+    def _extract_act(self, text: str) -> str:
+        """Extract act reference from page text. Raises ValueError if not found."""
+        # Look for "PSMB Act 2001"
+        act_match = re.search(r"(PSMB\s+Act\s+\d{4})", text, re.IGNORECASE)
+        if act_match:
+            return act_match.group(1).strip()
+
+        # Fallback: look for any act reference
+        act_match = re.search(r"Act\s+(\d{4})\b", text, re.IGNORECASE)
+        if act_match:
+            return f"Act {act_match.group(1)}"
+
+        raise ValueError("Could not extract act reference from HRDF page")
+
+    def _extract_section_description(self, text: str, section: str) -> str | None:
+        """Extract description for a section from page text."""
+        # Look for text near the section reference
+        idx = text.lower().find(section)
+        if idx >= 0:
+            chunk = text[idx:idx + 300]
+            # Look for "shall be subject to" or "shall pay" sentence
+            desc_match = re.search(
+                r"(shall\s+(?:be\s+subject\s+to|pay).*?(?:\d+\.\d+%|employee)\.)",
+                chunk,
+                re.IGNORECASE | re.DOTALL,
+            )
+            if desc_match:
+                desc = desc_match.group(0).strip()
+                desc = re.sub(r"\s+", " ", desc)
+                return desc
+
+        return None
+
+    def _extract_section_ref(self, text: str, section_num: str) -> str:
+        """Extract full section reference from page text."""
+        # Look for "Section X of the PSMB Act 2001"
+        ref_match = re.search(
+            rf"(Section\s+{section_num}\s+of\s+the\s+PSMB\s+Act\s+\d{{4}})",
+            text, re.IGNORECASE,
+        )
+        if ref_match:
+            return ref_match.group(1).strip()
+
+        # Fallback: "Section X, PSMB Act 2001"
+        ref_match = re.search(
+            rf"(Section\s+{section_num}[^.]*PSMB[^.]*\d{{4}})",
+            text, re.IGNORECASE,
+        )
+        if ref_match:
+            return ref_match.group(1).strip()
+
+        # Fallback: just the section number
+        return f"Section {section_num}"
+
+    def _extract_notes(self, text: str, formula: str | None) -> list[str]:
+        """Extract notes from page text."""
+        notes = []
+
+        # Formula
+        if formula:
+            notes.append(formula)
+
+        # Payment deadline - look for specific payment date
+        due_match = re.search(
+            r"(Payment before or on \d+/\d+/\d+[^.]*\.)", text, re.IGNORECASE
+        )
+        if due_match:
+            note = due_match.group(1).strip()
+            note = re.sub(r"\s+", " ", note)
+            notes.append(note)
+        else:
+            due_match = re.search(
+                r"(payment within \d+ days of the following month[^.]*\.)", text, re.IGNORECASE
+            )
+            if due_match:
+                note = due_match.group(1).strip()
+                note = re.sub(r"\s+", " ", note)
+                notes.append(note)
+
+        return notes

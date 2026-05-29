@@ -162,13 +162,44 @@ class HolidaysScraper(BaseScraper):
             "source": self.SOURCE_URL,
             "year": year,
             **holidays,
-            "notes": [
-                "Data from publicholidays.com.my, based on official government gazette",
-                "Islamic holidays (Hari Raya, etc.) are approximate — actual dates depend on moon sighting",
-                "State holidays are only observed in the respective state",
-            ],
+            "notes": self._extract_notes(soup),
         }
 
         if self.has_changed("public_holidays.json", data):
             return data
         return None
+
+    def _extract_notes(self, soup: BeautifulSoup) -> list[str]:
+        """Extract notes from page content."""
+        notes = []
+        full_text = soup.get_text()
+
+        # Source attribution
+        source_match = re.search(
+            r"(based on[^.]*gazette[^.]*\.)", full_text, re.IGNORECASE
+        )
+        if source_match:
+            notes.append(source_match.group(1).strip())
+
+        # Islamic holidays caveat
+        islamic_match = re.search(
+            r"(Islamic holidays?[^.]*moon sighting[^.]*\.)", full_text, re.IGNORECASE
+        )
+        if islamic_match:
+            notes.append(islamic_match.group(1).strip())
+        else:
+            # Look for any Islamic/moon sighting note
+            islamic_match = re.search(
+                r"(Hari Raya[^.]*\.)", full_text, re.IGNORECASE
+            )
+            if islamic_match:
+                notes.append(islamic_match.group(1).strip())
+
+        # State holidays note
+        state_match = re.search(
+            r"(State holidays?[^.]*state[^.]*\.)", full_text, re.IGNORECASE
+        )
+        if state_match:
+            notes.append(state_match.group(1).strip())
+
+        return notes

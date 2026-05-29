@@ -90,12 +90,7 @@ class EISScraper(BaseScraper):
             "wage_ceiling": wage_ceiling,
             "pdf_url": act800_pdf,
             "description": eis_description,
-            "notes": [
-                f"Wage ceiling: RM{wage_ceiling:,} per month (same as SOCSO)",
-                "EIS rates are in the Act 800 PDF (Second Schedule)",
-                "Both employer and employee contribute equally",
-                "Foreign workers are also covered under EIS",
-            ],
+            "notes": self._extract_notes(full_text, wage_ceiling, act800_pdf),
         }
 
         # Parse rate table live from PERKESO booklet PDF
@@ -108,3 +103,47 @@ class EISScraper(BaseScraper):
         if self.has_changed("eis_rates.json", data):
             return data
         return None
+
+    def _extract_notes(self, text: str, wage_ceiling: int, act800_pdf: str | None) -> list[str]:
+        """Extract notes from page text."""
+        notes = []
+
+        # Wage ceiling note
+        notes.append(f"Wage ceiling: RM{wage_ceiling:,} per month (same as SOCSO)")
+
+        # Look for rate schedule reference
+        schedule_match = re.search(
+            r"(EIS rates?[^.]*\.)", text, re.IGNORECASE
+        )
+        if schedule_match:
+            notes.append(schedule_match.group(1).strip())
+        else:
+            schedule_match = re.search(
+                r"(Second Schedule[^.]*\.)", text, re.IGNORECASE
+            )
+            if schedule_match:
+                notes.append(schedule_match.group(1).strip())
+            elif act800_pdf:
+                notes.append(f"EIS rates are in the Act 800 PDF (Second Schedule)")
+
+        # Look for equal contribution note
+        equal_match = re.search(
+            r"(Both employer and employee[^.]*\.)", text, re.IGNORECASE
+        )
+        if equal_match:
+            notes.append(equal_match.group(1).strip())
+        else:
+            equal_match = re.search(
+                r"(contribute equally[^.]*\.)", text, re.IGNORECASE
+            )
+            if equal_match:
+                notes.append(equal_match.group(1).strip())
+
+        # Look for foreign worker coverage
+        fw_match = re.search(
+            r"(Foreign workers?[^.]*\.)", text, re.IGNORECASE
+        )
+        if fw_match:
+            notes.append(fw_match.group(1).strip())
+
+        return notes

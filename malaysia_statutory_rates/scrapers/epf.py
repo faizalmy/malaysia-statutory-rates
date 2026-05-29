@@ -60,7 +60,8 @@ class EPFScraper(BaseScraper):
                 if "malaysian" in status_lower and "no limit" in salary.lower() and s1_emp is None:
                     if s2_emp is not None:
                         rates["malaysian_60_plus"] = {
-                            "label": "Malaysian citizen aged 60 and above",
+                            "label": status,
+                            "salary_range": salary,
                             "employee": {"rate": s2_emp, "note": "Optional" if s2_emp == 0 else ""},
                             "employer": {"rate": s2_er},
                         }
@@ -69,7 +70,8 @@ class EPFScraper(BaseScraper):
                 elif "permanent resident" in status_lower and "below" in salary.lower() or \
                      ("5,000" in salary and "below" in salary.lower()):
                     rates["malaysian_pr_nonmy_before_aug98_below_60"] = {
-                        "label": "Malaysian / PR / Non-MY registered before 1 Aug 1998 (Below 60)",
+                        "label": status,
+                        "salary_range": salary,
                         "employee": {"rate": s1_emp} if s1_emp is not None else {},
                         "employer": {
                             "wage_lte_5000": {"rate": s1_er},
@@ -82,21 +84,25 @@ class EPFScraper(BaseScraper):
                     if "malaysian_pr_nonmy_before_aug98_below_60" in rates:
                         rates["malaysian_pr_nonmy_before_aug98_below_60"]["employer"]["wage_gt_5000"] = {"rate": s1_er}
                     if s2_emp is not None and "applicable" in stage2.lower():
+                        # Extract the "Applicable for (ii) and (iii) only" text from the cell
+                        applicable_match = re.search(r"(applicable[^.]*)", stage2, re.IGNORECASE)
+                        note_text = applicable_match.group(1).strip() if applicable_match else stage2
                         rates["pr_nonmy_before_aug98_60_plus"] = {
-                            "label": "PR / Non-MY registered before 1 Aug 1998 (60+)",
+                            "label": status,
+                            "salary_range": salary,
                             "employee": {"rate": s2_emp},
                             "employer": {"rate": s2_er},
-                            "note": "Applicable for PR and Non-MY registered before 1 Aug 1998 only",
+                            "note": note_text,
                         }
 
                 # Row 4: Non-MY(from Aug98), No limit
                 elif "non-malaysian" in status_lower and "from" in status_lower and "1998" in status_lower:
                     if s1_emp is not None:
                         rates["non_malaysian_after_aug98"] = {
-                            "label": "Non-Malaysian registered from 1 August 1998",
+                            "label": status,
+                            "salary_range": salary,
                             "employee": {"rate": s1_emp},
                             "employer": {"rate": s1_er},
-                            "note": "No wage limit, any age",
                         }
 
         if not rates:
@@ -115,18 +121,16 @@ class EPFScraper(BaseScraper):
         act = self._extract_act(full_text)
         age_limits = self._extract_age_limits(full_text)
 
+        # Parse contribution method from page
+        contribution_method = self._parse_contribution_method(full_text)
+
         data = {
             "source": self.SOURCE_URL,
             "year": year,
             "effective_from": effective_from,
             "third_schedule_pdf": third_schedule_url,
             "act": act,
-            "contribution_method": {
-                "description": "EPF uses wage range tables for wages up to RM20,000. "
-                "For wages above RM20,000, direct percentage applies. "
-                "Total contribution rounded up to next ringgit.",
-                "source": "kwsp.gov.my — Third Schedule, EPF Act 1991",
-            },
+            "contribution_method": contribution_method,
             "rates": rates,
             "age_limits": age_limits,
             "wage_components": {"included": wage_included, "excluded": wage_excluded},
@@ -227,33 +231,81 @@ class EPFScraper(BaseScraper):
 
         return included, excluded
 
+    def _parse_contribution_method(self, text: str) -> dict:
+        """Parse contribution method details from page text. Raises ValueError if not found."""
+        # Extract the key sentence about wage range vs percentage
+        description_parts = []
+
+        # Look for the specific sentence about percentage calculation
+        range_match = re.search(
+            r"(not allowed to calculate[^.]*percentage[^.]*EXCEPT[^.]*exceed[^.]*RM[\d,]+[^.]*\.)",
+            text, re.IGNORECASE,
+        )
+        if range_match:
+            desc = range_match.group(1).strip()
+            desc = re.sub(r"\s+", " ", desc)
+            description_parts.append(desc)
+
+        # Look for rounding rule
+        round_match = re.search(
+            r"(total contribution[^.]*rounded[^.]*ringgit[^.]*\.)",
+            text, re.IGNORECASE,
+        )
+        if round_match:
+            desc = round_match.group(1).strip()
+            desc = re.sub(r"\s+", " ", desc)
+            if desc not in " ".join(description_parts):
+                description_parts.append(desc)
+
+        if not description_parts:
+            raise ValueError("Could not extract contribution method description from EPF page")
+
+        # Extract source reference
+        source = "Third Schedule, EPF Act 1991"
+        act_ref = re.search(r"(EPF Act \d{4})", text, re.IGNORECASE)
+        if act_ref:
+            act_year = act_ref.group(1)
+            source = f"Third Schedule, {act_year}"
+
+        return {
+            "description": " ".join(description_parts),
+            "source": source,
+        }
+
     def _parse_notes(self, soup: BeautifulSoup) -> list[str]:
         """Parse important notes from the page. Returns empty list if none found."""
         notes = []
         full_text = soup.get_text()
 
-        effective_match = re.search(r"(effective\s+(?:for\s+)?(?:\d{1,2}\s+)?\w+\s+\d{4}[^.]*)", full_text, re.IGNORECASE)
+        # Effective date note
+        effective_match = re.search(r"(Effective\s+for\s+\w+\s+\d{4}\s+salary/wage\s*\([^)]*\))", full_text, re.IGNORECASE)
         if effective_match:
             note = effective_match.group(1).strip()
+            note = re.sub(r"\s+", " ", note)
             if len(note) > 10:
                 notes.append(note)
 
-        schedule_match = re.search(r"(third\s+schedule\s+[^.]*\.)", full_text, re.IGNORECASE)
-        if schedule_match:
-            note = schedule_match.group(1).strip()
-            if len(note) > 10 and note not in notes:
-                notes.append(note)
+        # Age limits note
+        age_match = re.search(r"(minimum age[^.]*\d+[^.]*maximum age[^.]*\d+[^.]*years? old[^.]*\.)", full_text, re.IGNORECASE)
+        if age_match:
+            note = age_match.group(1).strip()
+            note = re.sub(r"\s+", " ", note)
+            notes.append(note)
 
-        wage_range_match = re.search(r"(wages?\s+above\s+RM[\d,]+[^.]*\.)", full_text, re.IGNORECASE)
-        if wage_range_match:
-            note = wage_range_match.group(1).strip()
-            if len(note) > 10 and note not in notes:
-                notes.append(note)
-
-        rounding_match = re.search(r"(total\s+contribution\s+[^.]*rounded[^.]*\.)", full_text, re.IGNORECASE)
+        # Rounding note
+        rounding_match = re.search(r"(total contribution[^.]*rounded[^.]*ringgit[^.]*\.)", full_text, re.IGNORECASE)
         if rounding_match:
             note = rounding_match.group(1).strip()
-            if len(note) > 10 and note not in notes:
+            note = re.sub(r"\s+", " ", note)
+            if note not in notes:
+                notes.append(note)
+
+        # Payment deadline
+        deadline_match = re.search(r"(Employer must make monthly payment on or before \d+\w+ of the month)", full_text, re.IGNORECASE)
+        if deadline_match:
+            note = deadline_match.group(1).strip()
+            note = re.sub(r"\s+", " ", note)
+            if note not in notes:
                 notes.append(note)
 
         return notes

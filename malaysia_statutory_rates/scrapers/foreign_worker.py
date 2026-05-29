@@ -39,12 +39,12 @@ class ForeignWorkerScraper(BaseScraper):
             "non_malaysian_after_aug98": {
                 "employee": non_my_after.get("employee", {}),
                 "employer": non_my_after.get("employer", {}),
-                "note": non_my_after.get("note", "Non-Malaysian registered from 1 August 1998"),
+                "note": non_my_after.get("note"),
             },
             "non_malaysian_before_aug98_below_60": {
                 "employee": non_my_before_below.get("employee", {}),
                 "employer": non_my_before_below.get("employer", {}),
-                "note": "Same as Malaysian citizen rates",
+                "note": non_my_before_below.get("note"),
             },
             "non_malaysian_before_aug98_60_plus": {
                 "employee": non_my_before_60plus.get("employee", {}),
@@ -67,10 +67,10 @@ class ForeignWorkerScraper(BaseScraper):
                     "employer": socso_at_ceiling.get("employer_schedule1"),
                     "note": f"RM {socso_at_ceiling.get('employer_schedule1', 'N/A')} per month at RM{socso_wage_ceiling} wage",
                 },
-                "note": "Foreign workers — Employment Injury scheme only (Schedule 1, employer share)",
+                "note": socso.get("schemes", {}).get("employment_injury", {}).get("note"),
             },
             "invalidity": {
-                "note": "Foreign workers are NOT covered under the Invalidity scheme",
+                "note": socso.get("schemes", {}).get("invalidity", {}).get("note"),
             },
         }
 
@@ -88,26 +88,35 @@ class ForeignWorkerScraper(BaseScraper):
                 "total": eis_at_ceiling.get("total"),
                 "note": f"RM {eis_at_ceiling.get('total', 'N/A')} total per month at RM{eis_wage_ceiling} wage",
             },
-            "note": "Foreign workers are covered under EIS at the same rate as Malaysian workers",
+            "note": eis.get("description"),
         }
 
         year = epf.get("year", datetime.now().year)
         effective_from = epf.get("effective_from", "")
 
+        # Build notes from source data
+        notes = []
+        if effective_from:
+            notes.append(f"Foreign worker EPF became mandatory from {effective_from}")
+        # Pull notes from SOCSO data about foreign worker coverage
+        socso_notes = socso.get("notes", [])
+        for note in socso_notes:
+            if "foreign" in note.lower() or "employment injury" in note.lower():
+                notes.append(note)
+        # Pull notes from EIS data about foreign worker coverage
+        eis_notes = eis.get("notes", [])
+        for note in eis_notes:
+            if "foreign" in note.lower():
+                notes.append(note)
+
         data = {
             "source": self.SOURCE_URL,
             "year": year,
             "effective_from": effective_from,
-            "description": "EPF, SOCSO, and EIS contribution rates for foreign workers in Malaysia",
             "epf": epf_data,
             "socso": socso_data,
             "eis": eis_data,
-            "notes": [
-                f"Foreign worker EPF became mandatory from {effective_from}" if effective_from else "Foreign worker EPF is mandatory",
-                "SOCSO coverage for foreign workers is Employment Injury only (no Invalidity)",
-                "EIS coverage is the same as Malaysian workers",
-                "Domestic workers have different eligibility — check PERKESO guidelines",
-            ],
+            "notes": notes,
         }
 
         if self.has_changed("foreign_worker_rates.json", data):

@@ -110,6 +110,9 @@ class SOCSOScraper(BaseScraper):
         if hw_match:
             hw_contribution = f"RM{hw_match.group(1)} per year (paid in advance for {hw_match.group(2)} consecutive months)"
 
+        # Extract scheme details from page text
+        schemes = self._extract_schemes(full_text, act4_pdf)
+
         data = {
             "source": self.SOURCE_URL,
             "act": act,
@@ -118,17 +121,7 @@ class SOCSOScraper(BaseScraper):
             "wage_ceiling": wage_ceiling,
             "pdf_url": act4_pdf,
             "announcement": announcement,
-            "schemes": {
-                "employment_injury": {
-                    "full_name": "Employment Injury Scheme",
-                    "employer_only": True,
-                    "note": "Rate in Third Schedule (Act 4) PDF. Covers workplace accidents, commuting, occupational diseases.",
-                },
-                "invalidity": {
-                    "full_name": "Invalidity Scheme",
-                    "note": "Rate in Third Schedule (Act 4) PDF. Covers permanent disability not related to employment.",
-                },
-            },
+            "schemes": schemes,
             "self_employment_scheme": {
                 "act": se_act,
                 "rates": self_employment,
@@ -137,12 +130,7 @@ class SOCSOScraper(BaseScraper):
                 "act": hw_act,
                 "contribution": hw_contribution,
             },
-            "notes": [
-                f"Wage ceiling: RM{wage_ceiling:,} per month (effective {datetime.strptime(effective_from, '%Y-%m-%d').strftime('%b %Y')})",
-                "Actual contribution rates are in the Act 4 PDF (Third Schedule)",
-                "Foreign workers: Employment Injury only (no Invalidity scheme)",
-                "Contribution due by 15th of following month",
-            ],
+            "notes": self._extract_notes(full_text, wage_ceiling, effective_from),
         }
 
         # Parse rate table live from PERKESO booklet PDF
@@ -155,3 +143,104 @@ class SOCSOScraper(BaseScraper):
         if self.has_changed("socso_rates.json", data):
             return data
         return None
+
+    def _extract_schemes(self, text: str, act4_pdf: str | None) -> dict:
+        """Extract scheme details from page text."""
+        schemes = {}
+
+        # Employment Injury Scheme — look for scheme name in text
+        ei_name = "Employment Injury Scheme"
+        ei_match = re.search(r"(Employment\s+Injury\s+Scheme)", text, re.IGNORECASE)
+        if ei_match:
+            ei_name = ei_match.group(1).strip()
+
+        # Look for description of what EI covers
+        ei_note_parts = []
+        if act4_pdf:
+            ei_note_parts.append(f"Rate in Third Schedule (Act 4) PDF")
+        coverage_match = re.search(
+            r"(workplace\s+accidents?[^.]*\.)", text, re.IGNORECASE
+        )
+        if coverage_match:
+            ei_note_parts.append(coverage_match.group(1).strip())
+        commuting_match = re.search(
+            r"(commuting[^.]*\.)", text, re.IGNORECASE
+        )
+        if commuting_match:
+            ei_note_parts.append(commuting_match.group(1).strip())
+
+        schemes["employment_injury"] = {
+            "full_name": ei_name,
+            "employer_only": True,
+            "note": " ".join(ei_note_parts) if ei_note_parts else None,
+        }
+
+        # Invalidity Scheme
+        inv_name = "Invalidity Scheme"
+        inv_match = re.search(r"(Invalidity\s+Scheme)", text, re.IGNORECASE)
+        if inv_match:
+            inv_name = inv_match.group(1).strip()
+
+        inv_note_parts = []
+        if act4_pdf:
+            inv_note_parts.append(f"Rate in Third Schedule (Act 4) PDF")
+        disability_match = re.search(
+            r"(permanent\s+disability[^.]*\.)", text, re.IGNORECASE
+        )
+        if disability_match:
+            inv_note_parts.append(disability_match.group(1).strip())
+
+        schemes["invalidity"] = {
+            "full_name": inv_name,
+            "note": " ".join(inv_note_parts) if inv_note_parts else None,
+        }
+
+        return schemes
+
+    def _extract_notes(self, text: str, wage_ceiling: int, effective_from: str) -> list[str]:
+        """Extract notes from page text."""
+        notes = []
+
+        # Wage ceiling note (dynamic)
+        try:
+            formatted_date = datetime.strptime(effective_from, "%Y-%m-%d").strftime("%b %Y")
+            notes.append(f"Wage ceiling: RM{wage_ceiling:,} per month (effective {formatted_date})")
+        except ValueError:
+            notes.append(f"Wage ceiling: RM{wage_ceiling:,} per month")
+
+        # Look for notes about where to find rates
+        rate_ref_match = re.search(
+            r"(Actual contribution rates?[^.]*\.)", text, re.IGNORECASE
+        )
+        if rate_ref_match:
+            notes.append(rate_ref_match.group(1).strip())
+        else:
+            # Try to find PDF/schedule reference
+            schedule_match = re.search(
+                r"(Third Schedule[^.]*\.)", text, re.IGNORECASE
+            )
+            if schedule_match:
+                notes.append(schedule_match.group(1).strip())
+
+        # Look for foreign worker notes
+        fw_match = re.search(
+            r"(Foreign workers?[^.]*\.)", text, re.IGNORECASE
+        )
+        if fw_match:
+            notes.append(fw_match.group(1).strip())
+
+        # Look for payment deadline
+        due_match = re.search(
+            r"(Contribution[s]? (?:are )?due[^.]*\.)", text, re.IGNORECASE
+        )
+        if due_match:
+            notes.append(due_match.group(1).strip())
+        else:
+            # Try alternate pattern
+            due_match = re.search(
+                r"(15th[^.]*month[^.]*\.)", text, re.IGNORECASE
+            )
+            if due_match:
+                notes.append(due_match.group(1).strip())
+
+        return notes

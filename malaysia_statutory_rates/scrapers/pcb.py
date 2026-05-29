@@ -58,6 +58,10 @@ class PCBScraper(BaseScraper):
         # Parse reliefs from pages 27-36
         reliefs = self._extract_reliefs(doc)
 
+        # Extract description and notes before closing
+        bracket_desc = self._extract_bracket_description(doc, year)
+        notes = self._extract_notes(doc, year)
+
         doc.close()
 
         data = {
@@ -66,18 +70,11 @@ class PCBScraper(BaseScraper):
             "updated": updated,
             "specification_pdf": str(pdf_path),
             "tax_brackets": {
-                "description": f"Tax brackets for Monthly Tax Deduction (MTD/PCB) {year}. "
-                "P = total chargeable income per year. M = first chargeable income in range. "
-                "R = tax rate. B = tax on M after individual rebate.",
+                "description": bracket_desc,
                 "brackets": brackets,
             },
             "tax_reliefs": reliefs,
-            "notes": [
-                f"Source: LHDN Specification for MTD Calculations {year}",
-                "B values differ by category: Cat 1&3 (single/married-spouse-working) vs Cat 2 (spouse not working)",
-                "Zakat deducted monthly from MTD, not from chargeable income",
-                "Non-resident employees taxed at flat 30% of remuneration",
-            ],
+            "notes": notes,
         }
 
         if self.has_changed("pcb_table.json", data):
@@ -197,7 +194,6 @@ class PCBScraper(BaseScraper):
                 reliefs.append({"name": name, "amount": amount})
 
         return {
-            "description": "Individual income tax reliefs",
             "reliefs": reliefs,
             "note": "Reliefs extracted from PDF text — verify against official LHDN specification",
         }
@@ -206,3 +202,80 @@ class PCBScraper(BaseScraper):
     def _parse_int(value: str) -> int:
         """Parse a string with commas as thousand separators into int."""
         return int(value.replace(",", "").replace(".", "").strip())
+
+    def _extract_bracket_description(self, doc, year: int) -> str:
+        """Extract tax bracket description from PDF text."""
+        # Scan first few pages for description text
+        for i in range(min(5, len(doc))):
+            page_text = doc[i].get_text("text")
+
+            # Look for MTD/PCB explanation
+            mtd_match = re.search(
+                r"(Monthly Tax Deduction[^.]*\.)", page_text, re.IGNORECASE
+            )
+            if mtd_match:
+                desc = mtd_match.group(1).strip()
+                # Look for P, M, R, B definitions
+                defs = []
+                for pattern in [
+                    r"P\s*=\s*[^.\n]+",
+                    r"M\s*=\s*[^.\n]+",
+                    r"R\s*=\s*[^.\n]+",
+                    r"B\s*=\s*[^.\n]+",
+                ]:
+                    def_match = re.search(pattern, page_text, re.IGNORECASE)
+                    if def_match:
+                        defs.append(def_match.group(0).strip())
+                if defs:
+                    return f"{desc} {' '.join(defs)}"
+                return desc
+
+        # Fallback
+        return f"Tax brackets for Monthly Tax Deduction (MTD/PCB) {year}"
+
+    def _extract_notes(self, doc, year: int) -> list[str]:
+        """Extract notes from PDF document."""
+        notes = []
+
+        # Source reference
+        notes.append(f"Source: LHDN Specification for MTD Calculations {year}")
+
+        # Scan pages for category explanations
+        for i in range(min(20, len(doc))):
+            page_text = doc[i].get_text("text")
+
+            # B values / category explanation
+            cat_match = re.search(
+                r"(B values?[^.]*category[^.]*\.)", page_text, re.IGNORECASE
+            )
+            if cat_match:
+                note = cat_match.group(1).strip()
+                if note not in notes:
+                    notes.append(note)
+                    break
+
+        # Scan for Zakat note
+        for i in range(min(30, len(doc))):
+            page_text = doc[i].get_text("text")
+            zakat_match = re.search(
+                r"(Zakat[^.]*MTD[^.]*\.)", page_text, re.IGNORECASE
+            )
+            if zakat_match:
+                note = zakat_match.group(1).strip()
+                if note not in notes:
+                    notes.append(note)
+                    break
+
+        # Scan for non-resident note
+        for i in range(min(30, len(doc))):
+            page_text = doc[i].get_text("text")
+            nr_match = re.search(
+                r"(Non-resident[^.]*\d+%[^.]*\.)", page_text, re.IGNORECASE
+            )
+            if nr_match:
+                note = nr_match.group(1).strip()
+                if note not in notes:
+                    notes.append(note)
+                    break
+
+        return notes

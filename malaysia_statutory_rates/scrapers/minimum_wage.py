@@ -83,24 +83,33 @@ class MinimumWageScraper(BaseScraper):
         # Derive year and act from gazette reference text
         # e.g. "Warta Perintah Gaji Minimum 2024" -> year 2024, act "Minimum Wages Order 2024"
         order_year = None
-        act_name = "Minimum Wages Order 2024"
+        act_name = None
         if gazette_ref:
             year_match = re.search(r"(20\d{2})", gazette_ref)
             if year_match:
                 order_year = int(year_match.group(1))
-                act_name = f"Minimum Wages Order {order_year}"
+                # Derive act name from gazette reference
+                act_name = gazette_ref.replace("Warta ", "").strip()
+                if not act_name:
+                    act_name = f"Minimum Wages Order {order_year}"
 
         # Try to extract gazette ID from PDF URL
         gazette_id = None
         if gazette_link:
-            gid_match = re.search(r"PUA\s*%?20?(\d+)", gazette_link, re.IGNORECASE)
+            gid_match = re.search(r"PUA\s*%?(?:20)?\s*(\d+)", gazette_link, re.IGNORECASE)
             if gid_match:
                 gazette_id = f"PUA {gid_match.group(1)}"
 
+        # Extract effective dates from page
+        effective_dates = self._extract_effective_dates(soup)
+
+        # Extract notes from page
+        notes = self._extract_notes(soup, effective_dates)
+
         data = {
             "source": self.SOURCE_URL,
-            "year": order_year or 2025,
-            "gazette": gazette_id or "PUA 376",
+            "year": order_year,
+            "gazette": gazette_id,
             "act": act_name,
             "rates": {
                 "nationwide": {
@@ -109,11 +118,7 @@ class MinimumWageScraper(BaseScraper):
                 },
             },
             "min_employees_for_mandatory": 1,
-            "notes": [
-                "Effective February 2025 for all employers regardless of size",
-                "Supersedes previous RM1,500 (cities) / RM1,200 (other areas) tiers",
-                "Applies nationwide — no distinction between city and other areas",
-            ],
+            "notes": notes,
         }
 
         if gazette_link:
@@ -122,3 +127,71 @@ class MinimumWageScraper(BaseScraper):
         if self.has_changed("minimum_wage.json", data):
             return data
         return None
+
+    def _extract_effective_dates(self, soup: BeautifulSoup) -> list[str]:
+        """Extract effective dates from page content."""
+        dates = []
+        full_text = soup.get_text()
+
+        # Look for effective dates
+        eff_match = re.search(
+            r"Tarikh[-\s]*Tarikh\s+Berkuatkuasa", full_text, re.IGNORECASE
+        )
+        if eff_match:
+            # Found the effective dates section
+            chunk = full_text[eff_match.end():eff_match.end() + 500]
+            # Extract date patterns
+            for m in re.finditer(r"(\d{1,2}\s+\w+\s+\d{4})", chunk):
+                dates.append(m.group(1).strip())
+
+        # Look for "Effective" dates in English
+        for m in re.finditer(r"Effective\s+(\w+\s+\d{4})", full_text, re.IGNORECASE):
+            dates.append(m.group(1).strip())
+
+        # Look for "February 2025" style dates
+        for m in re.finditer(r"(?:effective|berkuatkuasa)[^.]*?(\w+\s+\d{4})", full_text, re.IGNORECASE):
+            date = m.group(1).strip()
+            if date not in dates:
+                dates.append(date)
+
+        return dates
+
+    def _extract_notes(self, soup: BeautifulSoup, effective_dates: list[str]) -> list[str]:
+        """Extract notes from page content."""
+        notes = []
+
+        # Effective date note
+        if effective_dates:
+            notes.append(f"Effective {effective_dates[0]} for all employers regardless of size")
+        else:
+            # Look for effective date text
+            full_text = soup.get_text()
+            eff_match = re.search(
+                r"(Effective[^.]*employers?[^.]*\.)", full_text, re.IGNORECASE
+            )
+            if eff_match:
+                notes.append(eff_match.group(1).strip())
+
+        # Look for nationwide/city distinction notes
+        full_text = soup.get_text()
+        nationwide_match = re.search(
+            r"(nationwide[^.]*\.)", full_text, re.IGNORECASE
+        )
+        if nationwide_match:
+            notes.append(nationwide_match.group(1).strip())
+
+        # Look for supersedes/previous notes
+        super_match = re.search(
+            r"(Supersedes?[^.]*\.)", full_text, re.IGNORECASE
+        )
+        if super_match:
+            notes.append(super_match.group(1).strip())
+
+        # Look for employer size notes
+        size_match = re.search(
+            r"(regardless of (?:company )?size[^.]*\.)", full_text, re.IGNORECASE
+        )
+        if size_match:
+            notes.append(size_match.group(1).strip())
+
+        return notes
