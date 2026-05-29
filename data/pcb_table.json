@@ -6,37 +6,167 @@
   "tax_brackets": {
     "description": "Malaysian individual income tax rates for Year of Assessment 2026",
     "brackets": [
-      { "min": 0, "max": 5000, "rate": 0.00, "base_tax": 0 },
-      { "min": 5001, "max": 20000, "rate": 0.01, "base_tax": 0 },
-      { "min": 20001, "max": 35000, "rate": 0.03, "base_tax": 150 },
-      { "min": 35001, "max": 50000, "rate": 0.06, "base_tax": 600 },
-      { "min": 50001, "max": 70000, "rate": 0.11, "base_tax": 1500 },
-      { "min": 70001, "max": 100000, "rate": 0.19, "base_tax": 3700 },
-      { "min": 100001, "max": 250000, "rate": 0.25, "base_tax": 9400 },
-      { "min": 250001, "max": 400000, "rate": 0.26, "base_tax": 46900 },
-      { "min": 400001, "max": 600000, "rate": 0.28, "base_tax": 85900 },
-      { "min": 600001, "max": 1000000, "rate": 0.29, "base_tax": 141900 },
-      { "min": 1000001, "max": null, "rate": 0.30, "base_tax": 257900 }
+      {
+        "min": 0,
+        "max": 5000,
+        "rate": 0.0,
+        "base_tax": 0
+      },
+      {
+        "min": 5001,
+        "max": 20000,
+        "rate": 0.01,
+        "base_tax": 0
+      },
+      {
+        "min": 20001,
+        "max": 35000,
+        "rate": 0.03,
+        "base_tax": 150
+      },
+      {
+        "min": 35001,
+        "max": 50000,
+        "rate": 0.06,
+        "base_tax": 600
+      },
+      {
+        "min": 50001,
+        "max": 70000,
+        "rate": 0.11,
+        "base_tax": 1500
+      },
+      {
+        "min": 70001,
+        "max": 100000,
+        "rate": 0.19,
+        "base_tax": 3700
+      },
+      {
+        "min": 100001,
+        "max": 250000,
+        "rate": 0.25,
+        "base_tax": 9400
+      },
+      {
+        "min": 250001,
+        "max": 400000,
+        "rate": 0.26,
+        "base_tax": 46900
+      },
+      {
+        "min": 400001,
+        "max": 600000,
+        "rate": 0.28,
+        "base_tax": 85900
+      },
+      {
+        "min": 600001,
+        "max": 1000000,
+        "rate": 0.29,
+        "base_tax": 141900
+      },
+      {
+        "min": 1000001,
+        "max": null,
+        "rate": 0.3,
+        "base_tax": 257900
+      }
     ]
   },
   "tax_reliefs": {
     "description": "Individual tax reliefs for Year of Assessment 2026",
     "reliefs": [
-      { "code": "self", "name": "Individual and dependent", "amount": 9000, "note": "Personal relief" },
-      { "code": "spouse", "name": "Spouse", "amount": 4000, "note": "If spouse has no income or joint assessment" },
-      { "code": "child", "name": "Child (each)", "amount": 2000, "note": "Per child, no limit on number" },
-      { "code": "child_disabled", "name": "Disabled child (each)", "amount": 6000, "note": "Per disabled child" },
-      { "code": "insurance_life", "name": "Life insurance and EPF", "amount": 7000, "note": "Combined limit" },
-      { "code": "education", "name": "Education fees (self)", "amount": 7000, "note": "Masters/PhD or approved courses" },
-      { "code": "medical_parent", "name": "Medical expenses (parents)", "amount": 8000, "note": "Per parent, with receipts" },
-      { "code": "medical_self", "name": "Medical expenses (self/spouse/child)", "amount": 10000, "note": "Serious diseases, fertility treatment, vaccination" },
-      { "code": "lifestyle", "name": "Lifestyle", "amount": 2500, "note": "Books, sports equipment, internet, electronic devices" },
-      { "code": "additional_lifestyle", "name": "Additional lifestyle (electronic device)", "amount": 2500, "note": "Smartphone, tablet, computer — once in 3 years" },
-      { "code": "breastfeeding", "name": "Breastfeeding equipment", "amount": 1000, "note": "For children up to 2 years" },
-      { "code": "childcare", "name": "Child care fees", "amount": 3000, "note": "For children up to 6 years" },
-      { "code": "sspn", "name": "SSPN savings", "amount": 8000, "note": "Net deposit in SSPN for children's education" },
-      { "code": "pr1ma", "name": "PR1MA housing loan interest", "amount": 10000, "note": "First home purchase, loan approved 2021-2025" },
-      { "code": "rental", "name": "Rental of residence", "amount": 3000, "note": "Renting residence in Malaysia" }
+      {
+        "code": "self",
+        "name": "Individual and dependent",
+        "amount": 9000,
+        "note": "Personal relief"
+      },
+      {
+        "code": "spouse",
+        "name": "Spouse",
+        "amount": 4000,
+        "note": "If spouse has no income or joint assessment"
+      },
+      {
+        "code": "child",
+        "name": "Child (each)",
+        "amount": 2000,
+        "note": "Per child, no limit on number"
+      },
+      {
+        "code": "child_disabled",
+        "name": "Disabled child (each)",
+        "amount": 6000,
+        "note": "Per disabled child"
+      },
+      {
+        "code": "insurance_life",
+        "name": "Life insurance and EPF",
+        "amount": 7000,
+        "note": "Combined limit"
+      },
+      {
+        "code": "education",
+        "name": "Education fees (self)",
+        "amount": 7000,
+        "note": "Masters/PhD or approved courses"
+      },
+      {
+        "code": "medical_parent",
+        "name": "Medical expenses (parents)",
+        "amount": 8000,
+        "note": "Per parent, with receipts"
+      },
+      {
+        "code": "medical_self",
+        "name": "Medical expenses (self/spouse/child)",
+        "amount": 10000,
+        "note": "Serious diseases, fertility treatment, vaccination"
+      },
+      {
+        "code": "lifestyle",
+        "name": "Lifestyle",
+        "amount": 2500,
+        "note": "Books, sports equipment, internet, electronic devices"
+      },
+      {
+        "code": "additional_lifestyle",
+        "name": "Additional lifestyle (electronic device)",
+        "amount": 2500,
+        "note": "Smartphone, tablet, computer — once in 3 years"
+      },
+      {
+        "code": "breastfeeding",
+        "name": "Breastfeeding equipment",
+        "amount": 1000,
+        "note": "For children up to 2 years"
+      },
+      {
+        "code": "childcare",
+        "name": "Child care fees",
+        "amount": 3000,
+        "note": "For children up to 6 years"
+      },
+      {
+        "code": "sspn",
+        "name": "SSPN savings",
+        "amount": 8000,
+        "note": "Net deposit in SSPN for children's education"
+      },
+      {
+        "code": "pr1ma",
+        "name": "PR1MA housing loan interest",
+        "amount": 10000,
+        "note": "First home purchase, loan approved 2021-2025"
+      },
+      {
+        "code": "rental",
+        "name": "Rental of residence",
+        "amount": 3000,
+        "note": "Renting residence in Malaysia"
+      }
     ]
   },
   "pcb_method": {
