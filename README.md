@@ -125,8 +125,8 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 | `hrdf.py` | ✅ Complete | Rates, wage components, formula parsed from HTML |
 | `holidays.py` | ✅ Complete | Year, holidays scraped dynamically |
 | `epf.py` | ✅ Complete | Year, effective_from, act, age_limits extracted from page |
-| `socso.py` | ✅ Complete | Year, effective_from, act, schemes extracted from page |
-| `eis.py` | ✅ Complete | Year, effective_from, act extracted from page |
+| `socso.py` | ✅ Complete | Year, effective_from, act, schemes, 65-bracket rate table |
+| `eis.py` | ✅ Complete | Year, effective_from, act, 65-bracket rate table |
 | `pcb_table.json` | ❌ No scraper | Manually maintained — tax brackets + reliefs from LHDN |
 | `foreign_worker_rates.json` | ✅ Generated | Derived from EPF/SOCSO/EIS scraper output |
 
