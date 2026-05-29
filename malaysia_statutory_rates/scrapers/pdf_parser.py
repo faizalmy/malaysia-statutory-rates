@@ -12,7 +12,7 @@ import fitz  # pymupdf
 # PERKESO booklet URL and page ranges
 BOOKLET_URL = "https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf"
 BOOKLET_CACHE_DIR = Path(__file__).parent.parent.parent / ".cache" / "pdf"
-BOOKLET_FILENAME = "perkeso_booklet_2025.pdf"
+BOOKLET_FILENAME = "2025-BOOKLET_PERKESO_BI.pdf"
 
 # 0-indexed page ranges for rate tables in the booklet
 ACT4_PAGES = (35, 39)    # pages 36-39
@@ -22,9 +22,9 @@ ACT800_PAGES = (51, 55)  # pages 52-55
 def _parse_amount(text: str) -> float | None:
     """Parse 'RM1.10' or '40 cents' or 'RM1,234.50' to float."""
     text = text.strip()
-    m = re.match(r"RM([\d,]+(?:\.\d+)?)", text)
+    m = re.match(r"RM([\d, ]+(?:\.\d+)?)", text)
     if m:
-        return float(m.group(1).replace(",", ""))
+        return float(m.group(1).replace(",", "").replace(" ", ""))
     m = re.match(r"(\d+)\s*cents?", text, re.IGNORECASE)
     if m:
         return int(m.group(1)) / 100
@@ -77,23 +77,23 @@ def _extract_table(doc: fitz.Document, page_start: int, page_end: int,
             wage_min = wage_max = None
             lines_consumed = 1  # how many extra lines the wage description spans
 
-            up_to = re.search(r"up to\s*RM([\d,]+)", wage_line, re.IGNORECASE)
+            up_to = re.search(r"up to\s*RM([\d, ]+)", wage_line, re.IGNORECASE)
             if up_to:
-                wage_min, wage_max = 0, int(up_to.group(1).replace(",", ""))
+                wage_min, wage_max = 0, int(up_to.group(1).replace(",", "").replace(" ", ""))
             else:
-                exceeds = re.findall(r"exceed\s*RM([\d,]+)", wage_line, re.IGNORECASE)
+                exceeds = re.findall(r"exceed\s*RM([\d, ]+)", wage_line, re.IGNORECASE)
                 if len(exceeds) >= 2:
-                    wage_min = int(exceeds[0].replace(",", ""))
-                    wage_max = int(exceeds[1].replace(",", ""))
+                    wage_min = int(exceeds[0].replace(",", "").replace(" ", ""))
+                    wage_max = int(exceeds[1].replace(",", "").replace(" ", ""))
                 elif len(exceeds) == 1:
-                    wage_min = int(exceeds[0].replace(",", ""))
+                    wage_min = int(exceeds[0].replace(",", "").replace(" ", ""))
                     # Wage max may be on the next line
                     if i + 2 < len(lines):
                         next_exceed = re.search(
-                            r"exceed\s*RM([\d,]+)", lines[i + 2], re.IGNORECASE
+                            r"exceed\s*RM([\d, ]+)", lines[i + 2], re.IGNORECASE
                         )
                         if next_exceed:
-                            wage_max = int(next_exceed.group(1).replace(",", ""))
+                            wage_max = int(next_exceed.group(1).replace(",", "").replace(" ", ""))
                             lines_consumed = 2
 
             # Collect amount values after the wage description
