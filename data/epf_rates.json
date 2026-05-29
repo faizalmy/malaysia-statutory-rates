@@ -1,0 +1,76 @@
+{
+  "source": "https://www.kwsp.gov.my/en/employer/responsibilities/mandatory-contribution",
+  "year": 2025,
+  "effective_from": "2025-10-01",
+  "third_schedule_pdf": "https://www.kwsp.gov.my/documents/d/guest/third_schedule_from_-1-october-2025",
+  "act": "EPF Act 1991 — Section 43(1), Third Schedule",
+  "contribution_method": {
+    "description": "EPF uses wage range tables for wages up to RM20,000. For wages above RM20,000, direct percentage applies. Total contribution rounded up to next ringgit.",
+    "source": "kwsp.gov.my — Third Schedule, EPF Act 1991"
+  },
+  "rates": {
+    "malaysian_60_plus": {
+      "label": "Malaysian citizen aged 60 and above",
+      "employee": {
+        "rate": 0.0,
+        "note": "Optional"
+      },
+      "employer": {
+        "rate": 0.04
+      }
+    },
+    "malaysian_pr_nonmy_before_aug98_below_60": {
+      "label": "Malaysian / PR / Non-MY registered before 1 Aug 1998 (Below 60)",
+      "employee": {
+        "rate": 0.11
+      },
+      "employer": {
+        "wage_lte_5000": {
+          "rate": 0.13
+        },
+        "wage_gt_5000": {
+          "rate": 0.12
+        }
+      }
+    },
+    "pr_nonmy_before_aug98_60_plus": {
+      "label": "PR / Non-MY registered before 1 Aug 1998 (60+)",
+      "employee": {
+        "rate": 0.055
+      },
+      "employer": {
+        "rate": 0.06
+      },
+      "note": "Applicable for PR and Non-MY registered before 1 Aug 1998 only"
+    },
+    "non_malaysian_after_aug98": {
+      "label": "Non-Malaysian registered from 1 August 1998",
+      "employee": {
+        "rate": 0.02
+      },
+      "employer": {
+        "rate": 0.02
+      },
+      "note": "No wage limit, any age"
+    }
+  },
+  "age_limits": {
+    "min_contribution_age": 14,
+    "max_contribution_age": 75
+  },
+  "wage_components": {
+    "included": [],
+    "excluded": []
+  },
+  "notes": [
+    "Effective October 2025 salary/wage",
+    "Third Schedule PDF contains full wage range lookup tables",
+    "Wages above RM20,000 use percentage; up to RM20,000 use wage range table"
+  ],
+  "_metadata": {
+    "scraped_at": "2026-05-29T01:58:15.385993+00:00",
+    "source": "https://www.kwsp.gov.my/en/employer/responsibilities/mandatory-contribution",
+    "source_name": "Kumpulan Wang Simpanan Pekerja (KWSP)",
+    "scraper_version": "0.1.0"
+  }
+}

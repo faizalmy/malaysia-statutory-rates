@@ -1,0 +1,693 @@
+{
+  "source": "https://publicholidays.com.my/",
+  "year": 2026,
+  "gazette_source": "https://www.kabinet.gov.my/storage/2025/08/HKA-2026.pdf",
+  "national": [
+    {
+      "date": "2026-01-01",
+      "name": "New Year's Day",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-02-17",
+      "name": "Chinese New Year",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-02-18",
+      "name": "Chinese New Year Holiday",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-03-07",
+      "name": "Nuzul Al-Quran",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-03-20",
+      "name": "Hari Raya Aidilfitri Holiday",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-03-21",
+      "name": "Hari Raya Aidilfitri",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-03-22",
+      "name": "Hari Raya Aidilfitri Holiday",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-03-23",
+      "name": "Hari Raya Aidilfitri Holiday",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "name": "Labour Day",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-05-27",
+      "name": "Hari Raya Haji",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-05-31",
+      "name": "Wesak Day",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "name": "Agong's Birthday",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "name": "Wesak Day Holiday",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-06-17",
+      "name": "Awal Muharram",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-08-25",
+      "name": "Prophet Muhammad's Birthday",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-08-31",
+      "name": "Merdeka Day",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-09-16",
+      "name": "Malaysia Day",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-11-08",
+      "name": "Deepavali",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-11-09",
+      "name": "Deepavali Holiday",
+      "states": [
+        "national"
+      ]
+    },
+    {
+      "date": "2026-12-25",
+      "name": "Christmas Day",
+      "states": [
+        "national"
+      ]
+    }
+  ],
+  "state": {
+    "negeri_sembilan": [
+      {
+        "date": "2026-01-14",
+        "name": "YDPB Negeri Sembilan's Birthday",
+        "states": [
+          "negeri_sembilan"
+        ]
+      },
+      {
+        "date": "2026-01-17",
+        "name": "Israk and Mikraj",
+        "states": [
+          "kedah",
+          "negeri_sembilan",
+          "perlis_&_terengganu"
+        ]
+      },
+      {
+        "date": "2026-02-01",
+        "name": "Thaipusam",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-02-02",
+        "name": "Thaipusam Holiday",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      }
+    ],
+    "kedah": [
+      {
+        "date": "2026-01-17",
+        "name": "Israk and Mikraj",
+        "states": [
+          "kedah",
+          "negeri_sembilan",
+          "perlis_&_terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-03",
+        "name": "Labour Day Holiday",
+        "states": [
+          "kedah"
+        ]
+      },
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis&_terengganu"
+        ]
+      },
+      {
+        "date": "2026-06-21",
+        "name": "Sultan of Kedah's Birthday",
+        "states": [
+          "kedah"
+        ]
+      },
+      {
+        "date": "2026-12-27",
+        "name": "Christmas Holiday",
+        "states": [
+          "kedah"
+        ]
+      }
+    ],
+    "perlis_&_terengganu": [
+      {
+        "date": "2026-01-17",
+        "name": "Israk and Mikraj",
+        "states": [
+          "kedah",
+          "negeri_sembilan",
+          "perlis_&_terengganu"
+        ]
+      }
+    ],
+    "terengganu": [
+      {
+        "date": "2026-01-18",
+        "name": "Israk and Mikraj Holiday",
+        "states": [
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-03-04",
+        "name": "Installation of Sultan Terengganu",
+        "states": [
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-04-26",
+        "name": "Sultan of Terengganu's Birthday",
+        "states": [
+          "terengganu"
+        ]
+      }
+    ],
+    "johor": [
+      {
+        "date": "2026-02-01",
+        "name": "Thaipusam",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-02-02",
+        "name": "Thaipusam Holiday",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-03-23",
+        "name": "Sultan of Johor's Birthday",
+        "states": [
+          "johor"
+        ]
+      },
+      {
+        "date": "2026-03-24",
+        "name": "Hari Raya Aidilfitri Holiday",
+        "states": [
+          "johor"
+        ]
+      },
+      {
+        "date": "2026-07-21",
+        "name": "Hari Hol Almarhum Sultan Iskandar",
+        "states": [
+          "johor"
+        ]
+      }
+    ],
+    "kuala_lumpur": [
+      {
+        "date": "2026-02-01",
+        "name": "Thaipusam",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-02-01",
+        "name": "Federal Territory Day",
+        "states": [
+          "kuala_lumpur",
+          "labuan&_putrajaya"
+        ]
+      },
+      {
+        "date": "2026-02-02",
+        "name": "Thaipusam Holiday",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-02-03",
+        "name": "Federal Territory Day Holiday",
+        "states": [
+          "kuala_lumpur",
+          "labuan&_putrajaya"
+        ]
+      }
+    ],
+    "penang": [
+      {
+        "date": "2026-02-01",
+        "name": "Thaipusam",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-02-02",
+        "name": "Thaipusam Holiday",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-07-07",
+        "name": "Georgetown World Heritage City Day",
+        "states": [
+          "penang"
+        ]
+      },
+      {
+        "date": "2026-07-11",
+        "name": "Penang Governor's Birthday",
+        "states": [
+          "penang"
+        ]
+      }
+    ],
+    "perak": [
+      {
+        "date": "2026-02-01",
+        "name": "Thaipusam",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-02-02",
+        "name": "Thaipusam Holiday",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-11-06",
+        "name": "Sultan of Perak's Birthday",
+        "states": [
+          "perak"
+        ]
+      }
+    ],
+    "putrajaya_&selangor": [
+      {
+        "date": "2026-02-01",
+        "name": "Thaipusam",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      },
+      {
+        "date": "2026-02-02",
+        "name": "Thaipusam Holiday",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya_&selangor"
+        ]
+      }
+    ],
+    "labuan&_putrajaya": [
+      {
+        "date": "2026-02-01",
+        "name": "Federal Territory Day",
+        "states": [
+          "kuala_lumpur",
+          "labuan&_putrajaya"
+        ]
+      },
+      {
+        "date": "2026-02-03",
+        "name": "Federal Territory Day Holiday",
+        "states": [
+          "kuala_lumpur",
+          "labuan&_putrajaya"
+        ]
+      }
+    ],
+    "johor_&_kedah": [
+      {
+        "date": "2026-02-19",
+        "name": "Awal Ramadan",
+        "states": [
+          "johor_&_kedah"
+        ]
+      }
+    ],
+    "melaka": [
+      {
+        "date": "2026-02-20",
+        "name": "Independence Declaration Day",
+        "states": [
+          "melaka"
+        ]
+      },
+      {
+        "date": "2026-08-24",
+        "name": "Melaka Governor's Birthday",
+        "states": [
+          "melaka"
+        ]
+      }
+    ],
+    "kelantan_&_terengganu": [
+      {
+        "date": "2026-03-08",
+        "name": "Nuzul Al-Quran Holiday",
+        "states": [
+          "kelantan_&_terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-26",
+        "name": "Arafat Day",
+        "states": [
+          "kelantan_&_terengganu"
+        ]
+      }
+    ],
+    "sabah": [
+      {
+        "date": "2026-03-30",
+        "name": "Sabah Governor's Birthday",
+        "states": [
+          "sabah"
+        ]
+      },
+      {
+        "date": "2026-12-24",
+        "name": "Christmas Eve",
+        "states": [
+          "sabah"
+        ]
+      }
+    ],
+    "sabah_&_sarawak": [
+      {
+        "date": "2026-04-03",
+        "name": "Good Friday",
+        "states": [
+          "sabah_&_sarawak"
+        ]
+      }
+    ],
+    "perlis": [
+      {
+        "date": "2026-05-17",
+        "name": "Raja Perlis' Birthday",
+        "states": [
+          "perlis"
+        ]
+      },
+      {
+        "date": "2026-05-18",
+        "name": "Raja Perlis' Birthday Holiday",
+        "states": [
+          "perlis"
+        ]
+      }
+    ],
+    "pahang": [
+      {
+        "date": "2026-05-22",
+        "name": "Hari Hol Pahang",
+        "states": [
+          "pahang"
+        ]
+      },
+      {
+        "date": "2026-07-31",
+        "name": "Sultan of Pahang's Birthday",
+        "states": [
+          "pahang"
+        ]
+      }
+    ],
+    "kelantan": [
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis&_terengganu"
+        ]
+      },
+      {
+        "date": "2026-09-29",
+        "name": "Sultan of Kelantan's Birthday",
+        "states": [
+          "kelantan"
+        ]
+      },
+      {
+        "date": "2026-09-30",
+        "name": "Sultan of Kelantan's Birthday Holiday",
+        "states": [
+          "kelantan"
+        ]
+      }
+    ],
+    "perlis&_terengganu": [
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis&_terengganu"
+        ]
+      }
+    ],
+    "labuan_&_sabah": [
+      {
+        "date": "2026-05-30",
+        "name": "Harvest Festival",
+        "states": [
+          "labuan_&_sabah"
+        ]
+      },
+      {
+        "date": "2026-05-31",
+        "name": "Harvest Festival Holiday",
+        "states": [
+          "labuan_&_sabah"
+        ]
+      },
+      {
+        "date": "2026-06-03",
+        "name": "Harvest Festival Holiday",
+        "states": [
+          "labuan_&_sabah"
+        ]
+      }
+    ],
+    "sarawak": [
+      {
+        "date": "2026-06-01",
+        "name": "Hari Gawai",
+        "states": [
+          "sarawak"
+        ]
+      },
+      {
+        "date": "2026-06-02",
+        "name": "Hari Gawai Holiday",
+        "states": [
+          "sarawak"
+        ]
+      },
+      {
+        "date": "2026-06-03",
+        "name": "Wesak Day Holiday",
+        "states": [
+          "sarawak"
+        ]
+      },
+      {
+        "date": "2026-06-04",
+        "name": "Hari Gawai Holiday",
+        "states": [
+          "sarawak"
+        ]
+      },
+      {
+        "date": "2026-07-22",
+        "name": "Sarawak Day",
+        "states": [
+          "sarawak"
+        ]
+      },
+      {
+        "date": "2026-10-10",
+        "name": "Sarawak Governor's Birthday",
+        "states": [
+          "sarawak"
+        ]
+      }
+    ],
+    "selangor": [
+      {
+        "date": "2026-12-11",
+        "name": "Sultan of Selangor's Birthday",
+        "states": [
+          "selangor"
+        ]
+      }
+    ]
+  },
+  "notes": [
+    "Data from publicholidays.com.my, based on official government gazette",
+    "Islamic holidays (Hari Raya, etc.) are approximate — actual dates depend on moon sighting",
+    "State holidays are only observed in the respective state"
+  ],
+  "_metadata": {
+    "scraped_at": "2026-05-29T01:58:36.159558+00:00",
+    "source": "https://publicholidays.com.my/",
+    "source_name": "PublicHolidays.com.my (based on government gazette)",
+    "scraper_version": "0.1.0"
+  }
+}

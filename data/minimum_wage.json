@@ -1,0 +1,26 @@
+{
+  "source": "https://gajiminimum.mohr.gov.my/",
+  "year": 2025,
+  "effective_from": "2025-02-01",
+  "gazette": "PUA 376",
+  "act": "Minimum Wages Order 2024",
+  "rates": {
+    "nationwide": {
+      "monthly": 1700,
+      "hourly": 8.72
+    }
+  },
+  "min_employees_for_mandatory": 1,
+  "notes": [
+    "Effective February 2025 for all employers regardless of size",
+    "Supersedes previous RM1,500 (cities) / RM1,200 (other areas) tiers",
+    "Applies nationwide — no distinction between city and other areas"
+  ],
+  "gazette_url": "https://gajiminimum.mohr.gov.my/wp-content/uploads/PUA 376.pdf",
+  "_metadata": {
+    "scraped_at": "2026-05-29T01:51:25.748588+00:00",
+    "source": "https://gajiminimum.mohr.gov.my/",
+    "source_name": "Sekretariat Majlis Perundingan Gaji Negara (MPGN)",
+    "scraper_version": "0.1.0"
+  }
+}
