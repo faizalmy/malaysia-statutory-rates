@@ -254,27 +254,30 @@ class PCBScraper(BaseScraper):
                     notes.append(note)
                     break
 
-        # Scan for Zakat note
+        # Scan for Zakat note (look for actual sentence, not table data)
         for i in range(min(30, len(doc))):
             page_text = doc[i].get_text("text")
             zakat_match = re.search(
-                r"(Zakat[^.]*MTD[^.]*\.)", page_text, re.IGNORECASE
+                r"(Zakat\s+(?:is\s+)?(?:deducted|deduction)[^.]{10,100}\.)", page_text, re.IGNORECASE
             )
             if zakat_match:
                 note = zakat_match.group(1).strip()
-                if note not in notes:
+                note = re.sub(r"\s+", " ", note)
+                # Skip if it looks like table data (contains < or ≥ or lots of numbers)
+                if "<" not in note and "≥" not in note and len(note) < 200:
                     notes.append(note)
                     break
 
-        # Scan for non-resident note
+        # Scan for non-resident note (look for actual sentence, not table data)
         for i in range(min(30, len(doc))):
             page_text = doc[i].get_text("text")
             nr_match = re.search(
-                r"(Non-resident[^.]*\d+%[^.]*\.)", page_text, re.IGNORECASE
+                r"(Non-resident[^.]{10,100}\d+%[^.]{0,50}\.)", page_text, re.IGNORECASE
             )
             if nr_match:
                 note = nr_match.group(1).strip()
-                if note not in notes:
+                note = re.sub(r"\s+", " ", note)
+                if "<" not in note and "≥" not in note and len(note) < 200:
                     notes.append(note)
                     break
 

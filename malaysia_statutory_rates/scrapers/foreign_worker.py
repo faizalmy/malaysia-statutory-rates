@@ -98,16 +98,13 @@ class ForeignWorkerScraper(BaseScraper):
         notes = []
         if effective_from:
             notes.append(f"Foreign worker EPF became mandatory from {effective_from}")
-        # Pull notes from SOCSO data about foreign worker coverage
-        socso_notes = socso.get("notes", [])
-        for note in socso_notes:
-            if "foreign" in note.lower() or "employment injury" in note.lower():
-                notes.append(note)
-        # Pull notes from EIS data about foreign worker coverage
-        eis_notes = eis.get("notes", [])
-        for note in eis_notes:
-            if "foreign" in note.lower():
-                notes.append(note)
+        # Pull notes from SOCSO and EIS data about foreign worker coverage
+        seen = set()
+        for source_notes in [socso.get("notes", []), eis.get("notes", [])]:
+            for note in source_notes:
+                if ("foreign" in note.lower() or "employment injury" in note.lower()) and note not in seen:
+                    notes.append(note)
+                    seen.add(note)
 
         data = {
             "source": self.SOURCE_URL,

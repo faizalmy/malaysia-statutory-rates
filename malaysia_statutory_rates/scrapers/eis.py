@@ -97,8 +97,8 @@ class EISScraper(BaseScraper):
         try:
             data["rate_table"] = extract_eis_table()
             data["rate_table_source"] = BOOKLET_URL
-        except FileNotFoundError:
-            pass  # booklet not cached — rate_table will be omitted
+        except Exception as e:
+            print(f"    WARNING: Could not parse EIS rate table: {e}")
 
         if self.has_changed("eis_rates.json", data):
             return data
@@ -139,11 +139,14 @@ class EISScraper(BaseScraper):
             if equal_match:
                 notes.append(equal_match.group(1).strip())
 
-        # Look for foreign worker coverage
+        # Look for foreign worker coverage (filter out navigation text)
         fw_match = re.search(
-            r"(Foreign workers?[^.]*\.)", text, re.IGNORECASE
+            r"(Foreign workers? (?:are |is )[^.]{10,200}\.)", text, re.IGNORECASE
         )
         if fw_match:
-            notes.append(fw_match.group(1).strip())
+            note = fw_match.group(1).strip()
+            note = re.sub(r"\s+", " ", note)
+            if len(note) < 300:  # Skip navigation text which is very long
+                notes.append(note)
 
         return notes

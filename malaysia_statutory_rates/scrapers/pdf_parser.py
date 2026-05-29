@@ -125,6 +125,23 @@ def get_booklet_path() -> Path:
     return BOOKLET_CACHE_DIR / BOOKLET_FILENAME
 
 
+def _download_booklet() -> Path:
+    """Download the PERKESO booklet PDF if not cached."""
+    import httpx
+
+    path = get_booklet_path()
+    if path.exists():
+        return path
+
+    BOOKLET_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"    Downloading PERKESO booklet from {BOOKLET_URL}...")
+    resp = httpx.get(BOOKLET_URL, follow_redirects=True, timeout=60)
+    resp.raise_for_status()
+    path.write_bytes(resp.content)
+    print(f"    Downloaded {len(resp.content)} bytes to {path}")
+    return path
+
+
 def extract_socso_table(doc: fitz.Document | None = None) -> list[dict]:
     """Extract Act 4 (SOCSO) 65-bracket rate table.
 
@@ -134,12 +151,7 @@ def extract_socso_table(doc: fitz.Document | None = None) -> list[dict]:
     """
     close_doc = doc is None
     if doc is None:
-        path = get_booklet_path()
-        if not path.exists():
-            raise FileNotFoundError(
-                f"PERKESO booklet not found at {path}. "
-                f"Download from {BOOKLET_URL}"
-            )
+        path = _download_booklet()
         doc = fitz.open(path)
 
     raw = _extract_table(doc, *ACT4_PAGES, num_cols=4)
@@ -169,12 +181,7 @@ def extract_eis_table(doc: fitz.Document | None = None) -> list[dict]:
     """
     close_doc = doc is None
     if doc is None:
-        path = get_booklet_path()
-        if not path.exists():
-            raise FileNotFoundError(
-                f"PERKESO booklet not found at {path}. "
-                f"Download from {BOOKLET_URL}"
-            )
+        path = _download_booklet()
         doc = fitz.open(path)
 
     raw = _extract_table(doc, *ACT800_PAGES, num_cols=3)

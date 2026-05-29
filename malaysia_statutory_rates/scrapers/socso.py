@@ -137,8 +137,8 @@ class SOCSOScraper(BaseScraper):
         try:
             data["rate_table"] = extract_socso_table()
             data["rate_table_source"] = BOOKLET_URL
-        except FileNotFoundError:
-            pass  # booklet not cached — rate_table will be omitted
+        except Exception as e:
+            print(f"    WARNING: Could not parse SOCSO rate table: {e}")
 
         if self.has_changed("socso_rates.json", data):
             return data
@@ -222,12 +222,15 @@ class SOCSOScraper(BaseScraper):
             if schedule_match:
                 notes.append(schedule_match.group(1).strip())
 
-        # Look for foreign worker notes
+        # Look for foreign worker notes (filter out navigation text)
         fw_match = re.search(
-            r"(Foreign workers?[^.]*\.)", text, re.IGNORECASE
+            r"(Foreign workers? (?:are |is )[^.]{10,200}\.)", text, re.IGNORECASE
         )
         if fw_match:
-            notes.append(fw_match.group(1).strip())
+            note = fw_match.group(1).strip()
+            note = re.sub(r"\s+", " ", note)
+            if len(note) < 300:
+                notes.append(note)
 
         # Look for payment deadline
         due_match = re.search(

@@ -248,19 +248,12 @@ class HRDFScraper(BaseScraper):
 
         # Payment deadline - look for specific payment date
         due_match = re.search(
-            r"(Payment before or on \d+/\d+/\d+[^.]*\.)", text, re.IGNORECASE
+            r"(Payment before or on \d+/\d+/\d+,\s*payment within \d+ days of the following month)",
+            text, re.IGNORECASE,
         )
         if due_match:
             note = due_match.group(1).strip()
             note = re.sub(r"\s+", " ", note)
             notes.append(note)
-        else:
-            due_match = re.search(
-                r"(payment within \d+ days of the following month[^.]*\.)", text, re.IGNORECASE
-            )
-            if due_match:
-                note = due_match.group(1).strip()
-                note = re.sub(r"\s+", " ", note)
-                notes.append(note)
 
         return notes

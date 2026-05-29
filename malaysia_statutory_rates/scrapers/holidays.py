@@ -181,19 +181,21 @@ class HolidaysScraper(BaseScraper):
         if source_match:
             notes.append(source_match.group(1).strip())
 
-        # Islamic holidays caveat
+        # Islamic holidays caveat — look for disclaimer text, not holiday names
         islamic_match = re.search(
             r"(Islamic holidays?[^.]*moon sighting[^.]*\.)", full_text, re.IGNORECASE
         )
         if islamic_match:
             notes.append(islamic_match.group(1).strip())
         else:
-            # Look for any Islamic/moon sighting note
-            islamic_match = re.search(
-                r"(Hari Raya[^.]*\.)", full_text, re.IGNORECASE
+            # Look for "approximate" or "subject to" near Islamic terms
+            approx_match = re.search(
+                r"(Hari Raya[^.]*approximate[^.]*\.)", full_text, re.IGNORECASE
             )
-            if islamic_match:
-                notes.append(islamic_match.group(1).strip())
+            if approx_match:
+                note = approx_match.group(1).strip()
+                note = re.sub(r"\s+", " ", note)
+                notes.append(note)
 
         # State holidays note
         state_match = re.search(
