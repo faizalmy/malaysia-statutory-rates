@@ -28,10 +28,12 @@ class EISScraper(BaseScraper):
 
         # Extract wage ceiling
         full_text = soup.get_text()
-        wage_ceiling = 6000
+        wage_ceiling = None
         ceiling_match = re.search(r"RM([\d,]+)\s*per month", full_text, re.IGNORECASE)
         if ceiling_match:
             wage_ceiling = int(ceiling_match.group(1).replace(",", ""))
+        if wage_ceiling is None:
+            raise ValueError("Could not extract wage ceiling from EIS page")
 
         # Extract Act 800 PDF link
         act800_pdf = None
@@ -50,7 +52,7 @@ class EISScraper(BaseScraper):
                 break
 
         # Extract effective date from page text
-        effective_from = "2024-10-01"  # fallback
+        effective_from = None
         eff_match = re.search(r"Effective\s+(\d+)\s+(\w+)\s+(\d{4})", full_text, re.IGNORECASE)
         if eff_match:
             try:
@@ -58,15 +60,27 @@ class EISScraper(BaseScraper):
                 effective_from = dt.strftime("%Y-%m-%d")
             except ValueError:
                 pass
+        if effective_from is None:
+            raise ValueError("Could not extract effective date from EIS page")
 
         # Derive year from effective_from
         year = int(effective_from[:4])
 
         # Extract act reference
-        act = "Employment Insurance System Act 2017 (Act 800)"  # fallback
+        act = None
         act_match = re.search(r"Employment Insurance System Act\s*\d{4}", full_text, re.IGNORECASE)
         if act_match:
             act = f"{act_match.group(0)} (Act 800)"
+        if act is None:
+            raise ValueError("Could not extract act reference from EIS page")
+
+        # Find EIS description
+        eis_description = None
+        for p in soup.find_all("p"):
+            text = p.get_text(strip=True)
+            if "0.4%" in text or "0.2%" in text or "employment insurance" in text.lower():
+                eis_description = text
+                break
 
         data = {
             "source": self.SOURCE_URL,
@@ -75,8 +89,7 @@ class EISScraper(BaseScraper):
             "effective_from": effective_from,
             "wage_ceiling": wage_ceiling,
             "pdf_url": act800_pdf,
-            "description": eis_description or "EIS covers retrenchment, voluntary separation, and retirement",
-            "note": "Actual contribution rates are in the Act 800 PDF (Second Schedule)",
+            "description": eis_description,
             "notes": [
                 f"Wage ceiling: RM{wage_ceiling:,} per month (same as SOCSO)",
                 "EIS rates are in the Act 800 PDF (Second Schedule)",

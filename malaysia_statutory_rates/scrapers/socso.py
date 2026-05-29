@@ -29,10 +29,12 @@ class SOCSOScraper(BaseScraper):
 
         # Extract wage ceiling from page text
         full_text = soup.get_text()
-        wage_ceiling = 6000  # default
+        wage_ceiling = None
         ceiling_match = re.search(r"RM([\d,]+)\s*per month", full_text, re.IGNORECASE)
         if ceiling_match:
             wage_ceiling = int(ceiling_match.group(1).replace(",", ""))
+        if wage_ceiling is None:
+            raise ValueError("Could not extract wage ceiling from SOCSO page")
 
         # Extract PDF links
         act4_pdf = None
@@ -68,7 +70,7 @@ class SOCSOScraper(BaseScraper):
                 break
 
         # Extract effective date from page text
-        effective_from = "2024-10-01"  # fallback
+        effective_from = None
         eff_match = re.search(r"Effective\s+(\d+)\s+(\w+)\s+(\d{4})", full_text, re.IGNORECASE)
         if eff_match:
             try:
@@ -76,29 +78,33 @@ class SOCSOScraper(BaseScraper):
                 effective_from = dt.strftime("%Y-%m-%d")
             except ValueError:
                 pass
+        if effective_from is None:
+            raise ValueError("Could not extract effective date from SOCSO page")
 
         # Derive year from effective_from
         year = int(effective_from[:4])
 
         # Extract act reference
-        act = "Employees Social Security Act 1969 (Act 4)"  # fallback
+        act = None
         act_match = re.search(r"Employees Social Security Act\s*\d{4}", full_text, re.IGNORECASE)
         if act_match:
             act = f"{act_match.group(0)} (Act 4)"
+        if act is None:
+            raise ValueError("Could not extract act reference from SOCSO page")
 
         # Extract self-employment act reference
-        se_act = "Act 789"  # fallback
+        se_act = None
         se_act_match = re.search(r"Self-Employment.*?Act\s*(\d+)", full_text, re.IGNORECASE)
         if se_act_match:
             se_act = f"Act {se_act_match.group(1)}"
 
         # Extract housewives scheme details
-        hw_act = "Act 838"  # fallback
+        hw_act = None
         hw_act_match = re.search(r"Housewives.*?Act\s*(\d+)", full_text, re.IGNORECASE)
         if hw_act_match:
             hw_act = f"Act {hw_act_match.group(1)}"
 
-        hw_contribution = "RM120 per year (paid in advance for 12 months)"  # fallback
+        hw_contribution = None
         hw_match = re.search(r"RM(\d+).*?(\d+)\s+consecutive\s+months", full_text, re.IGNORECASE)
         if hw_match:
             hw_contribution = f"RM{hw_match.group(1)} per year (paid in advance for {hw_match.group(2)} consecutive months)"

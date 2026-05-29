@@ -24,6 +24,11 @@ class HRDFScraper(BaseScraper):
         mandatory_rate = self._extract_rate(text, "section 14")
         optional_rate = self._extract_rate(text, "section 15")
 
+        if mandatory_rate is None:
+            raise ValueError("Could not extract mandatory HRDF rate from page")
+        if optional_rate is None:
+            raise ValueError("Could not extract optional HRDF rate from page")
+
         # Parse wage components from page
         included, excluded = self._parse_wage_components(text)
 
@@ -50,7 +55,7 @@ class HRDFScraper(BaseScraper):
                 "excluded": excluded,
             },
             "notes": [
-                formula,
+                formula if formula else "Formula not found on page",
                 "Payment due by 15th of following month",
                 "Exempted sectors may change — check hrdcorp.gov.my/circulars",
             ],
@@ -60,8 +65,8 @@ class HRDFScraper(BaseScraper):
             return data
         return None
 
-    def _extract_rate(self, text: str, section: str) -> float:
-        """Extract levy rate percentage near a section reference."""
+    def _extract_rate(self, text: str, section: str) -> float | None:
+        """Extract levy rate percentage near a section reference. Returns None if not found."""
         # Find the section text and look for "X% of the monthly wage(s)" nearby
         idx = text.lower().find(section)
         if idx >= 0:
@@ -70,13 +75,13 @@ class HRDFScraper(BaseScraper):
             if m:
                 return float(m.group(1)) / 100
 
-        # Fallback: broader pattern
+        # Broader pattern
         pattern = rf"{section}.*?(?:levy|rate).*?(\d+(?:\.\d+)?)\s*%"
         match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
         if match:
             return float(match.group(1)) / 100
 
-        return 0.0
+        return None
 
     def _parse_wage_components(self, text: str) -> tuple[list[str], list[str]]:
         """Parse included/excluded wage components from page text."""
@@ -174,4 +179,4 @@ class HRDFScraper(BaseScraper):
             formula = re.sub(r"\s+", " ", formula)
             return formula
 
-        return "Levy = [(Basic Salary - Unpaid Leave) + Fixed Allowance] x Rate"
+        return None

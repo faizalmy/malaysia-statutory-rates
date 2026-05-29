@@ -21,7 +21,7 @@ def test_pcb_schema():
 def test_pcb_brackets_count():
     data = json.loads((DATA_DIR / "pcb_table.json").read_text())
     brackets = data["tax_brackets"]["brackets"]
-    assert len(brackets) == 11  # 11 tax brackets
+    assert len(brackets) == 10  # 10 tax brackets per 2026 LHDN specification
 
 
 def test_pcb_brackets_structure():
