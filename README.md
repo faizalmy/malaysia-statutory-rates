@@ -128,7 +128,7 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 | `socso.py` | ✅ Complete | Year, effective_from, act, schemes extracted from page |
 | `eis.py` | ✅ Complete | Year, effective_from, act extracted from page |
 | `pcb_table.json` | ❌ No scraper | Manually maintained — tax brackets + reliefs from LHDN |
-| `foreign_worker_rates.json` | ❌ No scraper | Manually maintained — derived from EPF/SOCSO/EIS |
+| `foreign_worker_rates.json` | ✅ Generated | Derived from EPF/SOCSO/EIS scraper output |
 
 ### Roadmap
 
@@ -137,8 +137,8 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 - [x] `socso.py`: extract year, effective_from, scheme descriptions from page
 - [x] `eis.py`: extract year, effective_from, act name from page
 
-**Phase 2 — Derived data:**
-- [ ] `foreign_worker_rates`: generate from existing EPF/SOCSO/EIS scraper output
+**Phase 2 — Derived data:** ✅ Done
+- [x] `foreign_worker_rates`: generate from existing EPF/SOCSO/EIS scraper output
 
 **Phase 3 — New scraper (PDF parsing):**
 - [ ] `pcb_table`: scrape LHDN page for tax brackets and reliefs
