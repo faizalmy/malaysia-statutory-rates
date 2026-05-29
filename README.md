@@ -46,10 +46,10 @@ national = [h for h in holidays["holidays"] if h.get("national")]
 ### CLI
 
 ```bash
-malaysia-rates show
-malaysia-rates show epf
-malaysia-rates show holidays
-malaysia-rates scrape --all
+malaysia-statutory-rates show
+malaysia-statutory-rates show epf
+malaysia-statutory-rates show holidays
+malaysia-statutory-rates scrape --all
 ```
 
 ## Data Files
@@ -79,7 +79,7 @@ cp .env.example .env  # add Firecrawl API key if needed
 ### Run
 
 ```bash
-malaysia-rates scrape --all
+malaysia-statutory-rates scrape --all
 ```
 
 ```python

@@ -42,7 +42,7 @@ dev = [
 ]
 
 [project.scripts]
-malaysia-rates = "malaysia_statutory_rates.cli:main"
+malaysia-statutory-rates = "malaysia_statutory_rates.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/faizalmy/malaysia-statutory-rates"

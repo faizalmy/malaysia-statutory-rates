@@ -1,4 +1,4 @@
-"""CLI entry point for malaysia-rates."""
+"""CLI entry point for malaysia-statutory-rates."""
 
 import argparse
 import json
@@ -48,7 +48,7 @@ def cmd_scrape(args: argparse.Namespace) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        prog="malaysia-rates",
+        prog="malaysia-statutory-rates",
         description="Malaysian statutory rate data — view and scrape.",
     )
     sub = parser.add_subparsers(dest="command")
