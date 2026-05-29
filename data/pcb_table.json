@@ -1,293 +1,156 @@
 {
   "source": "https://www.hasil.gov.my/en/employers/mtd-schedular/",
   "year": 2026,
-  "specification_pdf": "https://www.hasil.gov.my/media/arvlrzh5/spesifikasi-kaedah-pengiraan-berkomputer-pcb-2026.pdf",
-  "e_cp39": "https://ecp39.hasil.gov.my/",
+  "updated": "01 January 2026",
+  "specification_pdf": "/Users/faizal/Sites/games/aiagents/malaysia-statutory-rates/.cache/pdf/pcb-2026-specification.pdf",
   "tax_brackets": {
-    "description": "Tax brackets for Monthly Tax Deduction (MTD/PCB) 2026. P = total chargeable income per year. M = first chargeable income in range. R = tax rate. B = tax on M after individual rebate.",
+    "description": "MONTHLY TAX DEDUCTION (MTD) FOR COMPUTERIZED CALCULATION \n \n- 9 \n \na.",
     "brackets": [
-      {
-        "min": 0,
-        "max": 5000,
-        "rate": 0.0,
-        "base_tax": 0,
-        "M": 0,
-        "B_cat1_3": 0,
-        "B_cat2": 0
-      },
       {
         "min": 5001,
         "max": 20000,
         "rate": 0.01,
         "base_tax": 0,
         "M": 5000,
-        "B_cat1_3": 0,
-        "B_cat2": 0
+        "B_cat1_3": 400,
+        "B_cat2": 800
       },
       {
         "min": 20001,
         "max": 35000,
         "rate": 0.03,
-        "base_tax": 150,
+        "base_tax": 150.01,
         "M": 20000,
-        "B_cat1_3": 150,
-        "B_cat2": 350
+        "B_cat1_3": 250,
+        "B_cat2": 650
       },
       {
         "min": 35001,
         "max": 50000,
         "rate": 0.06,
-        "base_tax": 600,
+        "base_tax": 600.04,
         "M": 35000,
         "B_cat1_3": 600,
-        "B_cat2": 1100
+        "B_cat2": 600
       },
       {
         "min": 50001,
         "max": 70000,
         "rate": 0.11,
-        "base_tax": 1500,
+        "base_tax": 1500.1,
         "M": 50000,
         "B_cat1_3": 1500,
-        "B_cat2": 2000
+        "B_cat2": 1500
       },
       {
         "min": 70001,
         "max": 100000,
         "rate": 0.19,
-        "base_tax": 3700,
+        "base_tax": 3700.21,
         "M": 70000,
         "B_cat1_3": 3700,
-        "B_cat2": 4200
+        "B_cat2": 3700
       },
       {
         "min": 100001,
         "max": 400000,
         "rate": 0.25,
-        "base_tax": 9400,
+        "base_tax": 9400.400000000001,
         "M": 100000,
         "B_cat1_3": 9400,
-        "B_cat2": 9900
+        "B_cat2": 9400
       },
       {
         "min": 400001,
         "max": 600000,
         "rate": 0.26,
-        "base_tax": 84400,
+        "base_tax": 84400.65,
         "M": 400000,
         "B_cat1_3": 84400,
-        "B_cat2": 84900
+        "B_cat2": 84400
       },
       {
         "min": 600001,
         "max": 2000000,
         "rate": 0.28,
-        "base_tax": 136400,
+        "base_tax": 136400.91,
         "M": 600000,
         "B_cat1_3": 136400,
-        "B_cat2": 136900
+        "B_cat2": 136400
       },
       {
-        "min": 2000001,
+        "min": 2000000,
         "max": null,
         "rate": 0.3,
-        "base_tax": 528400,
+        "base_tax": 528401.1900000001,
         "M": 2000000,
         "B_cat1_3": 528400,
-        "B_cat2": 528900
+        "B_cat2": 528400
       }
     ]
   },
   "tax_reliefs": {
-    "description": "Individual income tax reliefs for Year of Assessment 2026 per LHDN specification",
     "reliefs": [
       {
-        "code": "self",
-        "name": "Individual and dependent relatives",
-        "amount": 9000,
-        "type": "compulsory"
+        "name": "Individual",
+        "amount": 2000
       },
       {
-        "code": "spouse",
-        "name": "Husband/Wife (no income or joint assessment)",
-        "amount": 4000,
-        "type": "compulsory"
+        "name": "Employees Provident Fund (EPF) or Other Approved",
+        "amount": 8000
       },
       {
-        "code": "child",
-        "name": "Child (each, unmarried, below 18 or studying)",
-        "amount": 2000,
-        "type": "compulsory"
+        "name": "medical care and treatment provided by a nursing home; and",
+        "amount": 1000
       },
       {
-        "code": "child_disabled",
-        "name": "Disabled child (equivalent to 4 children)",
-        "amount": 8000,
-        "type": "compulsory"
+        "name": "Basic Supporting Equipment",
+        "amount": 700000
       },
       {
-        "code": "disabled_self",
-        "name": "Disabled individual",
-        "amount": 7000,
-        "type": "compulsory"
+        "name": "up to tertiary level (other than Masters and Doctorate level) for",
+        "amount": 2000
       },
       {
-        "code": "disabled_spouse",
-        "name": "Disabled husband/wife",
-        "amount": 6000,
-        "type": "compulsory"
+        "name": "Expenses on Admission Fees to Tourist Centres and Cultural",
+        "amount": 1000000
       },
       {
-        "code": "medical_parent",
-        "name": "Medical treatment/special needs/carer for parents/grandparents",
-        "amount": 8000,
-        "type": "optional"
+        "name": "COVID-19 and influenza detection test fee:",
+        "amount": 1000
       },
       {
-        "code": "supporting_equipment",
-        "name": "Basic supporting equipment for disabled person",
-        "amount": 6000,
-        "type": "optional"
+        "name": "Net Deposit in Skim Simpanan Pendidikan Nasional (SSPN)",
+        "amount": 800000
       },
       {
-        "code": "education_self",
-        "name": "Higher education fees (self) — upskilling/degree/professional",
-        "amount": 7000,
-        "type": "optional"
+        "name": "tax relief can only be claimed by either mother or father, who make SSPN",
+        "amount": 500
       },
       {
-        "code": "tourism",
-        "name": "Admission fees to tourist centres and cultural programmes",
-        "amount": 1000,
-        "type": "optional"
+        "name": "Payment of Alimony to Former Wife",
+        "amount": 4000
       },
       {
-        "code": "medical_serious",
-        "name": "Medical expenses on serious diseases + fertility + dental + vaccination",
-        "amount": 10000,
-        "type": "optional"
+        "name": "Life Insurance and EPF",
+        "amount": 3000
       },
       {
-        "code": "medical_exam",
-        "name": "Complete medical examination (incl. mental health, self-test kits)",
-        "amount": 1000,
-        "type": "optional"
+        "name": "Education and Medical Insurance",
+        "amount": 350
       },
       {
-        "code": "sspn",
-        "name": "SSPN net deposits for children education",
-        "amount": 8000,
-        "type": "optional"
-      },
-      {
-        "code": "alimony",
-        "name": "Alimony to former wife",
-        "amount": 4000,
-        "type": "optional"
-      },
-      {
-        "code": "epf_approved",
-        "name": "EPF or other approved scheme contributions",
-        "amount": 4000,
-        "type": "optional"
-      },
-      {
-        "code": "life_insurance",
-        "name": "Life insurance/takaful premiums (self, spouse, children)",
-        "amount": 3000,
-        "type": "optional"
-      },
-      {
-        "code": "prs",
-        "name": "Private Retirement Scheme (PRS) and deferred annuity",
-        "amount": 3000,
-        "type": "optional"
-      },
-      {
-        "code": "edu_med_insurance",
-        "name": "Education and medical insurance premiums",
-        "amount": 4000,
-        "type": "optional"
-      },
-      {
-        "code": "socso",
-        "name": "SOCSO/EIS contributions",
-        "amount": 350,
-        "type": "optional"
-      },
-      {
-        "code": "lifestyle",
-        "name": "Lifestyle (books, devices, internet, courses)",
-        "amount": 2500,
-        "type": "optional"
-      },
-      {
-        "code": "breastfeeding",
-        "name": "Breastfeeding equipment (child under 2, once per 2 years)",
-        "amount": 1000,
-        "type": "optional"
-      },
-      {
-        "code": "childcare",
-        "name": "Child care fees (child under 6, expanded to under 12 for transit centres)",
-        "amount": 3000,
-        "type": "optional"
-      },
-      {
-        "code": "additional_lifestyle",
-        "name": "Sports equipment, gym, competitions",
-        "amount": 1000,
-        "type": "optional"
-      },
-      {
-        "code": "ev_charging",
-        "name": "EV charging facilities / food waste grinder / CCTV",
-        "amount": 2500,
-        "type": "optional"
-      },
-      {
-        "code": "housing_loan",
-        "name": "Housing loan interest (first home, 2025-2027 purchases)",
-        "amount": 7000,
-        "type": "optional"
+        "name": "Lifestyle",
+        "amount": 1000
       }
     ],
-    "rebates": {
-      "individual": {
-        "amount": 400,
-        "condition": "P (chargeable income) <= RM35,000"
-      },
-      "spouse": {
-        "amount": 800,
-        "condition": "Category 2 (spouse not working) AND P <= RM35,000"
-      },
-      "zakat": {
-        "note": "Muslim taxpayers only. Deducted from monthly tax deduction."
-      }
-    }
-  },
-  "pcb_method": {
-    "description": "Monthly Tax Deduction (MTD/PCB) is calculated using the Computerised Calculation Method as specified by LHDN. The formula considers annualised income, reliefs, and prior months' deductions.",
-    "key_points": [
-      "PCB = (Estimated annual tax - Previous months' PCB) / Remaining months",
-      "Annual income = Current month salary x 12 + annualised allowances",
-      "Reliefs are deducted from annual income before tax calculation",
-      "EPF deduction capped at RM7,000 per year for PCB calculation",
-      "MTD applies to all employees earning above the threshold",
-      "Employers must use e-CP39 for PCB submission since March 2019"
-    ],
-    "reference": "LHDN Specification for Monthly Tax Deduction (MTD) 2026 — Computerised Calculation Method"
+    "note": "Reliefs extracted from PDF text — verify against official LHDN specification"
   },
   "notes": [
-    "Source: LHDN Specification for MTD Calculations 2026",
-    "B values differ by category: Cat 1&3 (single/married-spouse-working) vs Cat 2 (spouse not working)",
-    "Rebate: individual RM400 + spouse RM800 (if applicable), only for chargeable income <= RM35,000",
-    "Zakat deducted monthly from MTD, not from chargeable income",
-    "Non-resident employees taxed at flat 30% of remuneration",
-    "Budget 2026 changes: vaccination relief expanded, childcare RM3,000, life insurance includes children, medical disability relief RM10,000, tourism relief RM1,000, EV/CCTV/food waste relief RM2,500"
+    "Source: LHDN Specification for MTD Calculations 2026"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T01:00:00+00:00",
+    "scraped_at": "2026-05-29T13:31:51.672348+00:00",
     "source": "https://www.hasil.gov.my/en/employers/mtd-schedular/",
     "source_name": "Lembaga Hasil Dalam Negeri Malaysia (LHDN)",
     "scraper_version": "0.1.0"

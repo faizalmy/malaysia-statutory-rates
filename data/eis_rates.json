@@ -5,13 +5,11 @@
   "effective_from": "2024-10-01",
   "wage_ceiling": 6000,
   "pdf_url": "https://www.perkeso.gov.my/images/dokumen/151124-Rate Contribution ACT 800.pdf",
-  "description": "EIS covers retrenchment, voluntary separation, and retirement",
-  "note": "Actual contribution rates are in the Act 800 PDF (Second Schedule)",
+  "description": null,
   "notes": [
     "Wage ceiling: RM6,000 per month (same as SOCSO)",
-    "EIS rates are in the Act 800 PDF (Second Schedule)",
-    "Both employer and employee contribute equally",
-    "Foreign workers are also covered under EIS"
+    "Second Schedule, Act 800.",
+    "Foreign Workers are refer to the Third Schedule (Act 4), whereas Domestic Workers' contribution rates are based on eligibility criteria listed in the Domestic Worker section."
   ],
   "rate_table": [
     {
@@ -537,7 +535,7 @@
   ],
   "rate_table_source": "https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf",
   "_metadata": {
-    "scraped_at": "2026-05-29T04:52:18.343372+00:00",
+    "scraped_at": "2026-05-29T13:35:45.713456+00:00",
     "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
     "source_name": "Pertubuhan Keselamatan Sosial (PERKESO)",
     "scraper_version": "0.1.0"

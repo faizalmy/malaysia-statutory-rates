@@ -10,11 +10,11 @@
     "employment_injury": {
       "full_name": "Employment Injury Scheme",
       "employer_only": true,
-      "note": "Rate in Third Schedule (Act 4) PDF. Covers workplace accidents, commuting, occupational diseases."
+      "note": "Rate in Third Schedule (Act 4) PDF"
     },
     "invalidity": {
       "full_name": "Invalidity Scheme",
-      "note": "Rate in Third Schedule (Act 4) PDF. Covers permanent disability not related to employment."
+      "note": "Rate in Third Schedule (Act 4) PDF"
     }
   },
   "self_employment_scheme": {
@@ -44,9 +44,8 @@
   },
   "notes": [
     "Wage ceiling: RM6,000 per month (effective Oct 2024)",
-    "Actual contribution rates are in the Act 4 PDF (Third Schedule)",
-    "Foreign workers: Employment Injury only (no Invalidity scheme)",
-    "Contribution due by 15th of following month"
+    "Third Schedule, Act 4 and the Second Schedule, Act 800.",
+    "Foreign Workers are refer to the Third Schedule (Act 4), whereas Domestic Workers' contribution rates are based on eligibility criteria listed in the Domestic Worker section."
   ],
   "rate_table": [
     {
@@ -637,7 +636,7 @@
   ],
   "rate_table_source": "https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf",
   "_metadata": {
-    "scraped_at": "2026-05-29T04:58:44.396121+00:00",
+    "scraped_at": "2026-05-29T13:35:45.402881+00:00",
     "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
     "source_name": "Pertubuhan Keselamatan Sosial (PERKESO)",
     "scraper_version": "0.1.0"

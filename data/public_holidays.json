@@ -1,7 +1,6 @@
 {
   "source": "https://publicholidays.com.my/",
   "year": 2026,
-  "gazette_source": "https://www.kabinet.gov.my/storage/2025/08/HKA-2026.pdf",
   "national": [
     {
       "date": "2026-01-01",
@@ -202,6 +201,14 @@
         ]
       },
       {
+        "date": "2026-02-19",
+        "name": "Awal Ramadan",
+        "states": [
+          "johor",
+          "kedah"
+        ]
+      },
+      {
         "date": "2026-05-03",
         "name": "Labour Day Holiday",
         "states": [
@@ -231,14 +238,6 @@
         "states": [
           "kedah"
         ]
-      },
-      {
-        "date": "2026-02-19",
-        "name": "Awal Ramadan",
-        "states": [
-          "johor",
-          "kedah"
-        ]
       }
     ],
     "perlis": [
@@ -248,16 +247,6 @@
         "states": [
           "kedah",
           "negeri_sembilan",
-          "perlis",
-          "terengganu"
-        ]
-      },
-      {
-        "date": "2026-05-28",
-        "name": "Hari Raya Haji Holiday",
-        "states": [
-          "kedah",
-          "kelantan",
           "perlis",
           "terengganu"
         ]
@@ -275,6 +264,16 @@
         "states": [
           "perlis"
         ]
+      },
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis",
+          "terengganu"
+        ]
       }
     ],
     "terengganu": [
@@ -284,16 +283,6 @@
         "states": [
           "kedah",
           "negeri_sembilan",
-          "perlis",
-          "terengganu"
-        ]
-      },
-      {
-        "date": "2026-05-28",
-        "name": "Hari Raya Haji Holiday",
-        "states": [
-          "kedah",
-          "kelantan",
           "perlis",
           "terengganu"
         ]
@@ -313,13 +302,6 @@
         ]
       },
       {
-        "date": "2026-04-26",
-        "name": "Sultan of Terengganu's Birthday",
-        "states": [
-          "terengganu"
-        ]
-      },
-      {
         "date": "2026-03-08",
         "name": "Nuzul Al-Quran Holiday",
         "states": [
@@ -328,10 +310,27 @@
         ]
       },
       {
+        "date": "2026-04-26",
+        "name": "Sultan of Terengganu's Birthday",
+        "states": [
+          "terengganu"
+        ]
+      },
+      {
         "date": "2026-05-26",
         "name": "Arafat Day",
         "states": [
           "kelantan",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis",
           "terengganu"
         ]
       }
@@ -364,6 +363,14 @@
         ]
       },
       {
+        "date": "2026-02-19",
+        "name": "Awal Ramadan",
+        "states": [
+          "johor",
+          "kedah"
+        ]
+      },
+      {
         "date": "2026-03-23",
         "name": "Sultan of Johor's Birthday",
         "states": [
@@ -383,14 +390,6 @@
         "states": [
           "johor"
         ]
-      },
-      {
-        "date": "2026-02-19",
-        "name": "Awal Ramadan",
-        "states": [
-          "johor",
-          "kedah"
-        ]
       }
     ],
     "kuala_lumpur": [
@@ -408,6 +407,15 @@
         ]
       },
       {
+        "date": "2026-02-01",
+        "name": "Federal Territory Day",
+        "states": [
+          "kuala_lumpur",
+          "labuan",
+          "putrajaya"
+        ]
+      },
+      {
         "date": "2026-02-02",
         "name": "Thaipusam Holiday",
         "states": [
@@ -418,15 +426,6 @@
           "perak",
           "putrajaya",
           "selangor"
-        ]
-      },
-      {
-        "date": "2026-02-01",
-        "name": "Federal Territory Day",
-        "states": [
-          "kuala_lumpur",
-          "labuan",
-          "putrajaya"
         ]
       },
       {
@@ -531,6 +530,15 @@
         ]
       },
       {
+        "date": "2026-02-01",
+        "name": "Federal Territory Day",
+        "states": [
+          "kuala_lumpur",
+          "labuan",
+          "putrajaya"
+        ]
+      },
+      {
         "date": "2026-02-02",
         "name": "Thaipusam Holiday",
         "states": [
@@ -541,15 +549,6 @@
           "perak",
           "putrajaya",
           "selangor"
-        ]
-      },
-      {
-        "date": "2026-02-01",
-        "name": "Federal Territory Day",
-        "states": [
-          "kuala_lumpur",
-          "labuan",
-          "putrajaya"
         ]
       },
       {
@@ -594,48 +593,6 @@
         "name": "Sultan of Selangor's Birthday",
         "states": [
           "selangor"
-        ]
-      }
-    ],
-    "kelantan": [
-      {
-        "date": "2026-05-28",
-        "name": "Hari Raya Haji Holiday",
-        "states": [
-          "kedah",
-          "kelantan",
-          "perlis",
-          "terengganu"
-        ]
-      },
-      {
-        "date": "2026-03-08",
-        "name": "Nuzul Al-Quran Holiday",
-        "states": [
-          "kelantan",
-          "terengganu"
-        ]
-      },
-      {
-        "date": "2026-05-26",
-        "name": "Arafat Day",
-        "states": [
-          "kelantan",
-          "terengganu"
-        ]
-      },
-      {
-        "date": "2026-09-29",
-        "name": "Sultan of Kelantan's Birthday",
-        "states": [
-          "kelantan"
-        ]
-      },
-      {
-        "date": "2026-09-30",
-        "name": "Sultan of Kelantan's Birthday Holiday",
-        "states": [
-          "kelantan"
         ]
       }
     ],
@@ -699,17 +656,52 @@
         ]
       }
     ],
+    "kelantan": [
+      {
+        "date": "2026-03-08",
+        "name": "Nuzul Al-Quran Holiday",
+        "states": [
+          "kelantan",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-26",
+        "name": "Arafat Day",
+        "states": [
+          "kelantan",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-09-29",
+        "name": "Sultan of Kelantan's Birthday",
+        "states": [
+          "kelantan"
+        ]
+      },
+      {
+        "date": "2026-09-30",
+        "name": "Sultan of Kelantan's Birthday Holiday",
+        "states": [
+          "kelantan"
+        ]
+      }
+    ],
     "sabah": [
       {
         "date": "2026-03-30",
         "name": "Sabah Governor's Birthday",
-        "states": [
-          "sabah"
-        ]
-      },
-      {
-        "date": "2026-12-24",
-        "name": "Christmas Eve",
         "states": [
           "sabah"
         ]
@@ -743,6 +735,13 @@
         "name": "Harvest Festival Holiday",
         "states": [
           "labuan",
+          "sabah"
+        ]
+      },
+      {
+        "date": "2026-12-24",
+        "name": "Christmas Eve",
+        "states": [
           "sabah"
         ]
       }
@@ -816,13 +815,9 @@
       }
     ]
   },
-  "notes": [
-    "Data from publicholidays.com.my, based on official government gazette",
-    "Islamic holidays (Hari Raya, etc.) are approximate — actual dates depend on moon sighting",
-    "State holidays are only observed in the respective state"
-  ],
+  "notes": [],
   "_metadata": {
-    "scraped_at": "2026-05-29T01:58:36.159558+00:00",
+    "scraped_at": "2026-05-29T13:31:57.189125+00:00",
     "source": "https://publicholidays.com.my/",
     "source_name": "PublicHolidays.com.my (based on government gazette)",
     "scraper_version": "0.1.0"

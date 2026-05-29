@@ -5,12 +5,13 @@
   "third_schedule_pdf": "https://www.kwsp.gov.my/documents/d/guest/third_schedule_from_-1-october-2025",
   "act": "EPF Act 1991 — Section 43(1), Third Schedule",
   "contribution_method": {
-    "description": "EPF uses wage range tables for wages up to RM20,000. For wages above RM20,000, direct percentage applies. Total contribution rounded up to next ringgit.",
-    "source": "kwsp.gov.my — Third Schedule, EPF Act 1991"
+    "description": "not allowed to calculate the employer’s and employee’s share based on exact percentage EXCEPT for salaries that exceed RM20,000. total contribution which includes cents shall be rounded to the next ringgit.",
+    "source": "Third Schedule, EPF Act 1991"
   },
   "rates": {
     "malaysian_60_plus": {
-      "label": "Malaysian citizen aged 60 and above",
+      "label": "Malaysian",
+      "salary_range": "No limit",
       "employee": {
         "rate": 0.0,
         "note": "Optional"
@@ -20,7 +21,8 @@
       }
     },
     "malaysian_pr_nonmy_before_aug98_below_60": {
-      "label": "Malaysian / PR / Non-MY registered before 1 Aug 1998 (Below 60)",
+      "label": "Malaysian Permanent Residents (PR) Non-Malaysians (registered as member before 1 August 1998)",
+      "salary_range": "RM5,000 and below",
       "employee": {
         "rate": 0.11
       },
@@ -34,24 +36,25 @@
       }
     },
     "pr_nonmy_before_aug98_60_plus": {
-      "label": "PR / Non-MY registered before 1 Aug 1998 (60+)",
+      "label": "Malaysian Permanent Residents (PR) Non-Malaysians (registered as member before 1 August 1998)",
+      "salary_range": "More than RM5,000",
       "employee": {
         "rate": 0.055
       },
       "employer": {
         "rate": 0.06
       },
-      "note": "Applicable for PR and Non-MY registered before 1 Aug 1998 only"
+      "note": "Applicable for (ii) and (iii) only Employees share: 5"
     },
     "non_malaysian_after_aug98": {
-      "label": "Non-Malaysian registered from 1 August 1998",
+      "label": "Non-Malaysians (registered as member from 1 August 1998)",
+      "salary_range": "No limit",
       "employee": {
         "rate": 0.02
       },
       "employer": {
         "rate": 0.02
-      },
-      "note": "No wage limit, any age"
+      }
     }
   },
   "age_limits": {
@@ -59,38 +62,16 @@
     "max_contribution_age": 75
   },
   "wage_components": {
-    "included": [
-      "Salary/Wages",
-      "Bonus",
-      "Allowance",
-      "Commission",
-      "Incentives",
-      "Arrears of Salaries/Wages",
-      "Payment in respect of unutilised annual or medical leave",
-      "Paid maternity leave/Wages for maternity leaves",
-      "Paid study leave/Wages for study leaves",
-      "Wages for half-day leave",
-      "Other payments under services contract or otherwise"
-    ],
-    "excluded": [
-      "Service charge",
-      "Overtime payment",
-      "Gratuity",
-      "Retirement benefits",
-      "Retrenchment benefits",
-      "Temporary lay-off & termination benefits",
-      "Payment in lieu of notice of termination of employment",
-      "Travelling allowance or the value of any travelling concession"
-    ],
-    "reference": "KWSP FAQ #8 (Components of Wage) and #11 (Non-Wages), kwsp.gov.my/en/employer/responsibilities/mandatory-contribution"
+    "included": [],
+    "excluded": []
   },
   "notes": [
-    "Effective October 2025 salary/wage",
-    "Third Schedule PDF contains full wage range lookup tables",
-    "Wages above RM20,000 use percentage; up to RM20,000 use wage range table"
+    "Effective for October 2025 salary/wage (November 2025 contribution month)",
+    "total contribution which includes cents shall be rounded to the next ringgit.",
+    "Employer must make monthly payment on or before 15th of the month"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T01:58:15.385993+00:00",
+    "scraped_at": "2026-05-29T13:26:47.110075+00:00",
     "source": "https://www.kwsp.gov.my/en/employer/responsibilities/mandatory-contribution",
     "source_name": "Kumpulan Wang Simpanan Pekerja (KWSP)",
     "scraper_version": "0.1.0"

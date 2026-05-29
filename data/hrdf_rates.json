@@ -1,21 +1,16 @@
 {
   "source": "https://supportcentre.hrdcorp.gov.my/portal/en/kb/articles/hrd-levy",
-  "year": 2026,
-  "act": "PSMB Act 2001 (Act 612)",
+  "act": "PSMB Act 2001",
   "rates": {
     "mandatory": {
       "rate": 0.01,
-      "description": "Employers with 10 or more Malaysian employees",
-      "section": "Section 14, PSMB Act 2001"
+      "description": "shall be subject to human resources development levy at 1% of the monthly wage of the employee.",
+      "section": "Section 14 of the PSMB Act 2001"
     },
     "optional": {
       "rate": 0.005,
-      "description": "Employers with fewer than 10 Malaysian employees (voluntary registration)",
-      "section": "Section 15, PSMB Act 2001"
-    },
-    "exempted": {
-      "rate": 0.0,
-      "description": "Exempted sectors (e.g. education — Circular 1/2026)"
+      "description": "shall pay a levy for each of his employee at the rate of 0.5% of the monthly wages of the employee.",
+      "section": "Section 15 of the PSMB Act 2001"
     }
   },
   "wage_components": {
@@ -26,25 +21,28 @@
       "Arrears of wages"
     ],
     "excluded": [
-      "Bonuses",
-      "Commissions",
-      "Gratuity",
-      "Travel/transport allowances",
-      "Overtime payments",
+      "Pension fund, retrenchment",
+      "Travelling allowance or the value of any travelling concession",
+      "Allowances paid under apprentice contract.",
+      "Bonuses and commissions",
+      "Gratuity on discharge or retirements",
+      "Fund/scheme contribution to employee benefits or welfare.",
+      "Travel allowances including petrol and transport allowances",
+      "Apprenticeship",
+      "Special expenses",
+      "Overtime payment",
       "Night work allowance",
       "Shift allowance",
+      "Attendance allowance (for which the amount changes from month-to=month)",
       "Production incentive",
-      "Apprenticeship allowances",
-      "Special expenses"
+      "Other similar types of allowances"
     ]
   },
   "notes": [
-    "Levy = (Basic Salary - Unpaid Leave + Fixed Allowance) x Rate",
-    "Payment due by 15th of following month",
-    "Exempted sectors may change — check hrdcorp.gov.my/circulars"
+    "LEVY = [(BASIC SALARY - UNPAID LEAVE) + FIXED ALLOWANCE] x 1%"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T01:58:31.107330+00:00",
+    "scraped_at": "2026-05-29T13:31:33.586098+00:00",
     "source": "https://supportcentre.hrdcorp.gov.my/portal/en/kb/articles/hrd-levy",
     "source_name": "HRD Corporation of Malaysia (HRD Corp)",
     "scraper_version": "0.1.0"
