@@ -29,6 +29,7 @@ scraper = [
     "beautifulsoup4>=4.12",
     "pdfplumber>=0.11",
     "lxml>=5.0",
+    "python-dotenv>=1.0",
 ]
 api = [
     "fastapi>=0.115",

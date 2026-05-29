@@ -2,12 +2,15 @@
 
 import json
 import os
-import subprocess
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 
 import httpx
+from dotenv import load_dotenv
+
+# Load .env from project root
+load_dotenv(Path(__file__).parent.parent.parent / ".env")
 
 
 class BaseScraper:
@@ -42,20 +45,8 @@ class BaseScraper:
         )
 
     def _get_firecrawl_key(self) -> str | None:
-        """Get Firecrawl API key from env or macOS Keychain."""
-        key = os.environ.get("FIRECRAWL_API_KEY")
-        if key:
-            return key
-        try:
-            result = subprocess.run(
-                ["security", "find-generic-password", "-s", "firecrawl-api-key", "-a", "faizal", "-w"],
-                capture_output=True, text=True, timeout=5,
-            )
-            if result.returncode == 0 and result.stdout.strip():
-                return result.stdout.strip()
-        except Exception:
-            pass
-        return None
+        """Get Firecrawl API key from .env."""
+        return os.environ.get("FIRECRAWL_API_KEY")
 
     def _fetch_firecrawl(self, url: str) -> str:
         """Fetch via Firecrawl CLI (firecrawl_scrape MCP tool wrapper)."""
