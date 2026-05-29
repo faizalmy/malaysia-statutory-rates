@@ -137,7 +137,7 @@ SOCSO and EIS rate tables (65 wage brackets each) are parsed live from the
 — a text-based PDF with clean embedded text (no OCR needed). The parser uses
 pymupdf to extract table data from specific pages (36–39 for Act 4, 52–55 for Act 800).
 
-The booklet PDF is cached at `.cache/pdf/perkeso_booklet_2025.pdf`.
+The booklet PDF is cached at `.cache/pdf/2025-BOOKLET_PERKESO_BI.pdf`.
 
 ### Roadmap
 
