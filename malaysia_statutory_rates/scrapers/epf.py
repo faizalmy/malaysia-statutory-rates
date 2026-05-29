@@ -5,6 +5,7 @@ Extracts: employee/employer rates by wage bracket, Third Schedule PDF link.
 """
 
 import re
+from datetime import datetime
 
 from bs4 import BeautifulSoup
 
@@ -115,12 +116,19 @@ class EPFScraper(BaseScraper):
         # Parse notes
         notes = self._parse_notes(soup)
 
+        # Extract metadata from page text
+        full_text = soup.get_text()
+        year = self._extract_year(full_text)
+        effective_from = self._extract_effective_from(full_text)
+        act = self._extract_act(full_text)
+        age_limits = self._extract_age_limits(full_text)
+
         data = {
             "source": self.SOURCE_URL,
-            "year": 2025,
-            "effective_from": "2025-10-01",
+            "year": year,
+            "effective_from": effective_from,
             "third_schedule_pdf": third_schedule_url,
-            "act": "EPF Act 1991 — Section 43(1), Third Schedule",
+            "act": act,
             "contribution_method": {
                 "description": "EPF uses wage range tables for wages up to RM20,000. "
                 "For wages above RM20,000, direct percentage applies. "
@@ -128,7 +136,7 @@ class EPFScraper(BaseScraper):
                 "source": "kwsp.gov.my — Third Schedule, EPF Act 1991",
             },
             "rates": rates,
-            "age_limits": {"min_contribution_age": 14, "max_contribution_age": 75},
+            "age_limits": age_limits,
             "wage_components": {"included": wage_included, "excluded": wage_excluded},
             "notes": notes,
         }
@@ -145,6 +153,69 @@ class EPFScraper(BaseScraper):
         if match:
             return float(match.group(1)) / 100
         return None
+
+    def _extract_year(self, text: str) -> int:
+        """Extract year from page text. Fallback to current year."""
+        # Match "Effective 1 October 2025" or "October 2025" or "salary/wage 2025"
+        match = re.search(r"(?:effective\s+\d{1,2}\s+\w+\s+|october\s+|salary/wage\s+)(\d{4})", text, re.IGNORECASE)
+        if match:
+            return int(match.group(1))
+        # Fallback: any 4-digit year near "effective" or "october"
+        match = re.search(r"(?:effective|october).*?(\d{4})", text, re.IGNORECASE | re.DOTALL)
+        if match:
+            return int(match.group(1))
+        return datetime.now().year
+
+    def _extract_effective_from(self, text: str) -> str:
+        """Extract effective date and convert to ISO format. Fallback to hardcoded."""
+        # Match "Effective 1 October 2025" or "Effective for October 2025"
+        match = re.search(r"effective\s+(?:for\s+)?(\d{1,2})\s+(\w+)\s+(\d{4})", text, re.IGNORECASE)
+        if match:
+            day, month_name, year = match.group(1), match.group(2), match.group(3)
+            try:
+                dt = datetime.strptime(f"{day} {month_name} {year}", "%d %B %Y")
+                return dt.strftime("%Y-%m-%d")
+            except ValueError:
+                pass
+        # Match "Effective October 2025" (no day, default to 1st)
+        match = re.search(r"effective\s+(?:for\s+)?(\w+)\s+(\d{4})", text, re.IGNORECASE)
+        if match:
+            month_name, year = match.group(1), match.group(2)
+            try:
+                dt = datetime.strptime(f"1 {month_name} {year}", "%d %B %Y")
+                return dt.strftime("%Y-%m-%d")
+            except ValueError:
+                pass
+        return "2025-10-01"
+
+    def _extract_act(self, text: str) -> str:
+        """Extract act reference from page text. Fallback to hardcoded."""
+        # Match "EPF Act 1991" or "Employees Provident Fund Act 1991"
+        act_match = re.search(r"(?:employees?\s+provident\s+fund\s+)?(?:EPF\s+)?Act\s+(\d{4})", text, re.IGNORECASE)
+        section_match = re.search(r"Section\s+(\d+\(\d+\))", text, re.IGNORECASE)
+        if act_match:
+            act_year = act_match.group(1)
+            act_str = f"EPF Act {act_year}"
+            if section_match:
+                act_str += f" — Section {section_match.group(1)}, Third Schedule"
+            else:
+                act_str += ", Third Schedule"
+            return act_str
+        return "EPF Act 1991 — Section 43(1), Third Schedule"
+
+    def _extract_age_limits(self, text: str) -> dict:
+        """Extract min/max contribution ages from page text. Fallback to hardcoded."""
+        min_age = 14
+        max_age = 75
+        # Match "minimum age to register and contribute...is age 14"
+        min_match = re.search(r"minimum\s+age.*?(?:is\s+age\s+|of\s+)(\d{1,2})", text, re.IGNORECASE | re.DOTALL)
+        if min_match:
+            min_age = int(min_match.group(1))
+        # Match "maximum age of contribution is 75 years old"
+        max_match = re.search(r"maximum\s+age.*?(?:is\s+|of\s+)(\d{1,2})\s*(?:years?\s*old)?", text, re.IGNORECASE | re.DOTALL)
+        if max_match:
+            max_age = int(max_match.group(1))
+        return {"min_contribution_age": min_age, "max_contribution_age": max_age}
 
     def _parse_wage_components(self, soup: BeautifulSoup) -> tuple[list[str], list[str]]:
         """Parse included/excluded wage components from FAQ section."""
@@ -178,12 +249,35 @@ class EPFScraper(BaseScraper):
         notes = []
         full_text = soup.get_text()
 
-        # Look for numbered notes near the rate table
-        for match in re.finditer(r"(\d)\\\.\s*(.+?)(?=\d\\\.|$)", full_text):
-            note = match.group(2).strip()
-            if len(note) > 10 and any(kw in note.lower() for kw in ["effective", "minimum age", "rounded", "october"]):
+        # Try to extract notes about effective date
+        effective_match = re.search(r"(effective\s+(?:for\s+)?(?:\d{1,2}\s+)?\w+\s+\d{4}[^.]*)", full_text, re.IGNORECASE)
+        if effective_match:
+            note = effective_match.group(1).strip()
+            if len(note) > 10:
                 notes.append(note)
 
+        # Try to extract notes about Third Schedule
+        schedule_match = re.search(r"(third\s+schedule\s+[^.]*\.)", full_text, re.IGNORECASE)
+        if schedule_match:
+            note = schedule_match.group(1).strip()
+            if len(note) > 10 and note not in notes:
+                notes.append(note)
+
+        # Try to extract notes about wage range tables
+        wage_range_match = re.search(r"(wages?\s+above\s+RM[\d,]+[^.]*\.)", full_text, re.IGNORECASE)
+        if wage_range_match:
+            note = wage_range_match.group(1).strip()
+            if len(note) > 10 and note not in notes:
+                notes.append(note)
+
+        # Try to extract notes about rounding
+        rounding_match = re.search(r"(total\s+contribution\s+[^.]*rounded[^.]*\.)", full_text, re.IGNORECASE)
+        if rounding_match:
+            note = rounding_match.group(1).strip()
+            if len(note) > 10 and note not in notes:
+                notes.append(note)
+
+        # Fallback to hardcoded if no notes extracted
         if not notes:
             notes = [
                 "Effective October 2025 salary/wage",
