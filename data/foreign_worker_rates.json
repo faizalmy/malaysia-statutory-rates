@@ -1,33 +1,47 @@
 {
   "source": "Combined — KWSP and PERKESO",
   "year": 2025,
+  "effective_from": "2025-10-01",
   "description": "EPF, SOCSO, and EIS contribution rates for foreign workers in Malaysia",
   "epf": {
     "source": "https://www.kwsp.gov.my/en/employer/responsibilities/mandatory-contribution",
     "non_malaysian_after_aug98": {
-      "employee": { "rate": 0.02 },
-      "employer": { "rate": 0.02 },
-      "note": "Non-Malaysian registered from 1 August 1998 — mandatory from Oct 2025"
+      "employee": {
+        "rate": 0.02
+      },
+      "employer": {
+        "rate": 0.02
+      },
+      "note": "No wage limit, any age"
     },
     "non_malaysian_before_aug98_below_60": {
-      "employee": { "rate": 0.11 },
+      "employee": {
+        "rate": 0.11
+      },
       "employer": {
-        "wage_lte_5000": { "rate": 0.13 },
-        "wage_gt_5000": { "rate": 0.12 }
+        "wage_lte_5000": {
+          "rate": 0.13
+        },
+        "wage_gt_5000": {
+          "rate": 0.12
+        }
       },
       "note": "Same as Malaysian citizen rates"
     },
     "non_malaysian_before_aug98_60_plus": {
-      "employee": { "rate": 0.055 },
-      "employer": { "rate": 0.06 }
+      "employee": {
+        "rate": 0.055
+      },
+      "employer": {
+        "rate": 0.06
+      }
     }
   },
   "socso": {
     "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
     "employment_injury": {
       "employer_only": true,
-      "rate": 0.0125,
-      "note": "Foreign workers — Employment Injury scheme only"
+      "note": "Foreign workers — Employment Injury scheme only. Rate in Act 4 PDF."
     },
     "invalidity": {
       "note": "Foreign workers are NOT covered under the Invalidity scheme"
@@ -35,18 +49,16 @@
   },
   "eis": {
     "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
-    "employer": { "rate": 0.002 },
-    "employee": { "rate": 0.002 },
     "note": "Foreign workers are covered under EIS at the same rate as citizens"
   },
   "notes": [
-    "Foreign worker EPF became mandatory from October 2025",
+    "Foreign worker EPF became mandatory from 2025-10-01",
     "SOCSO coverage for foreign workers is Employment Injury only (no Invalidity)",
     "EIS coverage is the same as Malaysian workers",
     "Domestic workers have different eligibility — check PERKESO guidelines"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T01:00:00+00:00",
+    "scraped_at": "2026-05-29T03:16:20.644243+00:00",
     "source": "Combined — KWSP and PERKESO",
     "source_name": "KWSP + PERKESO",
     "scraper_version": "0.1.0"
