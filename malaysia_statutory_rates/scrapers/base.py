@@ -107,7 +107,15 @@ class BaseScraper:
             try:
                 resp = self.client.get(url)
                 resp.raise_for_status()
-                return resp.text
+                html = resp.text
+                # Detect JS-only SPA shells (no visible content, only <script> tags)
+                from bs4 import BeautifulSoup
+                soup = BeautifulSoup(html, "html.parser")
+                body_text = soup.get_text(strip=True)
+                if len(body_text) < 200 and soup.find_all("script"):
+                    print(f"    {url}: JS-only SPA shell detected, falling back to Firecrawl...")
+                    return self._fetch_firecrawl(url)
+                return html
             except httpx.HTTPStatusError as e:
                 if e.response.status_code in (403, 429):
                     print(f"    {url}: {e.response.status_code}, falling back to Firecrawl...")

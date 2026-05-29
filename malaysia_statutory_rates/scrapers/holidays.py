@@ -66,13 +66,32 @@ class HolidaysScraper(BaseScraper):
 
         holidays = {"national": [], "state": {}}
 
-        # Find the 2026 table
+        # Extract year from page headings (e.g. "2026 Public Holidays")
+        year = None
+        for heading in soup.find_all(["h1", "h2", "h3"]):
+            heading_text = heading.get_text(strip=True)
+            year_match = re.search(r"(20\d{2})\s*(?:Public|Public Holiday)", heading_text)
+            if year_match:
+                year = int(year_match.group(1))
+                break
+
+        if year is None:
+            # Fallback: find any 4-digit year in headings
+            for heading in soup.find_all(["h1", "h2", "h3"]):
+                year_match = re.search(r"\b(20\d{2})\b", heading.get_text())
+                if year_match:
+                    year = int(year_match.group(1))
+                    break
+
+        if year is None:
+            raise ValueError("Could not determine holiday year from publicholidays.com.my")
+
+        # Find the holidays table for the detected year
         tables = soup.find_all("table")
         target_table = None
         for table in tables:
-            # Look for table preceded by "2026 Public Holidays" heading
             prev = table.find_previous(["h2", "h3"])
-            if prev and "2026" in prev.get_text():
+            if prev and str(year) in prev.get_text():
                 target_table = table
                 break
 
@@ -85,7 +104,7 @@ class HolidaysScraper(BaseScraper):
                     break
 
         if not target_table:
-            raise ValueError("Could not find 2026 holidays table on publicholidays.com.my")
+            raise ValueError(f"Could not find {year} holidays table on publicholidays.com.my")
 
         for row in target_table.find_all("tr"):
             cols = row.find_all("td")
@@ -118,7 +137,7 @@ class HolidaysScraper(BaseScraper):
             if not month:
                 continue
 
-            date_str = f"2026-{month}-{day:02d}"
+            date_str = f"{year}-{month}-{day:02d}"
             states = _parse_states(states_text)
 
             entry = {
@@ -137,8 +156,7 @@ class HolidaysScraper(BaseScraper):
 
         data = {
             "source": self.SOURCE_URL,
-            "year": 2026,
-            "gazette_source": "https://www.kabinet.gov.my/storage/2025/08/HKA-2026.pdf",
+            "year": year,
             **holidays,
             "notes": [
                 "Data from publicholidays.com.my, based on official government gazette",

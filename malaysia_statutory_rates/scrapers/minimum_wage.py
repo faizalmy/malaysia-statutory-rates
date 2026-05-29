@@ -70,19 +70,38 @@ class MinimumWageScraper(BaseScraper):
                 "Page structure may have changed."
             )
 
-        # Gazette link
+        # Gazette link and reference text
+        gazette_link = None
+        gazette_ref = None
         for a in soup.find_all("a", href=True):
             href = a["href"]
             if "PUA" in href and href.endswith(".pdf"):
                 gazette_link = href if href.startswith("http") else f"https://gajiminimum.mohr.gov.my{href}"
+                gazette_ref = a.get_text(strip=True)
                 break
+
+        # Derive year and act from gazette reference text
+        # e.g. "Warta Perintah Gaji Minimum 2024" -> year 2024, act "Minimum Wages Order 2024"
+        order_year = None
+        act_name = "Minimum Wages Order 2024"
+        if gazette_ref:
+            year_match = re.search(r"(20\d{2})", gazette_ref)
+            if year_match:
+                order_year = int(year_match.group(1))
+                act_name = f"Minimum Wages Order {order_year}"
+
+        # Try to extract gazette ID from PDF URL
+        gazette_id = None
+        if gazette_link:
+            gid_match = re.search(r"PUA\s*%?20?(\d+)", gazette_link, re.IGNORECASE)
+            if gid_match:
+                gazette_id = f"PUA {gid_match.group(1)}"
 
         data = {
             "source": self.SOURCE_URL,
-            "year": 2025,
-            "effective_from": "2025-02-01",
-            "gazette": "PUA 376",
-            "act": "Minimum Wages Order 2024",
+            "year": order_year or 2025,
+            "gazette": gazette_id or "PUA 376",
+            "act": act_name,
             "rates": {
                 "nationwide": {
                     "monthly": monthly,
