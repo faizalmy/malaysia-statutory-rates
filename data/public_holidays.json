@@ -159,7 +159,8 @@
         "states": [
           "kedah",
           "negeri_sembilan",
-          "perlis_&_terengganu"
+          "perlis",
+          "terengganu"
         ]
       },
       {
@@ -171,7 +172,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -183,7 +185,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       }
     ],
@@ -194,7 +197,8 @@
         "states": [
           "kedah",
           "negeri_sembilan",
-          "perlis_&_terengganu"
+          "perlis",
+          "terengganu"
         ]
       },
       {
@@ -210,7 +214,8 @@
         "states": [
           "kedah",
           "kelantan",
-          "perlis&_terengganu"
+          "perlis",
+          "terengganu"
         ]
       },
       {
@@ -226,20 +231,73 @@
         "states": [
           "kedah"
         ]
+      },
+      {
+        "date": "2026-02-19",
+        "name": "Awal Ramadan",
+        "states": [
+          "johor",
+          "kedah"
+        ]
       }
     ],
-    "perlis_&_terengganu": [
+    "perlis": [
       {
         "date": "2026-01-17",
         "name": "Israk and Mikraj",
         "states": [
           "kedah",
           "negeri_sembilan",
-          "perlis_&_terengganu"
+          "perlis",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-17",
+        "name": "Raja Perlis' Birthday",
+        "states": [
+          "perlis"
+        ]
+      },
+      {
+        "date": "2026-05-18",
+        "name": "Raja Perlis' Birthday Holiday",
+        "states": [
+          "perlis"
         ]
       }
     ],
     "terengganu": [
+      {
+        "date": "2026-01-17",
+        "name": "Israk and Mikraj",
+        "states": [
+          "kedah",
+          "negeri_sembilan",
+          "perlis",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis",
+          "terengganu"
+        ]
+      },
       {
         "date": "2026-01-18",
         "name": "Israk and Mikraj Holiday",
@@ -260,6 +318,22 @@
         "states": [
           "terengganu"
         ]
+      },
+      {
+        "date": "2026-03-08",
+        "name": "Nuzul Al-Quran Holiday",
+        "states": [
+          "kelantan",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-26",
+        "name": "Arafat Day",
+        "states": [
+          "kelantan",
+          "terengganu"
+        ]
       }
     ],
     "johor": [
@@ -272,7 +346,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -284,7 +359,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -307,6 +383,14 @@
         "states": [
           "johor"
         ]
+      },
+      {
+        "date": "2026-02-19",
+        "name": "Awal Ramadan",
+        "states": [
+          "johor",
+          "kedah"
+        ]
       }
     ],
     "kuala_lumpur": [
@@ -319,15 +403,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
-        ]
-      },
-      {
-        "date": "2026-02-01",
-        "name": "Federal Territory Day",
-        "states": [
-          "kuala_lumpur",
-          "labuan&_putrajaya"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -339,7 +416,17 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
+        ]
+      },
+      {
+        "date": "2026-02-01",
+        "name": "Federal Territory Day",
+        "states": [
+          "kuala_lumpur",
+          "labuan",
+          "putrajaya"
         ]
       },
       {
@@ -347,7 +434,8 @@
         "name": "Federal Territory Day Holiday",
         "states": [
           "kuala_lumpur",
-          "labuan&_putrajaya"
+          "labuan",
+          "putrajaya"
         ]
       }
     ],
@@ -361,7 +449,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -373,7 +462,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -401,7 +491,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -413,7 +504,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -424,7 +516,7 @@
         ]
       }
     ],
-    "putrajaya_&selangor": [
+    "putrajaya": [
       {
         "date": "2026-02-01",
         "name": "Thaipusam",
@@ -434,7 +526,8 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
       },
       {
@@ -446,17 +539,17 @@
           "negeri_sembilan",
           "penang",
           "perak",
-          "putrajaya_&selangor"
+          "putrajaya",
+          "selangor"
         ]
-      }
-    ],
-    "labuan&_putrajaya": [
+      },
       {
         "date": "2026-02-01",
         "name": "Federal Territory Day",
         "states": [
           "kuala_lumpur",
-          "labuan&_putrajaya"
+          "labuan",
+          "putrajaya"
         ]
       },
       {
@@ -464,16 +557,129 @@
         "name": "Federal Territory Day Holiday",
         "states": [
           "kuala_lumpur",
-          "labuan&_putrajaya"
+          "labuan",
+          "putrajaya"
         ]
       }
     ],
-    "johor_&_kedah": [
+    "selangor": [
       {
-        "date": "2026-02-19",
-        "name": "Awal Ramadan",
+        "date": "2026-02-01",
+        "name": "Thaipusam",
         "states": [
-          "johor_&_kedah"
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya",
+          "selangor"
+        ]
+      },
+      {
+        "date": "2026-02-02",
+        "name": "Thaipusam Holiday",
+        "states": [
+          "johor",
+          "kuala_lumpur",
+          "negeri_sembilan",
+          "penang",
+          "perak",
+          "putrajaya",
+          "selangor"
+        ]
+      },
+      {
+        "date": "2026-12-11",
+        "name": "Sultan of Selangor's Birthday",
+        "states": [
+          "selangor"
+        ]
+      }
+    ],
+    "kelantan": [
+      {
+        "date": "2026-05-28",
+        "name": "Hari Raya Haji Holiday",
+        "states": [
+          "kedah",
+          "kelantan",
+          "perlis",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-03-08",
+        "name": "Nuzul Al-Quran Holiday",
+        "states": [
+          "kelantan",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-05-26",
+        "name": "Arafat Day",
+        "states": [
+          "kelantan",
+          "terengganu"
+        ]
+      },
+      {
+        "date": "2026-09-29",
+        "name": "Sultan of Kelantan's Birthday",
+        "states": [
+          "kelantan"
+        ]
+      },
+      {
+        "date": "2026-09-30",
+        "name": "Sultan of Kelantan's Birthday Holiday",
+        "states": [
+          "kelantan"
+        ]
+      }
+    ],
+    "labuan": [
+      {
+        "date": "2026-02-01",
+        "name": "Federal Territory Day",
+        "states": [
+          "kuala_lumpur",
+          "labuan",
+          "putrajaya"
+        ]
+      },
+      {
+        "date": "2026-02-03",
+        "name": "Federal Territory Day Holiday",
+        "states": [
+          "kuala_lumpur",
+          "labuan",
+          "putrajaya"
+        ]
+      },
+      {
+        "date": "2026-05-30",
+        "name": "Harvest Festival",
+        "states": [
+          "labuan",
+          "sabah"
+        ]
+      },
+      {
+        "date": "2026-05-31",
+        "name": "Harvest Festival Holiday",
+        "states": [
+          "labuan",
+          "sabah"
+        ]
+      },
+      {
+        "date": "2026-06-03",
+        "name": "Harvest Festival Holiday",
+        "states": [
+          "labuan",
+          "sabah"
         ]
       }
     ],
@@ -493,22 +699,6 @@
         ]
       }
     ],
-    "kelantan_&_terengganu": [
-      {
-        "date": "2026-03-08",
-        "name": "Nuzul Al-Quran Holiday",
-        "states": [
-          "kelantan_&_terengganu"
-        ]
-      },
-      {
-        "date": "2026-05-26",
-        "name": "Arafat Day",
-        "states": [
-          "kelantan_&_terengganu"
-        ]
-      }
-    ],
     "sabah": [
       {
         "date": "2026-03-30",
@@ -523,109 +713,49 @@
         "states": [
           "sabah"
         ]
-      }
-    ],
-    "sabah_&_sarawak": [
+      },
       {
         "date": "2026-04-03",
         "name": "Good Friday",
         "states": [
-          "sabah_&_sarawak"
-        ]
-      }
-    ],
-    "perlis": [
-      {
-        "date": "2026-05-17",
-        "name": "Raja Perlis' Birthday",
-        "states": [
-          "perlis"
+          "sabah",
+          "sarawak"
         ]
       },
-      {
-        "date": "2026-05-18",
-        "name": "Raja Perlis' Birthday Holiday",
-        "states": [
-          "perlis"
-        ]
-      }
-    ],
-    "pahang": [
-      {
-        "date": "2026-05-22",
-        "name": "Hari Hol Pahang",
-        "states": [
-          "pahang"
-        ]
-      },
-      {
-        "date": "2026-07-31",
-        "name": "Sultan of Pahang's Birthday",
-        "states": [
-          "pahang"
-        ]
-      }
-    ],
-    "kelantan": [
-      {
-        "date": "2026-05-28",
-        "name": "Hari Raya Haji Holiday",
-        "states": [
-          "kedah",
-          "kelantan",
-          "perlis&_terengganu"
-        ]
-      },
-      {
-        "date": "2026-09-29",
-        "name": "Sultan of Kelantan's Birthday",
-        "states": [
-          "kelantan"
-        ]
-      },
-      {
-        "date": "2026-09-30",
-        "name": "Sultan of Kelantan's Birthday Holiday",
-        "states": [
-          "kelantan"
-        ]
-      }
-    ],
-    "perlis&_terengganu": [
-      {
-        "date": "2026-05-28",
-        "name": "Hari Raya Haji Holiday",
-        "states": [
-          "kedah",
-          "kelantan",
-          "perlis&_terengganu"
-        ]
-      }
-    ],
-    "labuan_&_sabah": [
       {
         "date": "2026-05-30",
         "name": "Harvest Festival",
         "states": [
-          "labuan_&_sabah"
+          "labuan",
+          "sabah"
         ]
       },
       {
         "date": "2026-05-31",
         "name": "Harvest Festival Holiday",
         "states": [
-          "labuan_&_sabah"
+          "labuan",
+          "sabah"
         ]
       },
       {
         "date": "2026-06-03",
         "name": "Harvest Festival Holiday",
         "states": [
-          "labuan_&_sabah"
+          "labuan",
+          "sabah"
         ]
       }
     ],
     "sarawak": [
+      {
+        "date": "2026-04-03",
+        "name": "Good Friday",
+        "states": [
+          "sabah",
+          "sarawak"
+        ]
+      },
       {
         "date": "2026-06-01",
         "name": "Hari Gawai",
@@ -669,12 +799,19 @@
         ]
       }
     ],
-    "selangor": [
+    "pahang": [
       {
-        "date": "2026-12-11",
-        "name": "Sultan of Selangor's Birthday",
+        "date": "2026-05-22",
+        "name": "Hari Hol Pahang",
         "states": [
-          "selangor"
+          "pahang"
+        ]
+      },
+      {
+        "date": "2026-07-31",
+        "name": "Sultan of Pahang's Birthday",
+        "states": [
+          "pahang"
         ]
       }
     ]

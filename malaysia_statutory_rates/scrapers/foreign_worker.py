@@ -52,20 +52,43 @@ class ForeignWorkerScraper(BaseScraper):
             },
         }
 
+        # SOCSO Employment Injury: employer-only, same rate table as citizens
+        socso_rate_table = socso.get("rate_table", [])
+        # Get the contribution amount at wage ceiling (last row)
+        socso_at_ceiling = socso_rate_table[-1] if socso_rate_table else {}
+        socso_wage_ceiling = socso.get("wage_ceiling", 6000)
+
         socso_data = {
             "source": socso.get("source", ""),
             "employment_injury": {
                 "employer_only": socso.get("schemes", {}).get("employment_injury", {}).get("employer_only", True),
-                "note": "Foreign workers — Employment Injury scheme only. Rate in Act 4 PDF.",
+                "wage_ceiling": socso_wage_ceiling,
+                "contribution_at_ceiling": {
+                    "employer": socso_at_ceiling.get("employer_schedule1"),
+                    "note": f"RM {socso_at_ceiling.get('employer_schedule1', 'N/A')} per month at RM{socso_wage_ceiling} wage",
+                },
+                "note": "Foreign workers — Employment Injury scheme only (Schedule 1, employer share)",
             },
             "invalidity": {
                 "note": "Foreign workers are NOT covered under the Invalidity scheme",
             },
         }
 
+        # EIS: same rates as citizens (equal employer/employee split)
+        eis_rate_table = eis.get("rate_table", [])
+        eis_at_ceiling = eis_rate_table[-1] if eis_rate_table else {}
+        eis_wage_ceiling = eis.get("wage_ceiling", 6000)
+
         eis_data = {
             "source": eis.get("source", ""),
-            "note": "Foreign workers are covered under EIS at the same rate as citizens",
+            "wage_ceiling": eis_wage_ceiling,
+            "contribution_at_ceiling": {
+                "employer": eis_at_ceiling.get("employer"),
+                "employee": eis_at_ceiling.get("employee"),
+                "total": eis_at_ceiling.get("total"),
+                "note": f"RM {eis_at_ceiling.get('total', 'N/A')} total per month at RM{eis_wage_ceiling} wage",
+            },
+            "note": "Foreign workers are covered under EIS at the same rate as Malaysian workers",
         }
 
         year = epf.get("year", datetime.now().year)

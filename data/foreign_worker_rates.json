@@ -41,7 +41,12 @@
     "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
     "employment_injury": {
       "employer_only": true,
-      "note": "Foreign workers — Employment Injury scheme only. Rate in Act 4 PDF."
+      "wage_ceiling": 6000,
+      "contribution_at_ceiling": {
+        "employer": 104.15,
+        "note": "RM 104.15 per month at RM6000 wage"
+      },
+      "note": "Foreign workers — Employment Injury scheme only (Schedule 1, employer share)"
     },
     "invalidity": {
       "note": "Foreign workers are NOT covered under the Invalidity scheme"
@@ -49,7 +54,14 @@
   },
   "eis": {
     "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
-    "note": "Foreign workers are covered under EIS at the same rate as citizens"
+    "wage_ceiling": 6000,
+    "contribution_at_ceiling": {
+      "employer": 11.9,
+      "employee": 11.9,
+      "total": 23.8,
+      "note": "RM 23.8 total per month at RM6000 wage"
+    },
+    "note": "Foreign workers are covered under EIS at the same rate as Malaysian workers"
   },
   "notes": [
     "Foreign worker EPF became mandatory from 2025-10-01",

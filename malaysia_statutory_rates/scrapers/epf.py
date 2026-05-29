@@ -242,6 +242,33 @@ class EPFScraper(BaseScraper):
                     for li in sibling.find_all("li"):
                         excluded.append(li.get_text(strip=True))
 
+        # Fallback: use known EPF Act 1991 wage definitions (from KWSP FAQ)
+        if not included:
+            included = [
+                "Salary/Wages",
+                "Bonus",
+                "Allowance",
+                "Commission",
+                "Incentives",
+                "Arrears of Salaries/Wages",
+                "Payment in respect of unutilised annual or medical leave",
+                "Paid maternity leave/Wages for maternity leaves",
+                "Paid study leave/Wages for study leaves",
+                "Wages for half-day leave",
+                "Other payments under services contract or otherwise",
+            ]
+        if not excluded:
+            excluded = [
+                "Service charge",
+                "Overtime payment",
+                "Gratuity",
+                "Retirement benefits",
+                "Retrenchment benefits",
+                "Temporary lay-off & termination benefits",
+                "Payment in lieu of notice of termination of employment",
+                "Travelling allowance or the value of any travelling concession",
+            ]
+
         return included, excluded
 
     def _parse_notes(self, soup: BeautifulSoup) -> list[str]:

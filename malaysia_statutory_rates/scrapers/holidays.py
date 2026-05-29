@@ -28,29 +28,33 @@ STATE_MAP = {
 
 
 def _parse_states(states_text: str) -> list[str]:
-    """Parse state text into list of state codes."""
+    """Parse state text into list of individual state codes.
+
+    Combined states like "Perlis & Terengganu" are split into
+    individual entries: ["perlis", "terengganu"].
+    """
     if not states_text:
         return []
 
     text = states_text.strip()
     if "national" in text.lower():
-        states = ["national"]
-        # Check for exceptions
-        except_match = re.search(r"except\s+(.+?)(?:\s*$)", text, re.IGNORECASE)
-        if except_match:
-            # Parse exceptions but keep them in the states list with "except_" prefix
-            pass
-        return states
+        return ["national"]
 
-    # Split by comma and newlines
+    # Split by comma and newlines first
     parts = re.split(r"[,\n]+", text)
     states = []
     for part in parts:
         part = part.strip().replace("<br>", "").strip()
         if not part:
             continue
-        normalized = STATE_MAP.get(part.lower(), part.lower().replace(" ", "_"))
-        states.append(normalized)
+        # Split combined states on & (e.g. "Perlis & Terengganu" -> ["Perlis", "Terengganu"])
+        sub_parts = re.split(r"\s*&\s*", part)
+        for sub in sub_parts:
+            sub = sub.strip()
+            if not sub:
+                continue
+            normalized = STATE_MAP.get(sub.lower(), sub.lower().replace(" ", "_"))
+            states.append(normalized)
     return states
 
 

@@ -6,6 +6,7 @@ from malaysia_statutory_rates.scrapers.foreign_worker import ForeignWorkerScrape
 from malaysia_statutory_rates.scrapers.holidays import HolidaysScraper
 from malaysia_statutory_rates.scrapers.hrdf import HRDFScraper
 from malaysia_statutory_rates.scrapers.minimum_wage import MinimumWageScraper
+from malaysia_statutory_rates.scrapers.pcb import PCBScraper
 from malaysia_statutory_rates.scrapers.socso import SOCSOScraper
 
 SCRAPERS: dict[str, type] = {
@@ -14,6 +15,7 @@ SCRAPERS: dict[str, type] = {
     "epf_rates": EPFScraper,
     "socso_rates": SOCSOScraper,
     "eis_rates": EISScraper,
+    "pcb_table": PCBScraper,
     "foreign_worker_rates": ForeignWorkerScraper,
     "public_holidays": HolidaysScraper,
 }

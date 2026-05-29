@@ -59,8 +59,30 @@
     "max_contribution_age": 75
   },
   "wage_components": {
-    "included": [],
-    "excluded": []
+    "included": [
+      "Salary/Wages",
+      "Bonus",
+      "Allowance",
+      "Commission",
+      "Incentives",
+      "Arrears of Salaries/Wages",
+      "Payment in respect of unutilised annual or medical leave",
+      "Paid maternity leave/Wages for maternity leaves",
+      "Paid study leave/Wages for study leaves",
+      "Wages for half-day leave",
+      "Other payments under services contract or otherwise"
+    ],
+    "excluded": [
+      "Service charge",
+      "Overtime payment",
+      "Gratuity",
+      "Retirement benefits",
+      "Retrenchment benefits",
+      "Temporary lay-off & termination benefits",
+      "Payment in lieu of notice of termination of employment",
+      "Travelling allowance or the value of any travelling concession"
+    ],
+    "reference": "KWSP FAQ #8 (Components of Wage) and #11 (Non-Wages), kwsp.gov.my/en/employer/responsibilities/mandatory-contribution"
   },
   "notes": [
     "Effective October 2025 salary/wage",
