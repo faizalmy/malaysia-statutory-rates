@@ -63,8 +63,10 @@ malaysia-rates scrape --all
 | File | Source | Content |
 |---|---|---|
 | `data/epf_rates.json` | kwsp.gov.my | EPF contribution rates by citizenship, age, wage bracket |
-| `data/socso_rates.json` | perkeso.gov.my | SOCSO rates (Employment Injury + Invalidity), Act 4 PDF link |
-| `data/eis_rates.json` | perkeso.gov.my | EIS contribution rates, Act 800 PDF link |
+| `data/socso_rates.json` | perkeso.gov.my | SOCSO metadata + 65-bracket rate table (2 schedules) |
+| `data/socso_rate_table.json` | Act 4 PDF (seed) | SOCSO contribution rate table — 65 wage brackets, RM0–RM6,000 |
+| `data/eis_rates.json` | perkeso.gov.my | EIS metadata + 65-bracket rate table |
+| `data/eis_rate_table.json` | Act 800 PDF (seed) | EIS contribution rate table — 65 wage brackets, equal 0.2% split |
 | `data/pcb_table.json` | LHDN e-CP39 | PCB/MTD tax brackets and reliefs |
 | `data/minimum_wage.json` | gajiminimum.mohr.gov.my | Minimum wage (monthly + hourly) |
 | `data/hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates and formula |
@@ -119,16 +121,24 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 
 ## Scraper Status
 
-| Scraper | Status | Notes |
-|---|---|---|
-| `minimum_wage.py` | ✅ Complete | Rates, gazette, year all scraped from source |
-| `hrdf.py` | ✅ Complete | Rates, wage components, formula parsed from HTML |
-| `holidays.py` | ✅ Complete | Year, holidays scraped dynamically |
-| `epf.py` | ✅ Complete | Year, effective_from, act, age_limits extracted from page |
-| `socso.py` | ✅ Complete | Year, effective_from, act, schemes, 65-bracket rate table |
-| `eis.py` | ✅ Complete | Year, effective_from, act, 65-bracket rate table |
-| `pcb_table.json` | ❌ No scraper | Manually maintained — tax brackets + reliefs from LHDN |
-| `foreign_worker_rates.json` | ✅ Generated | Derived from EPF/SOCSO/EIS scraper output |
+| Scraper | Status | Data Source | Notes |
+|---|---|---|---|
+| `minimum_wage.py` | ✅ Complete | HTML scrape | Rates, gazette, year all from source page |
+| `hrdf.py` | ✅ Complete | Firecrawl HTML | Rates, wage components, formula parsed from HTML |
+| `holidays.py` | ✅ Complete | HTML scrape | Year, holidays scraped dynamically |
+| `epf.py` | ✅ Complete | HTML scrape | Year, effective_from, act, age_limits from page |
+| `socso.py` | ✅ Metadata scraped | HTML + seed | Metadata from page; 65-bracket rate table from seed data (Act 4 PDF is scanned image, OCR inaccurate) |
+| `eis.py` | ✅ Metadata scraped | HTML + seed | Metadata from page; 65-bracket rate table from seed data (Act 800 PDF is scanned image, OCR inaccurate) |
+| `pcb_table.json` | ❌ No scraper | Manual | LHDN e-CP39 requires login |
+| `foreign_worker_rates.json` | ✅ Generated | Derived | Computed from EPF/SOCSO/EIS scraper output |
+
+### Seed Data
+
+SOCSO and EIS contribution rate tables (65 wage brackets each) are stored as seed data files because the source PDFs are low-quality scanned images. All tested OCR libraries (tesseract, Firecrawl, img2table, surya-ocr, marker-pdf) produced inaccurate results on these PDFs.
+
+Seed files: `data/socso_rate_table.json`, `data/eis_rate_table.json`
+
+Source PDFs cached at: `.cache/pdf/`
 
 ### Roadmap
 
@@ -140,7 +150,13 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 **Phase 2 — Derived data:** ✅ Done
 - [x] `foreign_worker_rates`: generate from existing EPF/SOCSO/EIS scraper output
 
-**Phase 3 — New scraper (PDF parsing):**
+**Phase 3 — PDF parsing for rate tables:**
+- [ ] Find high-quality PDF source (text-based, not scanned) for SOCSO Act 4 / EIS Act 800
+- [ ] Integrate PDF parser to dynamically extract 65-bracket rate tables
+- [ ] Remove seed data dependency, generate `rate_table` from PDF at scrape time
+- [ ] Cache downloaded PDFs in `.cache/pdf/`
+
+**Phase 4 — New scraper:**
 - [ ] `pcb_table`: scrape LHDN page for tax brackets and reliefs
 
 ## What This Is NOT
