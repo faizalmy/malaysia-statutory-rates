@@ -111,6 +111,9 @@ class EPFScraper(BaseScraper):
         # Parse wage components from FAQ
         wage_included, wage_excluded = self._parse_wage_components(soup)
 
+        # Parse Third Schedule bracket table
+        bracket_table = self._parse_third_schedule(third_schedule_url)
+
         # Parse notes
         notes = self._parse_notes(soup)
 
@@ -134,6 +137,7 @@ class EPFScraper(BaseScraper):
             "rates": rates,
             "age_limits": age_limits,
             "wage_components": {"included": wage_included, "excluded": wage_excluded},
+            "wage_bracket_table": bracket_table,
             "notes": notes,
         }
 
@@ -212,22 +216,34 @@ class EPFScraper(BaseScraper):
         included = []
         excluded = []
 
-        for heading in soup.find_all(["h3", "h4"]):
-            text = heading.get_text(strip=True).lower()
-            if "component" in text and "wage" in text:
-                sibling = heading.find_next_sibling()
-                if sibling:
-                    for li in sibling.find_all("li"):
-                        item = li.get_text(strip=True)
-                        item = re.sub(r"^\d+\.\s*", "", item)
-                        if item:
-                            included.append(item)
+        full_text = soup.get_text()
 
-            if "non-wage" in text or "non wage" in text:
-                sibling = heading.find_next_sibling()
-                if sibling:
-                    for li in sibling.find_all("li"):
-                        excluded.append(li.get_text(strip=True))
+        # Extract included wage components from FAQ #8
+        # Pattern: numbered list after "Components of Wage"
+        components_match = re.search(
+            r"Payments\s+which\s+are\s+subject\s+to\s+EPF\s+contribution\s+include:\s*(.*?)(?=\d+\.\s+What\s+is\s+the\s+definition)",
+            full_text, re.DOTALL | re.IGNORECASE
+        )
+        if components_match:
+            block = components_match.group(1)
+            items = [x.strip() for x in block.split("\n") if x.strip()]
+            included.extend(items)
+
+        # Extract excluded non-wage components from FAQ #11
+        nonwage_match = re.search(
+            r"Payments\s+which\s+are\s+not\s+liable\s+for\s+EPF\s+contribution\s+are:\s*(.*?)(?=\d+\.\s+Who\s+are\s+EPF|\n\s*The\s+above\s+list)",
+            full_text, re.DOTALL | re.IGNORECASE
+        )
+        if nonwage_match:
+            block = nonwage_match.group(1)
+            # Items may be concatenated (e.g. "Service chargeOvertime payment")
+            # Split on lowercase→uppercase boundary
+            items_text = re.sub(r"([a-z])([A-Z])", r"\1\n\2", block)
+            for item_match in re.finditer(r"([A-Z][^\n]+?)(?:\n|$)", items_text):
+                item = item_match.group(1).strip()
+                item = re.sub(r"\.$", "", item)  # trailing period
+                if item and len(item) > 3:
+                    excluded.append(item)
 
         return included, excluded
 
@@ -309,3 +325,115 @@ class EPFScraper(BaseScraper):
                 notes.append(note)
 
         return notes
+
+    def _parse_third_schedule(self, url: str | None) -> dict:
+        """Parse Third Schedule PDF via Firecrawl and extract bracket tables.
+
+        Returns dict with keys: part_a, part_c, part_e, part_f
+        Each part has a list of bracket dicts with wage_min, wage_max, employer, employee, total.
+        """
+        if not url:
+            return {}
+
+        try:
+            md = self._fetch_firecrawl_markdown(url)
+        except Exception as e:
+            print(f"    WARNING: Could not fetch Third Schedule PDF: {e}")
+            return {}
+
+        if not md:
+            return {}
+
+        parts = {}
+        # Split by PART sections (handles both "* * *\nPART X" and "## PART X")
+        part_sections = re.split(r"(?:\* \* \*\s*\n\s*|\n\s*##\s*)PART\s+([A-F])", md)
+
+        for i in range(1, len(part_sections), 2):
+            part_letter = part_sections[i].strip()
+            part_text = part_sections[i + 1] if i + 1 < len(part_sections) else ""
+            brackets = self._extract_bracket_rows(part_text)
+            if brackets:
+                parts[f"part_{part_letter.lower()}"] = {
+                    "description": self._extract_part_description(part_text, part_letter),
+                    "brackets": brackets,
+                }
+
+        return parts
+
+    def _extract_bracket_rows(self, text: str) -> list[dict]:
+        """Extract bracket rows from a Third Schedule part's markdown table."""
+        brackets = []
+        # Match rows like: | From | 220.01 | to | 240.00 | 32.00 | 27.00 | 59.00 |
+        row_pattern = r"\|\s*From\s*\|\s*([\d,]+\.\d+)\s*\|\s*to\s*\|\s*([\d,]+\.\d+)\s*\|\s*([\d,]+\.\d+|NIL)\s*\|\s*([\d,]+\.\d+|NIL)\s*\|\s*([\d,]+\.\d+|NIL)\s*\|"
+        for match in re.finditer(row_pattern, text):
+            wage_min = float(match.group(1).replace(",", ""))
+            wage_max = float(match.group(2).replace(",", ""))
+            employer = 0.0 if match.group(3) == "NIL" else float(match.group(3).replace(",", ""))
+            employee = 0.0 if match.group(4) == "NIL" else float(match.group(4).replace(",", ""))
+            total = 0.0 if match.group(5) == "NIL" else float(match.group(5).replace(",", ""))
+            brackets.append({
+                "wage_min": wage_min,
+                "wage_max": wage_max,
+                "employer": employer,
+                "employee": employee,
+                "total": total,
+            })
+
+        # Match the "exceed RM20,000" percentage rule (the actual rule, not the Note)
+        # Look for the specific pattern: "contribution by the employee...X%...employer...Y%"
+        exceed_match = re.search(
+            r"exceed\s+RM([\d,]+\.?\d*).*?contribution\s+by\s+the\s+employee.*?(\d+(?:\.\d+)?%).*?contribution\s+by\s+the\s+employer.*?(\d+(?:\.\d+)?%)",
+            text, re.IGNORECASE | re.DOTALL
+        )
+        if not exceed_match:
+            # Try employer first
+            exceed_match = re.search(
+                r"exceed\s+RM([\d,]+\.?\d*).*?contribution\s+by\s+the\s+employer.*?(\d+(?:\.\d+)?%).*?contribution\s+by\s+the\s+employee.*?(\d+(?:\.\d+)?%)",
+                text, re.IGNORECASE | re.DOTALL
+            )
+            if exceed_match:
+                brackets.append({
+                    "wage_min": float(exceed_match.group(1).replace(",", "")),
+                    "wage_max": None,
+                    "employer_rate": float(exceed_match.group(2).replace("%", "")) / 100,
+                    "employee_rate": float(exceed_match.group(3).replace("%", "")) / 100,
+                    "note": "Percentage-based for wages exceeding this amount",
+                })
+        else:
+            brackets.append({
+                "wage_min": float(exceed_match.group(1).replace(",", "")),
+                "wage_max": None,
+                "employer_rate": float(exceed_match.group(3).replace("%", "")) / 100,
+                "employee_rate": float(exceed_match.group(2).replace("%", "")) / 100,
+                "note": "Percentage-based for wages exceeding this amount",
+            })
+
+        # Match flat percentage rate (Part F style: "2% of the amount of wages")
+        if not brackets:
+            flat_match = re.search(
+                r"(\d+(?:\.\d+)?%)\s+of\s+the\s+amount\s+of\s+wages",
+                text, re.IGNORECASE
+            )
+            if flat_match:
+                # Find all occurrences
+                all_flats = re.findall(r"(\d+(?:\.\d+)?)%\s+of\s+the\s+amount\s+of\s+wages", text, re.IGNORECASE)
+                if len(all_flats) >= 2:
+                    brackets.append({
+                        "wage_min": 0,
+                        "wage_max": None,
+                        "employer_rate": float(all_flats[0]) / 100,
+                        "employee_rate": float(all_flats[1]) / 100,
+                        "note": "Flat rate for all wages",
+                    })
+
+        return brackets
+
+    def _extract_part_description(self, text: str, part_letter: str) -> str:
+        """Extract the description text for a Third Schedule part."""
+        desc_match = re.search(
+            r"(\d+\.\s+The\s+rate\s+of\s+monthly\s+contributions[^.]*(?:\.[^.]){0,3})",
+            text, re.IGNORECASE
+        )
+        if desc_match:
+            return re.sub(r"\s+", " ", desc_match.group(1).strip())
+        return f"Part {part_letter}"

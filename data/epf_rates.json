@@ -62,8 +62,8094 @@
     "max_contribution_age": 75
   },
   "wage_components": {
-    "included": [],
-    "excluded": []
+    "included": [
+      "Salary/Wages",
+      "Bonus",
+      "Allowance",
+      "Commission",
+      "Incentives",
+      "Arrears of Salaries/Wages",
+      "Payment in respect of unutilised annual or medical leave",
+      "Paid maternity leave/Wages for maternity leaves",
+      "Paid study leave/Wages for study leaves",
+      "Wages for half-day leave",
+      "Other payments under services contract or otherwise"
+    ],
+    "excluded": [
+      "Service charge",
+      "Overtime payment",
+      "Gratituity",
+      "Retirement benefits",
+      "Retrenchment",
+      "Temporary lay-off & termination benefits",
+      "Payment in lieu of notice of termination of employment",
+      "Travelling allowance or the value of any travelling concession"
+    ]
+  },
+  "wage_bracket_table": {
+    "part_a": {
+      "description": "1. The rate of monthly contributions specified in this Part shall apply to the following employees until the employees attain the age of sixty years: (a) employees who are Malaysian citizens; (b) employees who are not Malaysian citizens but are permanent residents in Malaysia; and (c) employees who are not Malaysian citizens who have elected to contribute before 1 August 1998.",
+      "brackets": [
+        {
+          "wage_min": 0.01,
+          "wage_max": 10.0,
+          "employer": 0.0,
+          "employee": 0.0,
+          "total": 0.0
+        },
+        {
+          "wage_min": 10.01,
+          "wage_max": 20.0,
+          "employer": 3.0,
+          "employee": 3.0,
+          "total": 6.0
+        },
+        {
+          "wage_min": 20.01,
+          "wage_max": 40.0,
+          "employer": 6.0,
+          "employee": 5.0,
+          "total": 11.0
+        },
+        {
+          "wage_min": 40.01,
+          "wage_max": 60.0,
+          "employer": 8.0,
+          "employee": 7.0,
+          "total": 15.0
+        },
+        {
+          "wage_min": 60.01,
+          "wage_max": 80.0,
+          "employer": 11.0,
+          "employee": 9.0,
+          "total": 20.0
+        },
+        {
+          "wage_min": 80.01,
+          "wage_max": 100.0,
+          "employer": 13.0,
+          "employee": 11.0,
+          "total": 24.0
+        },
+        {
+          "wage_min": 100.01,
+          "wage_max": 120.0,
+          "employer": 16.0,
+          "employee": 14.0,
+          "total": 30.0
+        },
+        {
+          "wage_min": 120.01,
+          "wage_max": 140.0,
+          "employer": 19.0,
+          "employee": 16.0,
+          "total": 35.0
+        },
+        {
+          "wage_min": 140.01,
+          "wage_max": 160.0,
+          "employer": 21.0,
+          "employee": 18.0,
+          "total": 39.0
+        },
+        {
+          "wage_min": 160.01,
+          "wage_max": 180.0,
+          "employer": 24.0,
+          "employee": 20.0,
+          "total": 44.0
+        },
+        {
+          "wage_min": 180.01,
+          "wage_max": 200.0,
+          "employer": 26.0,
+          "employee": 22.0,
+          "total": 48.0
+        },
+        {
+          "wage_min": 200.01,
+          "wage_max": 220.0,
+          "employer": 29.0,
+          "employee": 25.0,
+          "total": 54.0
+        },
+        {
+          "wage_min": 220.01,
+          "wage_max": 240.0,
+          "employer": 32.0,
+          "employee": 27.0,
+          "total": 59.0
+        },
+        {
+          "wage_min": 240.01,
+          "wage_max": 260.0,
+          "employer": 34.0,
+          "employee": 29.0,
+          "total": 63.0
+        },
+        {
+          "wage_min": 260.01,
+          "wage_max": 280.0,
+          "employer": 37.0,
+          "employee": 31.0,
+          "total": 68.0
+        },
+        {
+          "wage_min": 280.01,
+          "wage_max": 300.0,
+          "employer": 39.0,
+          "employee": 33.0,
+          "total": 72.0
+        },
+        {
+          "wage_min": 300.01,
+          "wage_max": 320.0,
+          "employer": 42.0,
+          "employee": 36.0,
+          "total": 78.0
+        },
+        {
+          "wage_min": 320.01,
+          "wage_max": 340.0,
+          "employer": 45.0,
+          "employee": 38.0,
+          "total": 83.0
+        },
+        {
+          "wage_min": 340.01,
+          "wage_max": 360.0,
+          "employer": 47.0,
+          "employee": 40.0,
+          "total": 87.0
+        },
+        {
+          "wage_min": 360.01,
+          "wage_max": 380.0,
+          "employer": 50.0,
+          "employee": 42.0,
+          "total": 92.0
+        },
+        {
+          "wage_min": 380.01,
+          "wage_max": 400.0,
+          "employer": 52.0,
+          "employee": 44.0,
+          "total": 96.0
+        },
+        {
+          "wage_min": 400.01,
+          "wage_max": 420.0,
+          "employer": 55.0,
+          "employee": 47.0,
+          "total": 102.0
+        },
+        {
+          "wage_min": 420.01,
+          "wage_max": 440.0,
+          "employer": 58.0,
+          "employee": 49.0,
+          "total": 107.0
+        },
+        {
+          "wage_min": 440.01,
+          "wage_max": 460.0,
+          "employer": 60.0,
+          "employee": 51.0,
+          "total": 111.0
+        },
+        {
+          "wage_min": 460.01,
+          "wage_max": 480.0,
+          "employer": 63.0,
+          "employee": 53.0,
+          "total": 116.0
+        },
+        {
+          "wage_min": 480.01,
+          "wage_max": 500.0,
+          "employer": 65.0,
+          "employee": 55.0,
+          "total": 120.0
+        },
+        {
+          "wage_min": 500.01,
+          "wage_max": 520.0,
+          "employer": 68.0,
+          "employee": 58.0,
+          "total": 126.0
+        },
+        {
+          "wage_min": 520.01,
+          "wage_max": 540.0,
+          "employer": 71.0,
+          "employee": 60.0,
+          "total": 131.0
+        },
+        {
+          "wage_min": 540.01,
+          "wage_max": 560.0,
+          "employer": 73.0,
+          "employee": 62.0,
+          "total": 135.0
+        },
+        {
+          "wage_min": 560.01,
+          "wage_max": 580.0,
+          "employer": 76.0,
+          "employee": 64.0,
+          "total": 140.0
+        },
+        {
+          "wage_min": 580.01,
+          "wage_max": 600.0,
+          "employer": 78.0,
+          "employee": 66.0,
+          "total": 144.0
+        },
+        {
+          "wage_min": 600.01,
+          "wage_max": 620.0,
+          "employer": 81.0,
+          "employee": 69.0,
+          "total": 150.0
+        },
+        {
+          "wage_min": 620.01,
+          "wage_max": 640.0,
+          "employer": 84.0,
+          "employee": 71.0,
+          "total": 155.0
+        },
+        {
+          "wage_min": 640.01,
+          "wage_max": 660.0,
+          "employer": 86.0,
+          "employee": 73.0,
+          "total": 159.0
+        },
+        {
+          "wage_min": 660.01,
+          "wage_max": 680.0,
+          "employer": 89.0,
+          "employee": 75.0,
+          "total": 164.0
+        },
+        {
+          "wage_min": 680.01,
+          "wage_max": 700.0,
+          "employer": 91.0,
+          "employee": 77.0,
+          "total": 168.0
+        },
+        {
+          "wage_min": 700.01,
+          "wage_max": 720.0,
+          "employer": 94.0,
+          "employee": 80.0,
+          "total": 174.0
+        },
+        {
+          "wage_min": 720.01,
+          "wage_max": 740.0,
+          "employer": 97.0,
+          "employee": 82.0,
+          "total": 179.0
+        },
+        {
+          "wage_min": 740.01,
+          "wage_max": 760.0,
+          "employer": 99.0,
+          "employee": 84.0,
+          "total": 183.0
+        },
+        {
+          "wage_min": 760.01,
+          "wage_max": 780.0,
+          "employer": 102.0,
+          "employee": 86.0,
+          "total": 188.0
+        },
+        {
+          "wage_min": 780.01,
+          "wage_max": 800.0,
+          "employer": 104.0,
+          "employee": 88.0,
+          "total": 192.0
+        },
+        {
+          "wage_min": 800.01,
+          "wage_max": 820.0,
+          "employer": 107.0,
+          "employee": 91.0,
+          "total": 198.0
+        },
+        {
+          "wage_min": 820.01,
+          "wage_max": 840.0,
+          "employer": 110.0,
+          "employee": 93.0,
+          "total": 203.0
+        },
+        {
+          "wage_min": 840.01,
+          "wage_max": 860.0,
+          "employer": 112.0,
+          "employee": 95.0,
+          "total": 207.0
+        },
+        {
+          "wage_min": 860.01,
+          "wage_max": 880.0,
+          "employer": 115.0,
+          "employee": 97.0,
+          "total": 212.0
+        },
+        {
+          "wage_min": 880.01,
+          "wage_max": 900.0,
+          "employer": 117.0,
+          "employee": 99.0,
+          "total": 216.0
+        },
+        {
+          "wage_min": 900.01,
+          "wage_max": 920.0,
+          "employer": 120.0,
+          "employee": 102.0,
+          "total": 222.0
+        },
+        {
+          "wage_min": 920.01,
+          "wage_max": 940.0,
+          "employer": 123.0,
+          "employee": 104.0,
+          "total": 227.0
+        },
+        {
+          "wage_min": 940.01,
+          "wage_max": 960.0,
+          "employer": 125.0,
+          "employee": 106.0,
+          "total": 231.0
+        },
+        {
+          "wage_min": 960.01,
+          "wage_max": 980.0,
+          "employer": 128.0,
+          "employee": 108.0,
+          "total": 236.0
+        },
+        {
+          "wage_min": 980.01,
+          "wage_max": 1000.0,
+          "employer": 130.0,
+          "employee": 110.0,
+          "total": 240.0
+        },
+        {
+          "wage_min": 1000.01,
+          "wage_max": 1020.0,
+          "employer": 133.0,
+          "employee": 113.0,
+          "total": 246.0
+        },
+        {
+          "wage_min": 1020.01,
+          "wage_max": 1040.0,
+          "employer": 136.0,
+          "employee": 115.0,
+          "total": 251.0
+        },
+        {
+          "wage_min": 1040.01,
+          "wage_max": 1060.0,
+          "employer": 138.0,
+          "employee": 117.0,
+          "total": 255.0
+        },
+        {
+          "wage_min": 1060.01,
+          "wage_max": 1080.0,
+          "employer": 141.0,
+          "employee": 119.0,
+          "total": 260.0
+        },
+        {
+          "wage_min": 1080.01,
+          "wage_max": 1100.0,
+          "employer": 143.0,
+          "employee": 121.0,
+          "total": 264.0
+        },
+        {
+          "wage_min": 1100.01,
+          "wage_max": 1120.0,
+          "employer": 146.0,
+          "employee": 124.0,
+          "total": 270.0
+        },
+        {
+          "wage_min": 1120.01,
+          "wage_max": 1140.0,
+          "employer": 149.0,
+          "employee": 126.0,
+          "total": 275.0
+        },
+        {
+          "wage_min": 1140.01,
+          "wage_max": 1160.0,
+          "employer": 151.0,
+          "employee": 128.0,
+          "total": 279.0
+        },
+        {
+          "wage_min": 1160.01,
+          "wage_max": 1180.0,
+          "employer": 154.0,
+          "employee": 130.0,
+          "total": 284.0
+        },
+        {
+          "wage_min": 1180.01,
+          "wage_max": 1200.0,
+          "employer": 156.0,
+          "employee": 132.0,
+          "total": 288.0
+        },
+        {
+          "wage_min": 1200.01,
+          "wage_max": 1220.0,
+          "employer": 159.0,
+          "employee": 135.0,
+          "total": 294.0
+        },
+        {
+          "wage_min": 1220.01,
+          "wage_max": 1240.0,
+          "employer": 162.0,
+          "employee": 137.0,
+          "total": 299.0
+        },
+        {
+          "wage_min": 1240.01,
+          "wage_max": 1260.0,
+          "employer": 164.0,
+          "employee": 139.0,
+          "total": 303.0
+        },
+        {
+          "wage_min": 1260.01,
+          "wage_max": 1280.0,
+          "employer": 167.0,
+          "employee": 141.0,
+          "total": 308.0
+        },
+        {
+          "wage_min": 1280.01,
+          "wage_max": 1300.0,
+          "employer": 169.0,
+          "employee": 143.0,
+          "total": 312.0
+        },
+        {
+          "wage_min": 1300.01,
+          "wage_max": 1320.0,
+          "employer": 172.0,
+          "employee": 146.0,
+          "total": 318.0
+        },
+        {
+          "wage_min": 1320.01,
+          "wage_max": 1340.0,
+          "employer": 175.0,
+          "employee": 148.0,
+          "total": 323.0
+        },
+        {
+          "wage_min": 1340.01,
+          "wage_max": 1360.0,
+          "employer": 177.0,
+          "employee": 150.0,
+          "total": 327.0
+        },
+        {
+          "wage_min": 1360.01,
+          "wage_max": 1380.0,
+          "employer": 180.0,
+          "employee": 152.0,
+          "total": 332.0
+        },
+        {
+          "wage_min": 1380.01,
+          "wage_max": 1400.0,
+          "employer": 182.0,
+          "employee": 154.0,
+          "total": 336.0
+        },
+        {
+          "wage_min": 1400.01,
+          "wage_max": 1420.0,
+          "employer": 185.0,
+          "employee": 157.0,
+          "total": 342.0
+        },
+        {
+          "wage_min": 1420.01,
+          "wage_max": 1440.0,
+          "employer": 188.0,
+          "employee": 159.0,
+          "total": 347.0
+        },
+        {
+          "wage_min": 1440.01,
+          "wage_max": 1460.0,
+          "employer": 190.0,
+          "employee": 161.0,
+          "total": 351.0
+        },
+        {
+          "wage_min": 1460.01,
+          "wage_max": 1480.0,
+          "employer": 193.0,
+          "employee": 163.0,
+          "total": 356.0
+        },
+        {
+          "wage_min": 1480.01,
+          "wage_max": 1500.0,
+          "employer": 195.0,
+          "employee": 165.0,
+          "total": 360.0
+        },
+        {
+          "wage_min": 1500.01,
+          "wage_max": 1520.0,
+          "employer": 198.0,
+          "employee": 168.0,
+          "total": 366.0
+        },
+        {
+          "wage_min": 1520.01,
+          "wage_max": 1540.0,
+          "employer": 201.0,
+          "employee": 170.0,
+          "total": 371.0
+        },
+        {
+          "wage_min": 1540.01,
+          "wage_max": 1560.0,
+          "employer": 203.0,
+          "employee": 172.0,
+          "total": 375.0
+        },
+        {
+          "wage_min": 1560.01,
+          "wage_max": 1580.0,
+          "employer": 206.0,
+          "employee": 174.0,
+          "total": 380.0
+        },
+        {
+          "wage_min": 1580.01,
+          "wage_max": 1600.0,
+          "employer": 208.0,
+          "employee": 176.0,
+          "total": 384.0
+        },
+        {
+          "wage_min": 1600.01,
+          "wage_max": 1620.0,
+          "employer": 211.0,
+          "employee": 179.0,
+          "total": 390.0
+        },
+        {
+          "wage_min": 1620.01,
+          "wage_max": 1640.0,
+          "employer": 214.0,
+          "employee": 181.0,
+          "total": 395.0
+        },
+        {
+          "wage_min": 1640.01,
+          "wage_max": 1660.0,
+          "employer": 216.0,
+          "employee": 183.0,
+          "total": 399.0
+        },
+        {
+          "wage_min": 1660.01,
+          "wage_max": 1680.0,
+          "employer": 219.0,
+          "employee": 185.0,
+          "total": 404.0
+        },
+        {
+          "wage_min": 1680.01,
+          "wage_max": 1700.0,
+          "employer": 221.0,
+          "employee": 187.0,
+          "total": 408.0
+        },
+        {
+          "wage_min": 1700.01,
+          "wage_max": 1720.0,
+          "employer": 224.0,
+          "employee": 190.0,
+          "total": 414.0
+        },
+        {
+          "wage_min": 1720.01,
+          "wage_max": 1740.0,
+          "employer": 227.0,
+          "employee": 192.0,
+          "total": 419.0
+        },
+        {
+          "wage_min": 1740.01,
+          "wage_max": 1760.0,
+          "employer": 229.0,
+          "employee": 194.0,
+          "total": 423.0
+        },
+        {
+          "wage_min": 1760.01,
+          "wage_max": 1780.0,
+          "employer": 232.0,
+          "employee": 196.0,
+          "total": 428.0
+        },
+        {
+          "wage_min": 1780.01,
+          "wage_max": 1800.0,
+          "employer": 234.0,
+          "employee": 198.0,
+          "total": 432.0
+        },
+        {
+          "wage_min": 1800.01,
+          "wage_max": 1820.0,
+          "employer": 237.0,
+          "employee": 201.0,
+          "total": 438.0
+        },
+        {
+          "wage_min": 1820.01,
+          "wage_max": 1840.0,
+          "employer": 240.0,
+          "employee": 203.0,
+          "total": 443.0
+        },
+        {
+          "wage_min": 1840.01,
+          "wage_max": 1860.0,
+          "employer": 242.0,
+          "employee": 205.0,
+          "total": 447.0
+        },
+        {
+          "wage_min": 1860.01,
+          "wage_max": 1880.0,
+          "employer": 245.0,
+          "employee": 207.0,
+          "total": 452.0
+        },
+        {
+          "wage_min": 1880.01,
+          "wage_max": 1900.0,
+          "employer": 247.0,
+          "employee": 209.0,
+          "total": 456.0
+        },
+        {
+          "wage_min": 1900.01,
+          "wage_max": 1920.0,
+          "employer": 250.0,
+          "employee": 212.0,
+          "total": 462.0
+        },
+        {
+          "wage_min": 1920.01,
+          "wage_max": 1940.0,
+          "employer": 253.0,
+          "employee": 214.0,
+          "total": 467.0
+        },
+        {
+          "wage_min": 1940.01,
+          "wage_max": 1960.0,
+          "employer": 255.0,
+          "employee": 216.0,
+          "total": 471.0
+        },
+        {
+          "wage_min": 1960.01,
+          "wage_max": 1980.0,
+          "employer": 258.0,
+          "employee": 218.0,
+          "total": 476.0
+        },
+        {
+          "wage_min": 1980.01,
+          "wage_max": 2000.0,
+          "employer": 260.0,
+          "employee": 220.0,
+          "total": 480.0
+        },
+        {
+          "wage_min": 2000.01,
+          "wage_max": 2020.0,
+          "employer": 263.0,
+          "employee": 223.0,
+          "total": 486.0
+        },
+        {
+          "wage_min": 2020.01,
+          "wage_max": 2040.0,
+          "employer": 266.0,
+          "employee": 225.0,
+          "total": 491.0
+        },
+        {
+          "wage_min": 2040.01,
+          "wage_max": 2060.0,
+          "employer": 268.0,
+          "employee": 227.0,
+          "total": 495.0
+        },
+        {
+          "wage_min": 2060.01,
+          "wage_max": 2080.0,
+          "employer": 271.0,
+          "employee": 229.0,
+          "total": 500.0
+        },
+        {
+          "wage_min": 2080.01,
+          "wage_max": 2100.0,
+          "employer": 273.0,
+          "employee": 231.0,
+          "total": 504.0
+        },
+        {
+          "wage_min": 2100.01,
+          "wage_max": 2120.0,
+          "employer": 276.0,
+          "employee": 234.0,
+          "total": 510.0
+        },
+        {
+          "wage_min": 2120.01,
+          "wage_max": 2140.0,
+          "employer": 279.0,
+          "employee": 236.0,
+          "total": 515.0
+        },
+        {
+          "wage_min": 2140.01,
+          "wage_max": 2160.0,
+          "employer": 281.0,
+          "employee": 238.0,
+          "total": 519.0
+        },
+        {
+          "wage_min": 2160.01,
+          "wage_max": 2180.0,
+          "employer": 284.0,
+          "employee": 240.0,
+          "total": 524.0
+        },
+        {
+          "wage_min": 2180.01,
+          "wage_max": 2200.0,
+          "employer": 286.0,
+          "employee": 242.0,
+          "total": 528.0
+        },
+        {
+          "wage_min": 2200.01,
+          "wage_max": 2220.0,
+          "employer": 289.0,
+          "employee": 245.0,
+          "total": 534.0
+        },
+        {
+          "wage_min": 2220.01,
+          "wage_max": 2240.0,
+          "employer": 292.0,
+          "employee": 247.0,
+          "total": 539.0
+        },
+        {
+          "wage_min": 2240.01,
+          "wage_max": 2260.0,
+          "employer": 294.0,
+          "employee": 249.0,
+          "total": 543.0
+        },
+        {
+          "wage_min": 2260.01,
+          "wage_max": 2280.0,
+          "employer": 297.0,
+          "employee": 251.0,
+          "total": 548.0
+        },
+        {
+          "wage_min": 2280.01,
+          "wage_max": 2300.0,
+          "employer": 299.0,
+          "employee": 253.0,
+          "total": 552.0
+        },
+        {
+          "wage_min": 2300.01,
+          "wage_max": 2320.0,
+          "employer": 302.0,
+          "employee": 256.0,
+          "total": 558.0
+        },
+        {
+          "wage_min": 2320.01,
+          "wage_max": 2340.0,
+          "employer": 305.0,
+          "employee": 258.0,
+          "total": 563.0
+        },
+        {
+          "wage_min": 2340.01,
+          "wage_max": 2360.0,
+          "employer": 307.0,
+          "employee": 260.0,
+          "total": 567.0
+        },
+        {
+          "wage_min": 2360.01,
+          "wage_max": 2380.0,
+          "employer": 310.0,
+          "employee": 262.0,
+          "total": 572.0
+        },
+        {
+          "wage_min": 2380.01,
+          "wage_max": 2400.0,
+          "employer": 312.0,
+          "employee": 264.0,
+          "total": 576.0
+        },
+        {
+          "wage_min": 2400.01,
+          "wage_max": 2420.0,
+          "employer": 315.0,
+          "employee": 267.0,
+          "total": 582.0
+        },
+        {
+          "wage_min": 2420.01,
+          "wage_max": 2440.0,
+          "employer": 318.0,
+          "employee": 269.0,
+          "total": 587.0
+        },
+        {
+          "wage_min": 2440.01,
+          "wage_max": 2460.0,
+          "employer": 320.0,
+          "employee": 271.0,
+          "total": 591.0
+        },
+        {
+          "wage_min": 2460.01,
+          "wage_max": 2480.0,
+          "employer": 323.0,
+          "employee": 273.0,
+          "total": 596.0
+        },
+        {
+          "wage_min": 2480.01,
+          "wage_max": 2500.0,
+          "employer": 325.0,
+          "employee": 275.0,
+          "total": 600.0
+        },
+        {
+          "wage_min": 2500.01,
+          "wage_max": 2520.0,
+          "employer": 328.0,
+          "employee": 278.0,
+          "total": 606.0
+        },
+        {
+          "wage_min": 2520.01,
+          "wage_max": 2540.0,
+          "employer": 331.0,
+          "employee": 280.0,
+          "total": 611.0
+        },
+        {
+          "wage_min": 2540.01,
+          "wage_max": 2560.0,
+          "employer": 333.0,
+          "employee": 282.0,
+          "total": 615.0
+        },
+        {
+          "wage_min": 2560.01,
+          "wage_max": 2580.0,
+          "employer": 336.0,
+          "employee": 284.0,
+          "total": 620.0
+        },
+        {
+          "wage_min": 2580.01,
+          "wage_max": 2600.0,
+          "employer": 338.0,
+          "employee": 286.0,
+          "total": 624.0
+        },
+        {
+          "wage_min": 2600.01,
+          "wage_max": 2620.0,
+          "employer": 341.0,
+          "employee": 289.0,
+          "total": 630.0
+        },
+        {
+          "wage_min": 2620.01,
+          "wage_max": 2640.0,
+          "employer": 344.0,
+          "employee": 291.0,
+          "total": 635.0
+        },
+        {
+          "wage_min": 2640.01,
+          "wage_max": 2660.0,
+          "employer": 346.0,
+          "employee": 293.0,
+          "total": 639.0
+        },
+        {
+          "wage_min": 2660.01,
+          "wage_max": 2680.0,
+          "employer": 349.0,
+          "employee": 295.0,
+          "total": 644.0
+        },
+        {
+          "wage_min": 2680.01,
+          "wage_max": 2700.0,
+          "employer": 351.0,
+          "employee": 297.0,
+          "total": 648.0
+        },
+        {
+          "wage_min": 2700.01,
+          "wage_max": 2720.0,
+          "employer": 354.0,
+          "employee": 300.0,
+          "total": 654.0
+        },
+        {
+          "wage_min": 2720.01,
+          "wage_max": 2740.0,
+          "employer": 357.0,
+          "employee": 302.0,
+          "total": 659.0
+        },
+        {
+          "wage_min": 2740.01,
+          "wage_max": 2760.0,
+          "employer": 359.0,
+          "employee": 304.0,
+          "total": 663.0
+        },
+        {
+          "wage_min": 2760.01,
+          "wage_max": 2780.0,
+          "employer": 362.0,
+          "employee": 306.0,
+          "total": 668.0
+        },
+        {
+          "wage_min": 2780.01,
+          "wage_max": 2800.0,
+          "employer": 364.0,
+          "employee": 308.0,
+          "total": 672.0
+        },
+        {
+          "wage_min": 2800.01,
+          "wage_max": 2820.0,
+          "employer": 367.0,
+          "employee": 311.0,
+          "total": 678.0
+        },
+        {
+          "wage_min": 2820.01,
+          "wage_max": 2840.0,
+          "employer": 370.0,
+          "employee": 313.0,
+          "total": 683.0
+        },
+        {
+          "wage_min": 2840.01,
+          "wage_max": 2860.0,
+          "employer": 372.0,
+          "employee": 315.0,
+          "total": 687.0
+        },
+        {
+          "wage_min": 2860.01,
+          "wage_max": 2880.0,
+          "employer": 375.0,
+          "employee": 317.0,
+          "total": 692.0
+        },
+        {
+          "wage_min": 2880.01,
+          "wage_max": 2900.0,
+          "employer": 377.0,
+          "employee": 319.0,
+          "total": 696.0
+        },
+        {
+          "wage_min": 2900.01,
+          "wage_max": 2920.0,
+          "employer": 380.0,
+          "employee": 322.0,
+          "total": 702.0
+        },
+        {
+          "wage_min": 2920.01,
+          "wage_max": 2940.0,
+          "employer": 383.0,
+          "employee": 324.0,
+          "total": 707.0
+        },
+        {
+          "wage_min": 2940.01,
+          "wage_max": 2960.0,
+          "employer": 385.0,
+          "employee": 326.0,
+          "total": 711.0
+        },
+        {
+          "wage_min": 2960.01,
+          "wage_max": 2980.0,
+          "employer": 388.0,
+          "employee": 328.0,
+          "total": 716.0
+        },
+        {
+          "wage_min": 2980.01,
+          "wage_max": 3000.0,
+          "employer": 390.0,
+          "employee": 330.0,
+          "total": 720.0
+        },
+        {
+          "wage_min": 3000.01,
+          "wage_max": 3020.0,
+          "employer": 393.0,
+          "employee": 333.0,
+          "total": 726.0
+        },
+        {
+          "wage_min": 3020.01,
+          "wage_max": 3040.0,
+          "employer": 396.0,
+          "employee": 335.0,
+          "total": 731.0
+        },
+        {
+          "wage_min": 3040.01,
+          "wage_max": 3060.0,
+          "employer": 398.0,
+          "employee": 337.0,
+          "total": 735.0
+        },
+        {
+          "wage_min": 3060.01,
+          "wage_max": 3080.0,
+          "employer": 401.0,
+          "employee": 339.0,
+          "total": 740.0
+        },
+        {
+          "wage_min": 3080.01,
+          "wage_max": 3100.0,
+          "employer": 403.0,
+          "employee": 341.0,
+          "total": 744.0
+        },
+        {
+          "wage_min": 3100.01,
+          "wage_max": 3120.0,
+          "employer": 406.0,
+          "employee": 344.0,
+          "total": 750.0
+        },
+        {
+          "wage_min": 3120.01,
+          "wage_max": 3140.0,
+          "employer": 409.0,
+          "employee": 346.0,
+          "total": 755.0
+        },
+        {
+          "wage_min": 3140.01,
+          "wage_max": 3160.0,
+          "employer": 411.0,
+          "employee": 348.0,
+          "total": 759.0
+        },
+        {
+          "wage_min": 3160.01,
+          "wage_max": 3180.0,
+          "employer": 414.0,
+          "employee": 350.0,
+          "total": 764.0
+        },
+        {
+          "wage_min": 3180.01,
+          "wage_max": 3200.0,
+          "employer": 416.0,
+          "employee": 352.0,
+          "total": 768.0
+        },
+        {
+          "wage_min": 3200.01,
+          "wage_max": 3220.0,
+          "employer": 419.0,
+          "employee": 355.0,
+          "total": 774.0
+        },
+        {
+          "wage_min": 3220.01,
+          "wage_max": 3240.0,
+          "employer": 422.0,
+          "employee": 357.0,
+          "total": 779.0
+        },
+        {
+          "wage_min": 3240.01,
+          "wage_max": 3260.0,
+          "employer": 424.0,
+          "employee": 359.0,
+          "total": 783.0
+        },
+        {
+          "wage_min": 3260.01,
+          "wage_max": 3280.0,
+          "employer": 427.0,
+          "employee": 361.0,
+          "total": 788.0
+        },
+        {
+          "wage_min": 3280.01,
+          "wage_max": 3300.0,
+          "employer": 429.0,
+          "employee": 363.0,
+          "total": 792.0
+        },
+        {
+          "wage_min": 3300.01,
+          "wage_max": 3320.0,
+          "employer": 432.0,
+          "employee": 366.0,
+          "total": 798.0
+        },
+        {
+          "wage_min": 3320.01,
+          "wage_max": 3340.0,
+          "employer": 435.0,
+          "employee": 368.0,
+          "total": 803.0
+        },
+        {
+          "wage_min": 3340.01,
+          "wage_max": 3360.0,
+          "employer": 437.0,
+          "employee": 370.0,
+          "total": 807.0
+        },
+        {
+          "wage_min": 3360.01,
+          "wage_max": 3380.0,
+          "employer": 440.0,
+          "employee": 372.0,
+          "total": 812.0
+        },
+        {
+          "wage_min": 3380.01,
+          "wage_max": 3400.0,
+          "employer": 442.0,
+          "employee": 374.0,
+          "total": 816.0
+        },
+        {
+          "wage_min": 3400.01,
+          "wage_max": 3420.0,
+          "employer": 445.0,
+          "employee": 377.0,
+          "total": 822.0
+        },
+        {
+          "wage_min": 3420.01,
+          "wage_max": 3440.0,
+          "employer": 448.0,
+          "employee": 379.0,
+          "total": 827.0
+        },
+        {
+          "wage_min": 3440.01,
+          "wage_max": 3460.0,
+          "employer": 450.0,
+          "employee": 381.0,
+          "total": 831.0
+        },
+        {
+          "wage_min": 3460.01,
+          "wage_max": 3480.0,
+          "employer": 453.0,
+          "employee": 383.0,
+          "total": 836.0
+        },
+        {
+          "wage_min": 3480.01,
+          "wage_max": 3500.0,
+          "employer": 455.0,
+          "employee": 385.0,
+          "total": 840.0
+        },
+        {
+          "wage_min": 3500.01,
+          "wage_max": 3520.0,
+          "employer": 458.0,
+          "employee": 388.0,
+          "total": 846.0
+        },
+        {
+          "wage_min": 3520.01,
+          "wage_max": 3540.0,
+          "employer": 461.0,
+          "employee": 390.0,
+          "total": 851.0
+        },
+        {
+          "wage_min": 3540.01,
+          "wage_max": 3560.0,
+          "employer": 463.0,
+          "employee": 392.0,
+          "total": 855.0
+        },
+        {
+          "wage_min": 3560.01,
+          "wage_max": 3580.0,
+          "employer": 466.0,
+          "employee": 394.0,
+          "total": 860.0
+        },
+        {
+          "wage_min": 3580.01,
+          "wage_max": 3600.0,
+          "employer": 468.0,
+          "employee": 396.0,
+          "total": 864.0
+        },
+        {
+          "wage_min": 3600.01,
+          "wage_max": 3620.0,
+          "employer": 471.0,
+          "employee": 399.0,
+          "total": 870.0
+        },
+        {
+          "wage_min": 3620.01,
+          "wage_max": 3640.0,
+          "employer": 474.0,
+          "employee": 401.0,
+          "total": 875.0
+        },
+        {
+          "wage_min": 3640.01,
+          "wage_max": 3660.0,
+          "employer": 476.0,
+          "employee": 403.0,
+          "total": 879.0
+        },
+        {
+          "wage_min": 3660.01,
+          "wage_max": 3680.0,
+          "employer": 479.0,
+          "employee": 405.0,
+          "total": 884.0
+        },
+        {
+          "wage_min": 3680.01,
+          "wage_max": 3700.0,
+          "employer": 481.0,
+          "employee": 407.0,
+          "total": 888.0
+        },
+        {
+          "wage_min": 3700.01,
+          "wage_max": 3720.0,
+          "employer": 484.0,
+          "employee": 410.0,
+          "total": 894.0
+        },
+        {
+          "wage_min": 3720.01,
+          "wage_max": 3740.0,
+          "employer": 487.0,
+          "employee": 412.0,
+          "total": 899.0
+        },
+        {
+          "wage_min": 3740.01,
+          "wage_max": 3760.0,
+          "employer": 489.0,
+          "employee": 414.0,
+          "total": 903.0
+        },
+        {
+          "wage_min": 3760.01,
+          "wage_max": 3780.0,
+          "employer": 492.0,
+          "employee": 416.0,
+          "total": 908.0
+        },
+        {
+          "wage_min": 3780.01,
+          "wage_max": 3800.0,
+          "employer": 494.0,
+          "employee": 418.0,
+          "total": 912.0
+        },
+        {
+          "wage_min": 3800.01,
+          "wage_max": 3820.0,
+          "employer": 497.0,
+          "employee": 421.0,
+          "total": 918.0
+        },
+        {
+          "wage_min": 3820.01,
+          "wage_max": 3840.0,
+          "employer": 500.0,
+          "employee": 423.0,
+          "total": 923.0
+        },
+        {
+          "wage_min": 3840.01,
+          "wage_max": 3860.0,
+          "employer": 502.0,
+          "employee": 425.0,
+          "total": 927.0
+        },
+        {
+          "wage_min": 3860.01,
+          "wage_max": 3880.0,
+          "employer": 505.0,
+          "employee": 427.0,
+          "total": 932.0
+        },
+        {
+          "wage_min": 3880.01,
+          "wage_max": 3900.0,
+          "employer": 507.0,
+          "employee": 429.0,
+          "total": 936.0
+        },
+        {
+          "wage_min": 3900.01,
+          "wage_max": 3920.0,
+          "employer": 510.0,
+          "employee": 432.0,
+          "total": 942.0
+        },
+        {
+          "wage_min": 3920.01,
+          "wage_max": 3940.0,
+          "employer": 513.0,
+          "employee": 434.0,
+          "total": 947.0
+        },
+        {
+          "wage_min": 3940.01,
+          "wage_max": 3960.0,
+          "employer": 515.0,
+          "employee": 436.0,
+          "total": 951.0
+        },
+        {
+          "wage_min": 3960.01,
+          "wage_max": 3980.0,
+          "employer": 518.0,
+          "employee": 438.0,
+          "total": 956.0
+        },
+        {
+          "wage_min": 3980.01,
+          "wage_max": 4000.0,
+          "employer": 520.0,
+          "employee": 440.0,
+          "total": 960.0
+        },
+        {
+          "wage_min": 4000.01,
+          "wage_max": 4020.0,
+          "employer": 523.0,
+          "employee": 443.0,
+          "total": 966.0
+        },
+        {
+          "wage_min": 4020.01,
+          "wage_max": 4040.0,
+          "employer": 526.0,
+          "employee": 445.0,
+          "total": 971.0
+        },
+        {
+          "wage_min": 4040.01,
+          "wage_max": 4060.0,
+          "employer": 528.0,
+          "employee": 447.0,
+          "total": 975.0
+        },
+        {
+          "wage_min": 4060.01,
+          "wage_max": 4080.0,
+          "employer": 531.0,
+          "employee": 449.0,
+          "total": 980.0
+        },
+        {
+          "wage_min": 4080.01,
+          "wage_max": 4100.0,
+          "employer": 533.0,
+          "employee": 451.0,
+          "total": 984.0
+        },
+        {
+          "wage_min": 4100.01,
+          "wage_max": 4120.0,
+          "employer": 536.0,
+          "employee": 454.0,
+          "total": 990.0
+        },
+        {
+          "wage_min": 4120.01,
+          "wage_max": 4140.0,
+          "employer": 539.0,
+          "employee": 456.0,
+          "total": 995.0
+        },
+        {
+          "wage_min": 4140.01,
+          "wage_max": 4160.0,
+          "employer": 541.0,
+          "employee": 458.0,
+          "total": 999.0
+        },
+        {
+          "wage_min": 4160.01,
+          "wage_max": 4180.0,
+          "employer": 544.0,
+          "employee": 460.0,
+          "total": 1004.0
+        },
+        {
+          "wage_min": 4180.01,
+          "wage_max": 4200.0,
+          "employer": 546.0,
+          "employee": 462.0,
+          "total": 1008.0
+        },
+        {
+          "wage_min": 4200.01,
+          "wage_max": 4220.0,
+          "employer": 549.0,
+          "employee": 465.0,
+          "total": 1014.0
+        },
+        {
+          "wage_min": 4220.01,
+          "wage_max": 4240.0,
+          "employer": 552.0,
+          "employee": 467.0,
+          "total": 1019.0
+        },
+        {
+          "wage_min": 4240.01,
+          "wage_max": 4260.0,
+          "employer": 554.0,
+          "employee": 469.0,
+          "total": 1023.0
+        },
+        {
+          "wage_min": 4260.01,
+          "wage_max": 4280.0,
+          "employer": 557.0,
+          "employee": 471.0,
+          "total": 1028.0
+        },
+        {
+          "wage_min": 4280.01,
+          "wage_max": 4300.0,
+          "employer": 559.0,
+          "employee": 473.0,
+          "total": 1032.0
+        },
+        {
+          "wage_min": 4300.01,
+          "wage_max": 4320.0,
+          "employer": 562.0,
+          "employee": 476.0,
+          "total": 1038.0
+        },
+        {
+          "wage_min": 4320.01,
+          "wage_max": 4340.0,
+          "employer": 565.0,
+          "employee": 478.0,
+          "total": 1043.0
+        },
+        {
+          "wage_min": 4340.01,
+          "wage_max": 4360.0,
+          "employer": 567.0,
+          "employee": 480.0,
+          "total": 1047.0
+        },
+        {
+          "wage_min": 4360.01,
+          "wage_max": 4380.0,
+          "employer": 570.0,
+          "employee": 482.0,
+          "total": 1052.0
+        },
+        {
+          "wage_min": 4380.01,
+          "wage_max": 4400.0,
+          "employer": 572.0,
+          "employee": 484.0,
+          "total": 1056.0
+        },
+        {
+          "wage_min": 4400.01,
+          "wage_max": 4420.0,
+          "employer": 575.0,
+          "employee": 487.0,
+          "total": 1062.0
+        },
+        {
+          "wage_min": 4420.01,
+          "wage_max": 4440.0,
+          "employer": 578.0,
+          "employee": 489.0,
+          "total": 1067.0
+        },
+        {
+          "wage_min": 4440.01,
+          "wage_max": 4460.0,
+          "employer": 580.0,
+          "employee": 491.0,
+          "total": 1071.0
+        },
+        {
+          "wage_min": 4460.01,
+          "wage_max": 4480.0,
+          "employer": 583.0,
+          "employee": 493.0,
+          "total": 1076.0
+        },
+        {
+          "wage_min": 4480.01,
+          "wage_max": 4500.0,
+          "employer": 585.0,
+          "employee": 495.0,
+          "total": 1080.0
+        },
+        {
+          "wage_min": 4500.01,
+          "wage_max": 4520.0,
+          "employer": 588.0,
+          "employee": 498.0,
+          "total": 1086.0
+        },
+        {
+          "wage_min": 4520.01,
+          "wage_max": 4540.0,
+          "employer": 591.0,
+          "employee": 500.0,
+          "total": 1091.0
+        },
+        {
+          "wage_min": 4540.01,
+          "wage_max": 4560.0,
+          "employer": 593.0,
+          "employee": 502.0,
+          "total": 1095.0
+        },
+        {
+          "wage_min": 4560.01,
+          "wage_max": 4580.0,
+          "employer": 596.0,
+          "employee": 504.0,
+          "total": 1100.0
+        },
+        {
+          "wage_min": 4580.01,
+          "wage_max": 4600.0,
+          "employer": 598.0,
+          "employee": 506.0,
+          "total": 1104.0
+        },
+        {
+          "wage_min": 4600.01,
+          "wage_max": 4620.0,
+          "employer": 601.0,
+          "employee": 509.0,
+          "total": 1110.0
+        },
+        {
+          "wage_min": 4620.01,
+          "wage_max": 4640.0,
+          "employer": 604.0,
+          "employee": 511.0,
+          "total": 1115.0
+        },
+        {
+          "wage_min": 4640.01,
+          "wage_max": 4660.0,
+          "employer": 606.0,
+          "employee": 513.0,
+          "total": 1119.0
+        },
+        {
+          "wage_min": 4660.01,
+          "wage_max": 4680.0,
+          "employer": 609.0,
+          "employee": 515.0,
+          "total": 1124.0
+        },
+        {
+          "wage_min": 4680.01,
+          "wage_max": 4700.0,
+          "employer": 611.0,
+          "employee": 517.0,
+          "total": 1128.0
+        },
+        {
+          "wage_min": 4700.01,
+          "wage_max": 4720.0,
+          "employer": 614.0,
+          "employee": 520.0,
+          "total": 1134.0
+        },
+        {
+          "wage_min": 4720.01,
+          "wage_max": 4740.0,
+          "employer": 617.0,
+          "employee": 522.0,
+          "total": 1139.0
+        },
+        {
+          "wage_min": 4740.01,
+          "wage_max": 4760.0,
+          "employer": 619.0,
+          "employee": 524.0,
+          "total": 1143.0
+        },
+        {
+          "wage_min": 4760.01,
+          "wage_max": 4780.0,
+          "employer": 622.0,
+          "employee": 526.0,
+          "total": 1148.0
+        },
+        {
+          "wage_min": 4780.01,
+          "wage_max": 4800.0,
+          "employer": 624.0,
+          "employee": 528.0,
+          "total": 1152.0
+        },
+        {
+          "wage_min": 4800.01,
+          "wage_max": 4820.0,
+          "employer": 627.0,
+          "employee": 531.0,
+          "total": 1158.0
+        },
+        {
+          "wage_min": 4820.01,
+          "wage_max": 4840.0,
+          "employer": 630.0,
+          "employee": 533.0,
+          "total": 1163.0
+        },
+        {
+          "wage_min": 4840.01,
+          "wage_max": 4860.0,
+          "employer": 632.0,
+          "employee": 535.0,
+          "total": 1167.0
+        },
+        {
+          "wage_min": 4860.01,
+          "wage_max": 4880.0,
+          "employer": 635.0,
+          "employee": 537.0,
+          "total": 1172.0
+        },
+        {
+          "wage_min": 4880.01,
+          "wage_max": 4900.0,
+          "employer": 637.0,
+          "employee": 539.0,
+          "total": 1176.0
+        },
+        {
+          "wage_min": 4900.01,
+          "wage_max": 4920.0,
+          "employer": 640.0,
+          "employee": 542.0,
+          "total": 1182.0
+        },
+        {
+          "wage_min": 4920.01,
+          "wage_max": 4940.0,
+          "employer": 643.0,
+          "employee": 544.0,
+          "total": 1187.0
+        },
+        {
+          "wage_min": 4940.01,
+          "wage_max": 4960.0,
+          "employer": 645.0,
+          "employee": 546.0,
+          "total": 1191.0
+        },
+        {
+          "wage_min": 4960.01,
+          "wage_max": 4980.0,
+          "employer": 648.0,
+          "employee": 548.0,
+          "total": 1196.0
+        },
+        {
+          "wage_min": 4980.01,
+          "wage_max": 5000.0,
+          "employer": 650.0,
+          "employee": 550.0,
+          "total": 1200.0
+        },
+        {
+          "wage_min": 5000.01,
+          "wage_max": 5100.0,
+          "employer": 612.0,
+          "employee": 561.0,
+          "total": 1173.0
+        },
+        {
+          "wage_min": 5100.01,
+          "wage_max": 5200.0,
+          "employer": 624.0,
+          "employee": 572.0,
+          "total": 1196.0
+        },
+        {
+          "wage_min": 5200.01,
+          "wage_max": 5300.0,
+          "employer": 636.0,
+          "employee": 583.0,
+          "total": 1219.0
+        },
+        {
+          "wage_min": 5300.01,
+          "wage_max": 5400.0,
+          "employer": 648.0,
+          "employee": 594.0,
+          "total": 1242.0
+        },
+        {
+          "wage_min": 5400.01,
+          "wage_max": 5500.0,
+          "employer": 660.0,
+          "employee": 605.0,
+          "total": 1265.0
+        },
+        {
+          "wage_min": 5500.01,
+          "wage_max": 5600.0,
+          "employer": 672.0,
+          "employee": 616.0,
+          "total": 1288.0
+        },
+        {
+          "wage_min": 5600.01,
+          "wage_max": 5700.0,
+          "employer": 684.0,
+          "employee": 627.0,
+          "total": 1311.0
+        },
+        {
+          "wage_min": 5700.01,
+          "wage_max": 5800.0,
+          "employer": 696.0,
+          "employee": 638.0,
+          "total": 1334.0
+        },
+        {
+          "wage_min": 5800.01,
+          "wage_max": 5900.0,
+          "employer": 708.0,
+          "employee": 649.0,
+          "total": 1357.0
+        },
+        {
+          "wage_min": 5900.01,
+          "wage_max": 6000.0,
+          "employer": 720.0,
+          "employee": 660.0,
+          "total": 1380.0
+        },
+        {
+          "wage_min": 6000.01,
+          "wage_max": 6100.0,
+          "employer": 732.0,
+          "employee": 671.0,
+          "total": 1403.0
+        },
+        {
+          "wage_min": 6100.01,
+          "wage_max": 6200.0,
+          "employer": 744.0,
+          "employee": 682.0,
+          "total": 1426.0
+        },
+        {
+          "wage_min": 6200.01,
+          "wage_max": 6300.0,
+          "employer": 756.0,
+          "employee": 693.0,
+          "total": 1449.0
+        },
+        {
+          "wage_min": 6300.01,
+          "wage_max": 6400.0,
+          "employer": 768.0,
+          "employee": 704.0,
+          "total": 1472.0
+        },
+        {
+          "wage_min": 6400.01,
+          "wage_max": 6500.0,
+          "employer": 780.0,
+          "employee": 715.0,
+          "total": 1495.0
+        },
+        {
+          "wage_min": 6500.01,
+          "wage_max": 6600.0,
+          "employer": 792.0,
+          "employee": 726.0,
+          "total": 1518.0
+        },
+        {
+          "wage_min": 6600.01,
+          "wage_max": 6700.0,
+          "employer": 804.0,
+          "employee": 737.0,
+          "total": 1541.0
+        },
+        {
+          "wage_min": 6700.01,
+          "wage_max": 6800.0,
+          "employer": 816.0,
+          "employee": 748.0,
+          "total": 1564.0
+        },
+        {
+          "wage_min": 6800.01,
+          "wage_max": 6900.0,
+          "employer": 828.0,
+          "employee": 759.0,
+          "total": 1587.0
+        },
+        {
+          "wage_min": 6900.01,
+          "wage_max": 7000.0,
+          "employer": 840.0,
+          "employee": 770.0,
+          "total": 1610.0
+        },
+        {
+          "wage_min": 7000.01,
+          "wage_max": 7100.0,
+          "employer": 852.0,
+          "employee": 781.0,
+          "total": 1633.0
+        },
+        {
+          "wage_min": 7100.01,
+          "wage_max": 7200.0,
+          "employer": 864.0,
+          "employee": 792.0,
+          "total": 1656.0
+        },
+        {
+          "wage_min": 7200.01,
+          "wage_max": 7300.0,
+          "employer": 876.0,
+          "employee": 803.0,
+          "total": 1679.0
+        },
+        {
+          "wage_min": 7300.01,
+          "wage_max": 7400.0,
+          "employer": 888.0,
+          "employee": 814.0,
+          "total": 1702.0
+        },
+        {
+          "wage_min": 7400.01,
+          "wage_max": 7500.0,
+          "employer": 900.0,
+          "employee": 825.0,
+          "total": 1725.0
+        },
+        {
+          "wage_min": 7500.01,
+          "wage_max": 7600.0,
+          "employer": 912.0,
+          "employee": 836.0,
+          "total": 1748.0
+        },
+        {
+          "wage_min": 7600.01,
+          "wage_max": 7700.0,
+          "employer": 924.0,
+          "employee": 847.0,
+          "total": 1771.0
+        },
+        {
+          "wage_min": 7700.01,
+          "wage_max": 7800.0,
+          "employer": 936.0,
+          "employee": 858.0,
+          "total": 1794.0
+        },
+        {
+          "wage_min": 7800.01,
+          "wage_max": 7900.0,
+          "employer": 948.0,
+          "employee": 869.0,
+          "total": 1817.0
+        },
+        {
+          "wage_min": 7900.01,
+          "wage_max": 8000.0,
+          "employer": 960.0,
+          "employee": 880.0,
+          "total": 1840.0
+        },
+        {
+          "wage_min": 8000.01,
+          "wage_max": 8100.0,
+          "employer": 972.0,
+          "employee": 891.0,
+          "total": 1863.0
+        },
+        {
+          "wage_min": 8100.01,
+          "wage_max": 8200.0,
+          "employer": 984.0,
+          "employee": 902.0,
+          "total": 1886.0
+        },
+        {
+          "wage_min": 8200.01,
+          "wage_max": 8300.0,
+          "employer": 996.0,
+          "employee": 913.0,
+          "total": 1909.0
+        },
+        {
+          "wage_min": 8300.01,
+          "wage_max": 8400.0,
+          "employer": 1008.0,
+          "employee": 924.0,
+          "total": 1932.0
+        },
+        {
+          "wage_min": 8400.01,
+          "wage_max": 8500.0,
+          "employer": 1020.0,
+          "employee": 935.0,
+          "total": 1955.0
+        },
+        {
+          "wage_min": 8500.01,
+          "wage_max": 8600.0,
+          "employer": 1032.0,
+          "employee": 946.0,
+          "total": 1978.0
+        },
+        {
+          "wage_min": 8600.01,
+          "wage_max": 8700.0,
+          "employer": 1044.0,
+          "employee": 957.0,
+          "total": 2001.0
+        },
+        {
+          "wage_min": 8700.01,
+          "wage_max": 8800.0,
+          "employer": 1056.0,
+          "employee": 968.0,
+          "total": 2024.0
+        },
+        {
+          "wage_min": 8800.01,
+          "wage_max": 8900.0,
+          "employer": 1068.0,
+          "employee": 979.0,
+          "total": 2047.0
+        },
+        {
+          "wage_min": 8900.01,
+          "wage_max": 9000.0,
+          "employer": 1080.0,
+          "employee": 990.0,
+          "total": 2070.0
+        },
+        {
+          "wage_min": 9000.01,
+          "wage_max": 9100.0,
+          "employer": 1092.0,
+          "employee": 1001.0,
+          "total": 2093.0
+        },
+        {
+          "wage_min": 9100.01,
+          "wage_max": 9200.0,
+          "employer": 1104.0,
+          "employee": 1012.0,
+          "total": 2116.0
+        },
+        {
+          "wage_min": 9200.01,
+          "wage_max": 9300.0,
+          "employer": 1116.0,
+          "employee": 1023.0,
+          "total": 2139.0
+        },
+        {
+          "wage_min": 9300.01,
+          "wage_max": 9400.0,
+          "employer": 1128.0,
+          "employee": 1034.0,
+          "total": 2162.0
+        },
+        {
+          "wage_min": 9400.01,
+          "wage_max": 9500.0,
+          "employer": 1140.0,
+          "employee": 1045.0,
+          "total": 2185.0
+        },
+        {
+          "wage_min": 9500.01,
+          "wage_max": 9600.0,
+          "employer": 1152.0,
+          "employee": 1056.0,
+          "total": 2208.0
+        },
+        {
+          "wage_min": 9600.01,
+          "wage_max": 9700.0,
+          "employer": 1164.0,
+          "employee": 1067.0,
+          "total": 2231.0
+        },
+        {
+          "wage_min": 9700.01,
+          "wage_max": 9800.0,
+          "employer": 1176.0,
+          "employee": 1078.0,
+          "total": 2254.0
+        },
+        {
+          "wage_min": 9800.01,
+          "wage_max": 9900.0,
+          "employer": 1188.0,
+          "employee": 1089.0,
+          "total": 2277.0
+        },
+        {
+          "wage_min": 9900.01,
+          "wage_max": 10000.0,
+          "employer": 1200.0,
+          "employee": 1100.0,
+          "total": 2300.0
+        },
+        {
+          "wage_min": 10000.01,
+          "wage_max": 10100.0,
+          "employer": 1212.0,
+          "employee": 1111.0,
+          "total": 2323.0
+        },
+        {
+          "wage_min": 10100.01,
+          "wage_max": 10200.0,
+          "employer": 1224.0,
+          "employee": 1122.0,
+          "total": 2346.0
+        },
+        {
+          "wage_min": 10200.01,
+          "wage_max": 10300.0,
+          "employer": 1236.0,
+          "employee": 1133.0,
+          "total": 2369.0
+        },
+        {
+          "wage_min": 10300.01,
+          "wage_max": 10400.0,
+          "employer": 1248.0,
+          "employee": 1144.0,
+          "total": 2392.0
+        },
+        {
+          "wage_min": 10400.01,
+          "wage_max": 10500.0,
+          "employer": 1260.0,
+          "employee": 1155.0,
+          "total": 2415.0
+        },
+        {
+          "wage_min": 10500.01,
+          "wage_max": 10600.0,
+          "employer": 1272.0,
+          "employee": 1166.0,
+          "total": 2438.0
+        },
+        {
+          "wage_min": 10600.01,
+          "wage_max": 10700.0,
+          "employer": 1284.0,
+          "employee": 1177.0,
+          "total": 2461.0
+        },
+        {
+          "wage_min": 10700.01,
+          "wage_max": 10800.0,
+          "employer": 1296.0,
+          "employee": 1188.0,
+          "total": 2484.0
+        },
+        {
+          "wage_min": 10800.01,
+          "wage_max": 10900.0,
+          "employer": 1308.0,
+          "employee": 1199.0,
+          "total": 2507.0
+        },
+        {
+          "wage_min": 10900.01,
+          "wage_max": 11000.0,
+          "employer": 1320.0,
+          "employee": 1210.0,
+          "total": 2530.0
+        },
+        {
+          "wage_min": 11000.01,
+          "wage_max": 11100.0,
+          "employer": 1332.0,
+          "employee": 1221.0,
+          "total": 2553.0
+        },
+        {
+          "wage_min": 11100.01,
+          "wage_max": 11200.0,
+          "employer": 1344.0,
+          "employee": 1232.0,
+          "total": 2576.0
+        },
+        {
+          "wage_min": 11200.01,
+          "wage_max": 11300.0,
+          "employer": 1356.0,
+          "employee": 1243.0,
+          "total": 2599.0
+        },
+        {
+          "wage_min": 11300.01,
+          "wage_max": 11400.0,
+          "employer": 1368.0,
+          "employee": 1254.0,
+          "total": 2622.0
+        },
+        {
+          "wage_min": 11400.01,
+          "wage_max": 11500.0,
+          "employer": 1380.0,
+          "employee": 1265.0,
+          "total": 2645.0
+        },
+        {
+          "wage_min": 11500.01,
+          "wage_max": 11600.0,
+          "employer": 1392.0,
+          "employee": 1276.0,
+          "total": 2668.0
+        },
+        {
+          "wage_min": 11600.01,
+          "wage_max": 11700.0,
+          "employer": 1404.0,
+          "employee": 1287.0,
+          "total": 2691.0
+        },
+        {
+          "wage_min": 11700.01,
+          "wage_max": 11800.0,
+          "employer": 1416.0,
+          "employee": 1298.0,
+          "total": 2714.0
+        },
+        {
+          "wage_min": 11800.01,
+          "wage_max": 11900.0,
+          "employer": 1428.0,
+          "employee": 1309.0,
+          "total": 2737.0
+        },
+        {
+          "wage_min": 11900.01,
+          "wage_max": 12000.0,
+          "employer": 1440.0,
+          "employee": 1320.0,
+          "total": 2760.0
+        },
+        {
+          "wage_min": 12000.01,
+          "wage_max": 12100.0,
+          "employer": 1452.0,
+          "employee": 1331.0,
+          "total": 2783.0
+        },
+        {
+          "wage_min": 12100.01,
+          "wage_max": 12200.0,
+          "employer": 1464.0,
+          "employee": 1342.0,
+          "total": 2806.0
+        },
+        {
+          "wage_min": 12300.01,
+          "wage_max": 12400.0,
+          "employer": 1488.0,
+          "employee": 1364.0,
+          "total": 2852.0
+        },
+        {
+          "wage_min": 12400.01,
+          "wage_max": 12500.0,
+          "employer": 1500.0,
+          "employee": 1375.0,
+          "total": 2875.0
+        },
+        {
+          "wage_min": 12500.01,
+          "wage_max": 12600.0,
+          "employer": 1512.0,
+          "employee": 1386.0,
+          "total": 2898.0
+        },
+        {
+          "wage_min": 12600.01,
+          "wage_max": 12700.0,
+          "employer": 1524.0,
+          "employee": 1397.0,
+          "total": 2921.0
+        },
+        {
+          "wage_min": 12700.01,
+          "wage_max": 12800.0,
+          "employer": 1536.0,
+          "employee": 1408.0,
+          "total": 2944.0
+        },
+        {
+          "wage_min": 12800.01,
+          "wage_max": 12900.0,
+          "employer": 1548.0,
+          "employee": 1419.0,
+          "total": 2967.0
+        },
+        {
+          "wage_min": 12900.01,
+          "wage_max": 13000.0,
+          "employer": 1560.0,
+          "employee": 1430.0,
+          "total": 2990.0
+        },
+        {
+          "wage_min": 13000.01,
+          "wage_max": 13100.0,
+          "employer": 1572.0,
+          "employee": 1441.0,
+          "total": 3013.0
+        },
+        {
+          "wage_min": 13100.01,
+          "wage_max": 13200.0,
+          "employer": 1584.0,
+          "employee": 1452.0,
+          "total": 3036.0
+        },
+        {
+          "wage_min": 13200.01,
+          "wage_max": 13300.0,
+          "employer": 1596.0,
+          "employee": 1463.0,
+          "total": 3059.0
+        },
+        {
+          "wage_min": 13300.01,
+          "wage_max": 13400.0,
+          "employer": 1608.0,
+          "employee": 1474.0,
+          "total": 3082.0
+        },
+        {
+          "wage_min": 13400.01,
+          "wage_max": 13500.0,
+          "employer": 1620.0,
+          "employee": 1485.0,
+          "total": 3105.0
+        },
+        {
+          "wage_min": 13500.01,
+          "wage_max": 13600.0,
+          "employer": 1632.0,
+          "employee": 1496.0,
+          "total": 3128.0
+        },
+        {
+          "wage_min": 13600.01,
+          "wage_max": 13700.0,
+          "employer": 1644.0,
+          "employee": 1507.0,
+          "total": 3151.0
+        },
+        {
+          "wage_min": 13700.01,
+          "wage_max": 13800.0,
+          "employer": 1656.0,
+          "employee": 1518.0,
+          "total": 3174.0
+        },
+        {
+          "wage_min": 13800.01,
+          "wage_max": 13900.0,
+          "employer": 1668.0,
+          "employee": 1529.0,
+          "total": 3197.0
+        },
+        {
+          "wage_min": 13900.01,
+          "wage_max": 14000.0,
+          "employer": 1680.0,
+          "employee": 1540.0,
+          "total": 3220.0
+        },
+        {
+          "wage_min": 14000.01,
+          "wage_max": 14100.0,
+          "employer": 1692.0,
+          "employee": 1551.0,
+          "total": 3243.0
+        },
+        {
+          "wage_min": 14100.01,
+          "wage_max": 14200.0,
+          "employer": 1704.0,
+          "employee": 1562.0,
+          "total": 3266.0
+        },
+        {
+          "wage_min": 14200.01,
+          "wage_max": 14300.0,
+          "employer": 1716.0,
+          "employee": 1573.0,
+          "total": 3289.0
+        },
+        {
+          "wage_min": 14300.01,
+          "wage_max": 14400.0,
+          "employer": 1728.0,
+          "employee": 1584.0,
+          "total": 3312.0
+        },
+        {
+          "wage_min": 14400.01,
+          "wage_max": 14500.0,
+          "employer": 1740.0,
+          "employee": 1595.0,
+          "total": 3335.0
+        },
+        {
+          "wage_min": 14500.01,
+          "wage_max": 14600.0,
+          "employer": 1752.0,
+          "employee": 1606.0,
+          "total": 3358.0
+        },
+        {
+          "wage_min": 14700.01,
+          "wage_max": 14800.0,
+          "employer": 1776.0,
+          "employee": 1628.0,
+          "total": 3404.0
+        },
+        {
+          "wage_min": 14800.01,
+          "wage_max": 14900.0,
+          "employer": 1788.0,
+          "employee": 1639.0,
+          "total": 3427.0
+        },
+        {
+          "wage_min": 14900.01,
+          "wage_max": 15000.0,
+          "employer": 1800.0,
+          "employee": 1650.0,
+          "total": 3450.0
+        },
+        {
+          "wage_min": 15000.01,
+          "wage_max": 15100.0,
+          "employer": 1812.0,
+          "employee": 1661.0,
+          "total": 3473.0
+        },
+        {
+          "wage_min": 15100.01,
+          "wage_max": 15200.0,
+          "employer": 1824.0,
+          "employee": 1672.0,
+          "total": 3496.0
+        },
+        {
+          "wage_min": 15200.01,
+          "wage_max": 15300.0,
+          "employer": 1836.0,
+          "employee": 1683.0,
+          "total": 3519.0
+        },
+        {
+          "wage_min": 15300.01,
+          "wage_max": 15400.0,
+          "employer": 1848.0,
+          "employee": 1694.0,
+          "total": 3542.0
+        },
+        {
+          "wage_min": 15400.01,
+          "wage_max": 15500.0,
+          "employer": 1860.0,
+          "employee": 1705.0,
+          "total": 3565.0
+        },
+        {
+          "wage_min": 15500.01,
+          "wage_max": 15600.0,
+          "employer": 1872.0,
+          "employee": 1716.0,
+          "total": 3588.0
+        },
+        {
+          "wage_min": 15600.01,
+          "wage_max": 15700.0,
+          "employer": 1884.0,
+          "employee": 1727.0,
+          "total": 3611.0
+        },
+        {
+          "wage_min": 15700.01,
+          "wage_max": 15800.0,
+          "employer": 1896.0,
+          "employee": 1738.0,
+          "total": 3634.0
+        },
+        {
+          "wage_min": 15800.01,
+          "wage_max": 15900.0,
+          "employer": 1908.0,
+          "employee": 1749.0,
+          "total": 3657.0
+        },
+        {
+          "wage_min": 15900.01,
+          "wage_max": 16000.0,
+          "employer": 1920.0,
+          "employee": 1760.0,
+          "total": 3680.0
+        },
+        {
+          "wage_min": 16000.01,
+          "wage_max": 16100.0,
+          "employer": 1932.0,
+          "employee": 1771.0,
+          "total": 3703.0
+        },
+        {
+          "wage_min": 16100.01,
+          "wage_max": 16200.0,
+          "employer": 1944.0,
+          "employee": 1782.0,
+          "total": 3726.0
+        },
+        {
+          "wage_min": 16200.01,
+          "wage_max": 16300.0,
+          "employer": 1956.0,
+          "employee": 1793.0,
+          "total": 3749.0
+        },
+        {
+          "wage_min": 16300.01,
+          "wage_max": 16400.0,
+          "employer": 1968.0,
+          "employee": 1804.0,
+          "total": 3772.0
+        },
+        {
+          "wage_min": 16400.01,
+          "wage_max": 16500.0,
+          "employer": 1980.0,
+          "employee": 1815.0,
+          "total": 3795.0
+        },
+        {
+          "wage_min": 16500.01,
+          "wage_max": 16600.0,
+          "employer": 1992.0,
+          "employee": 1826.0,
+          "total": 3818.0
+        },
+        {
+          "wage_min": 16600.01,
+          "wage_max": 16700.0,
+          "employer": 2004.0,
+          "employee": 1837.0,
+          "total": 3841.0
+        },
+        {
+          "wage_min": 16700.01,
+          "wage_max": 16800.0,
+          "employer": 2016.0,
+          "employee": 1848.0,
+          "total": 3864.0
+        },
+        {
+          "wage_min": 16800.01,
+          "wage_max": 16900.0,
+          "employer": 2028.0,
+          "employee": 1859.0,
+          "total": 3887.0
+        },
+        {
+          "wage_min": 16900.01,
+          "wage_max": 17000.0,
+          "employer": 2040.0,
+          "employee": 1870.0,
+          "total": 3910.0
+        },
+        {
+          "wage_min": 17100.01,
+          "wage_max": 17200.0,
+          "employer": 2064.0,
+          "employee": 1892.0,
+          "total": 3956.0
+        },
+        {
+          "wage_min": 17200.01,
+          "wage_max": 17300.0,
+          "employer": 2076.0,
+          "employee": 1903.0,
+          "total": 3979.0
+        },
+        {
+          "wage_min": 17300.01,
+          "wage_max": 17400.0,
+          "employer": 2088.0,
+          "employee": 1914.0,
+          "total": 4002.0
+        },
+        {
+          "wage_min": 17400.01,
+          "wage_max": 17500.0,
+          "employer": 2100.0,
+          "employee": 1925.0,
+          "total": 4025.0
+        },
+        {
+          "wage_min": 17500.01,
+          "wage_max": 17600.0,
+          "employer": 2112.0,
+          "employee": 1936.0,
+          "total": 4048.0
+        },
+        {
+          "wage_min": 17600.01,
+          "wage_max": 17700.0,
+          "employer": 2124.0,
+          "employee": 1947.0,
+          "total": 4071.0
+        },
+        {
+          "wage_min": 17700.01,
+          "wage_max": 17800.0,
+          "employer": 2136.0,
+          "employee": 1958.0,
+          "total": 4094.0
+        },
+        {
+          "wage_min": 17800.01,
+          "wage_max": 17900.0,
+          "employer": 2148.0,
+          "employee": 1969.0,
+          "total": 4117.0
+        },
+        {
+          "wage_min": 17900.01,
+          "wage_max": 18000.0,
+          "employer": 2160.0,
+          "employee": 1980.0,
+          "total": 4140.0
+        },
+        {
+          "wage_min": 18000.01,
+          "wage_max": 18100.0,
+          "employer": 2172.0,
+          "employee": 1991.0,
+          "total": 4163.0
+        },
+        {
+          "wage_min": 18100.01,
+          "wage_max": 18200.0,
+          "employer": 2184.0,
+          "employee": 2002.0,
+          "total": 4186.0
+        },
+        {
+          "wage_min": 18200.01,
+          "wage_max": 18300.0,
+          "employer": 2196.0,
+          "employee": 2013.0,
+          "total": 4209.0
+        },
+        {
+          "wage_min": 18300.01,
+          "wage_max": 18400.0,
+          "employer": 2208.0,
+          "employee": 2024.0,
+          "total": 4232.0
+        },
+        {
+          "wage_min": 18400.01,
+          "wage_max": 18500.0,
+          "employer": 2220.0,
+          "employee": 2035.0,
+          "total": 4255.0
+        },
+        {
+          "wage_min": 18500.01,
+          "wage_max": 18600.0,
+          "employer": 2232.0,
+          "employee": 2046.0,
+          "total": 4278.0
+        },
+        {
+          "wage_min": 18600.01,
+          "wage_max": 18700.0,
+          "employer": 2244.0,
+          "employee": 2057.0,
+          "total": 4301.0
+        },
+        {
+          "wage_min": 18700.01,
+          "wage_max": 18800.0,
+          "employer": 2256.0,
+          "employee": 2068.0,
+          "total": 4324.0
+        },
+        {
+          "wage_min": 18800.01,
+          "wage_max": 18900.0,
+          "employer": 2268.0,
+          "employee": 2079.0,
+          "total": 4347.0
+        },
+        {
+          "wage_min": 18900.01,
+          "wage_max": 19000.0,
+          "employer": 2280.0,
+          "employee": 2090.0,
+          "total": 4370.0
+        },
+        {
+          "wage_min": 19000.01,
+          "wage_max": 19100.0,
+          "employer": 2292.0,
+          "employee": 2101.0,
+          "total": 4393.0
+        },
+        {
+          "wage_min": 19100.01,
+          "wage_max": 19200.0,
+          "employer": 2304.0,
+          "employee": 2112.0,
+          "total": 4416.0
+        },
+        {
+          "wage_min": 19200.01,
+          "wage_max": 19300.0,
+          "employer": 2316.0,
+          "employee": 2123.0,
+          "total": 4439.0
+        },
+        {
+          "wage_min": 19500.01,
+          "wage_max": 19600.0,
+          "employer": 2352.0,
+          "employee": 2156.0,
+          "total": 4508.0
+        },
+        {
+          "wage_min": 19600.01,
+          "wage_max": 19700.0,
+          "employer": 2364.0,
+          "employee": 2167.0,
+          "total": 4531.0
+        },
+        {
+          "wage_min": 19700.01,
+          "wage_max": 19800.0,
+          "employer": 2376.0,
+          "employee": 2178.0,
+          "total": 4554.0
+        },
+        {
+          "wage_min": 19800.01,
+          "wage_max": 19900.0,
+          "employer": 2388.0,
+          "employee": 2189.0,
+          "total": 4577.0
+        },
+        {
+          "wage_min": 19900.01,
+          "wage_max": 20000.0,
+          "employer": 2400.0,
+          "employee": 2200.0,
+          "total": 4600.0
+        },
+        {
+          "wage_min": 5000.0,
+          "wage_max": null,
+          "employer_rate": 0.12,
+          "employee_rate": 0.11,
+          "note": "Percentage-based for wages exceeding this amount"
+        }
+      ]
+    },
+    "part_c": {
+      "description": "1. The rate of monthly contributions specified in this Part shall apply to the following employees who have attained the age of sixty years: (a) (Deleted by P.U.",
+      "brackets": [
+        {
+          "wage_min": 0.01,
+          "wage_max": 10.0,
+          "employer": 0.0,
+          "employee": 0.0,
+          "total": 0.0
+        },
+        {
+          "wage_min": 10.01,
+          "wage_max": 20.0,
+          "employer": 2.0,
+          "employee": 2.0,
+          "total": 4.0
+        },
+        {
+          "wage_min": 20.01,
+          "wage_max": 40.0,
+          "employer": 3.0,
+          "employee": 3.0,
+          "total": 6.0
+        },
+        {
+          "wage_min": 40.01,
+          "wage_max": 60.0,
+          "employer": 4.0,
+          "employee": 4.0,
+          "total": 8.0
+        },
+        {
+          "wage_min": 60.01,
+          "wage_max": 80.0,
+          "employer": 6.0,
+          "employee": 5.0,
+          "total": 11.0
+        },
+        {
+          "wage_min": 80.01,
+          "wage_max": 100.0,
+          "employer": 7.0,
+          "employee": 6.0,
+          "total": 13.0
+        },
+        {
+          "wage_min": 100.01,
+          "wage_max": 120.0,
+          "employer": 8.0,
+          "employee": 7.0,
+          "total": 15.0
+        },
+        {
+          "wage_min": 120.01,
+          "wage_max": 140.0,
+          "employer": 10.0,
+          "employee": 8.0,
+          "total": 18.0
+        },
+        {
+          "wage_min": 140.01,
+          "wage_max": 160.0,
+          "employer": 11.0,
+          "employee": 9.0,
+          "total": 20.0
+        },
+        {
+          "wage_min": 160.01,
+          "wage_max": 180.0,
+          "employer": 12.0,
+          "employee": 10.0,
+          "total": 22.0
+        },
+        {
+          "wage_min": 180.01,
+          "wage_max": 200.0,
+          "employer": 13.0,
+          "employee": 11.0,
+          "total": 24.0
+        },
+        {
+          "wage_min": 200.01,
+          "wage_max": 220.0,
+          "employer": 15.0,
+          "employee": 13.0,
+          "total": 28.0
+        },
+        {
+          "wage_min": 220.01,
+          "wage_max": 240.0,
+          "employer": 16.0,
+          "employee": 14.0,
+          "total": 30.0
+        },
+        {
+          "wage_min": 240.01,
+          "wage_max": 260.0,
+          "employer": 17.0,
+          "employee": 15.0,
+          "total": 32.0
+        },
+        {
+          "wage_min": 260.01,
+          "wage_max": 280.0,
+          "employer": 19.0,
+          "employee": 16.0,
+          "total": 35.0
+        },
+        {
+          "wage_min": 280.01,
+          "wage_max": 300.0,
+          "employer": 20.0,
+          "employee": 17.0,
+          "total": 37.0
+        },
+        {
+          "wage_min": 300.01,
+          "wage_max": 320.0,
+          "employer": 21.0,
+          "employee": 18.0,
+          "total": 39.0
+        },
+        {
+          "wage_min": 320.01,
+          "wage_max": 340.0,
+          "employer": 23.0,
+          "employee": 19.0,
+          "total": 42.0
+        },
+        {
+          "wage_min": 340.01,
+          "wage_max": 360.0,
+          "employer": 24.0,
+          "employee": 20.0,
+          "total": 44.0
+        },
+        {
+          "wage_min": 360.01,
+          "wage_max": 380.0,
+          "employer": 25.0,
+          "employee": 21.0,
+          "total": 46.0
+        },
+        {
+          "wage_min": 380.01,
+          "wage_max": 400.0,
+          "employer": 26.0,
+          "employee": 22.0,
+          "total": 48.0
+        },
+        {
+          "wage_min": 400.01,
+          "wage_max": 420.0,
+          "employer": 28.0,
+          "employee": 24.0,
+          "total": 52.0
+        },
+        {
+          "wage_min": 420.01,
+          "wage_max": 440.0,
+          "employer": 29.0,
+          "employee": 25.0,
+          "total": 54.0
+        },
+        {
+          "wage_min": 440.01,
+          "wage_max": 460.0,
+          "employer": 30.0,
+          "employee": 26.0,
+          "total": 56.0
+        },
+        {
+          "wage_min": 460.01,
+          "wage_max": 480.0,
+          "employer": 32.0,
+          "employee": 27.0,
+          "total": 59.0
+        },
+        {
+          "wage_min": 480.01,
+          "wage_max": 500.0,
+          "employer": 33.0,
+          "employee": 28.0,
+          "total": 61.0
+        },
+        {
+          "wage_min": 500.01,
+          "wage_max": 520.0,
+          "employer": 34.0,
+          "employee": 29.0,
+          "total": 63.0
+        },
+        {
+          "wage_min": 520.01,
+          "wage_max": 540.0,
+          "employer": 36.0,
+          "employee": 30.0,
+          "total": 66.0
+        },
+        {
+          "wage_min": 540.01,
+          "wage_max": 560.0,
+          "employer": 37.0,
+          "employee": 31.0,
+          "total": 68.0
+        },
+        {
+          "wage_min": 560.01,
+          "wage_max": 580.0,
+          "employer": 38.0,
+          "employee": 32.0,
+          "total": 70.0
+        },
+        {
+          "wage_min": 580.01,
+          "wage_max": 600.0,
+          "employer": 39.0,
+          "employee": 33.0,
+          "total": 72.0
+        },
+        {
+          "wage_min": 600.01,
+          "wage_max": 620.0,
+          "employer": 41.0,
+          "employee": 35.0,
+          "total": 76.0
+        },
+        {
+          "wage_min": 620.01,
+          "wage_max": 640.0,
+          "employer": 42.0,
+          "employee": 36.0,
+          "total": 78.0
+        },
+        {
+          "wage_min": 640.01,
+          "wage_max": 660.0,
+          "employer": 43.0,
+          "employee": 37.0,
+          "total": 80.0
+        },
+        {
+          "wage_min": 660.01,
+          "wage_max": 680.0,
+          "employer": 45.0,
+          "employee": 38.0,
+          "total": 83.0
+        },
+        {
+          "wage_min": 680.01,
+          "wage_max": 700.0,
+          "employer": 46.0,
+          "employee": 39.0,
+          "total": 85.0
+        },
+        {
+          "wage_min": 700.01,
+          "wage_max": 720.0,
+          "employer": 47.0,
+          "employee": 40.0,
+          "total": 87.0
+        },
+        {
+          "wage_min": 720.01,
+          "wage_max": 740.0,
+          "employer": 49.0,
+          "employee": 41.0,
+          "total": 90.0
+        },
+        {
+          "wage_min": 740.01,
+          "wage_max": 760.0,
+          "employer": 50.0,
+          "employee": 42.0,
+          "total": 92.0
+        },
+        {
+          "wage_min": 760.01,
+          "wage_max": 780.0,
+          "employer": 51.0,
+          "employee": 43.0,
+          "total": 94.0
+        },
+        {
+          "wage_min": 780.01,
+          "wage_max": 800.0,
+          "employer": 52.0,
+          "employee": 44.0,
+          "total": 96.0
+        },
+        {
+          "wage_min": 800.01,
+          "wage_max": 820.0,
+          "employer": 54.0,
+          "employee": 46.0,
+          "total": 100.0
+        },
+        {
+          "wage_min": 820.01,
+          "wage_max": 840.0,
+          "employer": 55.0,
+          "employee": 47.0,
+          "total": 102.0
+        },
+        {
+          "wage_min": 840.01,
+          "wage_max": 860.0,
+          "employer": 56.0,
+          "employee": 48.0,
+          "total": 104.0
+        },
+        {
+          "wage_min": 860.01,
+          "wage_max": 880.0,
+          "employer": 58.0,
+          "employee": 49.0,
+          "total": 107.0
+        },
+        {
+          "wage_min": 880.01,
+          "wage_max": 900.0,
+          "employer": 59.0,
+          "employee": 50.0,
+          "total": 109.0
+        },
+        {
+          "wage_min": 900.01,
+          "wage_max": 920.0,
+          "employer": 60.0,
+          "employee": 51.0,
+          "total": 111.0
+        },
+        {
+          "wage_min": 920.01,
+          "wage_max": 940.0,
+          "employer": 62.0,
+          "employee": 52.0,
+          "total": 114.0
+        },
+        {
+          "wage_min": 940.01,
+          "wage_max": 960.0,
+          "employer": 63.0,
+          "employee": 53.0,
+          "total": 116.0
+        },
+        {
+          "wage_min": 960.01,
+          "wage_max": 980.0,
+          "employer": 64.0,
+          "employee": 54.0,
+          "total": 118.0
+        },
+        {
+          "wage_min": 980.01,
+          "wage_max": 1000.0,
+          "employer": 65.0,
+          "employee": 55.0,
+          "total": 120.0
+        },
+        {
+          "wage_min": 1000.01,
+          "wage_max": 1020.0,
+          "employer": 67.0,
+          "employee": 57.0,
+          "total": 124.0
+        },
+        {
+          "wage_min": 1020.01,
+          "wage_max": 1040.0,
+          "employer": 68.0,
+          "employee": 58.0,
+          "total": 126.0
+        },
+        {
+          "wage_min": 1040.01,
+          "wage_max": 1060.0,
+          "employer": 69.0,
+          "employee": 59.0,
+          "total": 128.0
+        },
+        {
+          "wage_min": 1060.01,
+          "wage_max": 1080.0,
+          "employer": 71.0,
+          "employee": 60.0,
+          "total": 131.0
+        },
+        {
+          "wage_min": 1080.01,
+          "wage_max": 1100.0,
+          "employer": 72.0,
+          "employee": 61.0,
+          "total": 133.0
+        },
+        {
+          "wage_min": 1100.01,
+          "wage_max": 1120.0,
+          "employer": 73.0,
+          "employee": 62.0,
+          "total": 135.0
+        },
+        {
+          "wage_min": 1120.01,
+          "wage_max": 1140.0,
+          "employer": 75.0,
+          "employee": 63.0,
+          "total": 138.0
+        },
+        {
+          "wage_min": 1140.01,
+          "wage_max": 1160.0,
+          "employer": 76.0,
+          "employee": 64.0,
+          "total": 140.0
+        },
+        {
+          "wage_min": 1160.01,
+          "wage_max": 1180.0,
+          "employer": 77.0,
+          "employee": 65.0,
+          "total": 142.0
+        },
+        {
+          "wage_min": 1180.01,
+          "wage_max": 1200.0,
+          "employer": 78.0,
+          "employee": 66.0,
+          "total": 144.0
+        },
+        {
+          "wage_min": 1200.01,
+          "wage_max": 1220.0,
+          "employer": 80.0,
+          "employee": 68.0,
+          "total": 148.0
+        },
+        {
+          "wage_min": 1220.01,
+          "wage_max": 1240.0,
+          "employer": 81.0,
+          "employee": 69.0,
+          "total": 150.0
+        },
+        {
+          "wage_min": 1240.01,
+          "wage_max": 1260.0,
+          "employer": 82.0,
+          "employee": 70.0,
+          "total": 152.0
+        },
+        {
+          "wage_min": 1260.01,
+          "wage_max": 1280.0,
+          "employer": 84.0,
+          "employee": 71.0,
+          "total": 155.0
+        },
+        {
+          "wage_min": 1280.01,
+          "wage_max": 1300.0,
+          "employer": 85.0,
+          "employee": 72.0,
+          "total": 157.0
+        },
+        {
+          "wage_min": 1300.01,
+          "wage_max": 1320.0,
+          "employer": 86.0,
+          "employee": 73.0,
+          "total": 159.0
+        },
+        {
+          "wage_min": 1320.01,
+          "wage_max": 1340.0,
+          "employer": 88.0,
+          "employee": 74.0,
+          "total": 162.0
+        },
+        {
+          "wage_min": 1340.01,
+          "wage_max": 1360.0,
+          "employer": 89.0,
+          "employee": 75.0,
+          "total": 164.0
+        },
+        {
+          "wage_min": 1380.01,
+          "wage_max": 1400.0,
+          "employer": 91.0,
+          "employee": 77.0,
+          "total": 168.0
+        },
+        {
+          "wage_min": 1400.01,
+          "wage_max": 1420.0,
+          "employer": 93.0,
+          "employee": 79.0,
+          "total": 172.0
+        },
+        {
+          "wage_min": 1420.01,
+          "wage_max": 1440.0,
+          "employer": 94.0,
+          "employee": 80.0,
+          "total": 174.0
+        },
+        {
+          "wage_min": 1440.01,
+          "wage_max": 1460.0,
+          "employer": 95.0,
+          "employee": 81.0,
+          "total": 176.0
+        },
+        {
+          "wage_min": 1460.01,
+          "wage_max": 1480.0,
+          "employer": 97.0,
+          "employee": 82.0,
+          "total": 179.0
+        },
+        {
+          "wage_min": 1480.01,
+          "wage_max": 1500.0,
+          "employer": 98.0,
+          "employee": 83.0,
+          "total": 181.0
+        },
+        {
+          "wage_min": 1500.01,
+          "wage_max": 1520.0,
+          "employer": 99.0,
+          "employee": 84.0,
+          "total": 183.0
+        },
+        {
+          "wage_min": 1520.01,
+          "wage_max": 1540.0,
+          "employer": 101.0,
+          "employee": 85.0,
+          "total": 186.0
+        },
+        {
+          "wage_min": 1540.01,
+          "wage_max": 1560.0,
+          "employer": 102.0,
+          "employee": 86.0,
+          "total": 188.0
+        },
+        {
+          "wage_min": 1560.01,
+          "wage_max": 1580.0,
+          "employer": 103.0,
+          "employee": 87.0,
+          "total": 190.0
+        },
+        {
+          "wage_min": 1580.01,
+          "wage_max": 1600.0,
+          "employer": 104.0,
+          "employee": 88.0,
+          "total": 192.0
+        },
+        {
+          "wage_min": 1600.01,
+          "wage_max": 1620.0,
+          "employer": 106.0,
+          "employee": 90.0,
+          "total": 196.0
+        },
+        {
+          "wage_min": 1620.01,
+          "wage_max": 1640.0,
+          "employer": 107.0,
+          "employee": 91.0,
+          "total": 198.0
+        },
+        {
+          "wage_min": 1640.01,
+          "wage_max": 1660.0,
+          "employer": 108.0,
+          "employee": 92.0,
+          "total": 200.0
+        },
+        {
+          "wage_min": 1660.01,
+          "wage_max": 1680.0,
+          "employer": 110.0,
+          "employee": 93.0,
+          "total": 203.0
+        },
+        {
+          "wage_min": 1680.01,
+          "wage_max": 1700.0,
+          "employer": 111.0,
+          "employee": 94.0,
+          "total": 205.0
+        },
+        {
+          "wage_min": 1700.01,
+          "wage_max": 1720.0,
+          "employer": 112.0,
+          "employee": 95.0,
+          "total": 207.0
+        },
+        {
+          "wage_min": 1720.01,
+          "wage_max": 1740.0,
+          "employer": 114.0,
+          "employee": 96.0,
+          "total": 210.0
+        },
+        {
+          "wage_min": 1740.01,
+          "wage_max": 1760.0,
+          "employer": 115.0,
+          "employee": 97.0,
+          "total": 212.0
+        },
+        {
+          "wage_min": 1760.01,
+          "wage_max": 1780.0,
+          "employer": 116.0,
+          "employee": 98.0,
+          "total": 214.0
+        },
+        {
+          "wage_min": 1780.01,
+          "wage_max": 1800.0,
+          "employer": 117.0,
+          "employee": 99.0,
+          "total": 216.0
+        },
+        {
+          "wage_min": 1800.01,
+          "wage_max": 1820.0,
+          "employer": 119.0,
+          "employee": 101.0,
+          "total": 220.0
+        },
+        {
+          "wage_min": 1820.01,
+          "wage_max": 1840.0,
+          "employer": 120.0,
+          "employee": 102.0,
+          "total": 222.0
+        },
+        {
+          "wage_min": 1840.01,
+          "wage_max": 1860.0,
+          "employer": 121.0,
+          "employee": 103.0,
+          "total": 224.0
+        },
+        {
+          "wage_min": 1860.01,
+          "wage_max": 1880.0,
+          "employer": 123.0,
+          "employee": 104.0,
+          "total": 227.0
+        },
+        {
+          "wage_min": 1880.01,
+          "wage_max": 1900.0,
+          "employer": 124.0,
+          "employee": 105.0,
+          "total": 229.0
+        },
+        {
+          "wage_min": 1940.01,
+          "wage_max": 1960.0,
+          "employer": 128.0,
+          "employee": 108.0,
+          "total": 236.0
+        },
+        {
+          "wage_min": 1960.01,
+          "wage_max": 1980.0,
+          "employer": 129.0,
+          "employee": 109.0,
+          "total": 238.0
+        },
+        {
+          "wage_min": 1980.01,
+          "wage_max": 2000.0,
+          "employer": 130.0,
+          "employee": 110.0,
+          "total": 240.0
+        },
+        {
+          "wage_min": 2000.01,
+          "wage_max": 2020.0,
+          "employer": 132.0,
+          "employee": 112.0,
+          "total": 244.0
+        },
+        {
+          "wage_min": 2020.01,
+          "wage_max": 2040.0,
+          "employer": 133.0,
+          "employee": 113.0,
+          "total": 246.0
+        },
+        {
+          "wage_min": 2040.01,
+          "wage_max": 2060.0,
+          "employer": 134.0,
+          "employee": 114.0,
+          "total": 248.0
+        },
+        {
+          "wage_min": 2060.01,
+          "wage_max": 2080.0,
+          "employer": 136.0,
+          "employee": 115.0,
+          "total": 251.0
+        },
+        {
+          "wage_min": 2080.01,
+          "wage_max": 2100.0,
+          "employer": 137.0,
+          "employee": 116.0,
+          "total": 253.0
+        },
+        {
+          "wage_min": 2100.01,
+          "wage_max": 2120.0,
+          "employer": 138.0,
+          "employee": 117.0,
+          "total": 255.0
+        },
+        {
+          "wage_min": 2120.01,
+          "wage_max": 2140.0,
+          "employer": 140.0,
+          "employee": 118.0,
+          "total": 258.0
+        },
+        {
+          "wage_min": 2140.01,
+          "wage_max": 2160.0,
+          "employer": 141.0,
+          "employee": 119.0,
+          "total": 260.0
+        },
+        {
+          "wage_min": 2160.01,
+          "wage_max": 2180.0,
+          "employer": 142.0,
+          "employee": 120.0,
+          "total": 262.0
+        },
+        {
+          "wage_min": 2180.01,
+          "wage_max": 2200.0,
+          "employer": 143.0,
+          "employee": 121.0,
+          "total": 264.0
+        },
+        {
+          "wage_min": 2200.01,
+          "wage_max": 2220.0,
+          "employer": 145.0,
+          "employee": 123.0,
+          "total": 268.0
+        },
+        {
+          "wage_min": 2220.01,
+          "wage_max": 2240.0,
+          "employer": 146.0,
+          "employee": 124.0,
+          "total": 270.0
+        },
+        {
+          "wage_min": 2240.01,
+          "wage_max": 2260.0,
+          "employer": 147.0,
+          "employee": 125.0,
+          "total": 272.0
+        },
+        {
+          "wage_min": 2260.01,
+          "wage_max": 2280.0,
+          "employer": 149.0,
+          "employee": 126.0,
+          "total": 275.0
+        },
+        {
+          "wage_min": 2280.01,
+          "wage_max": 2300.0,
+          "employer": 150.0,
+          "employee": 127.0,
+          "total": 277.0
+        },
+        {
+          "wage_min": 2300.01,
+          "wage_max": 2320.0,
+          "employer": 151.0,
+          "employee": 128.0,
+          "total": 279.0
+        },
+        {
+          "wage_min": 2320.01,
+          "wage_max": 2340.0,
+          "employer": 153.0,
+          "employee": 129.0,
+          "total": 282.0
+        },
+        {
+          "wage_min": 2340.01,
+          "wage_max": 2360.0,
+          "employer": 154.0,
+          "employee": 130.0,
+          "total": 284.0
+        },
+        {
+          "wage_min": 2360.01,
+          "wage_max": 2380.0,
+          "employer": 155.0,
+          "employee": 131.0,
+          "total": 286.0
+        },
+        {
+          "wage_min": 2380.01,
+          "wage_max": 2400.0,
+          "employer": 156.0,
+          "employee": 132.0,
+          "total": 288.0
+        },
+        {
+          "wage_min": 2400.01,
+          "wage_max": 2420.0,
+          "employer": 158.0,
+          "employee": 134.0,
+          "total": 292.0
+        },
+        {
+          "wage_min": 2420.01,
+          "wage_max": 2440.0,
+          "employer": 159.0,
+          "employee": 135.0,
+          "total": 294.0
+        },
+        {
+          "wage_min": 2440.01,
+          "wage_max": 2460.0,
+          "employer": 160.0,
+          "employee": 136.0,
+          "total": 296.0
+        },
+        {
+          "wage_min": 2500.01,
+          "wage_max": 2520.0,
+          "employer": 164.0,
+          "employee": 139.0,
+          "total": 303.0
+        },
+        {
+          "wage_min": 2520.01,
+          "wage_max": 2540.0,
+          "employer": 166.0,
+          "employee": 140.0,
+          "total": 306.0
+        },
+        {
+          "wage_min": 2540.01,
+          "wage_max": 2560.0,
+          "employer": 167.0,
+          "employee": 141.0,
+          "total": 308.0
+        },
+        {
+          "wage_min": 2560.01,
+          "wage_max": 2580.0,
+          "employer": 168.0,
+          "employee": 142.0,
+          "total": 310.0
+        },
+        {
+          "wage_min": 2580.01,
+          "wage_max": 2600.0,
+          "employer": 169.0,
+          "employee": 143.0,
+          "total": 312.0
+        },
+        {
+          "wage_min": 2600.01,
+          "wage_max": 2620.0,
+          "employer": 171.0,
+          "employee": 145.0,
+          "total": 316.0
+        },
+        {
+          "wage_min": 2620.01,
+          "wage_max": 2640.0,
+          "employer": 172.0,
+          "employee": 146.0,
+          "total": 318.0
+        },
+        {
+          "wage_min": 2640.01,
+          "wage_max": 2660.0,
+          "employer": 173.0,
+          "employee": 147.0,
+          "total": 320.0
+        },
+        {
+          "wage_min": 2660.01,
+          "wage_max": 2680.0,
+          "employer": 175.0,
+          "employee": 148.0,
+          "total": 323.0
+        },
+        {
+          "wage_min": 2680.01,
+          "wage_max": 2700.0,
+          "employer": 176.0,
+          "employee": 149.0,
+          "total": 325.0
+        },
+        {
+          "wage_min": 2700.01,
+          "wage_max": 2720.0,
+          "employer": 177.0,
+          "employee": 150.0,
+          "total": 327.0
+        },
+        {
+          "wage_min": 2720.01,
+          "wage_max": 2740.0,
+          "employer": 179.0,
+          "employee": 151.0,
+          "total": 330.0
+        },
+        {
+          "wage_min": 2740.01,
+          "wage_max": 2760.0,
+          "employer": 180.0,
+          "employee": 152.0,
+          "total": 332.0
+        },
+        {
+          "wage_min": 2760.01,
+          "wage_max": 2780.0,
+          "employer": 181.0,
+          "employee": 153.0,
+          "total": 334.0
+        },
+        {
+          "wage_min": 2780.01,
+          "wage_max": 2800.0,
+          "employer": 182.0,
+          "employee": 154.0,
+          "total": 336.0
+        },
+        {
+          "wage_min": 2800.01,
+          "wage_max": 2820.0,
+          "employer": 184.0,
+          "employee": 156.0,
+          "total": 340.0
+        },
+        {
+          "wage_min": 2820.01,
+          "wage_max": 2840.0,
+          "employer": 185.0,
+          "employee": 157.0,
+          "total": 342.0
+        },
+        {
+          "wage_min": 2840.01,
+          "wage_max": 2860.0,
+          "employer": 186.0,
+          "employee": 158.0,
+          "total": 344.0
+        },
+        {
+          "wage_min": 2860.01,
+          "wage_max": 2880.0,
+          "employer": 188.0,
+          "employee": 159.0,
+          "total": 347.0
+        },
+        {
+          "wage_min": 2880.01,
+          "wage_max": 2900.0,
+          "employer": 189.0,
+          "employee": 160.0,
+          "total": 349.0
+        },
+        {
+          "wage_min": 2900.01,
+          "wage_max": 2920.0,
+          "employer": 190.0,
+          "employee": 161.0,
+          "total": 351.0
+        },
+        {
+          "wage_min": 2920.01,
+          "wage_max": 2940.0,
+          "employer": 192.0,
+          "employee": 162.0,
+          "total": 354.0
+        },
+        {
+          "wage_min": 2940.01,
+          "wage_max": 2960.0,
+          "employer": 193.0,
+          "employee": 163.0,
+          "total": 356.0
+        },
+        {
+          "wage_min": 2960.01,
+          "wage_max": 2980.0,
+          "employer": 194.0,
+          "employee": 164.0,
+          "total": 358.0
+        },
+        {
+          "wage_min": 2980.01,
+          "wage_max": 3000.0,
+          "employer": 195.0,
+          "employee": 165.0,
+          "total": 360.0
+        },
+        {
+          "wage_min": 3000.01,
+          "wage_max": 3020.0,
+          "employer": 197.0,
+          "employee": 167.0,
+          "total": 364.0
+        },
+        {
+          "wage_min": 3060.01,
+          "wage_max": 3080.0,
+          "employer": 201.0,
+          "employee": 170.0,
+          "total": 371.0
+        },
+        {
+          "wage_min": 3080.01,
+          "wage_max": 3100.0,
+          "employer": 202.0,
+          "employee": 171.0,
+          "total": 373.0
+        },
+        {
+          "wage_min": 3100.01,
+          "wage_max": 3120.0,
+          "employer": 203.0,
+          "employee": 172.0,
+          "total": 375.0
+        },
+        {
+          "wage_min": 3120.01,
+          "wage_max": 3140.0,
+          "employer": 205.0,
+          "employee": 173.0,
+          "total": 378.0
+        },
+        {
+          "wage_min": 3140.01,
+          "wage_max": 3160.0,
+          "employer": 206.0,
+          "employee": 174.0,
+          "total": 380.0
+        },
+        {
+          "wage_min": 3160.01,
+          "wage_max": 3180.0,
+          "employer": 207.0,
+          "employee": 175.0,
+          "total": 382.0
+        },
+        {
+          "wage_min": 3180.01,
+          "wage_max": 3200.0,
+          "employer": 208.0,
+          "employee": 176.0,
+          "total": 384.0
+        },
+        {
+          "wage_min": 3200.01,
+          "wage_max": 3220.0,
+          "employer": 210.0,
+          "employee": 178.0,
+          "total": 388.0
+        },
+        {
+          "wage_min": 3220.01,
+          "wage_max": 3240.0,
+          "employer": 211.0,
+          "employee": 179.0,
+          "total": 390.0
+        },
+        {
+          "wage_min": 3240.01,
+          "wage_max": 3260.0,
+          "employer": 212.0,
+          "employee": 180.0,
+          "total": 392.0
+        },
+        {
+          "wage_min": 3260.01,
+          "wage_max": 3280.0,
+          "employer": 214.0,
+          "employee": 181.0,
+          "total": 395.0
+        },
+        {
+          "wage_min": 3280.01,
+          "wage_max": 3300.0,
+          "employer": 215.0,
+          "employee": 182.0,
+          "total": 397.0
+        },
+        {
+          "wage_min": 3300.01,
+          "wage_max": 3320.0,
+          "employer": 216.0,
+          "employee": 183.0,
+          "total": 399.0
+        },
+        {
+          "wage_min": 3320.01,
+          "wage_max": 3340.0,
+          "employer": 218.0,
+          "employee": 184.0,
+          "total": 402.0
+        },
+        {
+          "wage_min": 3340.01,
+          "wage_max": 3360.0,
+          "employer": 219.0,
+          "employee": 185.0,
+          "total": 404.0
+        },
+        {
+          "wage_min": 3360.01,
+          "wage_max": 3380.0,
+          "employer": 220.0,
+          "employee": 186.0,
+          "total": 406.0
+        },
+        {
+          "wage_min": 3380.01,
+          "wage_max": 3400.0,
+          "employer": 221.0,
+          "employee": 187.0,
+          "total": 408.0
+        },
+        {
+          "wage_min": 3400.01,
+          "wage_max": 3420.0,
+          "employer": 223.0,
+          "employee": 189.0,
+          "total": 412.0
+        },
+        {
+          "wage_min": 3420.01,
+          "wage_max": 3440.0,
+          "employer": 224.0,
+          "employee": 190.0,
+          "total": 414.0
+        },
+        {
+          "wage_min": 3440.01,
+          "wage_max": 3460.0,
+          "employer": 225.0,
+          "employee": 191.0,
+          "total": 416.0
+        },
+        {
+          "wage_min": 3460.01,
+          "wage_max": 3480.0,
+          "employer": 227.0,
+          "employee": 192.0,
+          "total": 419.0
+        },
+        {
+          "wage_min": 3480.01,
+          "wage_max": 3500.0,
+          "employer": 228.0,
+          "employee": 193.0,
+          "total": 421.0
+        },
+        {
+          "wage_min": 3500.01,
+          "wage_max": 3520.0,
+          "employer": 229.0,
+          "employee": 194.0,
+          "total": 423.0
+        },
+        {
+          "wage_min": 3520.01,
+          "wage_max": 3540.0,
+          "employer": 231.0,
+          "employee": 195.0,
+          "total": 426.0
+        },
+        {
+          "wage_min": 3540.01,
+          "wage_max": 3560.0,
+          "employer": 232.0,
+          "employee": 196.0,
+          "total": 428.0
+        },
+        {
+          "wage_min": 3560.01,
+          "wage_max": 3580.0,
+          "employer": 233.0,
+          "employee": 197.0,
+          "total": 430.0
+        },
+        {
+          "wage_min": 3620.01,
+          "wage_max": 3640.0,
+          "employer": 237.0,
+          "employee": 201.0,
+          "total": 438.0
+        },
+        {
+          "wage_min": 3640.01,
+          "wage_max": 3660.0,
+          "employer": 238.0,
+          "employee": 202.0,
+          "total": 440.0
+        },
+        {
+          "wage_min": 3660.01,
+          "wage_max": 3680.0,
+          "employer": 240.0,
+          "employee": 203.0,
+          "total": 443.0
+        },
+        {
+          "wage_min": 3680.01,
+          "wage_max": 3700.0,
+          "employer": 241.0,
+          "employee": 204.0,
+          "total": 445.0
+        },
+        {
+          "wage_min": 3700.01,
+          "wage_max": 3720.0,
+          "employer": 242.0,
+          "employee": 205.0,
+          "total": 447.0
+        },
+        {
+          "wage_min": 3720.01,
+          "wage_max": 3740.0,
+          "employer": 244.0,
+          "employee": 206.0,
+          "total": 450.0
+        },
+        {
+          "wage_min": 3740.01,
+          "wage_max": 3760.0,
+          "employer": 245.0,
+          "employee": 207.0,
+          "total": 452.0
+        },
+        {
+          "wage_min": 3760.01,
+          "wage_max": 3780.0,
+          "employer": 246.0,
+          "employee": 208.0,
+          "total": 454.0
+        },
+        {
+          "wage_min": 3780.01,
+          "wage_max": 3800.0,
+          "employer": 247.0,
+          "employee": 209.0,
+          "total": 456.0
+        },
+        {
+          "wage_min": 3800.01,
+          "wage_max": 3820.0,
+          "employer": 249.0,
+          "employee": 211.0,
+          "total": 460.0
+        },
+        {
+          "wage_min": 3820.01,
+          "wage_max": 3840.0,
+          "employer": 250.0,
+          "employee": 212.0,
+          "total": 462.0
+        },
+        {
+          "wage_min": 3840.01,
+          "wage_max": 3860.0,
+          "employer": 251.0,
+          "employee": 213.0,
+          "total": 464.0
+        },
+        {
+          "wage_min": 3860.01,
+          "wage_max": 3880.0,
+          "employer": 253.0,
+          "employee": 214.0,
+          "total": 467.0
+        },
+        {
+          "wage_min": 3880.01,
+          "wage_max": 3900.0,
+          "employer": 254.0,
+          "employee": 215.0,
+          "total": 469.0
+        },
+        {
+          "wage_min": 3900.01,
+          "wage_max": 3920.0,
+          "employer": 255.0,
+          "employee": 216.0,
+          "total": 471.0
+        },
+        {
+          "wage_min": 3920.01,
+          "wage_max": 3940.0,
+          "employer": 257.0,
+          "employee": 217.0,
+          "total": 474.0
+        },
+        {
+          "wage_min": 3940.01,
+          "wage_max": 3960.0,
+          "employer": 258.0,
+          "employee": 218.0,
+          "total": 476.0
+        },
+        {
+          "wage_min": 3960.01,
+          "wage_max": 3980.0,
+          "employer": 259.0,
+          "employee": 219.0,
+          "total": 478.0
+        },
+        {
+          "wage_min": 3980.01,
+          "wage_max": 4000.0,
+          "employer": 260.0,
+          "employee": 220.0,
+          "total": 480.0
+        },
+        {
+          "wage_min": 4000.01,
+          "wage_max": 4020.0,
+          "employer": 262.0,
+          "employee": 222.0,
+          "total": 484.0
+        },
+        {
+          "wage_min": 4020.01,
+          "wage_max": 4040.0,
+          "employer": 263.0,
+          "employee": 223.0,
+          "total": 486.0
+        },
+        {
+          "wage_min": 4040.01,
+          "wage_max": 4060.0,
+          "employer": 264.0,
+          "employee": 224.0,
+          "total": 488.0
+        },
+        {
+          "wage_min": 4060.01,
+          "wage_max": 4080.0,
+          "employer": 266.0,
+          "employee": 225.0,
+          "total": 491.0
+        },
+        {
+          "wage_min": 4080.01,
+          "wage_max": 4100.0,
+          "employer": 267.0,
+          "employee": 226.0,
+          "total": 493.0
+        },
+        {
+          "wage_min": 4100.01,
+          "wage_max": 4120.0,
+          "employer": 268.0,
+          "employee": 227.0,
+          "total": 495.0
+        },
+        {
+          "wage_min": 4120.01,
+          "wage_max": 4140.0,
+          "employer": 270.0,
+          "employee": 228.0,
+          "total": 498.0
+        },
+        {
+          "wage_min": 4180.01,
+          "wage_max": 4200.0,
+          "employer": 273.0,
+          "employee": 231.0,
+          "total": 504.0
+        },
+        {
+          "wage_min": 4200.01,
+          "wage_max": 4220.0,
+          "employer": 275.0,
+          "employee": 233.0,
+          "total": 508.0
+        },
+        {
+          "wage_min": 4220.01,
+          "wage_max": 4240.0,
+          "employer": 276.0,
+          "employee": 234.0,
+          "total": 510.0
+        },
+        {
+          "wage_min": 4240.01,
+          "wage_max": 4260.0,
+          "employer": 277.0,
+          "employee": 235.0,
+          "total": 512.0
+        },
+        {
+          "wage_min": 4260.01,
+          "wage_max": 4280.0,
+          "employer": 279.0,
+          "employee": 236.0,
+          "total": 515.0
+        },
+        {
+          "wage_min": 4280.01,
+          "wage_max": 4300.0,
+          "employer": 280.0,
+          "employee": 237.0,
+          "total": 517.0
+        },
+        {
+          "wage_min": 4300.01,
+          "wage_max": 4320.0,
+          "employer": 281.0,
+          "employee": 238.0,
+          "total": 519.0
+        },
+        {
+          "wage_min": 4320.01,
+          "wage_max": 4340.0,
+          "employer": 283.0,
+          "employee": 239.0,
+          "total": 522.0
+        },
+        {
+          "wage_min": 4340.01,
+          "wage_max": 4360.0,
+          "employer": 284.0,
+          "employee": 240.0,
+          "total": 524.0
+        },
+        {
+          "wage_min": 4360.01,
+          "wage_max": 4380.0,
+          "employer": 285.0,
+          "employee": 241.0,
+          "total": 526.0
+        },
+        {
+          "wage_min": 4380.01,
+          "wage_max": 4400.0,
+          "employer": 286.0,
+          "employee": 242.0,
+          "total": 528.0
+        },
+        {
+          "wage_min": 4400.01,
+          "wage_max": 4420.0,
+          "employer": 288.0,
+          "employee": 244.0,
+          "total": 532.0
+        },
+        {
+          "wage_min": 4420.01,
+          "wage_max": 4440.0,
+          "employer": 289.0,
+          "employee": 245.0,
+          "total": 534.0
+        },
+        {
+          "wage_min": 4440.01,
+          "wage_max": 4460.0,
+          "employer": 290.0,
+          "employee": 246.0,
+          "total": 536.0
+        },
+        {
+          "wage_min": 4460.01,
+          "wage_max": 4480.0,
+          "employer": 292.0,
+          "employee": 247.0,
+          "total": 539.0
+        },
+        {
+          "wage_min": 4480.01,
+          "wage_max": 4500.0,
+          "employer": 293.0,
+          "employee": 248.0,
+          "total": 541.0
+        },
+        {
+          "wage_min": 4500.01,
+          "wage_max": 4520.0,
+          "employer": 294.0,
+          "employee": 249.0,
+          "total": 543.0
+        },
+        {
+          "wage_min": 4520.01,
+          "wage_max": 4540.0,
+          "employer": 296.0,
+          "employee": 250.0,
+          "total": 546.0
+        },
+        {
+          "wage_min": 4540.01,
+          "wage_max": 4560.0,
+          "employer": 297.0,
+          "employee": 251.0,
+          "total": 548.0
+        },
+        {
+          "wage_min": 4560.01,
+          "wage_max": 4580.0,
+          "employer": 298.0,
+          "employee": 252.0,
+          "total": 550.0
+        },
+        {
+          "wage_min": 4580.01,
+          "wage_max": 4600.0,
+          "employer": 299.0,
+          "employee": 253.0,
+          "total": 552.0
+        },
+        {
+          "wage_min": 4600.01,
+          "wage_max": 4620.0,
+          "employer": 301.0,
+          "employee": 255.0,
+          "total": 556.0
+        },
+        {
+          "wage_min": 4620.01,
+          "wage_max": 4640.0,
+          "employer": 302.0,
+          "employee": 256.0,
+          "total": 558.0
+        },
+        {
+          "wage_min": 4640.01,
+          "wage_max": 4660.0,
+          "employer": 303.0,
+          "employee": 257.0,
+          "total": 560.0
+        },
+        {
+          "wage_min": 4660.01,
+          "wage_max": 4680.0,
+          "employer": 305.0,
+          "employee": 258.0,
+          "total": 563.0
+        },
+        {
+          "wage_min": 4680.01,
+          "wage_max": 4700.0,
+          "employer": 306.0,
+          "employee": 259.0,
+          "total": 565.0
+        },
+        {
+          "wage_min": 4740.01,
+          "wage_max": 4760.0,
+          "employer": 310.0,
+          "employee": 262.0,
+          "total": 572.0
+        },
+        {
+          "wage_min": 4760.01,
+          "wage_max": 4780.0,
+          "employer": 311.0,
+          "employee": 263.0,
+          "total": 574.0
+        },
+        {
+          "wage_min": 4780.01,
+          "wage_max": 4800.0,
+          "employer": 312.0,
+          "employee": 264.0,
+          "total": 576.0
+        },
+        {
+          "wage_min": 4800.01,
+          "wage_max": 4820.0,
+          "employer": 314.0,
+          "employee": 266.0,
+          "total": 580.0
+        },
+        {
+          "wage_min": 4820.01,
+          "wage_max": 4840.0,
+          "employer": 315.0,
+          "employee": 267.0,
+          "total": 582.0
+        },
+        {
+          "wage_min": 4840.01,
+          "wage_max": 4860.0,
+          "employer": 316.0,
+          "employee": 268.0,
+          "total": 584.0
+        },
+        {
+          "wage_min": 4860.01,
+          "wage_max": 4880.0,
+          "employer": 318.0,
+          "employee": 269.0,
+          "total": 587.0
+        },
+        {
+          "wage_min": 4880.01,
+          "wage_max": 4900.0,
+          "employer": 319.0,
+          "employee": 270.0,
+          "total": 589.0
+        },
+        {
+          "wage_min": 4900.01,
+          "wage_max": 4920.0,
+          "employer": 320.0,
+          "employee": 271.0,
+          "total": 591.0
+        },
+        {
+          "wage_min": 4920.01,
+          "wage_max": 4940.0,
+          "employer": 322.0,
+          "employee": 272.0,
+          "total": 594.0
+        },
+        {
+          "wage_min": 4940.01,
+          "wage_max": 4960.0,
+          "employer": 323.0,
+          "employee": 273.0,
+          "total": 596.0
+        },
+        {
+          "wage_min": 4960.01,
+          "wage_max": 4980.0,
+          "employer": 324.0,
+          "employee": 274.0,
+          "total": 598.0
+        },
+        {
+          "wage_min": 4980.01,
+          "wage_max": 5000.0,
+          "employer": 325.0,
+          "employee": 275.0,
+          "total": 600.0
+        },
+        {
+          "wage_min": 5000.01,
+          "wage_max": 5100.0,
+          "employer": 306.0,
+          "employee": 281.0,
+          "total": 587.0
+        },
+        {
+          "wage_min": 5100.01,
+          "wage_max": 5200.0,
+          "employer": 312.0,
+          "employee": 286.0,
+          "total": 598.0
+        },
+        {
+          "wage_min": 5200.01,
+          "wage_max": 5300.0,
+          "employer": 318.0,
+          "employee": 292.0,
+          "total": 610.0
+        },
+        {
+          "wage_min": 5300.01,
+          "wage_max": 5400.0,
+          "employer": 324.0,
+          "employee": 297.0,
+          "total": 621.0
+        },
+        {
+          "wage_min": 5400.01,
+          "wage_max": 5500.0,
+          "employer": 330.0,
+          "employee": 303.0,
+          "total": 633.0
+        },
+        {
+          "wage_min": 5500.01,
+          "wage_max": 5600.0,
+          "employer": 336.0,
+          "employee": 308.0,
+          "total": 644.0
+        },
+        {
+          "wage_min": 5600.01,
+          "wage_max": 5700.0,
+          "employer": 342.0,
+          "employee": 314.0,
+          "total": 656.0
+        },
+        {
+          "wage_min": 5700.01,
+          "wage_max": 5800.0,
+          "employer": 348.0,
+          "employee": 319.0,
+          "total": 667.0
+        },
+        {
+          "wage_min": 5800.01,
+          "wage_max": 5900.0,
+          "employer": 354.0,
+          "employee": 325.0,
+          "total": 679.0
+        },
+        {
+          "wage_min": 5900.01,
+          "wage_max": 6000.0,
+          "employer": 360.0,
+          "employee": 330.0,
+          "total": 690.0
+        },
+        {
+          "wage_min": 6000.01,
+          "wage_max": 6100.0,
+          "employer": 366.0,
+          "employee": 336.0,
+          "total": 702.0
+        },
+        {
+          "wage_min": 6100.01,
+          "wage_max": 6200.0,
+          "employer": 372.0,
+          "employee": 341.0,
+          "total": 713.0
+        },
+        {
+          "wage_min": 6200.01,
+          "wage_max": 6300.0,
+          "employer": 378.0,
+          "employee": 347.0,
+          "total": 725.0
+        },
+        {
+          "wage_min": 6300.01,
+          "wage_max": 6400.0,
+          "employer": 384.0,
+          "employee": 352.0,
+          "total": 736.0
+        },
+        {
+          "wage_min": 6400.01,
+          "wage_max": 6500.0,
+          "employer": 390.0,
+          "employee": 358.0,
+          "total": 748.0
+        },
+        {
+          "wage_min": 6500.01,
+          "wage_max": 6600.0,
+          "employer": 396.0,
+          "employee": 363.0,
+          "total": 759.0
+        },
+        {
+          "wage_min": 6600.01,
+          "wage_max": 6700.0,
+          "employer": 402.0,
+          "employee": 369.0,
+          "total": 771.0
+        },
+        {
+          "wage_min": 6700.01,
+          "wage_max": 6800.0,
+          "employer": 408.0,
+          "employee": 374.0,
+          "total": 782.0
+        },
+        {
+          "wage_min": 6800.01,
+          "wage_max": 6900.0,
+          "employer": 414.0,
+          "employee": 380.0,
+          "total": 794.0
+        },
+        {
+          "wage_min": 6900.01,
+          "wage_max": 7000.0,
+          "employer": 420.0,
+          "employee": 385.0,
+          "total": 805.0
+        },
+        {
+          "wage_min": 7000.01,
+          "wage_max": 7100.0,
+          "employer": 426.0,
+          "employee": 391.0,
+          "total": 817.0
+        },
+        {
+          "wage_min": 7100.01,
+          "wage_max": 7200.0,
+          "employer": 432.0,
+          "employee": 396.0,
+          "total": 828.0
+        },
+        {
+          "wage_min": 7200.01,
+          "wage_max": 7300.0,
+          "employer": 438.0,
+          "employee": 402.0,
+          "total": 840.0
+        },
+        {
+          "wage_min": 7300.01,
+          "wage_max": 7400.0,
+          "employer": 444.0,
+          "employee": 407.0,
+          "total": 851.0
+        },
+        {
+          "wage_min": 7400.01,
+          "wage_max": 7500.0,
+          "employer": 450.0,
+          "employee": 413.0,
+          "total": 863.0
+        },
+        {
+          "wage_min": 7500.01,
+          "wage_max": 7600.0,
+          "employer": 456.0,
+          "employee": 418.0,
+          "total": 874.0
+        },
+        {
+          "wage_min": 7600.01,
+          "wage_max": 7700.0,
+          "employer": 462.0,
+          "employee": 424.0,
+          "total": 886.0
+        },
+        {
+          "wage_min": 7900.01,
+          "wage_max": 8000.0,
+          "employer": 480.0,
+          "employee": 440.0,
+          "total": 920.0
+        },
+        {
+          "wage_min": 8000.01,
+          "wage_max": 8100.0,
+          "employer": 486.0,
+          "employee": 446.0,
+          "total": 932.0
+        },
+        {
+          "wage_min": 8100.01,
+          "wage_max": 8200.0,
+          "employer": 492.0,
+          "employee": 451.0,
+          "total": 943.0
+        },
+        {
+          "wage_min": 8200.01,
+          "wage_max": 8300.0,
+          "employer": 498.0,
+          "employee": 457.0,
+          "total": 955.0
+        },
+        {
+          "wage_min": 8300.01,
+          "wage_max": 8400.0,
+          "employer": 504.0,
+          "employee": 462.0,
+          "total": 966.0
+        },
+        {
+          "wage_min": 8400.01,
+          "wage_max": 8500.0,
+          "employer": 510.0,
+          "employee": 468.0,
+          "total": 978.0
+        },
+        {
+          "wage_min": 8500.01,
+          "wage_max": 8600.0,
+          "employer": 516.0,
+          "employee": 473.0,
+          "total": 989.0
+        },
+        {
+          "wage_min": 8600.01,
+          "wage_max": 8700.0,
+          "employer": 522.0,
+          "employee": 479.0,
+          "total": 1001.0
+        },
+        {
+          "wage_min": 8700.01,
+          "wage_max": 8800.0,
+          "employer": 528.0,
+          "employee": 484.0,
+          "total": 1012.0
+        },
+        {
+          "wage_min": 8800.01,
+          "wage_max": 8900.0,
+          "employer": 534.0,
+          "employee": 490.0,
+          "total": 1024.0
+        },
+        {
+          "wage_min": 8900.01,
+          "wage_max": 9000.0,
+          "employer": 540.0,
+          "employee": 495.0,
+          "total": 1035.0
+        },
+        {
+          "wage_min": 9000.01,
+          "wage_max": 9100.0,
+          "employer": 546.0,
+          "employee": 501.0,
+          "total": 1047.0
+        },
+        {
+          "wage_min": 9100.01,
+          "wage_max": 9200.0,
+          "employer": 552.0,
+          "employee": 506.0,
+          "total": 1058.0
+        },
+        {
+          "wage_min": 9200.01,
+          "wage_max": 9300.0,
+          "employer": 558.0,
+          "employee": 512.0,
+          "total": 1070.0
+        },
+        {
+          "wage_min": 9300.01,
+          "wage_max": 9400.0,
+          "employer": 564.0,
+          "employee": 517.0,
+          "total": 1081.0
+        },
+        {
+          "wage_min": 9400.01,
+          "wage_max": 9500.0,
+          "employer": 570.0,
+          "employee": 523.0,
+          "total": 1093.0
+        },
+        {
+          "wage_min": 9500.01,
+          "wage_max": 9600.0,
+          "employer": 576.0,
+          "employee": 528.0,
+          "total": 1104.0
+        },
+        {
+          "wage_min": 9600.01,
+          "wage_max": 9700.0,
+          "employer": 582.0,
+          "employee": 534.0,
+          "total": 1116.0
+        },
+        {
+          "wage_min": 9700.01,
+          "wage_max": 9800.0,
+          "employer": 588.0,
+          "employee": 539.0,
+          "total": 1127.0
+        },
+        {
+          "wage_min": 9800.01,
+          "wage_max": 9900.0,
+          "employer": 594.0,
+          "employee": 545.0,
+          "total": 1139.0
+        },
+        {
+          "wage_min": 9900.01,
+          "wage_max": 10000.0,
+          "employer": 600.0,
+          "employee": 550.0,
+          "total": 1150.0
+        },
+        {
+          "wage_min": 10000.01,
+          "wage_max": 10100.0,
+          "employer": 606.0,
+          "employee": 556.0,
+          "total": 1162.0
+        },
+        {
+          "wage_min": 10100.01,
+          "wage_max": 10200.0,
+          "employer": 612.0,
+          "employee": 561.0,
+          "total": 1173.0
+        },
+        {
+          "wage_min": 10200.01,
+          "wage_max": 10300.0,
+          "employer": 618.0,
+          "employee": 567.0,
+          "total": 1185.0
+        },
+        {
+          "wage_min": 10300.01,
+          "wage_max": 10400.0,
+          "employer": 624.0,
+          "employee": 572.0,
+          "total": 1196.0
+        },
+        {
+          "wage_min": 10700.01,
+          "wage_max": 10800.0,
+          "employer": 648.0,
+          "employee": 594.0,
+          "total": 1242.0
+        },
+        {
+          "wage_min": 10800.01,
+          "wage_max": 10900.0,
+          "employer": 654.0,
+          "employee": 600.0,
+          "total": 1254.0
+        },
+        {
+          "wage_min": 10900.01,
+          "wage_max": 11000.0,
+          "employer": 660.0,
+          "employee": 605.0,
+          "total": 1265.0
+        },
+        {
+          "wage_min": 11000.01,
+          "wage_max": 11100.0,
+          "employer": 666.0,
+          "employee": 611.0,
+          "total": 1277.0
+        },
+        {
+          "wage_min": 11100.01,
+          "wage_max": 11200.0,
+          "employer": 672.0,
+          "employee": 616.0,
+          "total": 1288.0
+        },
+        {
+          "wage_min": 11200.01,
+          "wage_max": 11300.0,
+          "employer": 678.0,
+          "employee": 622.0,
+          "total": 1300.0
+        },
+        {
+          "wage_min": 11300.01,
+          "wage_max": 11400.0,
+          "employer": 684.0,
+          "employee": 627.0,
+          "total": 1311.0
+        },
+        {
+          "wage_min": 11400.01,
+          "wage_max": 11500.0,
+          "employer": 690.0,
+          "employee": 633.0,
+          "total": 1323.0
+        },
+        {
+          "wage_min": 11500.01,
+          "wage_max": 11600.0,
+          "employer": 696.0,
+          "employee": 638.0,
+          "total": 1334.0
+        },
+        {
+          "wage_min": 11600.01,
+          "wage_max": 11700.0,
+          "employer": 702.0,
+          "employee": 644.0,
+          "total": 1346.0
+        },
+        {
+          "wage_min": 11700.01,
+          "wage_max": 11800.0,
+          "employer": 708.0,
+          "employee": 649.0,
+          "total": 1357.0
+        },
+        {
+          "wage_min": 11800.01,
+          "wage_max": 11900.0,
+          "employer": 714.0,
+          "employee": 655.0,
+          "total": 1369.0
+        },
+        {
+          "wage_min": 11900.01,
+          "wage_max": 12000.0,
+          "employer": 720.0,
+          "employee": 660.0,
+          "total": 1380.0
+        },
+        {
+          "wage_min": 12000.01,
+          "wage_max": 12100.0,
+          "employer": 726.0,
+          "employee": 666.0,
+          "total": 1392.0
+        },
+        {
+          "wage_min": 12100.01,
+          "wage_max": 12200.0,
+          "employer": 732.0,
+          "employee": 671.0,
+          "total": 1403.0
+        },
+        {
+          "wage_min": 12200.01,
+          "wage_max": 12300.0,
+          "employer": 738.0,
+          "employee": 677.0,
+          "total": 1415.0
+        },
+        {
+          "wage_min": 12300.01,
+          "wage_max": 12400.0,
+          "employer": 744.0,
+          "employee": 682.0,
+          "total": 1426.0
+        },
+        {
+          "wage_min": 12400.01,
+          "wage_max": 12500.0,
+          "employer": 750.0,
+          "employee": 688.0,
+          "total": 1438.0
+        },
+        {
+          "wage_min": 12500.01,
+          "wage_max": 12600.0,
+          "employer": 756.0,
+          "employee": 693.0,
+          "total": 1449.0
+        },
+        {
+          "wage_min": 12600.01,
+          "wage_max": 12700.0,
+          "employer": 762.0,
+          "employee": 699.0,
+          "total": 1461.0
+        },
+        {
+          "wage_min": 12700.01,
+          "wage_max": 12800.0,
+          "employer": 768.0,
+          "employee": 704.0,
+          "total": 1472.0
+        },
+        {
+          "wage_min": 12800.01,
+          "wage_max": 12900.0,
+          "employer": 774.0,
+          "employee": 710.0,
+          "total": 1484.0
+        },
+        {
+          "wage_min": 12900.01,
+          "wage_max": 13000.0,
+          "employer": 780.0,
+          "employee": 715.0,
+          "total": 1495.0
+        },
+        {
+          "wage_min": 13000.01,
+          "wage_max": 13100.0,
+          "employer": 786.0,
+          "employee": 721.0,
+          "total": 1507.0
+        },
+        {
+          "wage_min": 13500.01,
+          "wage_max": 13600.0,
+          "employer": 816.0,
+          "employee": 748.0,
+          "total": 1564.0
+        },
+        {
+          "wage_min": 13600.01,
+          "wage_max": 13700.0,
+          "employer": 822.0,
+          "employee": 754.0,
+          "total": 1576.0
+        },
+        {
+          "wage_min": 13700.01,
+          "wage_max": 13800.0,
+          "employer": 828.0,
+          "employee": 759.0,
+          "total": 1587.0
+        },
+        {
+          "wage_min": 13800.01,
+          "wage_max": 13900.0,
+          "employer": 834.0,
+          "employee": 765.0,
+          "total": 1599.0
+        },
+        {
+          "wage_min": 13900.01,
+          "wage_max": 14000.0,
+          "employer": 840.0,
+          "employee": 770.0,
+          "total": 1610.0
+        },
+        {
+          "wage_min": 14000.01,
+          "wage_max": 14100.0,
+          "employer": 846.0,
+          "employee": 776.0,
+          "total": 1622.0
+        },
+        {
+          "wage_min": 14100.01,
+          "wage_max": 14200.0,
+          "employer": 852.0,
+          "employee": 781.0,
+          "total": 1633.0
+        },
+        {
+          "wage_min": 14200.01,
+          "wage_max": 14300.0,
+          "employer": 858.0,
+          "employee": 787.0,
+          "total": 1645.0
+        },
+        {
+          "wage_min": 14300.01,
+          "wage_max": 14400.0,
+          "employer": 864.0,
+          "employee": 792.0,
+          "total": 1656.0
+        },
+        {
+          "wage_min": 14400.01,
+          "wage_max": 14500.0,
+          "employer": 870.0,
+          "employee": 798.0,
+          "total": 1668.0
+        },
+        {
+          "wage_min": 14500.01,
+          "wage_max": 14600.0,
+          "employer": 876.0,
+          "employee": 803.0,
+          "total": 1679.0
+        },
+        {
+          "wage_min": 14600.01,
+          "wage_max": 14700.0,
+          "employer": 882.0,
+          "employee": 809.0,
+          "total": 1691.0
+        },
+        {
+          "wage_min": 14700.01,
+          "wage_max": 14800.0,
+          "employer": 888.0,
+          "employee": 814.0,
+          "total": 1702.0
+        },
+        {
+          "wage_min": 14800.01,
+          "wage_max": 14900.0,
+          "employer": 894.0,
+          "employee": 820.0,
+          "total": 1714.0
+        },
+        {
+          "wage_min": 14900.01,
+          "wage_max": 15000.0,
+          "employer": 900.0,
+          "employee": 825.0,
+          "total": 1725.0
+        },
+        {
+          "wage_min": 15000.01,
+          "wage_max": 15100.0,
+          "employer": 906.0,
+          "employee": 831.0,
+          "total": 1737.0
+        },
+        {
+          "wage_min": 15100.01,
+          "wage_max": 15200.0,
+          "employer": 912.0,
+          "employee": 836.0,
+          "total": 1748.0
+        },
+        {
+          "wage_min": 15200.01,
+          "wage_max": 15300.0,
+          "employer": 918.0,
+          "employee": 842.0,
+          "total": 1760.0
+        },
+        {
+          "wage_min": 15300.01,
+          "wage_max": 15400.0,
+          "employer": 924.0,
+          "employee": 847.0,
+          "total": 1771.0
+        },
+        {
+          "wage_min": 15400.01,
+          "wage_max": 15500.0,
+          "employer": 930.0,
+          "employee": 853.0,
+          "total": 1783.0
+        },
+        {
+          "wage_min": 15500.01,
+          "wage_max": 15600.0,
+          "employer": 936.0,
+          "employee": 858.0,
+          "total": 1794.0
+        },
+        {
+          "wage_min": 15600.01,
+          "wage_max": 15700.0,
+          "employer": 942.0,
+          "employee": 864.0,
+          "total": 1806.0
+        },
+        {
+          "wage_min": 15700.01,
+          "wage_max": 15800.0,
+          "employer": 948.0,
+          "employee": 869.0,
+          "total": 1817.0
+        },
+        {
+          "wage_min": 15800.01,
+          "wage_max": 15900.0,
+          "employer": 954.0,
+          "employee": 875.0,
+          "total": 1829.0
+        },
+        {
+          "wage_min": 16300.01,
+          "wage_max": 16400.0,
+          "employer": 984.0,
+          "employee": 902.0,
+          "total": 1886.0
+        },
+        {
+          "wage_min": 16400.01,
+          "wage_max": 16500.0,
+          "employer": 990.0,
+          "employee": 908.0,
+          "total": 1898.0
+        },
+        {
+          "wage_min": 16500.01,
+          "wage_max": 16600.0,
+          "employer": 996.0,
+          "employee": 913.0,
+          "total": 1909.0
+        },
+        {
+          "wage_min": 16600.01,
+          "wage_max": 16700.0,
+          "employer": 1002.0,
+          "employee": 919.0,
+          "total": 1921.0
+        },
+        {
+          "wage_min": 16700.01,
+          "wage_max": 16800.0,
+          "employer": 1008.0,
+          "employee": 924.0,
+          "total": 1932.0
+        },
+        {
+          "wage_min": 16800.01,
+          "wage_max": 16900.0,
+          "employer": 1014.0,
+          "employee": 930.0,
+          "total": 1944.0
+        },
+        {
+          "wage_min": 16900.01,
+          "wage_max": 17000.0,
+          "employer": 1020.0,
+          "employee": 935.0,
+          "total": 1955.0
+        },
+        {
+          "wage_min": 17000.01,
+          "wage_max": 17100.0,
+          "employer": 1026.0,
+          "employee": 941.0,
+          "total": 1967.0
+        },
+        {
+          "wage_min": 17100.01,
+          "wage_max": 17200.0,
+          "employer": 1032.0,
+          "employee": 946.0,
+          "total": 1978.0
+        },
+        {
+          "wage_min": 17200.01,
+          "wage_max": 17300.0,
+          "employer": 1038.0,
+          "employee": 952.0,
+          "total": 1990.0
+        },
+        {
+          "wage_min": 17300.01,
+          "wage_max": 17400.0,
+          "employer": 1044.0,
+          "employee": 957.0,
+          "total": 2001.0
+        },
+        {
+          "wage_min": 17400.01,
+          "wage_max": 17500.0,
+          "employer": 1050.0,
+          "employee": 963.0,
+          "total": 2013.0
+        },
+        {
+          "wage_min": 17500.01,
+          "wage_max": 17600.0,
+          "employer": 1056.0,
+          "employee": 968.0,
+          "total": 2024.0
+        },
+        {
+          "wage_min": 17600.01,
+          "wage_max": 17700.0,
+          "employer": 1062.0,
+          "employee": 974.0,
+          "total": 2036.0
+        },
+        {
+          "wage_min": 17700.01,
+          "wage_max": 17800.0,
+          "employer": 1068.0,
+          "employee": 979.0,
+          "total": 2047.0
+        },
+        {
+          "wage_min": 17800.01,
+          "wage_max": 17900.0,
+          "employer": 1074.0,
+          "employee": 985.0,
+          "total": 2059.0
+        },
+        {
+          "wage_min": 17900.01,
+          "wage_max": 18000.0,
+          "employer": 1080.0,
+          "employee": 990.0,
+          "total": 2070.0
+        },
+        {
+          "wage_min": 18000.01,
+          "wage_max": 18100.0,
+          "employer": 1086.0,
+          "employee": 996.0,
+          "total": 2082.0
+        },
+        {
+          "wage_min": 18100.01,
+          "wage_max": 18200.0,
+          "employer": 1092.0,
+          "employee": 1001.0,
+          "total": 2093.0
+        },
+        {
+          "wage_min": 18200.01,
+          "wage_max": 18300.0,
+          "employer": 1098.0,
+          "employee": 1007.0,
+          "total": 2105.0
+        },
+        {
+          "wage_min": 18300.01,
+          "wage_max": 18400.0,
+          "employer": 1104.0,
+          "employee": 1012.0,
+          "total": 2116.0
+        },
+        {
+          "wage_min": 18400.01,
+          "wage_max": 18500.0,
+          "employer": 1110.0,
+          "employee": 1018.0,
+          "total": 2128.0
+        },
+        {
+          "wage_min": 18500.01,
+          "wage_max": 18600.0,
+          "employer": 1116.0,
+          "employee": 1023.0,
+          "total": 2139.0
+        },
+        {
+          "wage_min": 18600.01,
+          "wage_max": 18700.0,
+          "employer": 1122.0,
+          "employee": 1029.0,
+          "total": 2151.0
+        },
+        {
+          "wage_min": 19100.01,
+          "wage_max": 19200.0,
+          "employer": 1152.0,
+          "employee": 1056.0,
+          "total": 2208.0
+        },
+        {
+          "wage_min": 19200.01,
+          "wage_max": 19300.0,
+          "employer": 1158.0,
+          "employee": 1062.0,
+          "total": 2220.0
+        },
+        {
+          "wage_min": 19300.01,
+          "wage_max": 19400.0,
+          "employer": 1164.0,
+          "employee": 1067.0,
+          "total": 2231.0
+        },
+        {
+          "wage_min": 19400.01,
+          "wage_max": 19500.0,
+          "employer": 1170.0,
+          "employee": 1073.0,
+          "total": 2243.0
+        },
+        {
+          "wage_min": 19500.01,
+          "wage_max": 19600.0,
+          "employer": 1176.0,
+          "employee": 1078.0,
+          "total": 2254.0
+        },
+        {
+          "wage_min": 19600.01,
+          "wage_max": 19700.0,
+          "employer": 1182.0,
+          "employee": 1084.0,
+          "total": 2266.0
+        },
+        {
+          "wage_min": 19700.01,
+          "wage_max": 19800.0,
+          "employer": 1188.0,
+          "employee": 1089.0,
+          "total": 2277.0
+        },
+        {
+          "wage_min": 19800.01,
+          "wage_max": 19900.0,
+          "employer": 1194.0,
+          "employee": 1095.0,
+          "total": 2289.0
+        },
+        {
+          "wage_min": 19900.01,
+          "wage_max": 20000.0,
+          "employer": 1200.0,
+          "employee": 1100.0,
+          "total": 2300.0
+        },
+        {
+          "wage_min": 5000.0,
+          "wage_max": null,
+          "employer_rate": 0.06,
+          "employee_rate": 0.055,
+          "note": "Percentage-based for wages exceeding this amount"
+        }
+      ]
+    },
+    "part_e": {
+      "description": "1. The rate of monthly contributions specified in this Part shall apply to the Malaysian citizens who have attained the age of sixty years.",
+      "brackets": [
+        {
+          "wage_min": 0.01,
+          "wage_max": 10.0,
+          "employer": 0.0,
+          "employee": 0.0,
+          "total": 0.0
+        },
+        {
+          "wage_min": 10.01,
+          "wage_max": 20.0,
+          "employer": 1.0,
+          "employee": 0.0,
+          "total": 1.0
+        },
+        {
+          "wage_min": 20.01,
+          "wage_max": 40.0,
+          "employer": 2.0,
+          "employee": 0.0,
+          "total": 2.0
+        },
+        {
+          "wage_min": 40.01,
+          "wage_max": 60.0,
+          "employer": 3.0,
+          "employee": 0.0,
+          "total": 3.0
+        },
+        {
+          "wage_min": 60.01,
+          "wage_max": 80.0,
+          "employer": 4.0,
+          "employee": 0.0,
+          "total": 4.0
+        },
+        {
+          "wage_min": 80.01,
+          "wage_max": 100.0,
+          "employer": 4.0,
+          "employee": 0.0,
+          "total": 4.0
+        },
+        {
+          "wage_min": 100.01,
+          "wage_max": 120.0,
+          "employer": 5.0,
+          "employee": 0.0,
+          "total": 5.0
+        },
+        {
+          "wage_min": 120.01,
+          "wage_max": 140.0,
+          "employer": 6.0,
+          "employee": 0.0,
+          "total": 6.0
+        },
+        {
+          "wage_min": 140.01,
+          "wage_max": 160.0,
+          "employer": 7.0,
+          "employee": 0.0,
+          "total": 7.0
+        },
+        {
+          "wage_min": 160.01,
+          "wage_max": 180.0,
+          "employer": 8.0,
+          "employee": 0.0,
+          "total": 8.0
+        },
+        {
+          "wage_min": 180.01,
+          "wage_max": 200.0,
+          "employer": 8.0,
+          "employee": 0.0,
+          "total": 8.0
+        },
+        {
+          "wage_min": 200.01,
+          "wage_max": 220.0,
+          "employer": 9.0,
+          "employee": 0.0,
+          "total": 9.0
+        },
+        {
+          "wage_min": 220.01,
+          "wage_max": 240.0,
+          "employer": 10.0,
+          "employee": 0.0,
+          "total": 10.0
+        },
+        {
+          "wage_min": 240.01,
+          "wage_max": 260.0,
+          "employer": 11.0,
+          "employee": 0.0,
+          "total": 11.0
+        },
+        {
+          "wage_min": 260.01,
+          "wage_max": 280.0,
+          "employer": 12.0,
+          "employee": 0.0,
+          "total": 12.0
+        },
+        {
+          "wage_min": 280.01,
+          "wage_max": 300.0,
+          "employer": 12.0,
+          "employee": 0.0,
+          "total": 12.0
+        },
+        {
+          "wage_min": 300.01,
+          "wage_max": 320.0,
+          "employer": 13.0,
+          "employee": 0.0,
+          "total": 13.0
+        },
+        {
+          "wage_min": 320.01,
+          "wage_max": 340.0,
+          "employer": 14.0,
+          "employee": 0.0,
+          "total": 14.0
+        },
+        {
+          "wage_min": 340.01,
+          "wage_max": 360.0,
+          "employer": 15.0,
+          "employee": 0.0,
+          "total": 15.0
+        },
+        {
+          "wage_min": 360.01,
+          "wage_max": 380.0,
+          "employer": 16.0,
+          "employee": 0.0,
+          "total": 16.0
+        },
+        {
+          "wage_min": 380.01,
+          "wage_max": 400.0,
+          "employer": 16.0,
+          "employee": 0.0,
+          "total": 16.0
+        },
+        {
+          "wage_min": 400.01,
+          "wage_max": 420.0,
+          "employer": 17.0,
+          "employee": 0.0,
+          "total": 17.0
+        },
+        {
+          "wage_min": 420.01,
+          "wage_max": 440.0,
+          "employer": 18.0,
+          "employee": 0.0,
+          "total": 18.0
+        },
+        {
+          "wage_min": 440.01,
+          "wage_max": 460.0,
+          "employer": 19.0,
+          "employee": 0.0,
+          "total": 19.0
+        },
+        {
+          "wage_min": 460.01,
+          "wage_max": 480.0,
+          "employer": 20.0,
+          "employee": 0.0,
+          "total": 20.0
+        },
+        {
+          "wage_min": 480.01,
+          "wage_max": 500.0,
+          "employer": 20.0,
+          "employee": 0.0,
+          "total": 20.0
+        },
+        {
+          "wage_min": 500.01,
+          "wage_max": 520.0,
+          "employer": 21.0,
+          "employee": 0.0,
+          "total": 21.0
+        },
+        {
+          "wage_min": 520.01,
+          "wage_max": 540.0,
+          "employer": 22.0,
+          "employee": 0.0,
+          "total": 22.0
+        },
+        {
+          "wage_min": 540.01,
+          "wage_max": 560.0,
+          "employer": 23.0,
+          "employee": 0.0,
+          "total": 23.0
+        },
+        {
+          "wage_min": 560.01,
+          "wage_max": 580.0,
+          "employer": 24.0,
+          "employee": 0.0,
+          "total": 24.0
+        },
+        {
+          "wage_min": 580.01,
+          "wage_max": 600.0,
+          "employer": 24.0,
+          "employee": 0.0,
+          "total": 24.0
+        },
+        {
+          "wage_min": 600.01,
+          "wage_max": 620.0,
+          "employer": 25.0,
+          "employee": 0.0,
+          "total": 25.0
+        },
+        {
+          "wage_min": 620.01,
+          "wage_max": 640.0,
+          "employer": 26.0,
+          "employee": 0.0,
+          "total": 26.0
+        },
+        {
+          "wage_min": 640.01,
+          "wage_max": 660.0,
+          "employer": 27.0,
+          "employee": 0.0,
+          "total": 27.0
+        },
+        {
+          "wage_min": 660.01,
+          "wage_max": 680.0,
+          "employer": 28.0,
+          "employee": 0.0,
+          "total": 28.0
+        },
+        {
+          "wage_min": 680.01,
+          "wage_max": 700.0,
+          "employer": 28.0,
+          "employee": 0.0,
+          "total": 28.0
+        },
+        {
+          "wage_min": 700.01,
+          "wage_max": 720.0,
+          "employer": 29.0,
+          "employee": 0.0,
+          "total": 29.0
+        },
+        {
+          "wage_min": 720.01,
+          "wage_max": 740.0,
+          "employer": 30.0,
+          "employee": 0.0,
+          "total": 30.0
+        },
+        {
+          "wage_min": 740.01,
+          "wage_max": 760.0,
+          "employer": 31.0,
+          "employee": 0.0,
+          "total": 31.0
+        },
+        {
+          "wage_min": 760.01,
+          "wage_max": 780.0,
+          "employer": 32.0,
+          "employee": 0.0,
+          "total": 32.0
+        },
+        {
+          "wage_min": 780.01,
+          "wage_max": 800.0,
+          "employer": 32.0,
+          "employee": 0.0,
+          "total": 32.0
+        },
+        {
+          "wage_min": 800.01,
+          "wage_max": 820.0,
+          "employer": 33.0,
+          "employee": 0.0,
+          "total": 33.0
+        },
+        {
+          "wage_min": 820.01,
+          "wage_max": 840.0,
+          "employer": 34.0,
+          "employee": 0.0,
+          "total": 34.0
+        },
+        {
+          "wage_min": 840.01,
+          "wage_max": 860.0,
+          "employer": 35.0,
+          "employee": 0.0,
+          "total": 35.0
+        },
+        {
+          "wage_min": 860.01,
+          "wage_max": 880.0,
+          "employer": 36.0,
+          "employee": 0.0,
+          "total": 36.0
+        },
+        {
+          "wage_min": 880.01,
+          "wage_max": 900.0,
+          "employer": 36.0,
+          "employee": 0.0,
+          "total": 36.0
+        },
+        {
+          "wage_min": 900.01,
+          "wage_max": 920.0,
+          "employer": 37.0,
+          "employee": 0.0,
+          "total": 37.0
+        },
+        {
+          "wage_min": 920.01,
+          "wage_max": 940.0,
+          "employer": 38.0,
+          "employee": 0.0,
+          "total": 38.0
+        },
+        {
+          "wage_min": 940.01,
+          "wage_max": 960.0,
+          "employer": 39.0,
+          "employee": 0.0,
+          "total": 39.0
+        },
+        {
+          "wage_min": 960.01,
+          "wage_max": 980.0,
+          "employer": 40.0,
+          "employee": 0.0,
+          "total": 40.0
+        },
+        {
+          "wage_min": 980.01,
+          "wage_max": 1000.0,
+          "employer": 40.0,
+          "employee": 0.0,
+          "total": 40.0
+        },
+        {
+          "wage_min": 1000.01,
+          "wage_max": 1020.0,
+          "employer": 41.0,
+          "employee": 0.0,
+          "total": 41.0
+        },
+        {
+          "wage_min": 1020.01,
+          "wage_max": 1040.0,
+          "employer": 42.0,
+          "employee": 0.0,
+          "total": 42.0
+        },
+        {
+          "wage_min": 1040.01,
+          "wage_max": 1060.0,
+          "employer": 43.0,
+          "employee": 0.0,
+          "total": 43.0
+        },
+        {
+          "wage_min": 1060.01,
+          "wage_max": 1080.0,
+          "employer": 44.0,
+          "employee": 0.0,
+          "total": 44.0
+        },
+        {
+          "wage_min": 1080.01,
+          "wage_max": 1100.0,
+          "employer": 44.0,
+          "employee": 0.0,
+          "total": 44.0
+        },
+        {
+          "wage_min": 1100.01,
+          "wage_max": 1120.0,
+          "employer": 45.0,
+          "employee": 0.0,
+          "total": 45.0
+        },
+        {
+          "wage_min": 1120.01,
+          "wage_max": 1140.0,
+          "employer": 46.0,
+          "employee": 0.0,
+          "total": 46.0
+        },
+        {
+          "wage_min": 1140.01,
+          "wage_max": 1160.0,
+          "employer": 47.0,
+          "employee": 0.0,
+          "total": 47.0
+        },
+        {
+          "wage_min": 1160.01,
+          "wage_max": 1180.0,
+          "employer": 48.0,
+          "employee": 0.0,
+          "total": 48.0
+        },
+        {
+          "wage_min": 1180.01,
+          "wage_max": 1200.0,
+          "employer": 48.0,
+          "employee": 0.0,
+          "total": 48.0
+        },
+        {
+          "wage_min": 1200.01,
+          "wage_max": 1220.0,
+          "employer": 49.0,
+          "employee": 0.0,
+          "total": 49.0
+        },
+        {
+          "wage_min": 1220.01,
+          "wage_max": 1240.0,
+          "employer": 50.0,
+          "employee": 0.0,
+          "total": 50.0
+        },
+        {
+          "wage_min": 1240.01,
+          "wage_max": 1260.0,
+          "employer": 51.0,
+          "employee": 0.0,
+          "total": 51.0
+        },
+        {
+          "wage_min": 1260.01,
+          "wage_max": 1280.0,
+          "employer": 52.0,
+          "employee": 0.0,
+          "total": 52.0
+        },
+        {
+          "wage_min": 1280.01,
+          "wage_max": 1300.0,
+          "employer": 52.0,
+          "employee": 0.0,
+          "total": 52.0
+        },
+        {
+          "wage_min": 1300.01,
+          "wage_max": 1320.0,
+          "employer": 53.0,
+          "employee": 0.0,
+          "total": 53.0
+        },
+        {
+          "wage_min": 1320.01,
+          "wage_max": 1340.0,
+          "employer": 54.0,
+          "employee": 0.0,
+          "total": 54.0
+        },
+        {
+          "wage_min": 1340.01,
+          "wage_max": 1360.0,
+          "employer": 55.0,
+          "employee": 0.0,
+          "total": 55.0
+        },
+        {
+          "wage_min": 1360.01,
+          "wage_max": 1380.0,
+          "employer": 56.0,
+          "employee": 0.0,
+          "total": 56.0
+        },
+        {
+          "wage_min": 1380.01,
+          "wage_max": 1400.0,
+          "employer": 56.0,
+          "employee": 0.0,
+          "total": 56.0
+        },
+        {
+          "wage_min": 1400.01,
+          "wage_max": 1420.0,
+          "employer": 57.0,
+          "employee": 0.0,
+          "total": 57.0
+        },
+        {
+          "wage_min": 1420.01,
+          "wage_max": 1440.0,
+          "employer": 58.0,
+          "employee": 0.0,
+          "total": 58.0
+        },
+        {
+          "wage_min": 1440.01,
+          "wage_max": 1460.0,
+          "employer": 59.0,
+          "employee": 0.0,
+          "total": 59.0
+        },
+        {
+          "wage_min": 1460.01,
+          "wage_max": 1480.0,
+          "employer": 60.0,
+          "employee": 0.0,
+          "total": 60.0
+        },
+        {
+          "wage_min": 1480.01,
+          "wage_max": 1500.0,
+          "employer": 60.0,
+          "employee": 0.0,
+          "total": 60.0
+        },
+        {
+          "wage_min": 1520.01,
+          "wage_max": 1540.0,
+          "employer": 62.0,
+          "employee": 0.0,
+          "total": 62.0
+        },
+        {
+          "wage_min": 1540.01,
+          "wage_max": 1560.0,
+          "employer": 63.0,
+          "employee": 0.0,
+          "total": 63.0
+        },
+        {
+          "wage_min": 1560.01,
+          "wage_max": 1580.0,
+          "employer": 64.0,
+          "employee": 0.0,
+          "total": 64.0
+        },
+        {
+          "wage_min": 1580.01,
+          "wage_max": 1600.0,
+          "employer": 64.0,
+          "employee": 0.0,
+          "total": 64.0
+        },
+        {
+          "wage_min": 1600.01,
+          "wage_max": 1620.0,
+          "employer": 65.0,
+          "employee": 0.0,
+          "total": 65.0
+        },
+        {
+          "wage_min": 1620.01,
+          "wage_max": 1640.0,
+          "employer": 66.0,
+          "employee": 0.0,
+          "total": 66.0
+        },
+        {
+          "wage_min": 1640.01,
+          "wage_max": 1660.0,
+          "employer": 67.0,
+          "employee": 0.0,
+          "total": 67.0
+        },
+        {
+          "wage_min": 1660.01,
+          "wage_max": 1680.0,
+          "employer": 68.0,
+          "employee": 0.0,
+          "total": 68.0
+        },
+        {
+          "wage_min": 1680.01,
+          "wage_max": 1700.0,
+          "employer": 68.0,
+          "employee": 0.0,
+          "total": 68.0
+        },
+        {
+          "wage_min": 1700.01,
+          "wage_max": 1720.0,
+          "employer": 69.0,
+          "employee": 0.0,
+          "total": 69.0
+        },
+        {
+          "wage_min": 1720.01,
+          "wage_max": 1740.0,
+          "employer": 70.0,
+          "employee": 0.0,
+          "total": 70.0
+        },
+        {
+          "wage_min": 1740.01,
+          "wage_max": 1760.0,
+          "employer": 71.0,
+          "employee": 0.0,
+          "total": 71.0
+        },
+        {
+          "wage_min": 1760.01,
+          "wage_max": 1780.0,
+          "employer": 72.0,
+          "employee": 0.0,
+          "total": 72.0
+        },
+        {
+          "wage_min": 1780.01,
+          "wage_max": 1800.0,
+          "employer": 72.0,
+          "employee": 0.0,
+          "total": 72.0
+        },
+        {
+          "wage_min": 1800.01,
+          "wage_max": 1820.0,
+          "employer": 73.0,
+          "employee": 0.0,
+          "total": 73.0
+        },
+        {
+          "wage_min": 1820.01,
+          "wage_max": 1840.0,
+          "employer": 74.0,
+          "employee": 0.0,
+          "total": 74.0
+        },
+        {
+          "wage_min": 1840.01,
+          "wage_max": 1860.0,
+          "employer": 75.0,
+          "employee": 0.0,
+          "total": 75.0
+        },
+        {
+          "wage_min": 1860.01,
+          "wage_max": 1880.0,
+          "employer": 76.0,
+          "employee": 0.0,
+          "total": 76.0
+        },
+        {
+          "wage_min": 1880.01,
+          "wage_max": 1900.0,
+          "employer": 76.0,
+          "employee": 0.0,
+          "total": 76.0
+        },
+        {
+          "wage_min": 1900.01,
+          "wage_max": 1920.0,
+          "employer": 77.0,
+          "employee": 0.0,
+          "total": 77.0
+        },
+        {
+          "wage_min": 1920.01,
+          "wage_max": 1940.0,
+          "employer": 78.0,
+          "employee": 0.0,
+          "total": 78.0
+        },
+        {
+          "wage_min": 1940.01,
+          "wage_max": 1960.0,
+          "employer": 79.0,
+          "employee": 0.0,
+          "total": 79.0
+        },
+        {
+          "wage_min": 1960.01,
+          "wage_max": 1980.0,
+          "employer": 80.0,
+          "employee": 0.0,
+          "total": 80.0
+        },
+        {
+          "wage_min": 1980.01,
+          "wage_max": 2000.0,
+          "employer": 80.0,
+          "employee": 0.0,
+          "total": 80.0
+        },
+        {
+          "wage_min": 2000.01,
+          "wage_max": 2020.0,
+          "employer": 81.0,
+          "employee": 0.0,
+          "total": 81.0
+        },
+        {
+          "wage_min": 2020.01,
+          "wage_max": 2040.0,
+          "employer": 82.0,
+          "employee": 0.0,
+          "total": 82.0
+        },
+        {
+          "wage_min": 2040.01,
+          "wage_max": 2060.0,
+          "employer": 83.0,
+          "employee": 0.0,
+          "total": 83.0
+        },
+        {
+          "wage_min": 2080.01,
+          "wage_max": 2100.0,
+          "employer": 84.0,
+          "employee": 0.0,
+          "total": 84.0
+        },
+        {
+          "wage_min": 2100.01,
+          "wage_max": 2120.0,
+          "employer": 85.0,
+          "employee": 0.0,
+          "total": 85.0
+        },
+        {
+          "wage_min": 2120.01,
+          "wage_max": 2140.0,
+          "employer": 86.0,
+          "employee": 0.0,
+          "total": 86.0
+        },
+        {
+          "wage_min": 2140.01,
+          "wage_max": 2160.0,
+          "employer": 87.0,
+          "employee": 0.0,
+          "total": 87.0
+        },
+        {
+          "wage_min": 2160.01,
+          "wage_max": 2180.0,
+          "employer": 88.0,
+          "employee": 0.0,
+          "total": 88.0
+        },
+        {
+          "wage_min": 2180.01,
+          "wage_max": 2200.0,
+          "employer": 88.0,
+          "employee": 0.0,
+          "total": 88.0
+        },
+        {
+          "wage_min": 2200.01,
+          "wage_max": 2220.0,
+          "employer": 89.0,
+          "employee": 0.0,
+          "total": 89.0
+        },
+        {
+          "wage_min": 2220.01,
+          "wage_max": 2240.0,
+          "employer": 90.0,
+          "employee": 0.0,
+          "total": 90.0
+        },
+        {
+          "wage_min": 2240.01,
+          "wage_max": 2260.0,
+          "employer": 91.0,
+          "employee": 0.0,
+          "total": 91.0
+        },
+        {
+          "wage_min": 2260.01,
+          "wage_max": 2280.0,
+          "employer": 92.0,
+          "employee": 0.0,
+          "total": 92.0
+        },
+        {
+          "wage_min": 2280.01,
+          "wage_max": 2300.0,
+          "employer": 92.0,
+          "employee": 0.0,
+          "total": 92.0
+        },
+        {
+          "wage_min": 2300.01,
+          "wage_max": 2320.0,
+          "employer": 93.0,
+          "employee": 0.0,
+          "total": 93.0
+        },
+        {
+          "wage_min": 2320.01,
+          "wage_max": 2340.0,
+          "employer": 94.0,
+          "employee": 0.0,
+          "total": 94.0
+        },
+        {
+          "wage_min": 2340.01,
+          "wage_max": 2360.0,
+          "employer": 95.0,
+          "employee": 0.0,
+          "total": 95.0
+        },
+        {
+          "wage_min": 2360.01,
+          "wage_max": 2380.0,
+          "employer": 96.0,
+          "employee": 0.0,
+          "total": 96.0
+        },
+        {
+          "wage_min": 2380.01,
+          "wage_max": 2400.0,
+          "employer": 96.0,
+          "employee": 0.0,
+          "total": 96.0
+        },
+        {
+          "wage_min": 2400.01,
+          "wage_max": 2420.0,
+          "employer": 97.0,
+          "employee": 0.0,
+          "total": 97.0
+        },
+        {
+          "wage_min": 2420.01,
+          "wage_max": 2440.0,
+          "employer": 98.0,
+          "employee": 0.0,
+          "total": 98.0
+        },
+        {
+          "wage_min": 2440.01,
+          "wage_max": 2460.0,
+          "employer": 99.0,
+          "employee": 0.0,
+          "total": 99.0
+        },
+        {
+          "wage_min": 2460.01,
+          "wage_max": 2480.0,
+          "employer": 100.0,
+          "employee": 0.0,
+          "total": 100.0
+        },
+        {
+          "wage_min": 2480.01,
+          "wage_max": 2500.0,
+          "employer": 100.0,
+          "employee": 0.0,
+          "total": 100.0
+        },
+        {
+          "wage_min": 2500.01,
+          "wage_max": 2520.0,
+          "employer": 101.0,
+          "employee": 0.0,
+          "total": 101.0
+        },
+        {
+          "wage_min": 2520.01,
+          "wage_max": 2540.0,
+          "employer": 102.0,
+          "employee": 0.0,
+          "total": 102.0
+        },
+        {
+          "wage_min": 2540.01,
+          "wage_max": 2560.0,
+          "employer": 103.0,
+          "employee": 0.0,
+          "total": 103.0
+        },
+        {
+          "wage_min": 2560.01,
+          "wage_max": 2580.0,
+          "employer": 104.0,
+          "employee": 0.0,
+          "total": 104.0
+        },
+        {
+          "wage_min": 2580.01,
+          "wage_max": 2600.0,
+          "employer": 104.0,
+          "employee": 0.0,
+          "total": 104.0
+        },
+        {
+          "wage_min": 2600.01,
+          "wage_max": 2620.0,
+          "employer": 105.0,
+          "employee": 0.0,
+          "total": 105.0
+        },
+        {
+          "wage_min": 2640.01,
+          "wage_max": 2660.0,
+          "employer": 107.0,
+          "employee": 0.0,
+          "total": 107.0
+        },
+        {
+          "wage_min": 2660.01,
+          "wage_max": 2680.0,
+          "employer": 108.0,
+          "employee": 0.0,
+          "total": 108.0
+        },
+        {
+          "wage_min": 2680.01,
+          "wage_max": 2700.0,
+          "employer": 108.0,
+          "employee": 0.0,
+          "total": 108.0
+        },
+        {
+          "wage_min": 2700.01,
+          "wage_max": 2720.0,
+          "employer": 109.0,
+          "employee": 0.0,
+          "total": 109.0
+        },
+        {
+          "wage_min": 2720.01,
+          "wage_max": 2740.0,
+          "employer": 110.0,
+          "employee": 0.0,
+          "total": 110.0
+        },
+        {
+          "wage_min": 2740.01,
+          "wage_max": 2760.0,
+          "employer": 111.0,
+          "employee": 0.0,
+          "total": 111.0
+        },
+        {
+          "wage_min": 2760.01,
+          "wage_max": 2780.0,
+          "employer": 112.0,
+          "employee": 0.0,
+          "total": 112.0
+        },
+        {
+          "wage_min": 2780.01,
+          "wage_max": 2800.0,
+          "employer": 112.0,
+          "employee": 0.0,
+          "total": 112.0
+        },
+        {
+          "wage_min": 2800.01,
+          "wage_max": 2820.0,
+          "employer": 113.0,
+          "employee": 0.0,
+          "total": 113.0
+        },
+        {
+          "wage_min": 2820.01,
+          "wage_max": 2840.0,
+          "employer": 114.0,
+          "employee": 0.0,
+          "total": 114.0
+        },
+        {
+          "wage_min": 2840.01,
+          "wage_max": 2860.0,
+          "employer": 115.0,
+          "employee": 0.0,
+          "total": 115.0
+        },
+        {
+          "wage_min": 2860.01,
+          "wage_max": 2880.0,
+          "employer": 116.0,
+          "employee": 0.0,
+          "total": 116.0
+        },
+        {
+          "wage_min": 2880.01,
+          "wage_max": 2900.0,
+          "employer": 116.0,
+          "employee": 0.0,
+          "total": 116.0
+        },
+        {
+          "wage_min": 2900.01,
+          "wage_max": 2920.0,
+          "employer": 117.0,
+          "employee": 0.0,
+          "total": 117.0
+        },
+        {
+          "wage_min": 2920.01,
+          "wage_max": 2940.0,
+          "employer": 118.0,
+          "employee": 0.0,
+          "total": 118.0
+        },
+        {
+          "wage_min": 2940.01,
+          "wage_max": 2960.0,
+          "employer": 119.0,
+          "employee": 0.0,
+          "total": 119.0
+        },
+        {
+          "wage_min": 2960.01,
+          "wage_max": 2980.0,
+          "employer": 120.0,
+          "employee": 0.0,
+          "total": 120.0
+        },
+        {
+          "wage_min": 2980.01,
+          "wage_max": 3000.0,
+          "employer": 120.0,
+          "employee": 0.0,
+          "total": 120.0
+        },
+        {
+          "wage_min": 3000.01,
+          "wage_max": 3020.0,
+          "employer": 121.0,
+          "employee": 0.0,
+          "total": 121.0
+        },
+        {
+          "wage_min": 3020.01,
+          "wage_max": 3040.0,
+          "employer": 122.0,
+          "employee": 0.0,
+          "total": 122.0
+        },
+        {
+          "wage_min": 3040.01,
+          "wage_max": 3060.0,
+          "employer": 123.0,
+          "employee": 0.0,
+          "total": 123.0
+        },
+        {
+          "wage_min": 3060.01,
+          "wage_max": 3080.0,
+          "employer": 124.0,
+          "employee": 0.0,
+          "total": 124.0
+        },
+        {
+          "wage_min": 3080.01,
+          "wage_max": 3100.0,
+          "employer": 124.0,
+          "employee": 0.0,
+          "total": 124.0
+        },
+        {
+          "wage_min": 3100.01,
+          "wage_max": 3120.0,
+          "employer": 125.0,
+          "employee": 0.0,
+          "total": 125.0
+        },
+        {
+          "wage_min": 3120.01,
+          "wage_max": 3140.0,
+          "employer": 126.0,
+          "employee": 0.0,
+          "total": 126.0
+        },
+        {
+          "wage_min": 3140.01,
+          "wage_max": 3160.0,
+          "employer": 127.0,
+          "employee": 0.0,
+          "total": 127.0
+        },
+        {
+          "wage_min": 3200.01,
+          "wage_max": 3220.0,
+          "employer": 129.0,
+          "employee": 0.0,
+          "total": 129.0
+        },
+        {
+          "wage_min": 3220.01,
+          "wage_max": 3240.0,
+          "employer": 130.0,
+          "employee": 0.0,
+          "total": 130.0
+        },
+        {
+          "wage_min": 3240.01,
+          "wage_max": 3260.0,
+          "employer": 131.0,
+          "employee": 0.0,
+          "total": 131.0
+        },
+        {
+          "wage_min": 3260.01,
+          "wage_max": 3280.0,
+          "employer": 132.0,
+          "employee": 0.0,
+          "total": 132.0
+        },
+        {
+          "wage_min": 3280.01,
+          "wage_max": 3300.0,
+          "employer": 132.0,
+          "employee": 0.0,
+          "total": 132.0
+        },
+        {
+          "wage_min": 3300.01,
+          "wage_max": 3320.0,
+          "employer": 133.0,
+          "employee": 0.0,
+          "total": 133.0
+        },
+        {
+          "wage_min": 3320.01,
+          "wage_max": 3340.0,
+          "employer": 134.0,
+          "employee": 0.0,
+          "total": 134.0
+        },
+        {
+          "wage_min": 3340.01,
+          "wage_max": 3360.0,
+          "employer": 135.0,
+          "employee": 0.0,
+          "total": 135.0
+        },
+        {
+          "wage_min": 3360.01,
+          "wage_max": 3380.0,
+          "employer": 136.0,
+          "employee": 0.0,
+          "total": 136.0
+        },
+        {
+          "wage_min": 3380.01,
+          "wage_max": 3400.0,
+          "employer": 136.0,
+          "employee": 0.0,
+          "total": 136.0
+        },
+        {
+          "wage_min": 3400.01,
+          "wage_max": 3420.0,
+          "employer": 137.0,
+          "employee": 0.0,
+          "total": 137.0
+        },
+        {
+          "wage_min": 3420.01,
+          "wage_max": 3440.0,
+          "employer": 138.0,
+          "employee": 0.0,
+          "total": 138.0
+        },
+        {
+          "wage_min": 3440.01,
+          "wage_max": 3460.0,
+          "employer": 139.0,
+          "employee": 0.0,
+          "total": 139.0
+        },
+        {
+          "wage_min": 3460.01,
+          "wage_max": 3480.0,
+          "employer": 140.0,
+          "employee": 0.0,
+          "total": 140.0
+        },
+        {
+          "wage_min": 3480.01,
+          "wage_max": 3500.0,
+          "employer": 140.0,
+          "employee": 0.0,
+          "total": 140.0
+        },
+        {
+          "wage_min": 3500.01,
+          "wage_max": 3520.0,
+          "employer": 141.0,
+          "employee": 0.0,
+          "total": 141.0
+        },
+        {
+          "wage_min": 3520.01,
+          "wage_max": 3540.0,
+          "employer": 142.0,
+          "employee": 0.0,
+          "total": 142.0
+        },
+        {
+          "wage_min": 3540.01,
+          "wage_max": 3560.0,
+          "employer": 143.0,
+          "employee": 0.0,
+          "total": 143.0
+        },
+        {
+          "wage_min": 3560.01,
+          "wage_max": 3580.0,
+          "employer": 144.0,
+          "employee": 0.0,
+          "total": 144.0
+        },
+        {
+          "wage_min": 3580.01,
+          "wage_max": 3600.0,
+          "employer": 144.0,
+          "employee": 0.0,
+          "total": 144.0
+        },
+        {
+          "wage_min": 3600.01,
+          "wage_max": 3620.0,
+          "employer": 145.0,
+          "employee": 0.0,
+          "total": 145.0
+        },
+        {
+          "wage_min": 3620.01,
+          "wage_max": 3640.0,
+          "employer": 146.0,
+          "employee": 0.0,
+          "total": 146.0
+        },
+        {
+          "wage_min": 3640.01,
+          "wage_max": 3660.0,
+          "employer": 147.0,
+          "employee": 0.0,
+          "total": 147.0
+        },
+        {
+          "wage_min": 3660.01,
+          "wage_max": 3680.0,
+          "employer": 148.0,
+          "employee": 0.0,
+          "total": 148.0
+        },
+        {
+          "wage_min": 3680.01,
+          "wage_max": 3700.0,
+          "employer": 148.0,
+          "employee": 0.0,
+          "total": 148.0
+        },
+        {
+          "wage_min": 3700.01,
+          "wage_max": 3720.0,
+          "employer": 149.0,
+          "employee": 0.0,
+          "total": 149.0
+        },
+        {
+          "wage_min": 3760.01,
+          "wage_max": 3780.0,
+          "employer": 152.0,
+          "employee": 0.0,
+          "total": 152.0
+        },
+        {
+          "wage_min": 3780.01,
+          "wage_max": 3800.0,
+          "employer": 152.0,
+          "employee": 0.0,
+          "total": 152.0
+        },
+        {
+          "wage_min": 3800.01,
+          "wage_max": 3820.0,
+          "employer": 153.0,
+          "employee": 0.0,
+          "total": 153.0
+        },
+        {
+          "wage_min": 3820.01,
+          "wage_max": 3840.0,
+          "employer": 154.0,
+          "employee": 0.0,
+          "total": 154.0
+        },
+        {
+          "wage_min": 3840.01,
+          "wage_max": 3860.0,
+          "employer": 155.0,
+          "employee": 0.0,
+          "total": 155.0
+        },
+        {
+          "wage_min": 3860.01,
+          "wage_max": 3880.0,
+          "employer": 156.0,
+          "employee": 0.0,
+          "total": 156.0
+        },
+        {
+          "wage_min": 3880.01,
+          "wage_max": 3900.0,
+          "employer": 156.0,
+          "employee": 0.0,
+          "total": 156.0
+        },
+        {
+          "wage_min": 3900.01,
+          "wage_max": 3920.0,
+          "employer": 157.0,
+          "employee": 0.0,
+          "total": 157.0
+        },
+        {
+          "wage_min": 3920.01,
+          "wage_max": 3940.0,
+          "employer": 158.0,
+          "employee": 0.0,
+          "total": 158.0
+        },
+        {
+          "wage_min": 3940.01,
+          "wage_max": 3960.0,
+          "employer": 159.0,
+          "employee": 0.0,
+          "total": 159.0
+        },
+        {
+          "wage_min": 3960.01,
+          "wage_max": 3980.0,
+          "employer": 160.0,
+          "employee": 0.0,
+          "total": 160.0
+        },
+        {
+          "wage_min": 3980.01,
+          "wage_max": 4000.0,
+          "employer": 160.0,
+          "employee": 0.0,
+          "total": 160.0
+        },
+        {
+          "wage_min": 4000.01,
+          "wage_max": 4020.0,
+          "employer": 161.0,
+          "employee": 0.0,
+          "total": 161.0
+        },
+        {
+          "wage_min": 4020.01,
+          "wage_max": 4040.0,
+          "employer": 162.0,
+          "employee": 0.0,
+          "total": 162.0
+        },
+        {
+          "wage_min": 4040.01,
+          "wage_max": 4060.0,
+          "employer": 163.0,
+          "employee": 0.0,
+          "total": 163.0
+        },
+        {
+          "wage_min": 4060.01,
+          "wage_max": 4080.0,
+          "employer": 164.0,
+          "employee": 0.0,
+          "total": 164.0
+        },
+        {
+          "wage_min": 4080.01,
+          "wage_max": 4100.0,
+          "employer": 164.0,
+          "employee": 0.0,
+          "total": 164.0
+        },
+        {
+          "wage_min": 4100.01,
+          "wage_max": 4120.0,
+          "employer": 165.0,
+          "employee": 0.0,
+          "total": 165.0
+        },
+        {
+          "wage_min": 4120.01,
+          "wage_max": 4140.0,
+          "employer": 166.0,
+          "employee": 0.0,
+          "total": 166.0
+        },
+        {
+          "wage_min": 4140.01,
+          "wage_max": 4160.0,
+          "employer": 167.0,
+          "employee": 0.0,
+          "total": 167.0
+        },
+        {
+          "wage_min": 4160.01,
+          "wage_max": 4180.0,
+          "employer": 168.0,
+          "employee": 0.0,
+          "total": 168.0
+        },
+        {
+          "wage_min": 4180.01,
+          "wage_max": 4200.0,
+          "employer": 168.0,
+          "employee": 0.0,
+          "total": 168.0
+        },
+        {
+          "wage_min": 4200.01,
+          "wage_max": 4220.0,
+          "employer": 169.0,
+          "employee": 0.0,
+          "total": 169.0
+        },
+        {
+          "wage_min": 4220.01,
+          "wage_max": 4240.0,
+          "employer": 170.0,
+          "employee": 0.0,
+          "total": 170.0
+        },
+        {
+          "wage_min": 4240.01,
+          "wage_max": 4260.0,
+          "employer": 171.0,
+          "employee": 0.0,
+          "total": 171.0
+        },
+        {
+          "wage_min": 4260.01,
+          "wage_max": 4280.0,
+          "employer": 172.0,
+          "employee": 0.0,
+          "total": 172.0
+        },
+        {
+          "wage_min": 4320.01,
+          "wage_max": 4340.0,
+          "employer": 174.0,
+          "employee": 0.0,
+          "total": 174.0
+        },
+        {
+          "wage_min": 4340.01,
+          "wage_max": 4360.0,
+          "employer": 175.0,
+          "employee": 0.0,
+          "total": 175.0
+        },
+        {
+          "wage_min": 4360.01,
+          "wage_max": 4380.0,
+          "employer": 176.0,
+          "employee": 0.0,
+          "total": 176.0
+        },
+        {
+          "wage_min": 4380.01,
+          "wage_max": 4400.0,
+          "employer": 176.0,
+          "employee": 0.0,
+          "total": 176.0
+        },
+        {
+          "wage_min": 4400.01,
+          "wage_max": 4420.0,
+          "employer": 177.0,
+          "employee": 0.0,
+          "total": 177.0
+        },
+        {
+          "wage_min": 4420.01,
+          "wage_max": 4440.0,
+          "employer": 178.0,
+          "employee": 0.0,
+          "total": 178.0
+        },
+        {
+          "wage_min": 4440.01,
+          "wage_max": 4460.0,
+          "employer": 179.0,
+          "employee": 0.0,
+          "total": 179.0
+        },
+        {
+          "wage_min": 4460.01,
+          "wage_max": 4480.0,
+          "employer": 180.0,
+          "employee": 0.0,
+          "total": 180.0
+        },
+        {
+          "wage_min": 4480.01,
+          "wage_max": 4500.0,
+          "employer": 180.0,
+          "employee": 0.0,
+          "total": 180.0
+        },
+        {
+          "wage_min": 4500.01,
+          "wage_max": 4520.0,
+          "employer": 181.0,
+          "employee": 0.0,
+          "total": 181.0
+        },
+        {
+          "wage_min": 4520.01,
+          "wage_max": 4540.0,
+          "employer": 182.0,
+          "employee": 0.0,
+          "total": 182.0
+        },
+        {
+          "wage_min": 4540.01,
+          "wage_max": 4560.0,
+          "employer": 183.0,
+          "employee": 0.0,
+          "total": 183.0
+        },
+        {
+          "wage_min": 4560.01,
+          "wage_max": 4580.0,
+          "employer": 184.0,
+          "employee": 0.0,
+          "total": 184.0
+        },
+        {
+          "wage_min": 4580.01,
+          "wage_max": 4600.0,
+          "employer": 184.0,
+          "employee": 0.0,
+          "total": 184.0
+        },
+        {
+          "wage_min": 4600.01,
+          "wage_max": 4620.0,
+          "employer": 185.0,
+          "employee": 0.0,
+          "total": 185.0
+        },
+        {
+          "wage_min": 4620.01,
+          "wage_max": 4640.0,
+          "employer": 186.0,
+          "employee": 0.0,
+          "total": 186.0
+        },
+        {
+          "wage_min": 4640.01,
+          "wage_max": 4660.0,
+          "employer": 187.0,
+          "employee": 0.0,
+          "total": 187.0
+        },
+        {
+          "wage_min": 4660.01,
+          "wage_max": 4680.0,
+          "employer": 188.0,
+          "employee": 0.0,
+          "total": 188.0
+        },
+        {
+          "wage_min": 4680.01,
+          "wage_max": 4700.0,
+          "employer": 188.0,
+          "employee": 0.0,
+          "total": 188.0
+        },
+        {
+          "wage_min": 4700.01,
+          "wage_max": 4720.0,
+          "employer": 189.0,
+          "employee": 0.0,
+          "total": 189.0
+        },
+        {
+          "wage_min": 4720.01,
+          "wage_max": 4740.0,
+          "employer": 190.0,
+          "employee": 0.0,
+          "total": 190.0
+        },
+        {
+          "wage_min": 4740.01,
+          "wage_max": 4760.0,
+          "employer": 191.0,
+          "employee": 0.0,
+          "total": 191.0
+        },
+        {
+          "wage_min": 4760.01,
+          "wage_max": 4780.0,
+          "employer": 192.0,
+          "employee": 0.0,
+          "total": 192.0
+        },
+        {
+          "wage_min": 4780.01,
+          "wage_max": 4800.0,
+          "employer": 192.0,
+          "employee": 0.0,
+          "total": 192.0
+        },
+        {
+          "wage_min": 4800.01,
+          "wage_max": 4820.0,
+          "employer": 193.0,
+          "employee": 0.0,
+          "total": 193.0
+        },
+        {
+          "wage_min": 4820.01,
+          "wage_max": 4840.0,
+          "employer": 194.0,
+          "employee": 0.0,
+          "total": 194.0
+        },
+        {
+          "wage_min": 4880.01,
+          "wage_max": 4900.0,
+          "employer": 196.0,
+          "employee": 0.0,
+          "total": 196.0
+        },
+        {
+          "wage_min": 4900.01,
+          "wage_max": 4920.0,
+          "employer": 197.0,
+          "employee": 0.0,
+          "total": 197.0
+        },
+        {
+          "wage_min": 4920.01,
+          "wage_max": 4940.0,
+          "employer": 198.0,
+          "employee": 0.0,
+          "total": 198.0
+        },
+        {
+          "wage_min": 4940.01,
+          "wage_max": 4960.0,
+          "employer": 199.0,
+          "employee": 0.0,
+          "total": 199.0
+        },
+        {
+          "wage_min": 4960.01,
+          "wage_max": 4980.0,
+          "employer": 200.0,
+          "employee": 0.0,
+          "total": 200.0
+        },
+        {
+          "wage_min": 4980.01,
+          "wage_max": 5000.0,
+          "employer": 200.0,
+          "employee": 0.0,
+          "total": 200.0
+        },
+        {
+          "wage_min": 5000.01,
+          "wage_max": 5100.0,
+          "employer": 204.0,
+          "employee": 0.0,
+          "total": 204.0
+        },
+        {
+          "wage_min": 5100.01,
+          "wage_max": 5200.0,
+          "employer": 208.0,
+          "employee": 0.0,
+          "total": 208.0
+        },
+        {
+          "wage_min": 5200.01,
+          "wage_max": 5300.0,
+          "employer": 212.0,
+          "employee": 0.0,
+          "total": 212.0
+        },
+        {
+          "wage_min": 5300.01,
+          "wage_max": 5400.0,
+          "employer": 216.0,
+          "employee": 0.0,
+          "total": 216.0
+        },
+        {
+          "wage_min": 5400.01,
+          "wage_max": 5500.0,
+          "employer": 220.0,
+          "employee": 0.0,
+          "total": 220.0
+        },
+        {
+          "wage_min": 5500.01,
+          "wage_max": 5600.0,
+          "employer": 224.0,
+          "employee": 0.0,
+          "total": 224.0
+        },
+        {
+          "wage_min": 5600.01,
+          "wage_max": 5700.0,
+          "employer": 228.0,
+          "employee": 0.0,
+          "total": 228.0
+        },
+        {
+          "wage_min": 5700.01,
+          "wage_max": 5800.0,
+          "employer": 232.0,
+          "employee": 0.0,
+          "total": 232.0
+        },
+        {
+          "wage_min": 5800.01,
+          "wage_max": 5900.0,
+          "employer": 236.0,
+          "employee": 0.0,
+          "total": 236.0
+        },
+        {
+          "wage_min": 5900.01,
+          "wage_max": 6000.0,
+          "employer": 240.0,
+          "employee": 0.0,
+          "total": 240.0
+        },
+        {
+          "wage_min": 6000.01,
+          "wage_max": 6100.0,
+          "employer": 244.0,
+          "employee": 0.0,
+          "total": 244.0
+        },
+        {
+          "wage_min": 6100.01,
+          "wage_max": 6200.0,
+          "employer": 248.0,
+          "employee": 0.0,
+          "total": 248.0
+        },
+        {
+          "wage_min": 6200.01,
+          "wage_max": 6300.0,
+          "employer": 252.0,
+          "employee": 0.0,
+          "total": 252.0
+        },
+        {
+          "wage_min": 6300.01,
+          "wage_max": 6400.0,
+          "employer": 256.0,
+          "employee": 0.0,
+          "total": 256.0
+        },
+        {
+          "wage_min": 6400.01,
+          "wage_max": 6500.0,
+          "employer": 260.0,
+          "employee": 0.0,
+          "total": 260.0
+        },
+        {
+          "wage_min": 6500.01,
+          "wage_max": 6600.0,
+          "employer": 264.0,
+          "employee": 0.0,
+          "total": 264.0
+        },
+        {
+          "wage_min": 6600.01,
+          "wage_max": 6700.0,
+          "employer": 268.0,
+          "employee": 0.0,
+          "total": 268.0
+        },
+        {
+          "wage_min": 6700.01,
+          "wage_max": 6800.0,
+          "employer": 272.0,
+          "employee": 0.0,
+          "total": 272.0
+        },
+        {
+          "wage_min": 6800.01,
+          "wage_max": 6900.0,
+          "employer": 276.0,
+          "employee": 0.0,
+          "total": 276.0
+        },
+        {
+          "wage_min": 6900.01,
+          "wage_max": 7000.0,
+          "employer": 280.0,
+          "employee": 0.0,
+          "total": 280.0
+        },
+        {
+          "wage_min": 7200.01,
+          "wage_max": 7300.0,
+          "employer": 292.0,
+          "employee": 0.0,
+          "total": 292.0
+        },
+        {
+          "wage_min": 7300.01,
+          "wage_max": 7400.0,
+          "employer": 296.0,
+          "employee": 0.0,
+          "total": 296.0
+        },
+        {
+          "wage_min": 7400.01,
+          "wage_max": 7500.0,
+          "employer": 300.0,
+          "employee": 0.0,
+          "total": 300.0
+        },
+        {
+          "wage_min": 7500.01,
+          "wage_max": 7600.0,
+          "employer": 304.0,
+          "employee": 0.0,
+          "total": 304.0
+        },
+        {
+          "wage_min": 7600.01,
+          "wage_max": 7700.0,
+          "employer": 308.0,
+          "employee": 0.0,
+          "total": 308.0
+        },
+        {
+          "wage_min": 7700.01,
+          "wage_max": 7800.0,
+          "employer": 312.0,
+          "employee": 0.0,
+          "total": 312.0
+        },
+        {
+          "wage_min": 7800.01,
+          "wage_max": 7900.0,
+          "employer": 316.0,
+          "employee": 0.0,
+          "total": 316.0
+        },
+        {
+          "wage_min": 7900.01,
+          "wage_max": 8000.0,
+          "employer": 320.0,
+          "employee": 0.0,
+          "total": 320.0
+        },
+        {
+          "wage_min": 8000.01,
+          "wage_max": 8100.0,
+          "employer": 324.0,
+          "employee": 0.0,
+          "total": 324.0
+        },
+        {
+          "wage_min": 8100.01,
+          "wage_max": 8200.0,
+          "employer": 328.0,
+          "employee": 0.0,
+          "total": 328.0
+        },
+        {
+          "wage_min": 8200.01,
+          "wage_max": 8300.0,
+          "employer": 332.0,
+          "employee": 0.0,
+          "total": 332.0
+        },
+        {
+          "wage_min": 8300.01,
+          "wage_max": 8400.0,
+          "employer": 336.0,
+          "employee": 0.0,
+          "total": 336.0
+        },
+        {
+          "wage_min": 8400.01,
+          "wage_max": 8500.0,
+          "employer": 340.0,
+          "employee": 0.0,
+          "total": 340.0
+        },
+        {
+          "wage_min": 8500.01,
+          "wage_max": 8600.0,
+          "employer": 344.0,
+          "employee": 0.0,
+          "total": 344.0
+        },
+        {
+          "wage_min": 8600.01,
+          "wage_max": 8700.0,
+          "employer": 348.0,
+          "employee": 0.0,
+          "total": 348.0
+        },
+        {
+          "wage_min": 8700.01,
+          "wage_max": 8800.0,
+          "employer": 352.0,
+          "employee": 0.0,
+          "total": 352.0
+        },
+        {
+          "wage_min": 8800.01,
+          "wage_max": 8900.0,
+          "employer": 356.0,
+          "employee": 0.0,
+          "total": 356.0
+        },
+        {
+          "wage_min": 8900.01,
+          "wage_max": 9000.0,
+          "employer": 360.0,
+          "employee": 0.0,
+          "total": 360.0
+        },
+        {
+          "wage_min": 9000.01,
+          "wage_max": 9100.0,
+          "employer": 364.0,
+          "employee": 0.0,
+          "total": 364.0
+        },
+        {
+          "wage_min": 9100.01,
+          "wage_max": 9200.0,
+          "employer": 368.0,
+          "employee": 0.0,
+          "total": 368.0
+        },
+        {
+          "wage_min": 9200.01,
+          "wage_max": 9300.0,
+          "employer": 372.0,
+          "employee": 0.0,
+          "total": 372.0
+        },
+        {
+          "wage_min": 9300.01,
+          "wage_max": 9400.0,
+          "employer": 376.0,
+          "employee": 0.0,
+          "total": 376.0
+        },
+        {
+          "wage_min": 9400.01,
+          "wage_max": 9500.0,
+          "employer": 380.0,
+          "employee": 0.0,
+          "total": 380.0
+        },
+        {
+          "wage_min": 9500.01,
+          "wage_max": 9600.0,
+          "employer": 384.0,
+          "employee": 0.0,
+          "total": 384.0
+        },
+        {
+          "wage_min": 9600.01,
+          "wage_max": 9700.0,
+          "employer": 388.0,
+          "employee": 0.0,
+          "total": 388.0
+        },
+        {
+          "wage_min": 9700.01,
+          "wage_max": 9800.0,
+          "employer": 392.0,
+          "employee": 0.0,
+          "total": 392.0
+        },
+        {
+          "wage_min": 10000.01,
+          "wage_max": 10100.0,
+          "employer": 404.0,
+          "employee": 0.0,
+          "total": 404.0
+        },
+        {
+          "wage_min": 10100.01,
+          "wage_max": 10200.0,
+          "employer": 408.0,
+          "employee": 0.0,
+          "total": 408.0
+        },
+        {
+          "wage_min": 10200.01,
+          "wage_max": 10300.0,
+          "employer": 412.0,
+          "employee": 0.0,
+          "total": 412.0
+        },
+        {
+          "wage_min": 10300.01,
+          "wage_max": 10400.0,
+          "employer": 416.0,
+          "employee": 0.0,
+          "total": 416.0
+        },
+        {
+          "wage_min": 10400.01,
+          "wage_max": 10500.0,
+          "employer": 420.0,
+          "employee": 0.0,
+          "total": 420.0
+        },
+        {
+          "wage_min": 10500.01,
+          "wage_max": 10600.0,
+          "employer": 424.0,
+          "employee": 0.0,
+          "total": 424.0
+        },
+        {
+          "wage_min": 10600.01,
+          "wage_max": 10700.0,
+          "employer": 428.0,
+          "employee": 0.0,
+          "total": 428.0
+        },
+        {
+          "wage_min": 10700.01,
+          "wage_max": 10800.0,
+          "employer": 432.0,
+          "employee": 0.0,
+          "total": 432.0
+        },
+        {
+          "wage_min": 10800.01,
+          "wage_max": 10900.0,
+          "employer": 436.0,
+          "employee": 0.0,
+          "total": 436.0
+        },
+        {
+          "wage_min": 10900.01,
+          "wage_max": 11000.0,
+          "employer": 440.0,
+          "employee": 0.0,
+          "total": 440.0
+        },
+        {
+          "wage_min": 11000.01,
+          "wage_max": 11100.0,
+          "employer": 444.0,
+          "employee": 0.0,
+          "total": 444.0
+        },
+        {
+          "wage_min": 11100.01,
+          "wage_max": 11200.0,
+          "employer": 448.0,
+          "employee": 0.0,
+          "total": 448.0
+        },
+        {
+          "wage_min": 11200.01,
+          "wage_max": 11300.0,
+          "employer": 452.0,
+          "employee": 0.0,
+          "total": 452.0
+        },
+        {
+          "wage_min": 11300.01,
+          "wage_max": 11400.0,
+          "employer": 456.0,
+          "employee": 0.0,
+          "total": 456.0
+        },
+        {
+          "wage_min": 11400.01,
+          "wage_max": 11500.0,
+          "employer": 460.0,
+          "employee": 0.0,
+          "total": 460.0
+        },
+        {
+          "wage_min": 11500.01,
+          "wage_max": 11600.0,
+          "employer": 464.0,
+          "employee": 0.0,
+          "total": 464.0
+        },
+        {
+          "wage_min": 11600.01,
+          "wage_max": 11700.0,
+          "employer": 468.0,
+          "employee": 0.0,
+          "total": 468.0
+        },
+        {
+          "wage_min": 11700.01,
+          "wage_max": 11800.0,
+          "employer": 472.0,
+          "employee": 0.0,
+          "total": 472.0
+        },
+        {
+          "wage_min": 11800.01,
+          "wage_max": 11900.0,
+          "employer": 476.0,
+          "employee": 0.0,
+          "total": 476.0
+        },
+        {
+          "wage_min": 11900.01,
+          "wage_max": 12000.0,
+          "employer": 480.0,
+          "employee": 0.0,
+          "total": 480.0
+        },
+        {
+          "wage_min": 12000.01,
+          "wage_max": 12100.0,
+          "employer": 484.0,
+          "employee": 0.0,
+          "total": 484.0
+        },
+        {
+          "wage_min": 12100.01,
+          "wage_max": 12200.0,
+          "employer": 488.0,
+          "employee": 0.0,
+          "total": 488.0
+        },
+        {
+          "wage_min": 12200.01,
+          "wage_max": 12300.0,
+          "employer": 492.0,
+          "employee": 0.0,
+          "total": 492.0
+        },
+        {
+          "wage_min": 12300.01,
+          "wage_max": 12400.0,
+          "employer": 496.0,
+          "employee": 0.0,
+          "total": 496.0
+        },
+        {
+          "wage_min": 12400.01,
+          "wage_max": 12500.0,
+          "employer": 500.0,
+          "employee": 0.0,
+          "total": 500.0
+        },
+        {
+          "wage_min": 12500.01,
+          "wage_max": 12600.0,
+          "employer": 504.0,
+          "employee": 0.0,
+          "total": 504.0
+        },
+        {
+          "wage_min": 12800.01,
+          "wage_max": 12900.0,
+          "employer": 516.0,
+          "employee": 0.0,
+          "total": 516.0
+        },
+        {
+          "wage_min": 12900.01,
+          "wage_max": 13000.0,
+          "employer": 520.0,
+          "employee": 0.0,
+          "total": 520.0
+        },
+        {
+          "wage_min": 13000.01,
+          "wage_max": 13100.0,
+          "employer": 524.0,
+          "employee": 0.0,
+          "total": 524.0
+        },
+        {
+          "wage_min": 13100.01,
+          "wage_max": 13200.0,
+          "employer": 528.0,
+          "employee": 0.0,
+          "total": 528.0
+        },
+        {
+          "wage_min": 13200.01,
+          "wage_max": 13300.0,
+          "employer": 532.0,
+          "employee": 0.0,
+          "total": 532.0
+        },
+        {
+          "wage_min": 13300.01,
+          "wage_max": 13400.0,
+          "employer": 536.0,
+          "employee": 0.0,
+          "total": 536.0
+        },
+        {
+          "wage_min": 13400.01,
+          "wage_max": 13500.0,
+          "employer": 540.0,
+          "employee": 0.0,
+          "total": 540.0
+        },
+        {
+          "wage_min": 13500.01,
+          "wage_max": 13600.0,
+          "employer": 544.0,
+          "employee": 0.0,
+          "total": 544.0
+        },
+        {
+          "wage_min": 13600.01,
+          "wage_max": 13700.0,
+          "employer": 548.0,
+          "employee": 0.0,
+          "total": 548.0
+        },
+        {
+          "wage_min": 13700.01,
+          "wage_max": 13800.0,
+          "employer": 552.0,
+          "employee": 0.0,
+          "total": 552.0
+        },
+        {
+          "wage_min": 13800.01,
+          "wage_max": 13900.0,
+          "employer": 556.0,
+          "employee": 0.0,
+          "total": 556.0
+        },
+        {
+          "wage_min": 13900.01,
+          "wage_max": 14000.0,
+          "employer": 560.0,
+          "employee": 0.0,
+          "total": 560.0
+        },
+        {
+          "wage_min": 14000.01,
+          "wage_max": 14100.0,
+          "employer": 564.0,
+          "employee": 0.0,
+          "total": 564.0
+        },
+        {
+          "wage_min": 14100.01,
+          "wage_max": 14200.0,
+          "employer": 568.0,
+          "employee": 0.0,
+          "total": 568.0
+        },
+        {
+          "wage_min": 14200.01,
+          "wage_max": 14300.0,
+          "employer": 572.0,
+          "employee": 0.0,
+          "total": 572.0
+        },
+        {
+          "wage_min": 14300.01,
+          "wage_max": 14400.0,
+          "employer": 576.0,
+          "employee": 0.0,
+          "total": 576.0
+        },
+        {
+          "wage_min": 14400.01,
+          "wage_max": 14500.0,
+          "employer": 580.0,
+          "employee": 0.0,
+          "total": 580.0
+        },
+        {
+          "wage_min": 14500.01,
+          "wage_max": 14600.0,
+          "employer": 584.0,
+          "employee": 0.0,
+          "total": 584.0
+        },
+        {
+          "wage_min": 14600.01,
+          "wage_max": 14700.0,
+          "employer": 588.0,
+          "employee": 0.0,
+          "total": 588.0
+        },
+        {
+          "wage_min": 14700.01,
+          "wage_max": 14800.0,
+          "employer": 592.0,
+          "employee": 0.0,
+          "total": 592.0
+        },
+        {
+          "wage_min": 14800.01,
+          "wage_max": 14900.0,
+          "employer": 596.0,
+          "employee": 0.0,
+          "total": 596.0
+        },
+        {
+          "wage_min": 14900.01,
+          "wage_max": 15000.0,
+          "employer": 600.0,
+          "employee": 0.0,
+          "total": 600.0
+        },
+        {
+          "wage_min": 15000.01,
+          "wage_max": 15100.0,
+          "employer": 604.0,
+          "employee": 0.0,
+          "total": 604.0
+        },
+        {
+          "wage_min": 15100.01,
+          "wage_max": 15200.0,
+          "employer": 608.0,
+          "employee": 0.0,
+          "total": 608.0
+        },
+        {
+          "wage_min": 15200.01,
+          "wage_max": 15300.0,
+          "employer": 612.0,
+          "employee": 0.0,
+          "total": 612.0
+        },
+        {
+          "wage_min": 15600.01,
+          "wage_max": 15700.0,
+          "employer": 628.0,
+          "employee": 0.0,
+          "total": 628.0
+        },
+        {
+          "wage_min": 15700.01,
+          "wage_max": 15800.0,
+          "employer": 632.0,
+          "employee": 0.0,
+          "total": 632.0
+        },
+        {
+          "wage_min": 15800.01,
+          "wage_max": 15900.0,
+          "employer": 636.0,
+          "employee": 0.0,
+          "total": 636.0
+        },
+        {
+          "wage_min": 15900.01,
+          "wage_max": 16000.0,
+          "employer": 640.0,
+          "employee": 0.0,
+          "total": 640.0
+        },
+        {
+          "wage_min": 16000.01,
+          "wage_max": 16100.0,
+          "employer": 644.0,
+          "employee": 0.0,
+          "total": 644.0
+        },
+        {
+          "wage_min": 16100.01,
+          "wage_max": 16200.0,
+          "employer": 648.0,
+          "employee": 0.0,
+          "total": 648.0
+        },
+        {
+          "wage_min": 16200.01,
+          "wage_max": 16300.0,
+          "employer": 652.0,
+          "employee": 0.0,
+          "total": 652.0
+        },
+        {
+          "wage_min": 16300.01,
+          "wage_max": 16400.0,
+          "employer": 656.0,
+          "employee": 0.0,
+          "total": 656.0
+        },
+        {
+          "wage_min": 16400.01,
+          "wage_max": 16500.0,
+          "employer": 660.0,
+          "employee": 0.0,
+          "total": 660.0
+        },
+        {
+          "wage_min": 16500.01,
+          "wage_max": 16600.0,
+          "employer": 664.0,
+          "employee": 0.0,
+          "total": 664.0
+        },
+        {
+          "wage_min": 16600.01,
+          "wage_max": 16700.0,
+          "employer": 668.0,
+          "employee": 0.0,
+          "total": 668.0
+        },
+        {
+          "wage_min": 16700.01,
+          "wage_max": 16800.0,
+          "employer": 672.0,
+          "employee": 0.0,
+          "total": 672.0
+        },
+        {
+          "wage_min": 16800.01,
+          "wage_max": 16900.0,
+          "employer": 676.0,
+          "employee": 0.0,
+          "total": 676.0
+        },
+        {
+          "wage_min": 16900.01,
+          "wage_max": 17000.0,
+          "employer": 680.0,
+          "employee": 0.0,
+          "total": 680.0
+        },
+        {
+          "wage_min": 17000.01,
+          "wage_max": 17100.0,
+          "employer": 684.0,
+          "employee": 0.0,
+          "total": 684.0
+        },
+        {
+          "wage_min": 17100.01,
+          "wage_max": 17200.0,
+          "employer": 688.0,
+          "employee": 0.0,
+          "total": 688.0
+        },
+        {
+          "wage_min": 17200.01,
+          "wage_max": 17300.0,
+          "employer": 692.0,
+          "employee": 0.0,
+          "total": 692.0
+        },
+        {
+          "wage_min": 17300.01,
+          "wage_max": 17400.0,
+          "employer": 696.0,
+          "employee": 0.0,
+          "total": 696.0
+        },
+        {
+          "wage_min": 17400.01,
+          "wage_max": 17500.0,
+          "employer": 700.0,
+          "employee": 0.0,
+          "total": 700.0
+        },
+        {
+          "wage_min": 17500.01,
+          "wage_max": 17600.0,
+          "employer": 704.0,
+          "employee": 0.0,
+          "total": 704.0
+        },
+        {
+          "wage_min": 17600.01,
+          "wage_max": 17700.0,
+          "employer": 708.0,
+          "employee": 0.0,
+          "total": 708.0
+        },
+        {
+          "wage_min": 17700.01,
+          "wage_max": 17800.0,
+          "employer": 712.0,
+          "employee": 0.0,
+          "total": 712.0
+        },
+        {
+          "wage_min": 17800.01,
+          "wage_max": 17900.0,
+          "employer": 716.0,
+          "employee": 0.0,
+          "total": 716.0
+        },
+        {
+          "wage_min": 17900.01,
+          "wage_max": 18000.0,
+          "employer": 720.0,
+          "employee": 0.0,
+          "total": 720.0
+        },
+        {
+          "wage_min": 18000.01,
+          "wage_max": 18100.0,
+          "employer": 724.0,
+          "employee": 0.0,
+          "total": 724.0
+        },
+        {
+          "wage_min": 18400.01,
+          "wage_max": 18500.0,
+          "employer": 740.0,
+          "employee": 0.0,
+          "total": 740.0
+        },
+        {
+          "wage_min": 18500.01,
+          "wage_max": 18600.0,
+          "employer": 744.0,
+          "employee": 0.0,
+          "total": 744.0
+        },
+        {
+          "wage_min": 18600.01,
+          "wage_max": 18700.0,
+          "employer": 748.0,
+          "employee": 0.0,
+          "total": 748.0
+        },
+        {
+          "wage_min": 18700.01,
+          "wage_max": 18800.0,
+          "employer": 752.0,
+          "employee": 0.0,
+          "total": 752.0
+        },
+        {
+          "wage_min": 18800.01,
+          "wage_max": 18900.0,
+          "employer": 756.0,
+          "employee": 0.0,
+          "total": 756.0
+        },
+        {
+          "wage_min": 18900.01,
+          "wage_max": 19000.0,
+          "employer": 760.0,
+          "employee": 0.0,
+          "total": 760.0
+        },
+        {
+          "wage_min": 19000.01,
+          "wage_max": 19100.0,
+          "employer": 764.0,
+          "employee": 0.0,
+          "total": 764.0
+        },
+        {
+          "wage_min": 19100.01,
+          "wage_max": 19200.0,
+          "employer": 768.0,
+          "employee": 0.0,
+          "total": 768.0
+        },
+        {
+          "wage_min": 19200.01,
+          "wage_max": 19300.0,
+          "employer": 772.0,
+          "employee": 0.0,
+          "total": 772.0
+        },
+        {
+          "wage_min": 19300.01,
+          "wage_max": 19400.0,
+          "employer": 776.0,
+          "employee": 0.0,
+          "total": 776.0
+        },
+        {
+          "wage_min": 19400.01,
+          "wage_max": 19500.0,
+          "employer": 780.0,
+          "employee": 0.0,
+          "total": 780.0
+        },
+        {
+          "wage_min": 19500.01,
+          "wage_max": 19600.0,
+          "employer": 784.0,
+          "employee": 0.0,
+          "total": 784.0
+        },
+        {
+          "wage_min": 19600.01,
+          "wage_max": 19700.0,
+          "employer": 788.0,
+          "employee": 0.0,
+          "total": 788.0
+        },
+        {
+          "wage_min": 19700.01,
+          "wage_max": 19800.0,
+          "employer": 792.0,
+          "employee": 0.0,
+          "total": 792.0
+        },
+        {
+          "wage_min": 19800.01,
+          "wage_max": 19900.0,
+          "employer": 796.0,
+          "employee": 0.0,
+          "total": 796.0
+        },
+        {
+          "wage_min": 19900.01,
+          "wage_max": 20000.0,
+          "employer": 800.0,
+          "employee": 0.0,
+          "total": 800.0
+        },
+        {
+          "wage_min": 20000.0,
+          "wage_max": null,
+          "employer_rate": 0.04,
+          "employee_rate": 0.0,
+          "note": "Percentage-based for wages exceeding this amount"
+        }
+      ]
+    },
+    "part_f": {
+      "description": "Part F",
+      "brackets": [
+        {
+          "wage_min": 0,
+          "wage_max": null,
+          "employer_rate": 0.02,
+          "employee_rate": 0.02,
+          "note": "Flat rate for all wages"
+        }
+      ]
+    }
   },
   "notes": [
     "Effective for October 2025 salary/wage (November 2025 contribution month)",
@@ -71,7 +8157,7 @@
     "Employer must make monthly payment on or before 15th of the month"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T13:26:47.110075+00:00",
+    "scraped_at": "2026-05-29T14:43:28.887187+00:00",
     "source": "https://www.kwsp.gov.my/en/employer/responsibilities/mandatory-contribution",
     "source_name": "Kumpulan Wang Simpanan Pekerja (KWSP)",
     "scraper_version": "0.1.0"

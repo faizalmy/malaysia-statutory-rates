@@ -55,7 +55,7 @@
         "min": 100001,
         "max": 400000,
         "rate": 0.25,
-        "base_tax": 9400.400000000001,
+        "base_tax": 9400.4,
         "M": 100000,
         "B_cat1_3": 9400,
         "B_cat2": 9400
@@ -82,12 +82,24 @@
         "min": 2000000,
         "max": null,
         "rate": 0.3,
-        "base_tax": 528401.1900000001,
+        "base_tax": 528401.19,
         "M": 2000000,
         "B_cat1_3": 528400,
         "B_cat2": 528400
       }
     ]
+  },
+  "tax_rebates": {
+    "threshold": 35000,
+    "rate": 0.15,
+    "category_1_3": 400,
+    "category_2": 800,
+    "above_threshold": {
+      "threshold": 35000,
+      "rate": 0.15,
+      "category_1_3": 0,
+      "category_2": 0
+    }
   },
   "tax_reliefs": {
     "reliefs": [
@@ -144,13 +156,13 @@
         "amount": 1000
       }
     ],
-    "note": "Reliefs extracted from PDF text — verify against official LHDN specification"
+    "note": "Employee can claim deductions and rebates in the relevant month subject to approval by employer by submitting Form TP1 (Exhibit 1) to the employer."
   },
   "notes": [
-    "Source: LHDN Specification for MTD Calculations 2026"
+    "SPECIFICATION FOR MONTHLY TAX DEDUCTION (MTD) CALCULATIONS USING COMPUTERIZED CALCULATION FOR 2026"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T13:31:51.672348+00:00",
+    "scraped_at": "2026-05-29T14:32:12.339260+00:00",
     "source": "https://www.hasil.gov.my/en/employers/mtd-schedular/",
     "source_name": "Lembaga Hasil Dalam Negeri Malaysia (LHDN)",
     "scraper_version": "0.1.0"

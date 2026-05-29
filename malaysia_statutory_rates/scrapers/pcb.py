@@ -73,6 +73,7 @@ class PCBScraper(BaseScraper):
                 "description": bracket_desc,
                 "brackets": brackets,
             },
+            "tax_rebates": rebates,
             "tax_reliefs": reliefs,
             "notes": notes,
         }
@@ -137,8 +138,9 @@ class PCBScraper(BaseScraper):
         if brackets:
             prev_b = 0
             for b in brackets:
-                b["base_tax"] = prev_b
+                b["base_tax"] = round(prev_b, 2)
                 prev_b += ((b.get("max", 0) or b["min"]) - b["M"] + 1) * b["rate"] if b["rate"] > 0 else 0
+                prev_b = round(prev_b, 2)
 
         return brackets
 
@@ -195,8 +197,33 @@ class PCBScraper(BaseScraper):
 
         return {
             "reliefs": reliefs,
-            "note": "Reliefs extracted from PDF text — verify against official LHDN specification",
+            "note": self._extract_relief_note(all_text),
         }
+
+    def _extract_relief_note(self, text: str) -> str | None:
+        """Extract relief-related disclaimer or note from PDF text."""
+        # Look for approval/subject-to note
+        match = re.search(
+            r"(Employee\s+can\s+claim\s+deductions[^.]{10,200}\.)",
+            text, re.IGNORECASE
+        )
+        if match:
+            return re.sub(r"\s+", " ", match.group(1).strip())
+        # Look for schedule note
+        match = re.search(
+            r"(Schedule\s+\w+\s+of\s+(?:the\s+)?Income\s+Tax[^.]{10,200}\.)",
+            text, re.IGNORECASE
+        )
+        if match:
+            return re.sub(r"\s+", " ", match.group(1).strip())
+        # Look for any subject-to note near reliefs
+        match = re.search(
+            r"(reliefs?\s+(?:are\s+)?(?:subject to|as provided|permitted)[^.]{10,200}\.)",
+            text, re.IGNORECASE
+        )
+        if match:
+            return re.sub(r"\s+", " ", match.group(1).strip())
+        return None
 
     @staticmethod
     def _parse_int(value: str) -> int:
@@ -230,15 +257,43 @@ class PCBScraper(BaseScraper):
                     return f"{desc} {' '.join(defs)}"
                 return desc
 
-        # Fallback
-        return f"Tax brackets for Monthly Tax Deduction (MTD/PCB) {year}"
+        # Fallback — try to construct from PDF title
+        for i in range(min(3, len(doc))):
+            page_text = doc[i].get_text("text")
+            title_match = re.search(
+                r"(MONTHLY\s+TAX\s+DEDUCTION[^\n]{10,200})",
+                page_text, re.IGNORECASE
+            )
+            if title_match:
+                return re.sub(r"\s+", " ", title_match.group(1).strip())
+
+        raise ValueError("Could not extract tax bracket description from PCB PDF")
 
     def _extract_notes(self, doc, year: int) -> list[str]:
         """Extract notes from PDF document."""
         notes = []
 
-        # Source reference
-        notes.append(f"Source: LHDN Specification for MTD Calculations {year}")
+        # Source reference — extract from PDF title block
+        for i in range(min(3, len(doc))):
+            page_text = doc[i].get_text("text")
+            if "SPECIFICATION" in page_text.upper() and "MTD" in page_text.upper():
+                # Extract title block between SPECIFICATION and Updated/Date
+                title_match = re.search(
+                    r"(SPECIFICATION\s+FOR\s+MONTHLY\s+TAX\s+DEDUCTION[^\n]*(?:\n[^\n]*?)*(?:\d{4}))",
+                    page_text, re.IGNORECASE
+                )
+                if title_match:
+                    title = re.sub(r"\s+", " ", title_match.group(1).strip())
+                    notes.append(title)
+                    break
+                # Simpler fallback
+                title_match = re.search(
+                    r"(SPECIFICATION[^\n]*MTD[^\n]*(?:\n[^\n]*?)*?\d{4})",
+                    page_text, re.IGNORECASE
+                )
+                if title_match:
+                    notes.append(re.sub(r"\s+", " ", title_match.group(1).strip()))
+                    break
 
         # Scan pages for category explanations
         for i in range(min(20, len(doc))):

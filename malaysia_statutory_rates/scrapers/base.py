@@ -141,6 +141,22 @@ class BaseScraper:
             raise RuntimeError(f"Firecrawl returned empty for {url}")
         return result.html or result.markdown
 
+    def _fetch_firecrawl_markdown(self, url: str) -> str:
+        """Fetch via Firecrawl, returning markdown (preferred for PDFs)."""
+        key = self._get_firecrawl_key()
+        if not key:
+            raise RuntimeError(
+                f"Cannot fetch {url}: httpx blocked and no Firecrawl API key available. "
+                "Set FIRECRAWL_API_KEY env var or store in macOS Keychain."
+            )
+        from firecrawl import FirecrawlApp
+
+        app = FirecrawlApp(api_key=key)
+        result = app.scrape_url(url, formats=["markdown"])
+        if not result or not result.markdown:
+            raise RuntimeError(f"Firecrawl returned empty for {url}")
+        return result.markdown
+
     def fetch(self, url: str, retries: int = 3) -> str:
         """Fetch URL with robots.txt check, cache, httpx first, Firecrawl fallback."""
         if not self._check_robots(url):
