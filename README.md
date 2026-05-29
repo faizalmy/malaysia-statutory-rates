@@ -124,18 +124,18 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 | `minimum_wage.py` | ✅ Complete | Rates, gazette, year all scraped from source |
 | `hrdf.py` | ✅ Complete | Rates, wage components, formula parsed from HTML |
 | `holidays.py` | ✅ Complete | Year, holidays scraped dynamically |
-| `epf.py` | 🔧 Partial | Rates scraped; year, effective_from, age_limits hardcoded |
-| `socso.py` | 🔧 Partial | Wage ceiling scraped; rates in Act 4 PDF, metadata hardcoded |
-| `eis.py` | 🔧 Partial | Wage ceiling scraped; rates in Act 800 PDF, metadata hardcoded |
+| `epf.py` | ✅ Complete | Year, effective_from, act, age_limits extracted from page |
+| `socso.py` | ✅ Complete | Year, effective_from, act, schemes extracted from page |
+| `eis.py` | ✅ Complete | Year, effective_from, act extracted from page |
 | `pcb_table.json` | ❌ No scraper | Manually maintained — tax brackets + reliefs from LHDN |
 | `foreign_worker_rates.json` | ❌ No scraper | Manually maintained — derived from EPF/SOCSO/EIS |
 
 ### Roadmap
 
-**Phase 1 — Easy metadata fixes (no PDF parsing):**
-- [ ] `epf.py`: extract year, effective_from, act, age_limits from page
-- [ ] `socso.py`: extract year, effective_from, scheme descriptions from page
-- [ ] `eis.py`: extract year, effective_from, act name from page
+**Phase 1 — Easy metadata fixes (no PDF parsing):** ✅ Done
+- [x] `epf.py`: extract year, effective_from, act, age_limits from page
+- [x] `socso.py`: extract year, effective_from, scheme descriptions from page
+- [x] `eis.py`: extract year, effective_from, act name from page
 
 **Phase 2 — Derived data:**
 - [ ] `foreign_worker_rates`: generate from existing EPF/SOCSO/EIS scraper output
