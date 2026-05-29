@@ -1,15 +1,20 @@
 """Scrape SOCSO contribution rates from PERKESO.
 
-Parses the rate of contribution page. The actual rate tables are in PDFs,
-but the HTML page has the wage ceiling, scheme descriptions, and PDF links.
+Parses the rate of contribution page for metadata (wage ceiling, PDF links,
+scheme descriptions, effective dates). The full 65-bracket rate table is
+loaded from seed data (socso_rate_table.json) extracted from the Act 4 PDF.
 """
 
+import json
 import re
 from datetime import datetime
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 
 from malaysia_statutory_rates.scrapers.base import BaseScraper
+
+_DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
 
 class SOCSOScraper(BaseScraper):
@@ -132,6 +137,13 @@ class SOCSOScraper(BaseScraper):
                 "Contribution due by 15th of following month",
             ],
         }
+
+        # Load rate table from seed data (extracted from Act 4 PDF)
+        rate_table_path = _DATA_DIR / "socso_rate_table.json"
+        if rate_table_path.exists():
+            rate_table = json.loads(rate_table_path.read_text(encoding="utf-8"))
+            data["rate_table"] = rate_table["rate_table"]
+            data["rate_table_source"] = rate_table["source"]
 
         if self.has_changed("socso_rates.json", data):
             return data

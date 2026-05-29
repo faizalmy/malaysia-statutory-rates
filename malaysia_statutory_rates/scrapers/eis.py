@@ -1,15 +1,20 @@
 """Scrape EIS contribution rates from PERKESO.
 
 EIS (Act 800) shares the same source page as SOCSO (Act 4).
-The actual rates are in the Act 800 PDF.
+The full 65-bracket rate table is loaded from seed data (eis_rate_table.json)
+extracted from the Act 800 PDF.
 """
 
+import json
 import re
 from datetime import datetime
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 
 from malaysia_statutory_rates.scrapers.base import BaseScraper
+
+_DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
 
 class EISScraper(BaseScraper):
@@ -80,6 +85,13 @@ class EISScraper(BaseScraper):
                 "Foreign workers are also covered under EIS",
             ],
         }
+
+        # Load rate table from seed data (extracted from Act 800 PDF)
+        rate_table_path = _DATA_DIR / "eis_rate_table.json"
+        if rate_table_path.exists():
+            rate_table = json.loads(rate_table_path.read_text(encoding="utf-8"))
+            data["rate_table"] = rate_table["rate_table"]
+            data["rate_table_source"] = rate_table["source"]
 
         if self.has_changed("eis_rates.json", data):
             return data

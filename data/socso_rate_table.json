@@ -1,53 +1,20 @@
 {
-  "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
-  "act": "Employees Social Security Act 1969 (Act 4)",
-  "year": 2024,
-  "effective_from": "2024-10-01",
+  "source": "https://www.perkeso.gov.my/images/dokumen/151124-Rate Contribution ACT 4.pdf",
+  "act": "Act 4",
   "wage_ceiling": 6000,
-  "pdf_url": "https://www.perkeso.gov.my/images/dokumen/151124-Rate Contribution ACT 4.pdf",
-  "announcement": "Update on Contribution Amount for Act 4 and Act 800 in accordance with the Increment of the Wage Ceiling Limit",
-  "schemes": {
-    "employment_injury": {
-      "full_name": "Employment Injury Scheme",
-      "employer_only": true,
-      "note": "Rate in Third Schedule (Act 4) PDF. Covers workplace accidents, commuting, occupational diseases."
+  "brackets": 65,
+  "schedules": {
+    "first_schedule": {
+      "name": "First Schedule (Employment Injury + Invalidity)",
+      "applies_to": "Employees aged 60 and below",
+      "description": "Employer pays Employment Injury + Invalidity share; Employee pays Invalidity share only"
     },
-    "invalidity": {
-      "full_name": "Invalidity Scheme",
-      "note": "Rate in Third Schedule (Act 4) PDF. Covers permanent disability not related to employment."
+    "second_schedule": {
+      "name": "Second Schedule (Employment Injury only)",
+      "applies_to": "Employees above 60 years",
+      "description": "Employer pays Employment Injury only; Employee pays nothing"
     }
   },
-  "self_employment_scheme": {
-    "act": "Act 789",
-    "rates": [
-      {
-        "insured_monthly_earning": "RM1,050",
-        "contribution_monthly": "RM13.10"
-      },
-      {
-        "insured_monthly_earning": "RM1,550",
-        "contribution_monthly": "RM19.40"
-      },
-      {
-        "insured_monthly_earning": "RM2,950",
-        "contribution_monthly": "RM36.90"
-      },
-      {
-        "insured_monthly_earning": "RM3,950",
-        "contribution_monthly": "RM49.40"
-      }
-    ]
-  },
-  "housewives_scheme": {
-    "act": "Act 838",
-    "contribution": "RM120 per year (paid in advance for 12 consecutive months)"
-  },
-  "notes": [
-    "Wage ceiling: RM6,000 per month (effective Oct 2024)",
-    "Actual contribution rates are in the Act 4 PDF (Third Schedule)",
-    "Foreign workers: Employment Injury only (no Invalidity scheme)",
-    "Contribution due by 15th of following month"
-  ],
   "rate_table": [
     {
       "wage_min": 0,
@@ -570,11 +537,11 @@
       "total_schedule2": 74.4
     }
   ],
-  "rate_table_source": "https://www.perkeso.gov.my/images/dokumen/151124-Rate Contribution ACT 4.pdf",
   "_metadata": {
-    "scraped_at": "2026-05-29T04:14:15.586452+00:00",
-    "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
-    "source_name": "Pertubuhan Keselamatan Sosial (PERKESO)",
-    "scraper_version": "0.1.0"
+    "scraped_at": "2026-05-29T04:15:15.427308+00:00",
+    "source": "https://www.perkeso.gov.my/images/dokumen/151124-Rate Contribution ACT 4.pdf",
+    "source_name": "PERKESO Act 4 PDF (OCR extracted)",
+    "scraper_version": "0.1.0",
+    "extraction_method": "OCR + manual verification"
   }
 }
