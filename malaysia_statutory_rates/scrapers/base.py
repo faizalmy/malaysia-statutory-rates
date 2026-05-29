@@ -1,5 +1,6 @@
 """Base scraper with httpx + Firecrawl fallback, robots.txt compliance, change detection."""
 
+import hashlib
 import json
 import os
 import time
@@ -16,6 +17,10 @@ load_dotenv(Path(__file__).parent.parent.parent / ".env")
 
 # Cache robots.txt parsers per domain
 _robots_cache: dict[str, RobotFileParser] = {}
+
+# Fetch cache settings
+CACHE_DIR = Path(__file__).parent.parent.parent / ".cache" / "fetch"
+CACHE_TTL = 24 * 60 * 60  # 24 hours in seconds
 
 
 def _get_robots(url: str) -> RobotFileParser:
@@ -77,6 +82,27 @@ class BaseScraper:
             print(f"    BLOCKED by robots.txt: {url}")
         return allowed
 
+    def _cache_key(self, url: str) -> Path:
+        """Return cache file path for a URL."""
+        url_hash = hashlib.sha256(url.encode()).hexdigest()[:16]
+        return CACHE_DIR / f"{url_hash}.html"
+
+    def _cache_get(self, url: str) -> str | None:
+        """Return cached HTML if fresh, else None."""
+        path = self._cache_key(url)
+        if not path.exists():
+            return None
+        age = time.time() - path.stat().st_mtime
+        if age > CACHE_TTL:
+            path.unlink(missing_ok=True)
+            return None
+        return path.read_text(encoding="utf-8")
+
+    def _cache_put(self, url: str, html: str) -> None:
+        """Store fetched HTML in cache."""
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        self._cache_key(url).write_text(html, encoding="utf-8")
+
     def _get_firecrawl_key(self) -> str | None:
         """Get Firecrawl API key from .env."""
         return os.environ.get("FIRECRAWL_API_KEY")
@@ -99,9 +125,16 @@ class BaseScraper:
         return result.html or result.markdown
 
     def fetch(self, url: str, retries: int = 3) -> str:
-        """Fetch URL with robots.txt check, httpx first, Firecrawl fallback."""
+        """Fetch URL with robots.txt check, cache, httpx first, Firecrawl fallback."""
         if not self._check_robots(url):
             raise RuntimeError(f"Blocked by robots.txt: {url}")
+
+        # Check cache first
+        cached = self._cache_get(url)
+        if cached is not None:
+            print(f"    {url}: cached (24h)")
+            return cached
+
         # Try httpx first
         for attempt in range(retries):
             try:
@@ -114,12 +147,17 @@ class BaseScraper:
                 body_text = soup.get_text(strip=True)
                 if len(body_text) < 200 and soup.find_all("script"):
                     print(f"    {url}: JS-only SPA shell detected, falling back to Firecrawl...")
-                    return self._fetch_firecrawl(url)
+                    result = self._fetch_firecrawl(url)
+                    self._cache_put(url, result)
+                    return result
+                self._cache_put(url, html)
                 return html
             except httpx.HTTPStatusError as e:
                 if e.response.status_code in (403, 429):
                     print(f"    {url}: {e.response.status_code}, falling back to Firecrawl...")
-                    return self._fetch_firecrawl(url)
+                    result = self._fetch_firecrawl(url)
+                    self._cache_put(url, result)
+                    return result
                 if attempt == retries - 1:
                     raise
                 wait = 2**attempt
@@ -129,7 +167,9 @@ class BaseScraper:
                 if attempt == retries - 1:
                     # Last attempt failed, try Firecrawl
                     print(f"    httpx failed ({e}), trying Firecrawl...")
-                    return self._fetch_firecrawl(url)
+                    result = self._fetch_firecrawl(url)
+                    self._cache_put(url, result)
+                    return result
                 wait = 2**attempt
                 print(f"    Retry {attempt + 1}/{retries} ({e}), waiting {wait}s...")
                 time.sleep(wait)
