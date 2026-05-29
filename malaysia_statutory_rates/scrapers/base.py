@@ -1,10 +1,12 @@
-"""Base scraper with httpx + Firecrawl fallback, change detection, JSON saving."""
+"""Base scraper with httpx + Firecrawl fallback, robots.txt compliance, change detection."""
 
 import json
 import os
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
+from urllib.robotparser import RobotFileParser
 
 import httpx
 from dotenv import load_dotenv
@@ -12,30 +14,51 @@ from dotenv import load_dotenv
 # Load .env from project root
 load_dotenv(Path(__file__).parent.parent.parent / ".env")
 
+# Cache robots.txt parsers per domain
+_robots_cache: dict[str, RobotFileParser] = {}
+
+
+def _get_robots(url: str) -> RobotFileParser:
+    """Fetch and cache robots.txt for a URL's domain."""
+    parsed = urlparse(url)
+    origin = f"{parsed.scheme}://{parsed.netloc}"
+    if origin not in _robots_cache:
+        rp = RobotFileParser()
+        robots_url = f"{origin}/robots.txt"
+        try:
+            rp.set_url(robots_url)
+            rp.read()
+        except Exception:
+            # If robots.txt unavailable, allow everything
+            rp.allow_all = True
+        _robots_cache[origin] = rp
+    return _robots_cache[origin]
+
+
+USER_AGENT = "malaysia-statutory-rates/0.1 (+https://github.com/faizalmy/malaysia-statutory-rates)"
+
 
 class BaseScraper:
     """Base class for all statutory rate scrapers.
 
     Fetching strategy:
-    1. Try httpx with browser-like headers
-    2. On 403/429, fall back to Firecrawl (if FIRECRAWL_API_KEY set)
+    1. Check robots.txt — skip if disallowed
+    2. Try httpx with browser-like headers
+    3. On 403/429, fall back to Firecrawl (if FIRECRAWL_API_KEY set)
     """
 
     SOURCE_URL: str = ""
     SOURCE_NAME: str = ""
 
-    def __init__(self, data_dir: Path | None = None):
+    def __init__(self, data_dir: Path | None = None, respect_robots: bool = True):
         self.data_dir = data_dir or Path(__file__).parent.parent.parent / "data"
         self.data_dir.mkdir(parents=True, exist_ok=True)
+        self.respect_robots = respect_robots
         self.client = httpx.Client(
             timeout=30,
             follow_redirects=True,
             headers={
-                "User-Agent": (
-                    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/131.0.0.0 Safari/537.36"
-                ),
+                "User-Agent": USER_AGENT,
                 "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
                 "Accept-Language": "en-MY,en;q=0.9,en-US;q=0.8",
                 "Accept-Encoding": "gzip, deflate, br",
@@ -43,6 +66,16 @@ class BaseScraper:
                 "Upgrade-Insecure-Requests": "1",
             },
         )
+
+    def _check_robots(self, url: str) -> bool:
+        """Return True if URL is allowed by robots.txt."""
+        if not self.respect_robots:
+            return True
+        rp = _get_robots(url)
+        allowed = rp.can_fetch(USER_AGENT, url)
+        if not allowed:
+            print(f"    BLOCKED by robots.txt: {url}")
+        return allowed
 
     def _get_firecrawl_key(self) -> str | None:
         """Get Firecrawl API key from .env."""
@@ -66,7 +99,9 @@ class BaseScraper:
         return result.html or result.markdown
 
     def fetch(self, url: str, retries: int = 3) -> str:
-        """Fetch URL with httpx first, Firecrawl fallback on 403/429."""
+        """Fetch URL with robots.txt check, httpx first, Firecrawl fallback."""
+        if not self._check_robots(url):
+            raise RuntimeError(f"Blocked by robots.txt: {url}")
         # Try httpx first
         for attempt in range(retries):
             try:

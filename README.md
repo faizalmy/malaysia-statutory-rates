@@ -98,10 +98,11 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 
 ### How it works
 
-1. Each scraper tries httpx first (fast, no API cost)
-2. On 403/429, falls back to Firecrawl (uses 1 credit per scrape)
-3. Data is saved to `data/*.json` with `_metadata` (scraped_at, source)
-4. Change detection — only writes if data actually changed
+1. Checks `robots.txt` — skips if URL is disallowed
+2. Each scraper tries httpx first (fast, no API cost)
+3. On 403/429, falls back to Firecrawl (uses 1 credit per scrape)
+4. Data is saved to `data/*.json` with `_metadata` (scraped_at, source)
+5. Change detection — only writes if data actually changed
 
 ### Sources
 
