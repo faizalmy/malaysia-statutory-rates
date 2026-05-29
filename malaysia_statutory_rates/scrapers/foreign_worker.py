@@ -56,7 +56,9 @@ class ForeignWorkerScraper(BaseScraper):
         socso_rate_table = socso.get("rate_table", [])
         # Get the contribution amount at wage ceiling (last row)
         socso_at_ceiling = socso_rate_table[-1] if socso_rate_table else {}
-        socso_wage_ceiling = socso.get("wage_ceiling", 6000)
+        socso_wage_ceiling = socso.get("wage_ceiling")
+        if socso_wage_ceiling is None:
+            raise ValueError("SOCSO wage_ceiling not available — run socso scraper first")
 
         socso_data = {
             "source": socso.get("source", ""),
@@ -77,7 +79,9 @@ class ForeignWorkerScraper(BaseScraper):
         # EIS: same rates as citizens (equal employer/employee split)
         eis_rate_table = eis.get("rate_table", [])
         eis_at_ceiling = eis_rate_table[-1] if eis_rate_table else {}
-        eis_wage_ceiling = eis.get("wage_ceiling", 6000)
+        eis_wage_ceiling = eis.get("wage_ceiling")
+        if eis_wage_ceiling is None:
+            raise ValueError("EIS wage_ceiling not available — run eis scraper first")
 
         eis_data = {
             "source": eis.get("source", ""),

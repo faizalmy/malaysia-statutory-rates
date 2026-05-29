@@ -5,11 +5,11 @@ import pytest
 from malaysia_statutory_rates.scrapers.pdf_parser import (
     _parse_amount,
     _extract_table,
+    _find_table_pages,
     get_booklet_path,
     extract_socso_table,
     extract_eis_table,
     BOOKLET_CACHE_DIR,
-    BOOKLET_FILENAME,
     BOOKLET_URL,
 )
 
@@ -44,10 +44,39 @@ class TestParseAmount:
 
 
 class TestGetBookletPath:
-    def test_get_booklet_path(self):
+    def test_get_booklet_path_returns_pdf(self):
         path = get_booklet_path()
-        assert path == BOOKLET_CACHE_DIR / BOOKLET_FILENAME
         assert str(path).endswith(".pdf")
+
+    def test_get_booklet_path_in_cache_dir(self):
+        path = get_booklet_path()
+        assert str(path).startswith(str(BOOKLET_CACHE_DIR))
+
+
+class TestFindTablePages:
+    def test_find_act4_pages_from_cached_pdf(self):
+        import fitz
+        path = get_booklet_path()
+        if not path.exists():
+            pytest.skip("PERKESO booklet not cached")
+        doc = fitz.open(path)
+        from malaysia_statutory_rates.scrapers.pdf_parser import _ACT4_HEADER
+        start, end = _find_table_pages(doc, _ACT4_HEADER, num_cols=4)
+        doc.close()
+        assert start >= 0
+        assert end > start
+
+    def test_find_act800_pages_from_cached_pdf(self):
+        import fitz
+        path = get_booklet_path()
+        if not path.exists():
+            pytest.skip("PERKESO booklet not cached")
+        doc = fitz.open(path)
+        from malaysia_statutory_rates.scrapers.pdf_parser import _ACT800_HEADER
+        start, end = _find_table_pages(doc, _ACT800_HEADER, num_cols=3)
+        doc.close()
+        assert start >= 0
+        assert end > start
 
 
 class TestExtractSocsoTable:

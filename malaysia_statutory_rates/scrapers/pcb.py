@@ -14,7 +14,12 @@ from malaysia_statutory_rates.scrapers.base import BaseScraper
 
 PCB_PDF_URL = "https://www.hasil.gov.my/media/arvlrzh5/spesifikasi-kaedah-pengiraan-berkomputer-pcb-2026.pdf"
 PCB_CACHE_DIR = Path(__file__).parent.parent.parent / ".cache" / "pdf"
-PCB_FILENAME = "pcb-2026-specification.pdf"
+
+
+def _pcb_filename() -> str:
+    """Derive PCB filename from the URL."""
+    name = PCB_PDF_URL.rsplit("/", 1)[-1].split("?")[0]
+    return name if name.endswith(".pdf") else "pcb-specification.pdf"
 
 
 class PCBScraper(BaseScraper):
@@ -45,14 +50,14 @@ class PCBScraper(BaseScraper):
         date_match = re.search(r"Updated\s*:\s*(\d{1,2}\s+\w+\s+\d{4})", page1_text)
         updated = date_match.group(1) if date_match else None
 
-        # Parse Table 1 (tax brackets) from page 12
-        table1_text = doc[11].get_text("text")
+        # Parse Table 1 (tax brackets) — search for page with bracket data
+        table1_text = self._find_page_with(doc, r"5,001\s*[-–]\s*20,000")
         brackets = self._extract_brackets(table1_text)
         if not brackets:
             raise ValueError("Could not parse tax brackets from PCB specification PDF")
 
-        # Parse Table 3 (rebates) from page 17
-        table3_text = doc[16].get_text("text")
+        # Parse Table 3 (rebates) — search for "Table 3" header
+        table3_text = self._find_page_with(doc, r"Table\s+3.*Value\s+of\s+P.*R\s+and\s+T")
         rebates = self._extract_rebates(table3_text)
 
         # Parse reliefs from pages 27-36
@@ -85,7 +90,7 @@ class PCBScraper(BaseScraper):
     def _download_pdf(self) -> Path:
         """Download and cache the PCB specification PDF."""
         PCB_CACHE_DIR.mkdir(parents=True, exist_ok=True)
-        pdf_path = PCB_CACHE_DIR / PCB_FILENAME
+        pdf_path = PCB_CACHE_DIR / _pcb_filename()
 
         # Check cache (valid for 7 days)
         if pdf_path.exists():
@@ -95,12 +100,43 @@ class PCBScraper(BaseScraper):
                 print(f"    PCB PDF: cached ({pdf_path})")
                 return pdf_path
 
+        # Also check for any existing PCB-related PDF in cache
+        if not pdf_path.exists():
+            for cached in PCB_CACHE_DIR.glob("*pcb*specification*.pdf"):
+                import time
+                age = time.time() - cached.stat().st_mtime
+                if age < 7 * 24 * 60 * 60:
+                    print(f"    PCB PDF: cached ({cached})")
+                    return cached
+            # Broader fallback: any hasil.gov.my PDF
+            for cached in PCB_CACHE_DIR.glob("spesifikasi*.pdf"):
+                import time
+                age = time.time() - cached.stat().st_mtime
+                if age < 7 * 24 * 60 * 60:
+                    print(f"    PCB PDF: cached ({cached})")
+                    return cached
+
         print(f"    Downloading PCB specification PDF...")
         resp = httpx.get(PCB_PDF_URL, follow_redirects=True, timeout=30)
         resp.raise_for_status()
         pdf_path.write_bytes(resp.content)
         print(f"    Downloaded {len(resp.content)} bytes to {pdf_path}")
         return pdf_path
+
+    @staticmethod
+    def _find_page_with(doc, pattern: str) -> str:
+        """Find the first page whose text matches the regex pattern.
+
+        Returns the page text.
+
+        Raises ValueError if no page matches.
+        """
+        compiled = re.compile(pattern, re.IGNORECASE)
+        for i in range(len(doc)):
+            text = doc[i].get_text("text")
+            if compiled.search(text):
+                return text
+        raise ValueError(f"Could not find page matching pattern: {pattern}")
 
     def _extract_brackets(self, page_text: str) -> list[dict]:
         """Extract tax brackets from Table 1 page text."""
@@ -179,10 +215,12 @@ class PCBScraper(BaseScraper):
         reliefs = []
         relief_sections = []
 
-        # Scan pages 27-36 for relief data
-        for i in range(26, min(36, len(doc))):
+        # Scan all pages for relief data — look for pages with relief patterns
+        for i in range(len(doc)):
             page_text = doc[i].get_text("text")
-            relief_sections.append(page_text)
+            # Relief pages contain "Individual" with amounts and "limited to" language
+            if re.search(r"[a-z]\.\s+.*?(?:limited to|amount).*?RM[\d,]+", page_text, re.IGNORECASE):
+                relief_sections.append(page_text)
 
         all_text = "\n".join(relief_sections)
 

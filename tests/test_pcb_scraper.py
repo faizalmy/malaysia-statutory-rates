@@ -5,7 +5,9 @@ from pathlib import Path
 
 import pytest
 
-from malaysia_statutory_rates.scrapers.pcb import PCBScraper, PCB_CACHE_DIR, PCB_FILENAME
+from malaysia_statutory_rates.scrapers.pcb import PCBScraper, PCB_CACHE_DIR, _pcb_filename
+
+PCB_FILENAME = _pcb_filename()
 
 
 @pytest.fixture
