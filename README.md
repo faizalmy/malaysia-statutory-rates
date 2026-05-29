@@ -98,11 +98,13 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 
 ### How it works
 
-1. Checks `robots.txt` — skips if URL is disallowed
-2. Each scraper tries httpx first (fast, no API cost)
-3. On 403/429, falls back to Firecrawl (uses 1 credit per scrape)
-4. Data is saved to `data/*.json` with `_metadata` (scraped_at, source)
-5. Change detection — only writes if data actually changed
+1. Checks local cache (`.cache/fetch/`) — returns if < 24h old
+2. Checks `robots.txt` — skips if URL is disallowed
+3. Each scraper tries httpx first (fast, no API cost)
+4. On 403/429 or JS-only SPA shell, falls back to Firecrawl (uses 1 credit)
+5. Successful responses cached for 24 hours to save credits
+6. Data is saved to `data/*.json` with `_metadata` (scraped_at, source)
+7. Change detection — only writes if data actually changed
 
 ### Sources
 
@@ -111,9 +113,35 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 | kwsp.gov.my (EPF) | Firecrawl fallback | Returns 403 to httpx |
 | perkeso.gov.my (SOCSO/EIS) | httpx | Rate PDFs linked from page |
 | gajiminimum.mohr.gov.my | httpx | Minimum wage gazette |
-| hrdcorp.gov.my (HRDF) | httpx | Levy rates page |
+| hrdcorp.gov.my (HRDF) | Firecrawl fallback | JS SPA — httpx gets empty shell |
 | publicholidays.com.my | httpx | Third-party, scrapes table |
 | LHDN (PCB) | Manual | e-CP39 requires login |
+
+## Scraper Status
+
+| Scraper | Status | Notes |
+|---|---|---|
+| `minimum_wage.py` | ✅ Complete | Rates, gazette, year all scraped from source |
+| `hrdf.py` | ✅ Complete | Rates, wage components, formula parsed from HTML |
+| `holidays.py` | ✅ Complete | Year, holidays scraped dynamically |
+| `epf.py` | 🔧 Partial | Rates scraped; year, effective_from, age_limits hardcoded |
+| `socso.py` | 🔧 Partial | Wage ceiling scraped; rates in Act 4 PDF, metadata hardcoded |
+| `eis.py` | 🔧 Partial | Wage ceiling scraped; rates in Act 800 PDF, metadata hardcoded |
+| `pcb_table.json` | ❌ No scraper | Manually maintained — tax brackets + reliefs from LHDN |
+| `foreign_worker_rates.json` | ❌ No scraper | Manually maintained — derived from EPF/SOCSO/EIS |
+
+### Roadmap
+
+**Phase 1 — Easy metadata fixes (no PDF parsing):**
+- [ ] `epf.py`: extract year, effective_from, act, age_limits from page
+- [ ] `socso.py`: extract year, effective_from, scheme descriptions from page
+- [ ] `eis.py`: extract year, effective_from, act name from page
+
+**Phase 2 — Derived data:**
+- [ ] `foreign_worker_rates`: generate from existing EPF/SOCSO/EIS scraper output
+
+**Phase 3 — New scraper (PDF parsing):**
+- [ ] `pcb_table`: scrape LHDN page for tax brackets and reliefs
 
 ## What This Is NOT
 
