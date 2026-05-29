@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "malaysia-statutory-rates"
+version = "0.1.0"
+description = "Open-source Malaysian statutory rate data — EPF, SOCSO, EIS, PCB, minimum wage, HRDF, public holidays. Scraper + data only."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Faizal My" }]
+keywords = ["malaysia", "epf", "socso", "eis", "pcb", "payroll", "statutory", "rates"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial",
+]
+
+[project.optional-dependencies]
+scraper = [
+    "httpx>=0.27",
+    "beautifulsoup4>=4.12",
+    "pdfplumber>=0.11",
+    "lxml>=5.0",
+]
+api = [
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+malaysia-rates = "malaysia_statutory_rates.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/faizalmy/malaysia-statutory-rates"
+Repository = "https://github.com/faizalmy/malaysia-statutory-rates"
+Issues = "https://github.com/faizalmy/malaysia-statutory-rates/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["malaysia_statutory_rates"]
+artifacts = ["data/*.json"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
