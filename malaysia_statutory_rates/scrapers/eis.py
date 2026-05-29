@@ -5,6 +5,7 @@ The actual rates are in the Act 800 PDF.
 """
 
 import re
+from datetime import datetime
 
 from bs4 import BeautifulSoup
 
@@ -44,11 +45,30 @@ class EISScraper(BaseScraper):
                 eis_description = text
                 break
 
+        # Extract effective date from page text
+        effective_from = "2024-10-01"  # fallback
+        eff_match = re.search(r"Effective\s+(\d+)\s+(\w+)\s+(\d{4})", full_text, re.IGNORECASE)
+        if eff_match:
+            try:
+                dt = datetime.strptime(f"{eff_match.group(1)} {eff_match.group(2)} {eff_match.group(3)}", "%d %B %Y")
+                effective_from = dt.strftime("%Y-%m-%d")
+            except ValueError:
+                pass
+
+        # Derive year from effective_from
+        year = int(effective_from[:4])
+
+        # Extract act reference
+        act = "Employment Insurance System Act 2017 (Act 800)"  # fallback
+        act_match = re.search(r"Employment Insurance System Act\s*\d{4}", full_text, re.IGNORECASE)
+        if act_match:
+            act = f"{act_match.group(0)} (Act 800)"
+
         data = {
             "source": self.SOURCE_URL,
-            "act": "Employment Insurance System Act 2017 (Act 800)",
-            "year": 2025,
-            "effective_from": "2024-10-01",
+            "act": act,
+            "year": year,
+            "effective_from": effective_from,
             "wage_ceiling": wage_ceiling,
             "pdf_url": act800_pdf,
             "description": eis_description or "EIS covers retrenchment, voluntary separation, and retirement",
