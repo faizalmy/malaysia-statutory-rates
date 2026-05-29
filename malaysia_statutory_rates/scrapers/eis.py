@@ -6,14 +6,16 @@ The full 65-bracket rate table is parsed live from the PERKESO booklet PDF.
 
 import re
 from datetime import datetime
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 
 from malaysia_statutory_rates.scrapers.base import BaseScraper
-from malaysia_statutory_rates.scrapers.pdf_parser import (
-    BOOKLET_URL,
-    extract_eis_table,
-)
+from malaysia_statutory_rates.scrapers.pdf_parser import extract_eis_table
+
+# PERKESO booklet PDF URL (shared with SOCSO scraper)
+BOOKLET_URL = "https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf"
+BOOKLET_CACHE_DIR = Path(__file__).parent.parent.parent / ".cache" / "pdf"
 
 
 class EISScraper(BaseScraper):
@@ -38,13 +40,13 @@ class EISScraper(BaseScraper):
         # Extract Act 800 PDF link
         act800_pdf = None
         for a in soup.find_all("a", href=True):
-            href = a["href"]
+            href = str(a["href"])
             if href.endswith(".pdf") and ("ACT 800" in href.upper() or "ACT800" in href.upper()):
                 act800_pdf = href if href.startswith("http") else f"https://www.perkeso.gov.my{href}"
                 break
 
         # Find EIS mention on the page
-        eis_description = ""
+        eis_description = None
         for p in soup.find_all("p"):
             text = p.get_text(strip=True)
             if "0.4%" in text or "0.2%" in text or "employment insurance" in text.lower():
@@ -74,14 +76,6 @@ class EISScraper(BaseScraper):
         if act is None:
             raise ValueError("Could not extract act reference from EIS page")
 
-        # Find EIS description
-        eis_description = None
-        for p in soup.find_all("p"):
-            text = p.get_text(strip=True)
-            if "0.4%" in text or "0.2%" in text or "employment insurance" in text.lower():
-                eis_description = text
-                break
-
         data = {
             "source": self.SOURCE_URL,
             "act": act,
@@ -93,10 +87,16 @@ class EISScraper(BaseScraper):
             "notes": self._extract_notes(full_text, wage_ceiling, act800_pdf),
         }
 
-        # Parse rate table live from PERKESO booklet PDF
+        # Download PERKESO booklet and parse rate table
         try:
-            data["rate_table"] = extract_eis_table()
-            data["rate_table_source"] = BOOKLET_URL
+            import fitz
+            booklet_path = self._download_binary(BOOKLET_URL, BOOKLET_CACHE_DIR / BOOKLET_URL.rsplit("/", 1)[-1])
+            doc = fitz.open(booklet_path)
+            try:
+                data["rate_table"] = extract_eis_table(doc)
+                data["rate_table_source"] = BOOKLET_URL
+            finally:
+                doc.close()
         except Exception as e:
             print(f"    WARNING: Could not parse EIS rate table: {e}")
 

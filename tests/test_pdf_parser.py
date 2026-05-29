@@ -1,16 +1,16 @@
 """Tests for pdf_parser module."""
 
 import pytest
+import fitz
 
 from malaysia_statutory_rates.scrapers.pdf_parser import (
     _parse_amount,
     _extract_table,
     _find_table_pages,
-    get_booklet_path,
     extract_socso_table,
     extract_eis_table,
-    BOOKLET_CACHE_DIR,
-    BOOKLET_URL,
+    _ACT4_HEADER,
+    _ACT800_HEADER,
 )
 
 
@@ -43,48 +43,52 @@ class TestParseAmount:
         assert _parse_amount("") is None
 
 
-class TestGetBookletPath:
-    def test_get_booklet_path_returns_pdf(self):
-        path = get_booklet_path()
-        assert str(path).endswith(".pdf")
-
-    def test_get_booklet_path_in_cache_dir(self):
-        path = get_booklet_path()
-        assert str(path).startswith(str(BOOKLET_CACHE_DIR))
+def _get_cached_booklet():
+    """Find cached PERKESO booklet PDF."""
+    from pathlib import Path
+    cache_dir = Path(__file__).parent.parent / ".cache" / "pdf"
+    candidates = sorted(cache_dir.glob("*BOOKLET*.pdf"), key=lambda p: p.stat().st_mtime, reverse=True)
+    if candidates:
+        return candidates[0]
+    return None
 
 
 class TestFindTablePages:
-    def test_find_act4_pages_from_cached_pdf(self):
-        import fitz
-        path = get_booklet_path()
-        if not path.exists():
+    def test_find_act4_pages(self):
+        path = _get_cached_booklet()
+        if not path:
             pytest.skip("PERKESO booklet not cached")
         doc = fitz.open(path)
-        from malaysia_statutory_rates.scrapers.pdf_parser import _ACT4_HEADER
-        start, end = _find_table_pages(doc, _ACT4_HEADER, num_cols=4)
-        doc.close()
-        assert start >= 0
-        assert end > start
+        try:
+            start, end = _find_table_pages(doc, _ACT4_HEADER, num_cols=4)
+            assert start >= 0
+            assert end > start
+        finally:
+            doc.close()
 
-    def test_find_act800_pages_from_cached_pdf(self):
-        import fitz
-        path = get_booklet_path()
-        if not path.exists():
+    def test_find_act800_pages(self):
+        path = _get_cached_booklet()
+        if not path:
             pytest.skip("PERKESO booklet not cached")
         doc = fitz.open(path)
-        from malaysia_statutory_rates.scrapers.pdf_parser import _ACT800_HEADER
-        start, end = _find_table_pages(doc, _ACT800_HEADER, num_cols=3)
-        doc.close()
-        assert start >= 0
-        assert end > start
+        try:
+            start, end = _find_table_pages(doc, _ACT800_HEADER, num_cols=3)
+            assert start >= 0
+            assert end > start
+        finally:
+            doc.close()
 
 
 class TestExtractSocsoTable:
     def test_extract_socso_table_from_cached_pdf(self):
-        path = get_booklet_path()
-        if not path.exists():
+        path = _get_cached_booklet()
+        if not path:
             pytest.skip("PERKESO booklet not cached")
-        table = extract_socso_table()
+        doc = fitz.open(path)
+        try:
+            table = extract_socso_table(doc)
+        finally:
+            doc.close()
         assert len(table) > 0
         assert "row" in table[0]
         assert "wage_min" in table[0]
@@ -94,39 +98,29 @@ class TestExtractSocsoTable:
         assert "total_schedule1" in table[0]
         assert "total_schedule2" in table[0]
 
-    def test_extract_socso_table_from_doc(self):
-        import fitz
-        path = get_booklet_path()
-        if not path.exists():
+    def test_extract_socso_table_first_row_wages(self):
+        path = _get_cached_booklet()
+        if not path:
             pytest.skip("PERKESO booklet not cached")
         doc = fitz.open(path)
-        table = extract_socso_table(doc=doc)
-        doc.close()
-        assert len(table) > 0
-
-    def test_extract_socso_table_file_not_found(self, monkeypatch):
-        monkeypatch.setattr(
-            "malaysia_statutory_rates.scrapers.pdf_parser.get_booklet_path",
-            lambda: Path("/nonexistent/booklet.pdf"),
-        )
-        with pytest.raises(FileNotFoundError):
-            extract_socso_table()
-
-    def test_extract_socso_table_first_row_wages(self):
-        path = get_booklet_path()
-        if not path.exists():
-            pytest.skip("PERKESO booklet not cached")
-        table = extract_socso_table()
+        try:
+            table = extract_socso_table(doc)
+        finally:
+            doc.close()
         assert table[0]["wage_min"] == 0
         assert table[0]["wage_max"] == 30
 
 
 class TestExtractEisTable:
     def test_extract_eis_table_from_cached_pdf(self):
-        path = get_booklet_path()
-        if not path.exists():
+        path = _get_cached_booklet()
+        if not path:
             pytest.skip("PERKESO booklet not cached")
-        table = extract_eis_table()
+        doc = fitz.open(path)
+        try:
+            table = extract_eis_table(doc)
+        finally:
+            doc.close()
         assert len(table) > 0
         assert "row" in table[0]
         assert "wage_min" in table[0]
@@ -135,32 +129,14 @@ class TestExtractEisTable:
         assert "employee" in table[0]
         assert "total" in table[0]
 
-    def test_extract_eis_table_from_doc(self):
-        import fitz
-        path = get_booklet_path()
-        if not path.exists():
+    def test_extract_eis_table_first_row_wages(self):
+        path = _get_cached_booklet()
+        if not path:
             pytest.skip("PERKESO booklet not cached")
         doc = fitz.open(path)
-        table = extract_eis_table(doc=doc)
-        doc.close()
-        assert len(table) > 0
-
-    def test_extract_eis_table_file_not_found(self, monkeypatch):
-        monkeypatch.setattr(
-            "malaysia_statutory_rates.scrapers.pdf_parser.get_booklet_path",
-            lambda: Path("/nonexistent/booklet.pdf"),
-        )
-        with pytest.raises(FileNotFoundError):
-            extract_eis_table()
-
-    def test_extract_eis_table_first_row_wages(self):
-        path = get_booklet_path()
-        if not path.exists():
-            pytest.skip("PERKESO booklet not cached")
-        table = extract_eis_table()
+        try:
+            table = extract_eis_table(doc)
+        finally:
+            doc.close()
         assert table[0]["wage_min"] == 0
         assert table[0]["wage_max"] == 30
-
-
-# Need to import Path for the monkeypatch test
-from pathlib import Path

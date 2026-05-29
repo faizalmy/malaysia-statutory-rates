@@ -3,19 +3,13 @@
 Extracts Act 4 (SOCSO) and Act 800 (EIS) rate tables from the
 text-based PERKESO booklet using pymupdf (no OCR needed).
 
-Table pages are located by searching for header text, not hardcoded page numbers.
+This module is parse-only — callers are responsible for downloading
+the booklet PDF and passing an opened fitz.Document.
 """
 
 import re
-from pathlib import Path
 
 import fitz  # pymupdf
-
-# PERKESO booklet URL
-BOOKLET_URL = "https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf"
-
-# Cache directory for downloaded PDFs
-BOOKLET_CACHE_DIR = Path(__file__).parent.parent.parent / ".cache" / "pdf"
 
 # Header patterns used to locate rate tables inside the booklet PDF
 # Act 4: match the "ACT 4 CONTRIBUTION SCHEDULE" heading on the table page
@@ -37,34 +31,6 @@ def _parse_amount(text: str) -> float | None:
     if m:
         return int(m.group(1)) / 100
     return None
-
-
-def get_booklet_path() -> Path:
-    """Return path to cached booklet PDF."""
-    # Find the most recent cached PERKESO booklet PDF
-    candidates = sorted(BOOKLET_CACHE_DIR.glob("*BOOKLET*.pdf"), key=lambda p: p.stat().st_mtime, reverse=True)
-    if candidates:
-        return candidates[0]
-    # Derive filename from URL
-    filename = BOOKLET_URL.rsplit("/", 1)[-1].split("?")[0]
-    return BOOKLET_CACHE_DIR / filename
-
-
-def _download_booklet() -> Path:
-    """Download the PERKESO booklet PDF if not cached."""
-    import httpx
-
-    path = get_booklet_path()
-    if path.exists():
-        return path
-
-    BOOKLET_CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"    Downloading PERKESO booklet from {BOOKLET_URL}...")
-    resp = httpx.get(BOOKLET_URL, follow_redirects=True, timeout=60)
-    resp.raise_for_status()
-    path.write_bytes(resp.content)
-    print(f"    Downloaded {len(resp.content)} bytes to {path}")
-    return path
 
 
 def _find_table_pages(doc: fitz.Document, header_pattern: re.Pattern,
@@ -200,24 +166,18 @@ def _extract_table(doc: fitz.Document, page_start: int, page_end: int,
     return rows
 
 
-def extract_socso_table(doc: fitz.Document | None = None) -> list[dict]:
+def extract_socso_table(doc: fitz.Document) -> list[dict]:
     """Extract Act 4 (SOCSO) 65-bracket rate table.
+
+    Args:
+        doc: Opened pymupdf document (caller owns the document).
 
     Returns list of dicts with keys:
         row, wage_min, wage_max,
         employer_schedule1, employee_schedule1, total_schedule1, total_schedule2
     """
-    close_doc = doc is None
-    if doc is None:
-        path = _download_booklet()
-        doc = fitz.open(path)
-
-    try:
-        start, end = _find_table_pages(doc, _ACT4_HEADER, num_cols=4)
-        raw = _extract_table(doc, start, end, num_cols=4)
-    finally:
-        if close_doc:
-            doc.close()
+    start, end = _find_table_pages(doc, _ACT4_HEADER, num_cols=4)
+    raw = _extract_table(doc, start, end, num_cols=4)
 
     return [
         {
@@ -233,23 +193,17 @@ def extract_socso_table(doc: fitz.Document | None = None) -> list[dict]:
     ]
 
 
-def extract_eis_table(doc: fitz.Document | None = None) -> list[dict]:
+def extract_eis_table(doc: fitz.Document) -> list[dict]:
     """Extract Act 800 (EIS) 65-bracket rate table.
+
+    Args:
+        doc: Opened pymupdf document (caller owns the document).
 
     Returns list of dicts with keys:
         row, wage_min, wage_max, employer, employee, total
     """
-    close_doc = doc is None
-    if doc is None:
-        path = _download_booklet()
-        doc = fitz.open(path)
-
-    try:
-        start, end = _find_table_pages(doc, _ACT800_HEADER, num_cols=3)
-        raw = _extract_table(doc, start, end, num_cols=3)
-    finally:
-        if close_doc:
-            doc.close()
+    start, end = _find_table_pages(doc, _ACT800_HEADER, num_cols=3)
+    raw = _extract_table(doc, start, end, num_cols=3)
 
     return [
         {

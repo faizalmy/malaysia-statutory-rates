@@ -1,25 +1,24 @@
 """Scrape PCB/MTD tax data from LHDN specification PDF.
 
-Downloads the LHDN MTD specification PDF, parses tax brackets (Table 1),
-rebates (Table 3), and reliefs from the document text.
+Parses tax brackets (Table 1), rebates (Table 3), and reliefs from
+the LHDN MTD specification PDF.
 """
 
 import re
 from pathlib import Path
 
-import httpx
-
 from malaysia_statutory_rates.scrapers.base import BaseScraper
-
 
 PCB_PDF_URL = "https://www.hasil.gov.my/media/arvlrzh5/spesifikasi-kaedah-pengiraan-berkomputer-pcb-2026.pdf"
 PCB_CACHE_DIR = Path(__file__).parent.parent.parent / ".cache" / "pdf"
 
 
-def _pcb_filename() -> str:
-    """Derive PCB filename from the URL."""
+def _pcb_cache_path() -> Path:
+    """Derive PCB cache path from the URL."""
     name = PCB_PDF_URL.rsplit("/", 1)[-1].split("?")[0]
-    return name if name.endswith(".pdf") else "pcb-specification.pdf"
+    if not name.endswith(".pdf"):
+        name = "pcb-specification.pdf"
+    return PCB_CACHE_DIR / name
 
 
 class PCBScraper(BaseScraper):
@@ -30,50 +29,47 @@ class PCBScraper(BaseScraper):
 
     def scrape(self) -> dict | None:
         """Download PCB specification PDF and parse tax data from it."""
-        pdf_path = self._download_pdf()
+        import fitz
 
-        try:
-            import fitz
-        except ImportError:
-            raise ImportError("pymupdf is required for PCB PDF parsing: pip install pymupdf")
-
+        pdf_path = self._download_binary(PCB_PDF_URL, _pcb_cache_path())
         doc = fitz.open(pdf_path)
 
-        # Extract year from title page
-        page1_text = doc[0].get_text("text")
-        year_match = re.search(r"(20\d{2})", page1_text)
-        if not year_match:
-            raise ValueError("Could not extract year from PCB specification PDF")
-        year = int(year_match.group(1))
+        try:
+            # Extract year from title page
+            page1_text = doc[0].get_text("text")
+            year_match = re.search(r"(20\d{2})", page1_text)
+            if not year_match:
+                raise ValueError("Could not extract year from PCB specification PDF")
+            year = int(year_match.group(1))
 
-        # Extract amendment date
-        date_match = re.search(r"Updated\s*:\s*(\d{1,2}\s+\w+\s+\d{4})", page1_text)
-        updated = date_match.group(1) if date_match else None
+            # Extract amendment date
+            date_match = re.search(r"Updated\s*:\s*(\d{1,2}\s+\w+\s+\d{4})", page1_text)
+            updated = date_match.group(1) if date_match else None
 
-        # Parse Table 1 (tax brackets) — search for page with bracket data
-        table1_text = self._find_page_with(doc, r"5,001\s*[-–]\s*20,000")
-        brackets = self._extract_brackets(table1_text)
-        if not brackets:
-            raise ValueError("Could not parse tax brackets from PCB specification PDF")
+            # Parse Table 1 (tax brackets) — search for page with bracket data
+            table1_text = self._find_page_with(doc, r"5,001\s*[-–]\s*20,000")
+            brackets = self._extract_brackets(table1_text)
+            if not brackets:
+                raise ValueError("Could not parse tax brackets from PCB specification PDF")
 
-        # Parse Table 3 (rebates) — search for "Table 3" header
-        table3_text = self._find_page_with(doc, r"Table\s+3.*Value\s+of\s+P.*R\s+and\s+T")
-        rebates = self._extract_rebates(table3_text)
+            # Parse Table 3 (rebates) — search for "Table 3" header
+            table3_text = self._find_page_with(doc, r"Table\s+3.*Value\s+of\s+P.*R\s+and\s+T")
+            rebates = self._extract_rebates(table3_text)
 
-        # Parse reliefs from pages 27-36
-        reliefs = self._extract_reliefs(doc)
+            # Parse reliefs — scan all pages for relief patterns
+            reliefs = self._extract_reliefs(doc)
 
-        # Extract description and notes before closing
-        bracket_desc = self._extract_bracket_description(doc, year)
-        notes = self._extract_notes(doc, year)
+            # Extract description and notes
+            bracket_desc = self._extract_bracket_description(doc, year)
+            notes = self._extract_notes(doc, year)
 
-        doc.close()
+        finally:
+            doc.close()
 
         data = {
             "source": self.SOURCE_URL,
             "year": year,
             "updated": updated,
-            "specification_pdf": str(pdf_path),
             "tax_brackets": {
                 "description": bracket_desc,
                 "brackets": brackets,
@@ -86,42 +82,6 @@ class PCBScraper(BaseScraper):
         if self.has_changed("pcb_table.json", data):
             return data
         return None
-
-    def _download_pdf(self) -> Path:
-        """Download and cache the PCB specification PDF."""
-        PCB_CACHE_DIR.mkdir(parents=True, exist_ok=True)
-        pdf_path = PCB_CACHE_DIR / _pcb_filename()
-
-        # Check cache (valid for 7 days)
-        if pdf_path.exists():
-            import time
-            age = time.time() - pdf_path.stat().st_mtime
-            if age < 7 * 24 * 60 * 60:
-                print(f"    PCB PDF: cached ({pdf_path})")
-                return pdf_path
-
-        # Also check for any existing PCB-related PDF in cache
-        if not pdf_path.exists():
-            for cached in PCB_CACHE_DIR.glob("*pcb*specification*.pdf"):
-                import time
-                age = time.time() - cached.stat().st_mtime
-                if age < 7 * 24 * 60 * 60:
-                    print(f"    PCB PDF: cached ({cached})")
-                    return cached
-            # Broader fallback: any hasil.gov.my PDF
-            for cached in PCB_CACHE_DIR.glob("spesifikasi*.pdf"):
-                import time
-                age = time.time() - cached.stat().st_mtime
-                if age < 7 * 24 * 60 * 60:
-                    print(f"    PCB PDF: cached ({cached})")
-                    return cached
-
-        print(f"    Downloading PCB specification PDF...")
-        resp = httpx.get(PCB_PDF_URL, follow_redirects=True, timeout=30)
-        resp.raise_for_status()
-        pdf_path.write_bytes(resp.content)
-        print(f"    Downloaded {len(resp.content)} bytes to {pdf_path}")
-        return pdf_path
 
     @staticmethod
     def _find_page_with(doc, pattern: str) -> str:

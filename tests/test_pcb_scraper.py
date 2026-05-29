@@ -1,13 +1,11 @@
 """Tests for PCBScraper."""
 
-from unittest.mock import MagicMock, patch, PropertyMock
+from unittest.mock import MagicMock, patch
 from pathlib import Path
 
 import pytest
 
-from malaysia_statutory_rates.scrapers.pcb import PCBScraper, PCB_CACHE_DIR, _pcb_filename
-
-PCB_FILENAME = _pcb_filename()
+from malaysia_statutory_rates.scrapers.pcb import PCBScraper, PCB_CACHE_DIR, _pcb_cache_path
 
 
 @pytest.fixture
@@ -84,59 +82,44 @@ class TestPCBExtractRebates:
         assert rebates == {}
 
 
-class TestPCBDownloadPdf:
-    def test_download_pdf_cached(self, pcb_scraper, tmp_path, monkeypatch):
-        cache_dir = tmp_path / "pdf"
-        cache_dir.mkdir()
-        pdf_path = cache_dir / PCB_FILENAME
-        pdf_path.write_bytes(b"fake pdf content")
-        monkeypatch.setattr("malaysia_statutory_rates.scrapers.pcb.PCB_CACHE_DIR", cache_dir)
-        result = pcb_scraper._download_pdf()
-        assert result == pdf_path
+class TestPCBCachePath:
+    def test_cache_path_is_pdf(self):
+        path = _pcb_cache_path()
+        assert str(path).endswith(".pdf")
 
-    def test_download_pdf_downloads(self, pcb_scraper, tmp_path, monkeypatch):
-        cache_dir = tmp_path / "pdf"
-        cache_dir.mkdir()
-        monkeypatch.setattr("malaysia_statutory_rates.scrapers.pcb.PCB_CACHE_DIR", cache_dir)
-        mock_resp = MagicMock()
-        mock_resp.content = b"fake pdf content"
-        mock_resp.raise_for_status = MagicMock()
-        with patch("malaysia_statutory_rates.scrapers.pcb.httpx") as mock_httpx:
-            mock_httpx.get.return_value = mock_resp
-            result = pcb_scraper._download_pdf()
-        assert result.exists()
-        assert result.read_bytes() == b"fake pdf content"
+    def test_cache_path_in_cache_dir(self):
+        path = _pcb_cache_path()
+        assert str(path).startswith(str(PCB_CACHE_DIR))
 
 
 class TestPCBScrape:
-    def test_scrape_success_with_cached_pdf(self, pcb_scraper, tmp_path):
+    def test_scrape_success_with_cached_pdf(self, pcb_scraper):
         """Test scrape with the actual cached PCB PDF if available."""
-        pdf_path = PCB_CACHE_DIR / PCB_FILENAME
-        if not pdf_path.exists():
-            pytest.skip("PCB PDF not cached")
-        pcb_scraper._download_pdf = MagicMock(return_value=pdf_path)
+        path = _pcb_cache_path()
+        if not path.exists():
+            # Try old filename
+            old = PCB_CACHE_DIR / "pcb-2026-specification.pdf"
+            if old.exists():
+                path = old
+            else:
+                pytest.skip("PCB PDF not cached")
+        pcb_scraper._download_binary = MagicMock(return_value=path)
         pcb_scraper.has_changed = MagicMock(return_value=True)
         result = pcb_scraper.scrape()
         assert result is not None
         assert result["year"] == 2026
         assert len(result["tax_brackets"]["brackets"]) > 0
+        assert "specification_pdf" not in result  # no absolute path in output
 
-    def test_scrape_unchanged_returns_none(self, pcb_scraper, tmp_path):
-        pdf_path = PCB_CACHE_DIR / PCB_FILENAME
-        if not pdf_path.exists():
-            pytest.skip("PCB PDF not cached")
-        pcb_scraper._download_pdf = MagicMock(return_value=pdf_path)
+    def test_scrape_unchanged_returns_none(self, pcb_scraper):
+        path = _pcb_cache_path()
+        if not path.exists():
+            old = PCB_CACHE_DIR / "pcb-2026-specification.pdf"
+            if old.exists():
+                path = old
+            else:
+                pytest.skip("PCB PDF not cached")
+        pcb_scraper._download_binary = MagicMock(return_value=path)
         pcb_scraper.has_changed = MagicMock(return_value=False)
         result = pcb_scraper.scrape()
         assert result is None
-
-    def test_scrape_no_year_raises(self, pcb_scraper, tmp_path):
-        """Test that missing year in PDF raises ValueError."""
-        pdf_path = PCB_CACHE_DIR / PCB_FILENAME
-        if not pdf_path.exists():
-            pytest.skip("PCB PDF not cached")
-        pcb_scraper._download_pdf = MagicMock(return_value=pdf_path)
-        # We can easily test this without mocking since the real PDF has year
-        pcb_scraper.has_changed = MagicMock(return_value=True)
-        result = pcb_scraper.scrape()
-        assert result["year"] is not None

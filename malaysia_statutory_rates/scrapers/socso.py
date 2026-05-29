@@ -7,14 +7,16 @@ parsed live from the PERKESO booklet PDF.
 
 import re
 from datetime import datetime
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 
 from malaysia_statutory_rates.scrapers.base import BaseScraper
-from malaysia_statutory_rates.scrapers.pdf_parser import (
-    BOOKLET_URL,
-    extract_socso_table,
-)
+from malaysia_statutory_rates.scrapers.pdf_parser import extract_socso_table
+
+# PERKESO booklet PDF URL
+BOOKLET_URL = "https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf"
+BOOKLET_CACHE_DIR = Path(__file__).parent.parent.parent / ".cache" / "pdf"
 
 
 class SOCSOScraper(BaseScraper):
@@ -40,7 +42,7 @@ class SOCSOScraper(BaseScraper):
         act4_pdf = None
         act800_pdf = None
         for a in soup.find_all("a", href=True):
-            href = a["href"]
+            href = str(a["href"])
             if href.endswith(".pdf"):
                 if "ACT 4" in href.upper() or "ACT4" in href.upper():
                     act4_pdf = href if href.startswith("http") else f"https://www.perkeso.gov.my{href}"
@@ -133,10 +135,16 @@ class SOCSOScraper(BaseScraper):
             "notes": self._extract_notes(full_text, wage_ceiling, effective_from),
         }
 
-        # Parse rate table live from PERKESO booklet PDF
+        # Download PERKESO booklet and parse rate table
         try:
-            data["rate_table"] = extract_socso_table()
-            data["rate_table_source"] = BOOKLET_URL
+            import fitz
+            booklet_path = self._download_binary(BOOKLET_URL, BOOKLET_CACHE_DIR / BOOKLET_URL.rsplit("/", 1)[-1])
+            doc = fitz.open(booklet_path)
+            try:
+                data["rate_table"] = extract_socso_table(doc)
+                data["rate_table_source"] = BOOKLET_URL
+            finally:
+                doc.close()
         except Exception as e:
             print(f"    WARNING: Could not parse SOCSO rate table: {e}")
 

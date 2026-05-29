@@ -215,6 +215,43 @@ class BaseScraper:
         """
         raise NotImplementedError
 
+    def _download_binary(self, url: str, cache_path: Path, cache_ttl: int = 7 * 24 * 60 * 60) -> Path:
+        """Download a binary file (PDF etc.) with robots.txt check, cache, retries.
+
+        Args:
+            url: URL to download.
+            cache_path: Where to store the cached file.
+            cache_ttl: Cache TTL in seconds (default 7 days).
+
+        Returns:
+            Path to the downloaded/cached file.
+        """
+        if cache_path.exists():
+            age = time.time() - cache_path.stat().st_mtime
+            if age < cache_ttl:
+                print(f"    Cached: {cache_path.name}")
+                return cache_path
+
+        if not self._check_robots(url):
+            raise RuntimeError(f"Blocked by robots.txt: {url}")
+
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        print(f"    Downloading {url}...")
+        for attempt in range(3):
+            try:
+                resp = self.client.get(url)
+                resp.raise_for_status()
+                cache_path.write_bytes(resp.content)
+                print(f"    Downloaded {len(resp.content)} bytes to {cache_path.name}")
+                return cache_path
+            except httpx.HTTPError as e:
+                if attempt == 2:
+                    raise
+                wait = 2 ** attempt
+                print(f"    Retry {attempt + 1}/3 ({e}), waiting {wait}s...")
+                time.sleep(wait)
+        raise RuntimeError(f"Failed to download {url}")
+
     def save(self, filename: str, data: dict) -> Path:
         """Save data to JSON with metadata."""
         data["_metadata"] = {
