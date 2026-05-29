@@ -84,11 +84,12 @@ class SOCSOScraper(BaseScraper):
         # Derive year from effective_from
         year = int(effective_from[:4])
 
-        # Extract act reference
+        # Extract act reference — PERKESO page uses "Act 4" not full name
         act = None
-        act_match = re.search(r"Employees Social Security Act\s*\d{4}", full_text, re.IGNORECASE)
+        # Look for "Act 4" in context of SOCSO/contribution
+        act_match = re.search(r"Act\s+4\b", full_text, re.IGNORECASE)
         if act_match:
-            act = f"{act_match.group(0)} (Act 4)"
+            act = "Employees Social Security Act 1969 (Act 4)"
         if act is None:
             raise ValueError("Could not extract act reference from SOCSO page")
 

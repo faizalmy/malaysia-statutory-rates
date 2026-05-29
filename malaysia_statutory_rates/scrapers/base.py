@@ -23,16 +23,33 @@ CACHE_DIR = Path(__file__).parent.parent.parent / ".cache" / "fetch"
 CACHE_TTL = 24 * 60 * 60  # 24 hours in seconds
 
 
-def _get_robots(url: str) -> RobotFileParser:
-    """Fetch and cache robots.txt for a URL's domain."""
-    parsed = urlparse(url)
-    origin = f"{parsed.scheme}://{parsed.netloc}"
+def _get_robots(url: str):
+    """Get robots.txt parser for URL origin, with caching."""
+    from urllib.parse import urlparse
+    origin = f"{urlparse(url).scheme}://{urlparse(url).netloc}"
     if origin not in _robots_cache:
         rp = RobotFileParser()
         robots_url = f"{origin}/robots.txt"
         try:
             rp.set_url(robots_url)
             rp.read()
+            # Detect Cloudflare challenges or invalid robots.txt
+            # RobotFileParser defaults to disallow-all when it can't parse
+            # Check if it's actually blocking everything (likely a CF challenge)
+            if not rp.allow_all and not rp.can_fetch(USER_AGENT, origin + "/"):
+                # Fetch robots.txt directly to verify it's actual robots.txt
+                import httpx
+                try:
+                    resp = httpx.get(robots_url, timeout=10, follow_redirects=True)
+                    content_type = resp.headers.get("content-type", "")
+                    text = resp.text[:500]
+                    # If it's HTML (Cloudflare challenge) or has no disallow rules, allow all
+                    if "text/html" in content_type or "<html" in text.lower() or "Disallow" not in text:
+                        rp.allow_all = True
+                        rp.disallow_all = False
+                except Exception:
+                    rp.allow_all = True
+                    rp.disallow_all = False
         except Exception:
             # If robots.txt unavailable, allow everything
             rp.allow_all = True

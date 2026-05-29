@@ -118,7 +118,7 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 | `epf.py` | Done | HTML |
 | `socso.py` | Done | HTML + PDF |
 | `eis.py` | Done | HTML + PDF |
-| `pcb_table.json` | No scraper | Manual — LHDN e-CP39 requires login |
+| `pcb.py` | Done | PDF download + metadata (data manually verified against LHDN spec) |
 | `foreign_worker_rates.json` | Done | Derived from EPF/SOCSO/EIS |
 
 ### PDF Parsing
@@ -128,10 +128,6 @@ SOCSO and EIS rate tables (65 wage brackets each) are parsed from the
 using pymupdf. Pages 36–39 for Act 4, 52–55 for Act 800.
 
 Cached at `.cache/pdf/2025-BOOKLET_PERKESO_BI.pdf`.
-
-### Todo
-
-- [ ] `pcb_table`: scrape LHDN page for tax brackets and reliefs
 
 ## Disclaimer
 

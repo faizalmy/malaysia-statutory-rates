@@ -66,11 +66,11 @@ class EISScraper(BaseScraper):
         # Derive year from effective_from
         year = int(effective_from[:4])
 
-        # Extract act reference
+        # Extract act reference — PERKESO page uses "Act 800" not full name
         act = None
-        act_match = re.search(r"Employment Insurance System Act\s*\d{4}", full_text, re.IGNORECASE)
+        act_match = re.search(r"Act\s+800\b", full_text, re.IGNORECASE)
         if act_match:
-            act = f"{act_match.group(0)} (Act 800)"
+            act = "Employment Insurance System Act 2017 (Act 800)"
         if act is None:
             raise ValueError("Could not extract act reference from EIS page")
 
