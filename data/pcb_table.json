@@ -2,7 +2,6 @@
   "source": "https://www.hasil.gov.my/en/employers/mtd-schedular/",
   "year": 2026,
   "updated": "01 January 2026",
-  "specification_pdf": "/Users/faizal/Sites/games/aiagents/malaysia-statutory-rates/.cache/pdf/pcb-2026-specification.pdf",
   "tax_brackets": {
     "description": "MONTHLY TAX DEDUCTION (MTD) FOR COMPUTERIZED CALCULATION \n \n- 9 \n \na.",
     "brackets": [
@@ -104,65 +103,17 @@
   "tax_reliefs": {
     "reliefs": [
       {
-        "name": "Individual",
-        "amount": 2000
-      },
-      {
-        "name": "Employees Provident Fund (EPF) or Other Approved",
-        "amount": 8000
-      },
-      {
-        "name": "medical care and treatment provided by a nursing home; and",
-        "amount": 1000
-      },
-      {
-        "name": "Basic Supporting Equipment",
-        "amount": 700000
-      },
-      {
-        "name": "up to tertiary level (other than Masters and Doctorate level) for",
-        "amount": 2000
-      },
-      {
-        "name": "Expenses on Admission Fees to Tourist Centres and Cultural",
-        "amount": 1000000
-      },
-      {
-        "name": "COVID-19 and influenza detection test fee:",
-        "amount": 1000
-      },
-      {
-        "name": "Net Deposit in Skim Simpanan Pendidikan Nasional (SSPN)",
-        "amount": 800000
-      },
-      {
-        "name": "tax relief can only be claimed by either mother or father, who make SSPN",
-        "amount": 500
-      },
-      {
-        "name": "Payment of Alimony to Former Wife",
-        "amount": 4000
-      },
-      {
-        "name": "Life Insurance and EPF",
-        "amount": 3000
-      },
-      {
-        "name": "Education and Medical Insurance",
-        "amount": 350
-      },
-      {
-        "name": "Lifestyle",
+        "name": "Additional Lifestyle.",
         "amount": 1000
       }
     ],
-    "note": "Employee can claim deductions and rebates in the relevant month subject to approval by employer by submitting Form TP1 (Exhibit 1) to the employer."
+    "note": null
   },
   "notes": [
     "SPECIFICATION FOR MONTHLY TAX DEDUCTION (MTD) CALCULATIONS USING COMPUTERIZED CALCULATION FOR 2026"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T14:32:12.339260+00:00",
+    "scraped_at": "2026-05-29T15:12:12.388276+00:00",
     "source": "https://www.hasil.gov.my/en/employers/mtd-schedular/",
     "source_name": "Lembaga Hasil Dalam Negeri Malaysia (LHDN)",
     "scraper_version": "0.1.0"
