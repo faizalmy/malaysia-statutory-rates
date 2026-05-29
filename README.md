@@ -121,6 +121,10 @@ This library provides **data only**. It does NOT:
 - Calculate tax (PCB)
 - Determine which rates apply to a specific employee
 
+## Disclaimer
+
+This data is scraped from official government websites for reference only. Always verify rates against [official sources](DISCLAIMER.md) before making payroll or tax decisions. Use at your own risk.
+
 ## License
 
 MIT
