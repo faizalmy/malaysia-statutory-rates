@@ -21,10 +21,18 @@
 - 24-hour HTML/PDF cache, change detection via digest
 - PDF parsers: pymupdf for PERKESO booklet (SOCSO/EIS brackets) and LHDN specification (PCB brackets/reliefs/rebates)
 
+### Bug fixes
+- PCB scraper: fixed `doc.close()` called before `_extract_bracket_description()` and `_extract_notes()`
+
 ### API
 - `load_rates()` — load all rates as dict
 - `load_rate(name)` — load a single rate
-- CLI: `malaysia-rates show [rate]` and `malaysia-rates scrape --all`
+- CLI: `malaysia-statutory-rates show [rate]` and `malaysia-statutory-rates scrape --all`
 
 ### Tests
-- 61 tests covering all 8 data files (schema, values, metadata)
+- 265 tests (91% code coverage)
+- Data file tests: schema, values, metadata for all 8 JSON files
+- Scraper tests: mocked HTTP responses for all 8 scrapers
+- Base scraper tests: caching, robots.txt, Firecrawl fallback, change detection
+- CLI tests: show, scrape, argument parsing
+- PDF parser tests: amount parsing, table extraction from PERKESO booklet
