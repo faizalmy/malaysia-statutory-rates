@@ -1,6 +1,8 @@
 # malaysia-statutory-rates
 
-Open-source Malaysian statutory rate data. Scraper + data only.
+Open-source Malaysian statutory rate data — EPF, SOCSO, EIS, PCB, minimum wage, HRDF, public holidays.
+
+**Scraper + data only.** No calculation engine.
 
 ## Install
 
@@ -25,11 +27,20 @@ rates = load_rates()
 
 # EPF rates
 epf = rates["epf_rates"]
-employee_rate = epf["rates"]["citizen_below_60"]["employee"]["rate"]  # 0.11
+employee_rate = epf["rates"]["malaysian_pr_nonmy_before_aug98_below_60"]["employee"]["rate"]  # 0.11
+employer_rate = epf["rates"]["malaysian_pr_nonmy_before_aug98_below_60"]["employer"]["wage_lte_5000"]["rate"]  # 0.13
 
 # Minimum wage
 mw = rates["minimum_wage"]
 min_salary = mw["rates"]["nationwide"]["monthly"]  # 1700
+
+# SOCSO wage ceiling
+socso = rates["socso_rates"]
+ceiling = socso["wage_ceiling"]  # 6000
+
+# Public holidays
+holidays = rates["public_holidays"]
+national = [h for h in holidays["holidays"] if h.get("national")]
 ```
 
 ### CLI
@@ -52,13 +63,56 @@ malaysia-rates scrape --all
 | File | Source | Content |
 |---|---|---|
 | `data/epf_rates.json` | kwsp.gov.my | EPF contribution rates by citizenship, age, wage bracket |
-| `data/socso_rates.json` | perkeso.gov.my | SOCSO rates (Employment Injury + Invalidity) |
-| `data/eis_rates.json` | perkeso.gov.my | EIS contribution rates |
-| `data/pcb_table.json` | hasil.gov.my | PCB/MTD tax deduction tables |
-| `data/minimum_wage.json` | mohr.gov.my | Minimum wage by area type |
-| `data/hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates |
-| `data/public_holidays.json` | moha.gov.my | National + state public holidays |
+| `data/socso_rates.json` | perkeso.gov.my | SOCSO rates (Employment Injury + Invalidity), Act 4 PDF link |
+| `data/eis_rates.json` | perkeso.gov.my | EIS contribution rates, Act 800 PDF link |
+| `data/pcb_table.json` | LHDN e-CP39 | PCB/MTD tax brackets and reliefs |
+| `data/minimum_wage.json` | gajiminimum.mohr.gov.my | Minimum wage (monthly + hourly) |
+| `data/hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates and formula |
+| `data/public_holidays.json` | publicholidays.com.my | National + state public holidays |
 | `data/foreign_worker_rates.json` | Combined | EPF/SOCSO/EIS rates for foreign workers |
+
+## Scraping
+
+Scrapers fetch live data from official government websites. Most sites are scraped directly with httpx. Sites that block automated requests (like kwsp.gov.my) fall back to [Firecrawl](https://firecrawl.dev).
+
+### Setup
+
+```bash
+# Install scraper dependencies
+pip install malaysia-statutory-rates[scraper]
+
+# Copy .env and add your Firecrawl API key (optional, only needed for blocked sites)
+cp .env.example .env
+```
+
+### Run
+
+```bash
+# Run all scrapers
+malaysia-rates scrape --all
+
+# Via Python
+from malaysia_statutory_rates.scrapers import run_scrapers
+results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
+```
+
+### How it works
+
+1. Each scraper tries httpx first (fast, no API cost)
+2. On 403/429, falls back to Firecrawl (uses 1 credit per scrape)
+3. Data is saved to `data/*.json` with `_metadata` (scraped_at, source)
+4. Change detection — only writes if data actually changed
+
+### Sources
+
+| Source | Method | Notes |
+|---|---|---|
+| kwsp.gov.my (EPF) | Firecrawl fallback | Returns 403 to httpx |
+| perkeso.gov.my (SOCSO/EIS) | httpx | Rate PDFs linked from page |
+| gajiminimum.mohr.gov.my | httpx | Minimum wage gazette |
+| hrdcorp.gov.my (HRDF) | httpx | Levy rates page |
+| publicholidays.com.my | httpx | Third-party, scrapes table |
+| LHDN (PCB) | Manual | e-CP39 requires login |
 
 ## What This Is NOT
 
@@ -66,12 +120,6 @@ This library provides **data only**. It does NOT:
 - Calculate payroll
 - Calculate tax (PCB)
 - Determine which rates apply to a specific employee
-
-You build the calculation logic. We provide the rates.
-
-## Data Sources
-
-All data is scraped from official Malaysian government websites.
 
 ## License
 
