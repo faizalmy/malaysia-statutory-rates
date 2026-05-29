@@ -63,10 +63,8 @@ malaysia-rates scrape --all
 | File | Source | Content |
 |---|---|---|
 | `data/epf_rates.json` | kwsp.gov.my | EPF contribution rates by citizenship, age, wage bracket |
-| `data/socso_rates.json` | perkeso.gov.my | SOCSO metadata + 65-bracket rate table (2 schedules) |
-| `data/socso_rate_table.json` | Act 4 PDF (seed) | SOCSO contribution rate table — 65 wage brackets, RM0–RM6,000 |
-| `data/eis_rates.json` | perkeso.gov.my | EIS metadata + 65-bracket rate table |
-| `data/eis_rate_table.json` | Act 800 PDF (seed) | EIS contribution rate table — 65 wage brackets, equal 0.2% split |
+| `data/socso_rates.json` | perkeso.gov.my + booklet PDF | SOCSO metadata + 65-bracket rate table (2 schedules) |
+| `data/eis_rates.json` | perkeso.gov.my + booklet PDF | EIS metadata + 65-bracket rate table |
 | `data/pcb_table.json` | LHDN e-CP39 | PCB/MTD tax brackets and reliefs |
 | `data/minimum_wage.json` | gajiminimum.mohr.gov.my | Minimum wage (monthly + hourly) |
 | `data/hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates and formula |
@@ -113,7 +111,7 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 | Source | Method | Notes |
 |---|---|---|
 | kwsp.gov.my (EPF) | Firecrawl fallback | Returns 403 to httpx |
-| perkeso.gov.my (SOCSO/EIS) | httpx | Rate PDFs linked from page |
+| perkeso.gov.my (SOCSO/EIS) | httpx + PDF parse | Metadata from HTML; rate tables from booklet PDF |
 | gajiminimum.mohr.gov.my | httpx | Minimum wage gazette |
 | hrdcorp.gov.my (HRDF) | Firecrawl fallback | JS SPA — httpx gets empty shell |
 | publicholidays.com.my | httpx | Third-party, scrapes table |
@@ -127,18 +125,19 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 | `hrdf.py` | ✅ Complete | Firecrawl HTML | Rates, wage components, formula parsed from HTML |
 | `holidays.py` | ✅ Complete | HTML scrape | Year, holidays scraped dynamically |
 | `epf.py` | ✅ Complete | HTML scrape | Year, effective_from, act, age_limits from page |
-| `socso.py` | ✅ Metadata scraped | HTML + seed | Metadata from page; 65-bracket rate table from seed data (Act 4 PDF is scanned image, OCR inaccurate) |
-| `eis.py` | ✅ Metadata scraped | HTML + seed | Metadata from page; 65-bracket rate table from seed data (Act 800 PDF is scanned image, OCR inaccurate) |
+| `socso.py` | ✅ Complete | HTML + PDF | Metadata from page; 65-bracket rate table parsed live from PERKESO booklet |
+| `eis.py` | ✅ Complete | HTML + PDF | Metadata from page; 65-bracket rate table parsed live from PERKESO booklet |
 | `pcb_table.json` | ❌ No scraper | Manual | LHDN e-CP39 requires login |
 | `foreign_worker_rates.json` | ✅ Generated | Derived | Computed from EPF/SOCSO/EIS scraper output |
 
-### Seed Data
+### PDF Parsing
 
-SOCSO and EIS contribution rate tables (65 wage brackets each) are stored as seed data files because the source PDFs are low-quality scanned images. All tested OCR libraries (tesseract, Firecrawl, img2table, surya-ocr, marker-pdf) produced inaccurate results on these PDFs.
+SOCSO and EIS rate tables (65 wage brackets each) are parsed live from the
+[PERKESO 2025 Booklet](https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf)
+— a text-based PDF with clean embedded text (no OCR needed). The parser uses
+pymupdf to extract table data from specific pages (36–39 for Act 4, 52–55 for Act 800).
 
-Seed files: `data/socso_rate_table.json`, `data/eis_rate_table.json`
-
-Source PDFs cached at: `.cache/pdf/`
+The booklet PDF is cached at `.cache/pdf/perkeso_booklet_2025.pdf`.
 
 ### Roadmap
 
@@ -150,11 +149,11 @@ Source PDFs cached at: `.cache/pdf/`
 **Phase 2 — Derived data:** ✅ Done
 - [x] `foreign_worker_rates`: generate from existing EPF/SOCSO/EIS scraper output
 
-**Phase 3 — PDF parsing for rate tables:**
-- [ ] Find high-quality PDF source (text-based, not scanned) for SOCSO Act 4 / EIS Act 800
-- [ ] Integrate PDF parser to dynamically extract 65-bracket rate tables
-- [ ] Remove seed data dependency, generate `rate_table` from PDF at scrape time
-- [ ] Cache downloaded PDFs in `.cache/pdf/`
+**Phase 3 — PDF parsing for rate tables:** ✅ Done
+- [x] Find high-quality PDF source — PERKESO 2025 Booklet (text-based, 74 pages)
+- [x] Integrate PDF parser (`pdf_parser.py`) with pymupdf — extracts 65-bracket tables
+- [x] Remove seed data dependency, generate `rate_table` from PDF at scrape time
+- [x] Cache booklet PDF in `.cache/pdf/`
 
 **Phase 4 — New scraper:**
 - [ ] `pcb_table`: scrape LHDN page for tax brackets and reliefs

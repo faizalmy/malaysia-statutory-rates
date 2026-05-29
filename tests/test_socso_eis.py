@@ -123,9 +123,11 @@ def test_eis_rate_table_cap():
     assert cap["total"] == 23.8
 
 
-def test_socso_rate_table_seed_file():
-    assert (DATA_DIR / "socso_rate_table.json").exists()
+def test_socso_rate_table_source():
+    data = json.loads((DATA_DIR / "socso_rates.json").read_text())
+    assert "BOOKLET" in data.get("rate_table_source", "")
 
 
-def test_eis_rate_table_seed_file():
-    assert (DATA_DIR / "eis_rate_table.json").exists()
+def test_eis_rate_table_source():
+    data = json.loads((DATA_DIR / "eis_rates.json").read_text())
+    assert "BOOKLET" in data.get("rate_table_source", "")
