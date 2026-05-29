@@ -5,6 +5,7 @@ but the HTML page has the wage ceiling, scheme descriptions, and PDF links.
 """
 
 import re
+from datetime import datetime
 
 from bs4 import BeautifulSoup
 
@@ -61,11 +62,47 @@ class SOCSOScraper(BaseScraper):
                 announcement = text
                 break
 
+        # Extract effective date from page text
+        effective_from = "2024-10-01"  # fallback
+        eff_match = re.search(r"Effective\s+(\d+)\s+(\w+)\s+(\d{4})", full_text, re.IGNORECASE)
+        if eff_match:
+            try:
+                dt = datetime.strptime(f"{eff_match.group(1)} {eff_match.group(2)} {eff_match.group(3)}", "%d %B %Y")
+                effective_from = dt.strftime("%Y-%m-%d")
+            except ValueError:
+                pass
+
+        # Derive year from effective_from
+        year = int(effective_from[:4])
+
+        # Extract act reference
+        act = "Employees Social Security Act 1969 (Act 4)"  # fallback
+        act_match = re.search(r"Employees Social Security Act\s*\d{4}", full_text, re.IGNORECASE)
+        if act_match:
+            act = f"{act_match.group(0)} (Act 4)"
+
+        # Extract self-employment act reference
+        se_act = "Act 789"  # fallback
+        se_act_match = re.search(r"Self-Employment.*?Act\s*(\d+)", full_text, re.IGNORECASE)
+        if se_act_match:
+            se_act = f"Act {se_act_match.group(1)}"
+
+        # Extract housewives scheme details
+        hw_act = "Act 838"  # fallback
+        hw_act_match = re.search(r"Housewives.*?Act\s*(\d+)", full_text, re.IGNORECASE)
+        if hw_act_match:
+            hw_act = f"Act {hw_act_match.group(1)}"
+
+        hw_contribution = "RM120 per year (paid in advance for 12 months)"  # fallback
+        hw_match = re.search(r"RM(\d+).*?(\d+)\s+consecutive\s+months", full_text, re.IGNORECASE)
+        if hw_match:
+            hw_contribution = f"RM{hw_match.group(1)} per year (paid in advance for {hw_match.group(2)} consecutive months)"
+
         data = {
             "source": self.SOURCE_URL,
-            "act": "Employees Social Security Act 1969 (Act 4)",
-            "year": 2025,
-            "effective_from": "2024-10-01",
+            "act": act,
+            "year": year,
+            "effective_from": effective_from,
             "wage_ceiling": wage_ceiling,
             "pdf_url": act4_pdf,
             "announcement": announcement,
@@ -81,15 +118,15 @@ class SOCSOScraper(BaseScraper):
                 },
             },
             "self_employment_scheme": {
-                "act": "Act 789",
+                "act": se_act,
                 "rates": self_employment,
             },
             "housewives_scheme": {
-                "act": "Act 838",
-                "contribution": "RM120 per year (paid in advance for 12 months)",
+                "act": hw_act,
+                "contribution": hw_contribution,
             },
             "notes": [
-                f"Wage ceiling: RM{wage_ceiling:,} per month (effective Oct 2024)",
+                f"Wage ceiling: RM{wage_ceiling:,} per month (effective {datetime.strptime(effective_from, '%Y-%m-%d').strftime('%b %Y')})",
                 "Actual contribution rates are in the Act 4 PDF (Third Schedule)",
                 "Foreign workers: Employment Injury only (no Invalidity scheme)",
                 "Contribution due by 15th of following month",
