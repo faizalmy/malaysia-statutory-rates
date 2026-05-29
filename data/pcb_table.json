@@ -1,5 +1,6 @@
 {
   "source": "https://www.hasil.gov.my/en/employers/mtd-schedular/",
+  "pdf_url": "https://www.hasil.gov.my/media/arvlrzh5/spesifikasi-kaedah-pengiraan-berkomputer-pcb-2026.pdf",
   "year": 2026,
   "updated": "01 January 2026",
   "tax_brackets": {
@@ -113,7 +114,7 @@
     "SPECIFICATION FOR MONTHLY TAX DEDUCTION (MTD) CALCULATIONS USING COMPUTERIZED CALCULATION FOR 2026"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T15:12:12.388276+00:00",
+    "scraped_at": "2026-05-29T15:14:41.975984+00:00",
     "source": "https://www.hasil.gov.my/en/employers/mtd-schedular/",
     "source_name": "Lembaga Hasil Dalam Negeri Malaysia (LHDN)",
     "scraper_version": "0.1.0"

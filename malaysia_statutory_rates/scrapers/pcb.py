@@ -68,6 +68,7 @@ class PCBScraper(BaseScraper):
 
         data = {
             "source": self.SOURCE_URL,
+            "pdf_url": PCB_PDF_URL,
             "year": year,
             "updated": updated,
             "tax_brackets": {
