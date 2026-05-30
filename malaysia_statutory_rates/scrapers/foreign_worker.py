@@ -62,6 +62,8 @@ class ForeignWorkerScraper(BaseScraper):
 
         socso_data = {
             "source": socso.get("source", ""),
+            "rate_table_ref": "socso_rates.json",
+            "rate_table_schedule": "employer_schedule1",
             "employment_injury": {
                 "employer_only": socso.get("schemes", {}).get("employment_injury", {}).get("employer_only", True),
                 "wage_ceiling": socso_wage_ceiling,

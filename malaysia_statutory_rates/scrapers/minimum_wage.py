@@ -106,9 +106,25 @@ class MinimumWageScraper(BaseScraper):
         # Extract notes from page
         notes = self._extract_notes(soup, effective_dates)
 
+        # Convert first effective date to ISO format
+        effective_from_iso = None
+        if effective_dates:
+            effective_from_iso = self._parse_date_to_iso(effective_dates[0])
+
+        # Use effective date year if newer than gazette year
+        output_year = order_year
+        if effective_from_iso:
+            try:
+                eff_year = int(effective_from_iso[:4])
+                if order_year is None or eff_year > order_year:
+                    output_year = eff_year
+            except (ValueError, IndexError):
+                pass
+
         data = {
             "source": self.SOURCE_URL,
-            "year": order_year,
+            "year": output_year,
+            "effective_from": effective_from_iso,
             "gazette": gazette_id,
             "act": act_name,
             "rates": {
@@ -195,3 +211,27 @@ class MinimumWageScraper(BaseScraper):
             notes.append(size_match.group(1).strip())
 
         return notes
+
+    def _parse_date_to_iso(self, date_str: str) -> str | None:
+        """Convert a date string like '27 April 2026' to ISO format '2026-04-27'."""
+        import calendar
+        months = {name.lower(): idx for idx, name in enumerate(calendar.month_name) if name}
+        months.update({name.lower(): idx for idx, name in enumerate(calendar.month_abbr) if name})
+
+        # Pattern: "27 April 2026" or "1 February 2025"
+        m = re.match(r"(\d{1,2})\s+(\w+)\s+(\d{4})", date_str)
+        if m:
+            day, month_name, year = m.groups()
+            month_num = months.get(month_name.lower())
+            if month_num:
+                return f"{year}-{month_num:02d}-{int(day):02d}"
+
+        # Pattern: "February 2025" or "April 2026"
+        m = re.match(r"(\w+)\s+(\d{4})", date_str)
+        if m:
+            month_name, year = m.groups()
+            month_num = months.get(month_name.lower())
+            if month_num:
+                return f"{year}-{month_num:02d}-01"
+
+        return None

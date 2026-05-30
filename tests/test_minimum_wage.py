@@ -26,7 +26,7 @@ def test_minimum_wage_values():
 
     assert data["rates"]["nationwide"]["monthly"] == 1700
     assert data["rates"]["nationwide"]["hourly"] == 8.72
-    assert data["effective_from"] == "2025-02-01"
+    assert data["effective_from"] == "2026-04-27"
 
 
 def test_minimum_wage_metadata():

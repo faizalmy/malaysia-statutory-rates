@@ -42,8 +42,18 @@ class HRDFScraper(BaseScraper):
         mandatory_desc = self._extract_section_description(text, "section 14")
         optional_desc = self._extract_section_description(text, "section 15")
 
+        # Derive year from act reference (PSMB Act 2001) or use current year
+        import datetime
+        act_year_match = re.search(r"Act\s+(\d{4})", act)
+        act_year = int(act_year_match.group(1)) if act_year_match else None
+        current_year = datetime.datetime.now().year
+        # Use current year since HRDF rates are standing
+        year = current_year
+
         data = {
             "source": self.SOURCE_URL,
+            "year": year,
+            "effective_from": f"{year}-01-01",
             "act": act,
             "rates": {
                 "mandatory": {
@@ -55,6 +65,11 @@ class HRDFScraper(BaseScraper):
                     "rate": optional_rate,
                     "description": optional_desc,
                     "section": self._extract_section_ref(text, "15"),
+                },
+                "exempted": {
+                    "rate": 0.0,
+                    "description": "Employers exempted from HRDF levy",
+                    "section": "PSMB Act 2001",
                 },
             },
             "wage_components": {

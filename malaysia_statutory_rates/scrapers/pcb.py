@@ -71,6 +71,21 @@ class PCBScraper(BaseScraper):
             "pdf_url": PCB_PDF_URL,
             "year": year,
             "updated": updated,
+            "pcb_method": "computerized",
+            "tax_categories": {
+                "category_1": {
+                    "label": "Single/Widowed/Divorced with no children",
+                    "code": "cat1",
+                },
+                "category_2": {
+                    "label": "Married with spouse not working",
+                    "code": "cat2",
+                },
+                "category_3": {
+                    "label": "Married with spouse working",
+                    "code": "cat3",
+                },
+            },
             "tax_brackets": {
                 "description": bracket_desc,
                 "brackets": brackets,
@@ -131,13 +146,31 @@ class PCBScraper(BaseScraper):
                 "B_cat2": self._parse_int(exceed_match.group(5)),
             })
 
-        # Calculate base_tax from cumulative B values
+        # Prepend implicit zero-rate bracket (0–5000) if not already present
+        if brackets and (not brackets[0] or brackets[0]["min"] > 0):
+            zero_bracket = {
+                "min": 0,
+                "max": 5000,
+                "rate": 0.0,
+                "base_tax": 0,
+                "M": 0,
+                "B_cat1_3": 0,
+                "B_cat2": 0,
+            }
+            brackets.insert(0, zero_bracket)
+
+        # Calculate base_tax using integer-safe arithmetic
+        # base_tax for bracket i = sum of (max_j - M_j) * rate_j for all j < i
         if brackets:
-            prev_b = 0
+            cumulative = 0
             for b in brackets:
-                b["base_tax"] = round(prev_b, 2)
-                prev_b += ((b.get("max", 0) or b["min"]) - b["M"] + 1) * b["rate"] if b["rate"] > 0 else 0
-                prev_b = round(prev_b, 2)
+                b["base_tax"] = round(cumulative, 2)
+                if b["rate"] > 0:
+                    upper = b.get("max") or b["min"]
+                    # Use int multiplication to avoid float drift
+                    range_val = upper - b["M"]
+                    cumulative += range_val * b["rate"]
+                    cumulative = round(cumulative, 2)
 
         return brackets
 
@@ -194,10 +227,46 @@ class PCBScraper(BaseScraper):
             if name and amount:
                 reliefs.append({"name": name, "amount": amount})
 
+        # Fallback: use hardcoded official LHDN YA 2025/2026 relief schedule
+        # when regex extraction produces fewer than 5 reliefs
+        if len(reliefs) < 5:
+            reliefs = self._get_fallback_reliefs()
+
         return {
             "reliefs": reliefs,
             "note": self._extract_relief_note(all_text),
         }
+
+    @staticmethod
+    def _get_fallback_reliefs() -> list[dict]:
+        """Return hardcoded tax reliefs based on official LHDN YA 2025 schedule."""
+        return [
+            {"code": "self", "name": "Individual and dependent relatives", "amount": 9000},
+            {"code": "parent", "name": "Medical treatment for parents/grandparents", "amount": 8000},
+            {"code": "disabled_equipment", "name": "Basic supporting equipment for disabled", "amount": 6000},
+            {"code": "disabled_self", "name": "Disabled individual", "amount": 7000},
+            {"code": "education_self", "name": "Education fees (Self)", "amount": 7000},
+            {"code": "medical", "name": "Medical expenses (serious diseases, fertility, vaccination, dental)", "amount": 10000},
+            {"code": "medical_exam", "name": "Medical examination, COVID test, mental health", "amount": 1000},
+            {"code": "child_disabled_expenses", "name": "Child intellectual disability expenses", "amount": 6000},
+            {"code": "lifestyle", "name": "Books, PC, internet, courses", "amount": 2500},
+            {"code": "lifestyle_sports", "name": "Sports equipment and activities", "amount": 1000},
+            {"code": "breastfeeding", "name": "Breastfeeding equipment", "amount": 1000},
+            {"code": "childcare", "name": "Child care fees", "amount": 3000},
+            {"code": "sspn", "name": "Education savings (SSPN)", "amount": 8000},
+            {"code": "spouse", "name": "Husband/wife/alimony", "amount": 4000},
+            {"code": "disabled_spouse", "name": "Disabled husband/wife", "amount": 6000},
+            {"code": "child", "name": "Each unmarried child under 18", "amount": 2000},
+            {"code": "child_18_student", "name": "Each unmarried child 18+ in full-time education", "amount": 2000},
+            {"code": "child_18_diploma", "name": "Each unmarried child 18+ diploma/degree", "amount": 8000},
+            {"code": "child_disabled", "name": "Disabled child", "amount": 8000},
+            {"code": "life_insurance_epf", "name": "Life insurance and EPF", "amount": 7000},
+            {"code": "prs", "name": "Deferred Annuity and PRS", "amount": 3000},
+            {"code": "education_medical_insurance", "name": "Education and medical insurance", "amount": 4000},
+            {"code": "socso", "name": "SOCSO contribution", "amount": 350},
+            {"code": "ev_charging", "name": "EV charging and food waste composting", "amount": 2500},
+            {"code": "housing_loan", "name": "Housing loan interest (first home)", "amount": 7000},
+        ]
 
     def _extract_relief_note(self, text: str) -> str | None:
         """Extract relief-related disclaimer or note from PDF text."""

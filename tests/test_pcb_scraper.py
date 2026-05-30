@@ -35,20 +35,28 @@ class TestPCBExtractBrackets:
         Exceeding 100,000  65,000  24  10,000  20,000
         """
         brackets = pcb_scraper._extract_brackets(page_text)
-        assert len(brackets) >= 2
-        # Check first bracket
-        assert brackets[0]["min"] == 5001
-        assert brackets[0]["max"] == 20000
-        assert brackets[0]["rate"] == 0.01
-        assert brackets[0]["M"] == 5000
+        assert len(brackets) >= 3
+        # First bracket is implicit zero-rate (0-5000)
+        assert brackets[0]["min"] == 0
+        assert brackets[0]["max"] == 5000
+        assert brackets[0]["rate"] == 0.0
+        # Second bracket from parsed data
+        assert brackets[1]["min"] == 5001
+        assert brackets[1]["max"] == 20000
+        assert brackets[1]["rate"] == 0.01
+        assert brackets[1]["M"] == 5000
 
     def test_extract_brackets_exceeding(self, pcb_scraper):
         page_text = "Exceeding 100,000  65,000  24  10,000  20,000"
         brackets = pcb_scraper._extract_brackets(page_text)
-        assert len(brackets) == 1
-        assert brackets[0]["min"] == 100000
-        assert brackets[0]["max"] is None
-        assert brackets[0]["rate"] == 0.24
+        # Implicit zero-rate bracket + exceeding bracket
+        assert len(brackets) == 2
+        assert brackets[0]["min"] == 0
+        assert brackets[0]["max"] == 5000
+        assert brackets[0]["rate"] == 0.0
+        assert brackets[1]["min"] == 100000
+        assert brackets[1]["max"] is None
+        assert brackets[1]["rate"] == 0.24
 
     def test_extract_brackets_empty(self, pcb_scraper):
         brackets = pcb_scraper._extract_brackets("No data here")

@@ -216,12 +216,12 @@ class EPFScraper(BaseScraper):
         included = []
         excluded = []
 
-        full_text = soup.get_text()
+        full_text = soup.get_text(separator="\n")
 
         # Extract included wage components from FAQ #8
         # Pattern: numbered list after "Components of Wage"
         components_match = re.search(
-            r"Payments\s+which\s+are\s+subject\s+to\s+EPF\s+contribution\s+include:\s*(.*?)(?=\d+\.\s+What\s+is\s+the\s+definition)",
+            r"Payments\s+which\s+are\s+subject\s+to\s+EPF\s+contribution\s+include:\s*(.*?)(?=\d+\.\s+What\s+is\s+the\s+definition|Non[- ]?Wage|not\s+liable\s+for\s+EPF|$)",
             full_text, re.DOTALL | re.IGNORECASE
         )
         if components_match:
@@ -231,7 +231,7 @@ class EPFScraper(BaseScraper):
 
         # Extract excluded non-wage components from FAQ #11
         nonwage_match = re.search(
-            r"Payments\s+which\s+are\s+not\s+liable\s+for\s+EPF\s+contribution\s+are:\s*(.*?)(?=\d+\.\s+Who\s+are\s+EPF|\n\s*The\s+above\s+list)",
+            r"Payments\s+which\s+are\s+not\s+liable\s+for\s+EPF\s+contribution\s+are:\s*(.*?)(?=\d+\.\s+Who\s+are\s+EPF|The\s+above\s+list|Third\s+Schedule|$)",
             full_text, re.DOTALL | re.IGNORECASE
         )
         if nonwage_match:
@@ -345,17 +345,29 @@ class EPFScraper(BaseScraper):
             return {}
 
         parts = {}
-        # Split by PART sections (handles both "* * *\nPART X" and "## PART X")
-        part_sections = re.split(r"(?:\* \* \*\s*\n\s*|\n\s*##\s*)PART\s+([A-F])", md)
+        # Split by PART sections — flexible regex to catch Parts B and D regardless of formatting
+        # Handles: bare "PART B", bold "**PART B**", separators, case insensitive
+        part_sections = re.split(
+            r"(?:^|\n)\s*(?:\*\*\*)?\s*PART\s+([A-F])\s*(?:\*\*\*)?",
+            md, flags=re.IGNORECASE | re.MULTILINE
+        )
 
         for i in range(1, len(part_sections), 2):
             part_letter = part_sections[i].strip()
             part_text = part_sections[i + 1] if i + 1 < len(part_sections) else ""
             brackets = self._extract_bracket_rows(part_text)
             if brackets:
+                # Determine rate_type based on bracket structure
+                has_fixed = any(
+                    "employer" in b and isinstance(b.get("employer"), (int, float))
+                    for b in brackets
+                )
+                has_percentage = any("employer_rate" in b for b in brackets)
+                rate_type = "flat" if (has_percentage and not has_fixed) else "bracket"
                 parts[f"part_{part_letter.lower()}"] = {
                     "description": self._extract_part_description(part_text, part_letter),
                     "brackets": brackets,
+                    "rate_type": rate_type,
                 }
 
         return parts
@@ -378,6 +390,14 @@ class EPFScraper(BaseScraper):
                 "employee": employee,
                 "total": total,
             })
+
+        # Issue 11: validate bracket continuity — fill gaps by extending wage_max
+        for i in range(len(brackets) - 1):
+            if brackets[i].get('wage_max') is not None and brackets[i + 1].get('wage_min') is not None:
+                expected_min = round(brackets[i]['wage_max'] + 0.01, 2)
+                if brackets[i + 1]['wage_min'] > expected_min:
+                    # Gap detected — extend previous bracket's max to bridge the gap
+                    brackets[i]['wage_max'] = round(brackets[i + 1]['wage_min'] - 0.01, 2)
 
         # Match the "exceed RM20,000" percentage rule (the actual rule, not the Note)
         # Look for the specific pattern: "contribution by the employee...X%...employer...Y%"
@@ -409,20 +429,26 @@ class EPFScraper(BaseScraper):
             })
 
         # Match flat percentage rate (Part F style: "2% of the amount of wages")
+        # Issue 10: normalize to use same field names as bracket parts (employer/employee/total)
         if not brackets:
             flat_match = re.search(
                 r"(\d+(?:\.\d+)?%)\s+of\s+the\s+amount\s+of\s+wages",
                 text, re.IGNORECASE
             )
             if flat_match:
-                # Find all occurrences
+                # Find all occurrences (employer listed first, then employee in typical PDF)
                 all_flats = re.findall(r"(\d+(?:\.\d+)?)%\s+of\s+the\s+amount\s+of\s+wages", text, re.IGNORECASE)
                 if len(all_flats) >= 2:
+                    emp_pct = float(all_flats[0])
+                    er_pct = float(all_flats[1])
                     brackets.append({
                         "wage_min": 0,
                         "wage_max": None,
-                        "employer_rate": float(all_flats[0]) / 100,
-                        "employee_rate": float(all_flats[1]) / 100,
+                        "employer": f"{all_flats[0]}%",
+                        "employee": f"{all_flats[1]}%",
+                        "total": f"{emp_pct + er_pct:.0f}%",
+                        "employer_rate": emp_pct / 100,
+                        "employee_rate": er_pct / 100,
                         "note": "Flat rate for all wages",
                     })
 

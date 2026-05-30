@@ -76,9 +76,11 @@ KWSP_HTML = """
 </tr>
 </table>
 <h3>Wage Components</h3>
+<p>Payments which are subject to EPF contribution include:</p>
 <ul><li>Basic salary</li><li>Fixed allowance</li></ul>
 <h3>Non-Wage Components</h3>
-<ul><li>Overtime</li><li>Annual bonus</li></ul>
+<p>Payments which are not liable for EPF contribution are:</p>
+<ul><li>Service charge</li><li>Overtime payment</li></ul>
 <a href="/third_schedule.pdf">Third Schedule PDF</a>
 <p>Employers are not allowed to calculate contributions based on percentage EXCEPT when wages exceed RM20,000. Rounded to next ringgit.</p>
 <p>Total contribution rounded up to next ringgit.</p>
