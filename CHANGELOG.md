@@ -14,7 +14,7 @@
 - Public holidays — 20 national + 16 individual state groupings (2026)
 - Foreign worker rates — EPF + SOCSO (employment injury only) + EIS
 
-### Scrapers (all live, no hardcoded fallbacks)
+### Scrapers
 - All scrapers parse live data or raise `ValueError` — no silent fallbacks
 - httpx + Firecrawl fallback for blocked sites (KWSP, HRDF Corp)
 - robots.txt compliance with Cloudflare challenge detection
