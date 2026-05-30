@@ -1,4 +1,4 @@
-# malaysia-statutory-rates
+# Malaysia Statutory Rates
 
 Malaysian statutory rate data — EPF, SOCSO, EIS, PCB, minimum wage, HRDF, public holidays.
 
