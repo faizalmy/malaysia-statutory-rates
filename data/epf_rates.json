@@ -89,7 +89,6 @@
   "wage_bracket_table": {
     "part_a": {
       "description": "1. The rate of monthly contributions specified in this Part shall apply to the following employees until the employees attain the age of sixty years: (a) employees who are Malaysian citizens; (b) employees who are not Malaysian citizens but are permanent residents in Malaysia; and (c) employees who are not Malaysian citizens who have elected to contribute before 1 August 1998.",
-      "rate_type": "bracket",
       "brackets": [
         {
           "wage_min": 0.01,
@@ -2347,7 +2346,7 @@
         },
         {
           "wage_min": 12100.01,
-          "wage_max": 12200.0,
+          "wage_max": 12300.0,
           "employer": 1464.0,
           "employee": 1342.0,
           "total": 2806.0
@@ -2508,7 +2507,7 @@
         },
         {
           "wage_min": 14500.01,
-          "wage_max": 14600.0,
+          "wage_max": 14700.0,
           "employer": 1752.0,
           "employee": 1606.0,
           "total": 3358.0
@@ -2669,7 +2668,7 @@
         },
         {
           "wage_min": 16900.01,
-          "wage_max": 17000.0,
+          "wage_max": 17100.0,
           "employer": 2040.0,
           "employee": 1870.0,
           "total": 3910.0
@@ -2823,7 +2822,7 @@
         },
         {
           "wage_min": 19200.01,
-          "wage_max": 19300.0,
+          "wage_max": 19500.0,
           "employer": 2316.0,
           "employee": 2123.0,
           "total": 4439.0
@@ -2870,11 +2869,11 @@
           "employee_rate": 0.11,
           "note": "Percentage-based for wages exceeding this amount"
         }
-      ]
+      ],
+      "rate_type": "bracket"
     },
     "part_c": {
       "description": "1. The rate of monthly contributions specified in this Part shall apply to the following employees who have attained the age of sixty years: (a) (Deleted by P.U.",
-      "rate_type": "bracket",
       "brackets": [
         {
           "wage_min": 0.01,
@@ -3354,7 +3353,7 @@
         },
         {
           "wage_min": 1340.01,
-          "wage_max": 1360.0,
+          "wage_max": 1380.0,
           "employer": 89.0,
           "employee": 75.0,
           "total": 164.0
@@ -3536,7 +3535,7 @@
         },
         {
           "wage_min": 1880.01,
-          "wage_max": 1900.0,
+          "wage_max": 1940.0,
           "employer": 124.0,
           "employee": 105.0,
           "total": 229.0
@@ -3718,7 +3717,7 @@
         },
         {
           "wage_min": 2440.01,
-          "wage_max": 2460.0,
+          "wage_max": 2500.0,
           "employer": 160.0,
           "employee": 136.0,
           "total": 296.0
@@ -3900,7 +3899,7 @@
         },
         {
           "wage_min": 3000.01,
-          "wage_max": 3020.0,
+          "wage_max": 3060.0,
           "employer": 197.0,
           "employee": 167.0,
           "total": 364.0
@@ -4082,7 +4081,7 @@
         },
         {
           "wage_min": 3560.01,
-          "wage_max": 3580.0,
+          "wage_max": 3620.0,
           "employer": 233.0,
           "employee": 197.0,
           "total": 430.0
@@ -4264,7 +4263,7 @@
         },
         {
           "wage_min": 4120.01,
-          "wage_max": 4140.0,
+          "wage_max": 4180.0,
           "employer": 270.0,
           "employee": 228.0,
           "total": 498.0
@@ -4446,7 +4445,7 @@
         },
         {
           "wage_min": 4680.01,
-          "wage_max": 4700.0,
+          "wage_max": 4740.0,
           "employer": 306.0,
           "employee": 259.0,
           "total": 565.0
@@ -4726,7 +4725,7 @@
         },
         {
           "wage_min": 7600.01,
-          "wage_max": 7700.0,
+          "wage_max": 7900.0,
           "employer": 462.0,
           "employee": 424.0,
           "total": 886.0
@@ -4901,7 +4900,7 @@
         },
         {
           "wage_min": 10300.01,
-          "wage_max": 10400.0,
+          "wage_max": 10700.0,
           "employer": 624.0,
           "employee": 572.0,
           "total": 1196.0
@@ -5069,7 +5068,7 @@
         },
         {
           "wage_min": 13000.01,
-          "wage_max": 13100.0,
+          "wage_max": 13500.0,
           "employer": 786.0,
           "employee": 721.0,
           "total": 1507.0
@@ -5237,7 +5236,7 @@
         },
         {
           "wage_min": 15800.01,
-          "wage_max": 15900.0,
+          "wage_max": 16300.0,
           "employer": 954.0,
           "employee": 875.0,
           "total": 1829.0
@@ -5405,7 +5404,7 @@
         },
         {
           "wage_min": 18600.01,
-          "wage_max": 18700.0,
+          "wage_max": 19100.0,
           "employer": 1122.0,
           "employee": 1029.0,
           "total": 2151.0
@@ -5480,11 +5479,11 @@
           "employee_rate": 0.055,
           "note": "Percentage-based for wages exceeding this amount"
         }
-      ]
+      ],
+      "rate_type": "bracket"
     },
     "part_e": {
       "description": "1. The rate of monthly contributions specified in this Part shall apply to the Malaysian citizens who have attained the age of sixty years.",
-      "rate_type": "bracket",
       "brackets": [
         {
           "wage_min": 0.01,
@@ -6013,7 +6012,7 @@
         },
         {
           "wage_min": 1480.01,
-          "wage_max": 1500.0,
+          "wage_max": 1520.0,
           "employer": 60.0,
           "employee": 0.0,
           "total": 60.0
@@ -6202,7 +6201,7 @@
         },
         {
           "wage_min": 2040.01,
-          "wage_max": 2060.0,
+          "wage_max": 2080.0,
           "employer": 83.0,
           "employee": 0.0,
           "total": 83.0
@@ -6391,7 +6390,7 @@
         },
         {
           "wage_min": 2600.01,
-          "wage_max": 2620.0,
+          "wage_max": 2640.0,
           "employer": 105.0,
           "employee": 0.0,
           "total": 105.0
@@ -6573,7 +6572,7 @@
         },
         {
           "wage_min": 3140.01,
-          "wage_max": 3160.0,
+          "wage_max": 3200.0,
           "employer": 127.0,
           "employee": 0.0,
           "total": 127.0
@@ -6755,7 +6754,7 @@
         },
         {
           "wage_min": 3700.01,
-          "wage_max": 3720.0,
+          "wage_max": 3760.0,
           "employer": 149.0,
           "employee": 0.0,
           "total": 149.0
@@ -6937,7 +6936,7 @@
         },
         {
           "wage_min": 4260.01,
-          "wage_max": 4280.0,
+          "wage_max": 4320.0,
           "employer": 172.0,
           "employee": 0.0,
           "total": 172.0
@@ -7119,7 +7118,7 @@
         },
         {
           "wage_min": 4820.01,
-          "wage_max": 4840.0,
+          "wage_max": 4880.0,
           "employer": 194.0,
           "employee": 0.0,
           "total": 194.0
@@ -7301,7 +7300,7 @@
         },
         {
           "wage_min": 6900.01,
-          "wage_max": 7000.0,
+          "wage_max": 7200.0,
           "employer": 280.0,
           "employee": 0.0,
           "total": 280.0
@@ -7483,7 +7482,7 @@
         },
         {
           "wage_min": 9700.01,
-          "wage_max": 9800.0,
+          "wage_max": 10000.0,
           "employer": 392.0,
           "employee": 0.0,
           "total": 392.0
@@ -7665,7 +7664,7 @@
         },
         {
           "wage_min": 12500.01,
-          "wage_max": 12600.0,
+          "wage_max": 12800.0,
           "employer": 504.0,
           "employee": 0.0,
           "total": 504.0
@@ -7840,7 +7839,7 @@
         },
         {
           "wage_min": 15200.01,
-          "wage_max": 15300.0,
+          "wage_max": 15600.0,
           "employer": 612.0,
           "employee": 0.0,
           "total": 612.0
@@ -8015,7 +8014,7 @@
         },
         {
           "wage_min": 18000.01,
-          "wage_max": 18100.0,
+          "wage_max": 18400.0,
           "employer": 724.0,
           "employee": 0.0,
           "total": 724.0
@@ -8139,10 +8138,11 @@
           "employee_rate": 0.0,
           "note": "Percentage-based for wages exceeding this amount"
         }
-      ]
+      ],
+      "rate_type": "bracket"
     },
     "part_f": {
-      "description": "Part F",
+      "description": "Part F - Non-Malaysians registered as member from 1 August 1998",
       "rate_type": "flat",
       "brackets": [
         {
@@ -8164,7 +8164,7 @@
     "Employer must make monthly payment on or before 15th of the month"
   ],
   "_metadata": {
-    "scraped_at": "2026-05-29T15:12:03.684151+00:00",
+    "scraped_at": "2026-05-30T04:04:21.663817+00:00",
     "source": "https://www.kwsp.gov.my/en/employer/responsibilities/mandatory-contribution",
     "source_name": "Kumpulan Wang Simpanan Pekerja (KWSP)",
     "scraper_version": "0.1.0"
