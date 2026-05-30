@@ -1,5 +1,7 @@
 {
   "source": "https://supportcentre.hrdcorp.gov.my/portal/en/kb/articles/hrd-levy",
+  "year": 2026,
+  "effective_from": "2026-01-01",
   "act": "PSMB Act 2001",
   "rates": {
     "mandatory": {
@@ -11,6 +13,11 @@
       "rate": 0.005,
       "description": "shall pay a levy for each of his employee at the rate of 0.5% of the monthly wages of the employee.",
       "section": "Section 15 of the PSMB Act 2001"
+    },
+    "exempted": {
+      "rate": 0.0,
+      "description": "Employers exempted from HRDF levy",
+      "section": "PSMB Act 2001"
     }
   },
   "wage_components": {

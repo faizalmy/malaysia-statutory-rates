@@ -38,6 +38,8 @@
   },
   "socso": {
     "source": "https://www.perkeso.gov.my/en/rate-of-contribution.html",
+    "rate_table_ref": "socso_rates.json",
+    "rate_table_schedule": "employer_schedule1",
     "employment_injury": {
       "employer_only": true,
       "wage_ceiling": 6000,
@@ -64,7 +66,8 @@
   },
   "notes": [
     "Foreign worker EPF became mandatory from 2025-10-01",
-    "Foreign Workers are refer to the Third Schedule (Act 4), whereas Domestic Workers' contribution rates are based on eligibility criteria listed in the Domestic Worker section."
+    "Foreign Workers are refer to the Third Schedule (Act 4), whereas Domestic Workers' contribution rates are based on eligibility criteria listed in the Domestic Worker section.",
+    "SOCSO Employment Injury scheme uses employer_schedule1 from socso_rates.json for foreign worker contributions."
   ],
   "_metadata": {
     "scraped_at": "2026-05-29T15:12:12.411179+00:00",

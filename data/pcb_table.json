@@ -3,9 +3,33 @@
   "pdf_url": "https://www.hasil.gov.my/media/arvlrzh5/spesifikasi-kaedah-pengiraan-berkomputer-pcb-2026.pdf",
   "year": 2026,
   "updated": "01 January 2026",
+  "pcb_method": "computerized",
+  "tax_categories": {
+    "category_1": {
+      "label": "Single/Widowed/Divorced with no children",
+      "code": "cat1"
+    },
+    "category_2": {
+      "label": "Married with spouse not working",
+      "code": "cat2"
+    },
+    "category_3": {
+      "label": "Married with spouse working",
+      "code": "cat3"
+    }
+  },
   "tax_brackets": {
     "description": "MONTHLY TAX DEDUCTION (MTD) FOR COMPUTERIZED CALCULATION \n \n- 9 \n \na.",
     "brackets": [
+      {
+        "min": 0,
+        "max": 5000,
+        "rate": 0.0,
+        "base_tax": 0,
+        "M": 0,
+        "B_cat1_3": 0,
+        "B_cat2": 0
+      },
       {
         "min": 5001,
         "max": 20000,
@@ -19,7 +43,7 @@
         "min": 20001,
         "max": 35000,
         "rate": 0.03,
-        "base_tax": 150.01,
+        "base_tax": 150,
         "M": 20000,
         "B_cat1_3": 250,
         "B_cat2": 650
@@ -28,7 +52,7 @@
         "min": 35001,
         "max": 50000,
         "rate": 0.06,
-        "base_tax": 600.04,
+        "base_tax": 600,
         "M": 35000,
         "B_cat1_3": 600,
         "B_cat2": 600
@@ -37,7 +61,7 @@
         "min": 50001,
         "max": 70000,
         "rate": 0.11,
-        "base_tax": 1500.1,
+        "base_tax": 1500,
         "M": 50000,
         "B_cat1_3": 1500,
         "B_cat2": 1500
@@ -46,7 +70,7 @@
         "min": 70001,
         "max": 100000,
         "rate": 0.19,
-        "base_tax": 3700.21,
+        "base_tax": 3700,
         "M": 70000,
         "B_cat1_3": 3700,
         "B_cat2": 3700
@@ -55,7 +79,7 @@
         "min": 100001,
         "max": 400000,
         "rate": 0.25,
-        "base_tax": 9400.4,
+        "base_tax": 9400,
         "M": 100000,
         "B_cat1_3": 9400,
         "B_cat2": 9400
@@ -64,7 +88,7 @@
         "min": 400001,
         "max": 600000,
         "rate": 0.26,
-        "base_tax": 84400.65,
+        "base_tax": 84400,
         "M": 400000,
         "B_cat1_3": 84400,
         "B_cat2": 84400
@@ -73,7 +97,7 @@
         "min": 600001,
         "max": 2000000,
         "rate": 0.28,
-        "base_tax": 136400.91,
+        "base_tax": 136400,
         "M": 600000,
         "B_cat1_3": 136400,
         "B_cat2": 136400
@@ -82,7 +106,7 @@
         "min": 2000000,
         "max": null,
         "rate": 0.3,
-        "base_tax": 528401.19,
+        "base_tax": 528400,
         "M": 2000000,
         "B_cat1_3": 528400,
         "B_cat2": 528400
@@ -103,10 +127,31 @@
   },
   "tax_reliefs": {
     "reliefs": [
-      {
-        "name": "Additional Lifestyle.",
-        "amount": 1000
-      }
+      {"code": "self", "name": "Individual and dependent relatives", "amount": 9000},
+      {"code": "parent", "name": "Medical treatment for parents/grandparents", "amount": 8000},
+      {"code": "disabled_equipment", "name": "Basic supporting equipment for disabled", "amount": 6000},
+      {"code": "disabled_self", "name": "Disabled individual", "amount": 7000},
+      {"code": "education_self", "name": "Education fees (Self)", "amount": 7000},
+      {"code": "medical", "name": "Medical expenses (serious diseases, fertility, vaccination, dental)", "amount": 10000},
+      {"code": "medical_exam", "name": "Medical examination, COVID test, mental health", "amount": 1000},
+      {"code": "child_disabled_expenses", "name": "Child intellectual disability expenses", "amount": 6000},
+      {"code": "lifestyle", "name": "Books, PC, internet, courses", "amount": 2500},
+      {"code": "lifestyle_sports", "name": "Sports equipment and activities", "amount": 1000},
+      {"code": "breastfeeding", "name": "Breastfeeding equipment", "amount": 1000},
+      {"code": "childcare", "name": "Child care fees", "amount": 3000},
+      {"code": "sspn", "name": "Education savings (SSPN)", "amount": 8000},
+      {"code": "spouse", "name": "Husband/wife/alimony", "amount": 4000},
+      {"code": "disabled_spouse", "name": "Disabled husband/wife", "amount": 6000},
+      {"code": "child", "name": "Each unmarried child under 18", "amount": 2000},
+      {"code": "child_18_student", "name": "Each unmarried child 18+ in full-time education", "amount": 2000},
+      {"code": "child_18_diploma", "name": "Each unmarried child 18+ diploma/degree", "amount": 8000},
+      {"code": "child_disabled", "name": "Disabled child", "amount": 8000},
+      {"code": "life_insurance_epf", "name": "Life insurance and EPF", "amount": 7000},
+      {"code": "prs", "name": "Deferred Annuity and PRS", "amount": 3000},
+      {"code": "education_medical_insurance", "name": "Education and medical insurance", "amount": 4000},
+      {"code": "socso", "name": "SOCSO contribution", "amount": 350},
+      {"code": "ev_charging", "name": "EV charging and food waste composting", "amount": 2500},
+      {"code": "housing_loan", "name": "Housing loan interest (first home)", "amount": 7000}
     ],
     "note": null
   },

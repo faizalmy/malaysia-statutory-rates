@@ -89,6 +89,7 @@
   "wage_bracket_table": {
     "part_a": {
       "description": "1. The rate of monthly contributions specified in this Part shall apply to the following employees until the employees attain the age of sixty years: (a) employees who are Malaysian citizens; (b) employees who are not Malaysian citizens but are permanent residents in Malaysia; and (c) employees who are not Malaysian citizens who have elected to contribute before 1 August 1998.",
+      "rate_type": "bracket",
       "brackets": [
         {
           "wage_min": 0.01,
@@ -2873,6 +2874,7 @@
     },
     "part_c": {
       "description": "1. The rate of monthly contributions specified in this Part shall apply to the following employees who have attained the age of sixty years: (a) (Deleted by P.U.",
+      "rate_type": "bracket",
       "brackets": [
         {
           "wage_min": 0.01,
@@ -5482,6 +5484,7 @@
     },
     "part_e": {
       "description": "1. The rate of monthly contributions specified in this Part shall apply to the Malaysian citizens who have attained the age of sixty years.",
+      "rate_type": "bracket",
       "brackets": [
         {
           "wage_min": 0.01,
@@ -8140,10 +8143,14 @@
     },
     "part_f": {
       "description": "Part F",
+      "rate_type": "flat",
       "brackets": [
         {
           "wage_min": 0,
           "wage_max": null,
+          "employer": "2%",
+          "employee": "2%",
+          "total": "4%",
           "employer_rate": 0.02,
           "employee_rate": 0.02,
           "note": "Flat rate for all wages"
