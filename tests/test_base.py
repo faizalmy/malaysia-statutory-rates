@@ -280,7 +280,8 @@ class TestFetch:
         result = scraper.fetch("https://example.com/page", retries=1)
         assert result == "<html>firecrawl</html>"
 
-    def test_fetch_spa_detection_fallback(self, tmp_path):
+    def test_fetch_spa_detection_fallback(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("malaysia_statutory_rates.scrapers.base.CACHE_DIR", tmp_path / "cache")
         scraper = ConcreteScraper(data_dir=tmp_path, respect_robots=False)
         mock_response = MagicMock()
         mock_response.text = "<html><head><script>app()</script></head><body></body></html>"

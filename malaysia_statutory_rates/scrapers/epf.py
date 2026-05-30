@@ -431,26 +431,40 @@ class EPFScraper(BaseScraper):
         # Match flat percentage rate (Part F style: "2% of the amount of wages")
         # Issue 10: normalize to use same field names as bracket parts (employer/employee/total)
         if not brackets:
-            flat_match = re.search(
-                r"(\d+(?:\.\d+)?%)\s+of\s+the\s+amount\s+of\s+wages",
-                text, re.IGNORECASE
-            )
-            if flat_match:
-                # Find all occurrences (employer listed first, then employee in typical PDF)
-                all_flats = re.findall(r"(\d+(?:\.\d+)?)%\s+of\s+the\s+amount\s+of\s+wages", text, re.IGNORECASE)
-                if len(all_flats) >= 2:
-                    emp_pct = float(all_flats[0])
-                    er_pct = float(all_flats[1])
-                    brackets.append({
-                        "wage_min": 0,
-                        "wage_max": None,
-                        "employer": f"{all_flats[0]}%",
-                        "employee": f"{all_flats[1]}%",
-                        "total": f"{emp_pct + er_pct:.0f}%",
-                        "employer_rate": emp_pct / 100,
-                        "employee_rate": er_pct / 100,
-                        "note": "Flat rate for all wages",
-                    })
+            # Try multiple patterns for flat rate
+            all_flats = re.findall(r"(\d+(?:\.\d+)?)\s*%\s+of\s+the\s+amount\s+of\s+wages", text, re.IGNORECASE)
+            if not all_flats:
+                # Try "per centum" formal language
+                all_flats = re.findall(r"(\d+(?:\.\d+)?)\s*(?:per\s+centum|percent|%)", text, re.IGNORECASE)
+            if not all_flats:
+                # Try "X% each" pattern
+                all_flats = re.findall(r"(\d+(?:\.\d+)?)\s*%", text, re.IGNORECASE)
+
+            if len(all_flats) >= 2:
+                emp_pct = float(all_flats[0])
+                er_pct = float(all_flats[1])
+                brackets.append({
+                    "wage_min": 0,
+                    "wage_max": None,
+                    "employer": f"{all_flats[0]}%",
+                    "employee": f"{all_flats[1]}%",
+                    "total": f"{emp_pct + er_pct:.0f}%",
+                    "employer_rate": emp_pct / 100,
+                    "employee_rate": er_pct / 100,
+                    "note": "Flat rate for all wages",
+                })
+            elif len(all_flats) == 1:
+                pct = float(all_flats[0])
+                brackets.append({
+                    "wage_min": 0,
+                    "wage_max": None,
+                    "employer": f"{all_flats[0]}%",
+                    "employee": f"{all_flats[0]}%",
+                    "total": f"{pct * 2:.0f}%",
+                    "employer_rate": pct / 100,
+                    "employee_rate": pct / 100,
+                    "note": "Flat rate for all wages (same rate for employer and employee)",
+                })
 
         return brackets
 

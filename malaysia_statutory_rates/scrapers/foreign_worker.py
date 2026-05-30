@@ -108,7 +108,8 @@ class ForeignWorkerScraper(BaseScraper):
         seen = set()
         for source_notes in [socso.get("notes", []), eis.get("notes", [])]:
             for note in source_notes:
-                if ("foreign" in note.lower() or "employment injury" in note.lower()) and note not in seen:
+                note_lower = note.lower()
+                if any(kw in note_lower for kw in ["foreign", "employment injury", "wage ceiling", "third schedule", "second schedule"]) and note not in seen:
                     notes.append(note)
                     seen.add(note)
 
