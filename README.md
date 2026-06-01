@@ -56,18 +56,20 @@ malaysia-statutory-rates scrape --all
 
 | File | Source | Content |
 |---|---|---|
-| `data/epf_rates.json` | kwsp.gov.my | EPF contribution rates by citizenship, age, wage bracket |
-| `data/socso_rates.json` | perkeso.gov.my + booklet PDF | SOCSO metadata + 65-bracket rate table (2 schedules) |
-| `data/eis_rates.json` | perkeso.gov.my + booklet PDF | EIS metadata + 65-bracket rate table |
-| `data/pcb_table.json` | LHDN e-CP39 | PCB/MTD tax brackets and reliefs |
-| `data/minimum_wage.json` | gajiminimum.mohr.gov.my | Minimum wage (monthly + hourly) |
-| `data/hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates and formula |
-| `data/public_holidays.json` | publicholidays.com.my | National + state public holidays |
-| `data/foreign_worker_rates.json` | Derived | EPF/SOCSO/EIS rates for foreign workers |
+| `malaysia_statutory_rates/data/epf_rates.json` | kwsp.gov.my | EPF contribution rates by citizenship, age, wage bracket |
+| `malaysia_statutory_rates/data/socso_rates.json` | perkeso.gov.my + booklet PDF | SOCSO metadata + 65-bracket rate table (2 schedules) |
+| `malaysia_statutory_rates/data/eis_rates.json` | perkeso.gov.my + booklet PDF | EIS metadata + 65-bracket rate table |
+| `malaysia_statutory_rates/data/pcb_table.json` | LHDN e-CP39 | PCB/MTD tax brackets and reliefs |
+| `malaysia_statutory_rates/data/minimum_wage.json` | gajiminimum.mohr.gov.my | Minimum wage (monthly + hourly) |
+| `malaysia_statutory_rates/data/hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates and formula |
+| `malaysia_statutory_rates/data/public_holidays.json` | publicholidays.com.my | National + state public holidays |
+| `malaysia_statutory_rates/data/foreign_worker_rates.json` | Derived | EPF/SOCSO/EIS rates for foreign workers |
 
 ## Scraping
 
 Scrapers fetch data from government websites. httpx is used first; blocked sites (kwsp.gov.my, hrdcorp.gov.my) fall back to [Firecrawl](https://firecrawl.dev).
+
+`firecrawl` is included in the `[scraper]` extras.
 
 ### Setup
 
