@@ -1,16 +1,15 @@
 """Tests for pdf_parser module."""
 
-import pytest
 import fitz
+import pytest
 
 from malaysia_statutory_rates.scrapers.pdf_parser import (
-    _parse_amount,
-    _extract_table,
-    _find_table_pages,
-    extract_socso_table,
-    extract_eis_table,
     _ACT4_HEADER,
     _ACT800_HEADER,
+    _find_table_pages,
+    _parse_amount,
+    extract_eis_table,
+    extract_socso_table,
 )
 
 

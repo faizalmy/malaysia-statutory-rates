@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime
 
 from malaysia_statutory_rates.scrapers.base import BaseScraper
 

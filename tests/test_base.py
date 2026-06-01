@@ -2,16 +2,14 @@
 
 import json
 import time
-from pathlib import Path
-from unittest.mock import MagicMock, patch, PropertyMock
+from unittest.mock import MagicMock, patch
 
 import pytest
 
 from malaysia_statutory_rates.scrapers.base import (
-    BaseScraper,
-    CACHE_DIR,
     CACHE_TTL,
     USER_AGENT,
+    BaseScraper,
     _get_robots,
 )
 

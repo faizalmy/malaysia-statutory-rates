@@ -45,7 +45,7 @@ class HRDFScraper(BaseScraper):
         # Derive year from act reference (PSMB Act 2001) or use current year
         import datetime
         act_year_match = re.search(r"Act\s+(\d{4})", act)
-        act_year = int(act_year_match.group(1)) if act_year_match else None
+        int(act_year_match.group(1)) if act_year_match else None
         current_year = datetime.datetime.now().year
         # Use current year since HRDF rates are standing
         year = current_year

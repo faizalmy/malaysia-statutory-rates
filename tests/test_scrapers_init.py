@@ -2,8 +2,6 @@
 
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from malaysia_statutory_rates.scrapers import SCRAPERS, run_scrapers
 
 

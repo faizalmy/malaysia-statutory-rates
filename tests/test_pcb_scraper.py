@@ -1,11 +1,10 @@
 """Tests for PCBScraper."""
 
-from unittest.mock import MagicMock, patch
-from pathlib import Path
+from unittest.mock import MagicMock
 
 import pytest
 
-from malaysia_statutory_rates.scrapers.pcb import PCBScraper, PCB_CACHE_DIR, _pcb_cache_path
+from malaysia_statutory_rates.scrapers.pcb import PCB_CACHE_DIR, PCBScraper, _pcb_cache_path
 
 
 @pytest.fixture

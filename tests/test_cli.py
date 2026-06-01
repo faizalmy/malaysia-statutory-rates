@@ -1,8 +1,7 @@
 """Tests for the CLI module."""
 
 import json
-import sys
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
 import pytest
 

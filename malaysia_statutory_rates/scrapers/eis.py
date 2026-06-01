@@ -124,7 +124,7 @@ class EISScraper(BaseScraper):
             if schedule_match:
                 notes.append(schedule_match.group(1).strip())
             elif act800_pdf:
-                notes.append(f"EIS rates are in the Act 800 PDF (Second Schedule)")
+                notes.append("EIS rates are in the Act 800 PDF (Second Schedule)")
 
         # Look for equal contribution note
         equal_match = re.search(

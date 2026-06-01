@@ -25,7 +25,6 @@ CACHE_TTL = 24 * 60 * 60  # 24 hours in seconds
 
 def _get_robots(url: str):
     """Get robots.txt parser for URL origin, with caching."""
-    from urllib.parse import urlparse
     origin = f"{urlparse(url).scheme}://{urlparse(url).netloc}"
     if origin not in _robots_cache:
         rp = RobotFileParser()

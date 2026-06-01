@@ -1,7 +1,4 @@
 """Shared test fixtures for malaysia-statutory-rates."""
-import json
-from pathlib import Path
-from unittest.mock import MagicMock
 
 import pytest
 

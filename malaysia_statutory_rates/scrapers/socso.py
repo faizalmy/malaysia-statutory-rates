@@ -40,14 +40,13 @@ class SOCSOScraper(BaseScraper):
 
         # Extract PDF links
         act4_pdf = None
-        act800_pdf = None
         for a in soup.find_all("a", href=True):
             href = str(a["href"])
             if href.endswith(".pdf"):
                 if "ACT 4" in href.upper() or "ACT4" in href.upper():
                     act4_pdf = href if href.startswith("http") else f"https://www.perkeso.gov.my{href}"
                 elif "ACT 800" in href.upper() or "ACT800" in href.upper():
-                    act800_pdf = href if href.startswith("http") else f"https://www.perkeso.gov.my{href}"
+                    href if href.startswith("http") else f"https://www.perkeso.gov.my{href}"
 
         # Extract self-employment rates from HTML table
         self_employment = []
@@ -165,7 +164,7 @@ class SOCSOScraper(BaseScraper):
         # Look for description of what EI covers
         ei_note_parts = []
         if act4_pdf:
-            ei_note_parts.append(f"Rate in Third Schedule (Act 4) PDF")
+            ei_note_parts.append("Rate in Third Schedule (Act 4) PDF")
         coverage_match = re.search(
             r"(workplace\s+accidents?[^.]*\.)", text, re.IGNORECASE
         )
@@ -191,7 +190,7 @@ class SOCSOScraper(BaseScraper):
 
         inv_note_parts = []
         if act4_pdf:
-            inv_note_parts.append(f"Rate in Third Schedule (Act 4) PDF")
+            inv_note_parts.append("Rate in Third Schedule (Act 4) PDF")
         disability_match = re.search(
             r"(permanent\s+disability[^.]*\.)", text, re.IGNORECASE
         )
