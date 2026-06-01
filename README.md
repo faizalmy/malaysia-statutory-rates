@@ -52,18 +52,18 @@ malaysia-statutory-rates show holidays
 malaysia-statutory-rates scrape --all
 ```
 
-## Data Files
+## Data Files (malaysia_statutory_rates/data/)
 
 | File | Source | Content |
 |---|---|---|
-| `malaysia_statutory_rates/data/epf_rates.json` | kwsp.gov.my | EPF contribution rates by citizenship, age, wage bracket |
-| `malaysia_statutory_rates/data/socso_rates.json` | perkeso.gov.my + booklet PDF | SOCSO metadata + 65-bracket rate table (2 schedules) |
-| `malaysia_statutory_rates/data/eis_rates.json` | perkeso.gov.my + booklet PDF | EIS metadata + 65-bracket rate table |
-| `malaysia_statutory_rates/data/pcb_table.json` | LHDN e-CP39 | PCB/MTD tax brackets and reliefs |
-| `malaysia_statutory_rates/data/minimum_wage.json` | gajiminimum.mohr.gov.my | Minimum wage (monthly + hourly) |
-| `malaysia_statutory_rates/data/hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates and formula |
-| `malaysia_statutory_rates/data/public_holidays.json` | publicholidays.com.my | National + state public holidays |
-| `malaysia_statutory_rates/data/foreign_worker_rates.json` | Derived | EPF/SOCSO/EIS rates for foreign workers |
+| `epf_rates.json` | kwsp.gov.my | EPF contribution rates by citizenship, age, wage bracket |
+| `socso_rates.json` | perkeso.gov.my + booklet PDF | SOCSO metadata + 65-bracket rate table (2 schedules) |
+| `eis_rates.json` | perkeso.gov.my + booklet PDF | EIS metadata + 65-bracket rate table |
+| `pcb_table.json` | LHDN e-CP39 | PCB/MTD tax brackets and reliefs |
+| `minimum_wage.json` | gajiminimum.mohr.gov.my | Minimum wage (monthly + hourly) |
+| `hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates and formula |
+| `public_holidays.json` | publicholidays.com.my | National + state public holidays |
+| `foreign_worker_rates.json` | Derived | EPF/SOCSO/EIS rates for foreign workers |
 
 ## Scraping
 
