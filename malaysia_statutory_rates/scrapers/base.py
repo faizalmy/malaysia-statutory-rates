@@ -72,7 +72,7 @@ class BaseScraper:
     SOURCE_NAME: str = ""
 
     def __init__(self, data_dir: Path | None = None, respect_robots: bool = True):
-        self.data_dir = data_dir or Path(__file__).parent.parent.parent / "data"
+        self.data_dir = data_dir or Path(__file__).parent.parent / "data"
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.respect_robots = respect_robots
         self.client = httpx.Client(

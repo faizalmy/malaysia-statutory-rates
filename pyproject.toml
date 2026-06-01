@@ -30,6 +30,7 @@ scraper = [
     "pymupdf>=1.24",
     "lxml>=5.0",
     "python-dotenv>=1.0",
+    "firecrawl>=4.0",
 ]
 api = [
     "fastapi>=0.115",
@@ -51,7 +52,6 @@ Issues = "https://github.com/faizalmy/malaysia-statutory-rates/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["malaysia_statutory_rates"]
-artifacts = ["data/*.json"]
 
 [tool.ruff]
 line-length = 100

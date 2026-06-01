@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-DATA_DIR = Path(__file__).parent.parent / "data"
+DATA_DIR = Path(__file__).parent.parent / "malaysia_statutory_rates" / "data"
 
 
 def test_minimum_wage_file_exists():

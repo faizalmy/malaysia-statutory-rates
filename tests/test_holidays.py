@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-DATA_DIR = Path(__file__).parent.parent / "data"
+DATA_DIR = Path(__file__).parent.parent / "malaysia_statutory_rates" / "data"
 
 
 def test_holidays_file_exists():

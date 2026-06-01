@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-_DATA_DIR = Path(__file__).parent.parent / "data"
+_DATA_DIR = Path(__file__).parent / "data"
 
 
 def load_rates() -> dict[str, Any]:
