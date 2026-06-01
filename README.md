@@ -127,8 +127,6 @@ SOCSO and EIS rate tables (65 wage brackets each) are parsed from the
 [PERKESO 2025 Booklet](https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf)
 using pymupdf. Pages 36–39 for Act 4, 52–55 for Act 800.
 
-Cached at `.cache/pdf/2025-BOOKLET_PERKESO_BI.pdf`.
-
 ## Disclaimer
 
 Data scraped from official government websites. Verify rates against [official sources](DISCLAIMER.md) before making payroll or tax decisions.
