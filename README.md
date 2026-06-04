@@ -224,6 +224,30 @@ using pymupdf. Pages 36–39 for Act 4, 52–55 for Act 800.
 
 Data scraped from official government websites. Verify rates against [official sources](DISCLAIMER.md) before making payroll or tax decisions.
 
+## CI/CD
+
+### Automated Pipeline
+
+| Workflow | Trigger | What it does |
+|---|---|---|
+| `test.yml` | Push/PR to main | Runs tests on Python 3.10–3.13, lints with ruff |
+| `scrape.yml` | Weekly (Mon 10am MYT) + manual | Scrapes all sources, creates PR if data changed |
+
+### How it works
+
+1. **Weekly scrape** — GitHub Actions runs `scrape --all` every Monday
+2. **PR-based review** — if data changed, creates a PR with the diff
+3. **Version bump** — auto-bumps patch version (e.g. 0.2.0 → 0.2.1)
+4. **Publish on merge** — merge the PR to publish to PyPI
+
+### Required Secrets
+
+| Secret | Purpose |
+|---|---|
+| `FIRECRAWL_API_KEY` | For scraping blocked sites (kwsp.gov.my, hrdcorp.gov.my) |
+| `PYPI_API_TOKEN` | For publishing to PyPI |
+| `GITHUB_TOKEN` | Auto-provided by GitHub Actions |
+
 ## License
 
 MIT
