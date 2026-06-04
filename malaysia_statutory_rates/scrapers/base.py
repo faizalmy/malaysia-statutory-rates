@@ -252,14 +252,31 @@ class BaseScraper:
         raise RuntimeError(f"Failed to download {url}")
 
     def save(self, filename: str, data: dict) -> Path:
-        """Save data to JSON with metadata."""
+        """Save data to JSON with metadata, appending changelog entry."""
+        from malaysia_statutory_rates.changelog import append_changelog
+
+        # Load old data for changelog diff
+        path = self.data_dir / filename
+        old_data = None
+        if path.exists():
+            old_data = json.loads(path.read_text(encoding="utf-8"))
+
         data["_metadata"] = {
             "scraped_at": datetime.now(timezone.utc).isoformat(),
             "source": self.SOURCE_URL,
             "source_name": self.SOURCE_NAME,
             "scraper_version": "0.1.0",
         }
-        path = self.data_dir / filename
+
+        # Append changelog entry before writing new data
+        append_changelog(
+            data_dir=self.data_dir,
+            scraper_name=filename.removesuffix(".json"),
+            source_url=self.SOURCE_URL,
+            old_data=old_data,
+            new_data=data,
+        )
+
         path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         return path
 

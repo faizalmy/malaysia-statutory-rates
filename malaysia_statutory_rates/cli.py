@@ -3,6 +3,7 @@
 import argparse
 import json
 import sys
+from pathlib import Path
 
 from malaysia_statutory_rates.loader import load_rate, load_rates
 
@@ -28,6 +29,35 @@ def cmd_show(args: argparse.Namespace) -> None:
         data = {args.rate: load_rate(file_name)}
 
     print(json.dumps(data, indent=2, ensure_ascii=False))
+
+
+def cmd_changelog(args: argparse.Namespace) -> None:
+    """Show changelog entries."""
+    from malaysia_statutory_rates.changelog import read_changelog
+
+    data_dir = Path(__file__).parent / "data"
+    entries = read_changelog(data_dir, last_n=args.last)
+
+    if not entries:
+        print("No changelog entries found.")
+        return
+
+    for entry in entries:
+        ts = entry["ts"][:19].replace("T", " ")
+        scraper = entry["scraper"]
+        count = entry.get("change_count", len(entry.get("changes", [])))
+        print(f"\n[{ts}] {scraper} — {count} change(s)")
+        for change in entry.get("changes", []):
+            ctype = change["type"]
+            path = change["path"]
+            if ctype == "modified":
+                old = change["old"]
+                new = change["new"]
+                print(f"  ~ {path}: {old!r} -> {new!r}")
+            elif ctype == "added":
+                print(f"  + {path}: {change['new']!r}")
+            elif ctype == "removed":
+                print(f"  - {path}: {change['old']!r}")
 
 
 def cmd_scrape(args: argparse.Namespace) -> None:
@@ -67,12 +97,20 @@ def main() -> None:
     scrape_p.add_argument("--all", action="store_true", help="Scrape all sources")
     scrape_p.add_argument("targets", nargs="*", help="Specific scrapers to run")
 
+    # changelog
+    changelog_p = sub.add_parser("changelog", help="Show data change history")
+    changelog_p.add_argument(
+        "--last", type=int, default=None, help="Show only last N entries"
+    )
+
     args = parser.parse_args()
 
     if args.command == "show":
         cmd_show(args)
     elif args.command == "scrape":
         cmd_scrape(args)
+    elif args.command == "changelog":
+        cmd_changelog(args)
     else:
         parser.print_help()
         sys.exit(1)

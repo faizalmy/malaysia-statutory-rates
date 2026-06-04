@@ -50,6 +50,8 @@ malaysia-statutory-rates show
 malaysia-statutory-rates show epf
 malaysia-statutory-rates show holidays
 malaysia-statutory-rates scrape --all
+malaysia-statutory-rates changelog          # view data change history
+malaysia-statutory-rates changelog --last 5 # last 5 entries
 ```
 
 ## Data Files (malaysia_statutory_rates/data/)
@@ -98,6 +100,56 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 5. Caches responses for 24 hours
 6. Writes to `data/*.json` with `_metadata` (scraped_at, source)
 7. Change detection — only writes if data changed
+8. Audit changelog — appends field-level diffs to `data/_changelog.jsonl`
+
+### Audit Changelog
+
+Every scrape that detects changes writes a field-level diff to `data/_changelog.jsonl`.
+This enables:
+
+- **Change tracking** — when did a rate actually change, and what specifically changed
+- **Error detection** — spot suspicious jumps (e.g. EPF rate 13% → 80%)
+- **Investigation** — trace which scrape introduced a bad value
+
+```bash
+# View all changes
+malaysia-statutory-rates changelog
+
+# Last 5 entries
+malaysia-statutory-rates changelog --last 5
+```
+
+```python
+from malaysia_statutory_rates.changelog import read_changelog
+from pathlib import Path
+
+entries = read_changelog(Path("malaysia_statutory_rates/data"), last_n=10)
+for entry in entries:
+    print(entry["scraper"], entry["ts"], entry["change_count"], "changes")
+```
+
+### Versioning Strategy
+
+**Hybrid approach** — code follows semver, data updates are patch bumps:
+
+| Change type | Version bump | Example |
+|---|---|---|
+| Bug fix / feature in code | Minor or patch | `0.1.1` → `0.2.0` |
+| Data update (rate changed) | Patch | `0.2.0` → `0.2.1` |
+| Breaking API change | Major | `0.2.1` → `1.0.0` |
+
+**Rationale:**
+- Users can `pip install --upgrade` to get latest data without API breakage
+- Patch bumps are cheap — automated scraper can bump and publish
+- Semver signals code stability separately from data freshness
+- `_metadata.scraped_at` in each data file tells you exactly when data was last updated
+
+**Data freshness check:**
+```python
+from malaysia_statutory_rates import load_rates
+rates = load_rates()
+print(rates["epf_rates"]["_metadata"]["scraped_at"])  # 2025-06-03T09:00:00+00:00
+```
 
 ### Sources
 
