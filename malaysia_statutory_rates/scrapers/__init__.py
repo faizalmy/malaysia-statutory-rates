@@ -4,6 +4,7 @@ Imports are lazy so the core package can be used without scraper
 extras (pymupdf, httpx, etc.) installed.
 """
 
+import json
 from typing import Any
 
 __all__ = ["SCRAPERS", "run_scrapers"]
@@ -68,8 +69,17 @@ class _ScraperRegistry:
 SCRAPERS = _ScraperRegistry()
 
 
-def run_scrapers(targets: list[str] | None = None) -> dict[str, bool]:
-    """Run scrapers. Returns {name: changed}."""
+def run_scrapers(
+    targets: list[str] | None = None, strict: bool = False
+) -> dict[str, bool]:
+    """Run scrapers. Returns {name: changed}.
+
+    Args:
+        targets: Specific scrapers to run, or None for all.
+        strict: If True, validation warnings block saving.
+    """
+    from malaysia_statutory_rates.validator import validate_and_report
+
     results = {}
     to_run = targets or list(SCRAPERS.keys())
 
@@ -81,8 +91,25 @@ def run_scrapers(targets: list[str] | None = None) -> dict[str, bool]:
         try:
             data = scraper.scrape()
             if data is not None:
-                scraper.save(f"{name}.json", data)
-                results[name] = True
+                # Load old data for validation
+                data_path = scraper.data_dir / f"{name}.json"
+                old_data = None
+                if data_path.exists():
+                    old_data = json.loads(data_path.read_text(encoding="utf-8"))
+
+                # Validate before saving
+                errors, proceed = validate_and_report(
+                    name, data, old_data, strict=strict
+                )
+
+                if proceed:
+                    scraper.save(f"{name}.json", data)
+                    results[name] = True
+                    if errors:
+                        print(f"  {name}: UPDATED (with {len(errors)} warning(s))")
+                else:
+                    results[name] = False
+                    print(f"  {name}: BLOCKED by validation")
             else:
                 results[name] = False
         except Exception as e:

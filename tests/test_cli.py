@@ -58,23 +58,25 @@ class TestCmdScrape:
         args = MagicMock()
         args.all = True
         args.targets = []
+        args.strict = False
         with patch("malaysia_statutory_rates.scrapers.run_scrapers") as mock_run:
             mock_run.return_value = {"epf_rates": True, "socso_rates": False}
             cmd_scrape(args)
         out = capsys.readouterr().out
         assert "UPDATED" in out
         assert "unchanged" in out
-        mock_run.assert_called_once_with(None)
+        mock_run.assert_called_once_with(None, strict=False)
 
     def test_cmd_scrape_targets(self, capsys):
         from malaysia_statutory_rates.cli import cmd_scrape
         args = MagicMock()
         args.all = False
         args.targets = ["epf_rates"]
+        args.strict = False
         with patch("malaysia_statutory_rates.scrapers.run_scrapers") as mock_run:
             mock_run.return_value = {"epf_rates": True}
             cmd_scrape(args)
-        mock_run.assert_called_once_with(["epf_rates"])
+        mock_run.assert_called_once_with(["epf_rates"], strict=False)
 
     def test_cmd_scrape_no_targets_exits(self):
         from malaysia_statutory_rates.cli import cmd_scrape

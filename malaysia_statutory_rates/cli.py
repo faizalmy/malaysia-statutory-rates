@@ -60,6 +60,15 @@ def cmd_changelog(args: argparse.Namespace) -> None:
                 print(f"  - {path}: {change['old']!r}")
 
 
+def cmd_status(args: argparse.Namespace) -> None:
+    """Show data freshness status."""
+    from malaysia_statutory_rates.status import format_status_table, rates_status
+
+    data_dir = Path(__file__).parent / "data"
+    statuses = rates_status(data_dir)
+    print(format_status_table(statuses))
+
+
 def cmd_scrape(args: argparse.Namespace) -> None:
     """Run scrapers to update data files."""
     from malaysia_statutory_rates.scrapers import run_scrapers
@@ -70,7 +79,7 @@ def cmd_scrape(args: argparse.Namespace) -> None:
         print(f"Available: {', '.join(RATE_MAP.keys())}")
         sys.exit(1)
 
-    results = run_scrapers(targets)
+    results = run_scrapers(targets, strict=args.strict)
     for name, changed in results.items():
         status = "UPDATED" if changed else "unchanged"
         print(f"  {name}: {status}")
@@ -95,6 +104,10 @@ def main() -> None:
     # scrape
     scrape_p = sub.add_parser("scrape", help="Run scrapers to update data")
     scrape_p.add_argument("--all", action="store_true", help="Scrape all sources")
+    scrape_p.add_argument(
+        "--strict", action="store_true",
+        help="Block saving if validation warnings are found"
+    )
     scrape_p.add_argument("targets", nargs="*", help="Specific scrapers to run")
 
     # changelog
@@ -102,6 +115,9 @@ def main() -> None:
     changelog_p.add_argument(
         "--last", type=int, default=None, help="Show only last N entries"
     )
+
+    # status
+    sub.add_parser("status", help="Show data freshness status")
 
     args = parser.parse_args()
 
@@ -111,6 +127,8 @@ def main() -> None:
         cmd_scrape(args)
     elif args.command == "changelog":
         cmd_changelog(args)
+    elif args.command == "status":
+        cmd_status(args)
     else:
         parser.print_help()
         sys.exit(1)

@@ -52,6 +52,8 @@ malaysia-statutory-rates show holidays
 malaysia-statutory-rates scrape --all
 malaysia-statutory-rates changelog          # view data change history
 malaysia-statutory-rates changelog --last 5 # last 5 entries
+malaysia-statutory-rates status             # show data freshness
+malaysia-statutory-rates scrape --all --strict  # strict validation mode
 ```
 
 ## Data Files (malaysia_statutory_rates/data/)
@@ -101,6 +103,43 @@ results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
 6. Writes to `data/*.json` with `_metadata` (scraped_at, source)
 7. Change detection — only writes if data changed
 8. Audit changelog — appends field-level diffs to `data/_changelog.jsonl`
+9. Validation — range, magnitude, and schema checks before saving
+
+### Validation
+
+After scraping, data is validated before saving:
+
+- **Range checks** — each rate has an expected range (e.g. EPF: 0.08–0.15)
+- **Magnitude checks** — flags if a rate changes by more than 30–50%
+- **Schema checks** — required fields must exist
+
+```bash
+# Normal mode: warns but still saves
+malaysia-statutory-rates scrape --all
+
+# Strict mode: blocks saving on any warning
+malaysia-statutory-rates scrape --all --strict
+```
+
+```python
+from malaysia_statutory_rates.validator import RateValidator
+v = RateValidator()
+errors = v.validate("epf_rates", data, old_data=old_data)
+# errors is empty list if clean, or list of ValidationError
+```
+
+### Data Freshness Status
+
+```bash
+malaysia-statutory-rates status
+```
+
+```python
+from malaysia_statutory_rates.status import rates_status
+for rate in rates_status():
+    print(rate["name"], rate["last_scraped"], rate["freshness"])
+    # freshness: "fresh" (<7d), "stale" (7-30d), "old" (>30d), "missing"
+```
 
 ### Audit Changelog
 

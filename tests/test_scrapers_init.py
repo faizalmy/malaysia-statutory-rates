@@ -1,5 +1,6 @@
 """Tests for the scrapers __init__ module (SCRAPERS dict, run_scrapers)."""
 
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 from malaysia_statutory_rates.scrapers import SCRAPERS, run_scrapers
@@ -23,10 +24,12 @@ class TestScrapersDict:
 
 
 class TestRunScrapers:
+    @patch("malaysia_statutory_rates.validator.validate_and_report", return_value=([], True))
     @patch("malaysia_statutory_rates.scrapers.SCRAPERS")
-    def test_run_scrapers_success_changed(self, mock_scrapers):
+    def test_run_scrapers_success_changed(self, mock_scrapers, mock_validate):
         scraper = MagicMock()
         scraper.scrape.return_value = {"key": "value"}
+        scraper.data_dir = Path("/nonexistent")  # No existing file
         mock_cls = MagicMock(return_value=scraper)
         mock_scrapers.__iter__ = MagicMock(return_value=iter(["test_scraper"]))
         mock_scrapers.__getitem__ = MagicMock(return_value=mock_cls)
