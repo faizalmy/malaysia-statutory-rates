@@ -26,11 +26,16 @@ class TestDisclaimerConstant:
 class TestDisclaimerInDataFiles:
     """Tests that data files disclaimer metadata is available."""
 
-    def test_disclaimer_field_in_new_metadata_schema(self):
-        """New saves will include disclaimer — verify the schema is correct."""
-        # Existing files were saved before disclaimer was added,
-        # so we verify via the save() test below instead.
-        pass
+    def test_disclaimer_schema_compatible(self):
+        """Disclaimer fields should be strings when present."""
+        data_dir = Path(__file__).parent.parent / "malaysia_statutory_rates" / "data"
+        for json_file in sorted(data_dir.glob("*.json")):
+            if json_file.name.startswith("_"):
+                continue
+            data = json.loads(json_file.read_text())
+            metadata = data.get("_metadata", {})
+            if "disclaimer" in metadata:
+                assert isinstance(metadata["disclaimer"], str)
 
 
 class TestDisclaimerInNewSaves:

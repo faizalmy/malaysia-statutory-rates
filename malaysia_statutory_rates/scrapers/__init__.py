@@ -115,5 +115,7 @@ def run_scrapers(
         except Exception as e:
             results[name] = False
             print(f"  {name}: ERROR — {e}")
+        finally:
+            scraper.close()
 
     return results

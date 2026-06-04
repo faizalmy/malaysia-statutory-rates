@@ -231,7 +231,8 @@ Data scraped from official government websites. Verify rates against [official s
 | Workflow | Trigger | What it does |
 |---|---|---|
 | `test.yml` | Push/PR to main | Runs tests on Python 3.10–3.13, lints with ruff |
-| `scrape.yml` | Weekly (Mon 10am MYT) + manual | Scrapes all sources, creates PR if data changed |
+| `scrape.yml` | Weekly (Mon 10am MYT) + manual | Scrapes all sources with --strict, creates PR if data changed |
+| `publish.yml` | Push to main (data/ or pyproject.toml changed) | Runs tests, builds, publishes to PyPI |
 
 ### How it works
 

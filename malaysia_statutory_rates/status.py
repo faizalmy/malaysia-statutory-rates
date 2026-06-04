@@ -102,7 +102,7 @@ def rates_status(
 
 FRESHNESS_ICONS = {
     "fresh": "\u2705",
-    "stale": "\u26a0\ufe0f ",
+    "stale": "\u26a0\ufe0f",
     "old": "\u274c",
     "missing": "\u274c",
     "error": "\u274c",

@@ -29,7 +29,7 @@ jobs:
         env:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
         run: |
-          malaysia-statutory-rates scrape --all
+          malaysia-statutory-rates scrape --all --strict
           malaysia-statutory-rates status
 
       - name: Check for data changes
@@ -69,30 +69,3 @@ jobs:
             - [ ] Merge to trigger PyPI publish
           branch: auto/data-update
           delete-branch: true
-
-  publish:
-    needs: scrape
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install build tools
-        run: pip install build
-
-      - name: Build package
-        run: python -m build
-
-      - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}

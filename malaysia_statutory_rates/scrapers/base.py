@@ -273,7 +273,10 @@ class BaseScraper:
             "official_reference": self.SOURCE_NAME,
         }
 
-        # Append changelog entry before writing new data
+        # Write data file first, then append changelog
+        path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+        # Append changelog entry after successful write
         append_changelog(
             data_dir=self.data_dir,
             scraper_name=filename.removesuffix(".json"),
@@ -282,7 +285,6 @@ class BaseScraper:
             new_data=data,
         )
 
-        path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         return path
 
     def has_changed(self, filename: str, new_data: dict) -> bool:

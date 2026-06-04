@@ -276,5 +276,10 @@ def validate_and_report(
         if any_errors or any_warnings:
             print(f"    STRICT MODE: {len(errors)} issue(s) found, not saving.")
             return errors, False
+    else:
+        # Even without strict, block on schema errors (missing required fields)
+        if any(e.severity == "error" for e in errors):
+            print(f"    BLOCKED: {sum(1 for e in errors if e.severity == 'error')} schema error(s).")
+            return errors, False
 
     return errors, True
