@@ -6,9 +6,7 @@ Runs after scraping, before saving. Catches:
 - Schema issues (missing fields, wrong types)
 """
 
-import json
-from dataclasses import dataclass, field
-from pathlib import Path
+from dataclasses import dataclass
 from typing import Any
 
 

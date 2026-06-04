@@ -8,7 +8,6 @@ investigation of scrape errors.
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 
 def diff_changes(old: dict, new: dict, path: str = "") -> list[dict]:

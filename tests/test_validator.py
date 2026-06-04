@@ -5,7 +5,6 @@ from pathlib import Path
 from malaysia_statutory_rates.validator import (
     RANGE_RULES,
     RateValidator,
-    ValidationError,
     validate_and_report,
 )
 

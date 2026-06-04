@@ -23,6 +23,7 @@ RATE_MAP = {
 def _print_disclaimer() -> None:
     """Print disclaimer notice to stderr (doesn't break stdout pipes)."""
     import sys
+
     from malaysia_statutory_rates import DISCLAIMER
     print(f"\n⚠️  {DISCLAIMER}", file=sys.stderr)
 

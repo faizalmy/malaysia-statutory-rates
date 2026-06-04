@@ -1,7 +1,7 @@
 """Tests for data freshness status."""
 
 import json
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from malaysia_statutory_rates.status import (

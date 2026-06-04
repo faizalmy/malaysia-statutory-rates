@@ -5,19 +5,14 @@ Uses a real temp data directory with mock HTTP to avoid hitting real sites.
 """
 
 import json
-import sys
-from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-import pytest
-
 from malaysia_statutory_rates.changelog import read_changelog
-from malaysia_statutory_rates.scrapers import SCRAPERS, run_scrapers
+from malaysia_statutory_rates.scrapers import run_scrapers
 from malaysia_statutory_rates.scrapers.base import BaseScraper
 from malaysia_statutory_rates.status import rates_status
 from malaysia_statutory_rates.validator import RateValidator, validate_and_report
-
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -286,8 +281,9 @@ class TestE2ECLI:
 
     def test_cli_show_outputs_json(self, capsys):
         """`show` command outputs valid JSON."""
-        from malaysia_statutory_rates.cli import cmd_show
         from unittest.mock import MagicMock
+
+        from malaysia_statutory_rates.cli import cmd_show
 
         args = MagicMock()
         args.rate = "all"
@@ -302,8 +298,9 @@ class TestE2ECLI:
 
     def test_cli_status_outputs_table(self, capsys):
         """`status` command outputs a table with rate names."""
-        from malaysia_statutory_rates.cli import cmd_status
         from unittest.mock import MagicMock
+
+        from malaysia_statutory_rates.cli import cmd_status
 
         args = MagicMock()
         cmd_status(args)
@@ -314,9 +311,9 @@ class TestE2ECLI:
 
     def test_cli_changelog_with_entries(self, tmp_path: Path, capsys):
         """`changelog` command shows entries from changelog file."""
-        from malaysia_statutory_rates.cli import cmd_changelog
-        from malaysia_statutory_rates.changelog import append_changelog
         from unittest.mock import MagicMock
+
+        from malaysia_statutory_rates.changelog import append_changelog
 
         # Create a changelog entry
         data = {"rates": {"monthly": 1700}}
@@ -408,7 +405,7 @@ class TestE2EWorkflowSimulation:
 
     def test_full_workflow_simulation(self, tmp_path: Path):
         """Simulate: initial scrape → rate change → second scrape → verify changelog."""
-        from malaysia_statutory_rates.changelog import append_changelog, read_changelog
+        from malaysia_statutory_rates.changelog import read_changelog
         from malaysia_statutory_rates.validator import validate_and_report
 
         # Step 1: Initial scrape (v1 data)
