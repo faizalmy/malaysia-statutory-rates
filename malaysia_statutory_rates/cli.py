@@ -20,6 +20,12 @@ RATE_MAP = {
 }
 
 
+def _print_disclaimer() -> None:
+    """Print disclaimer notice."""
+    from malaysia_statutory_rates import DISCLAIMER
+    print(f"\n⚠️  {DISCLAIMER}")
+
+
 def cmd_show(args: argparse.Namespace) -> None:
     """Show rate data."""
     if args.rate == "all":
@@ -132,6 +138,8 @@ def main() -> None:
     else:
         parser.print_help()
         sys.exit(1)
+
+    _print_disclaimer()
 
 
 if __name__ == "__main__":

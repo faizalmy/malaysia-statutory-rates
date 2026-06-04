@@ -266,6 +266,11 @@ class BaseScraper:
             "source": self.SOURCE_URL,
             "source_name": self.SOURCE_NAME,
             "scraper_version": "0.1.0",
+            "disclaimer": (
+                "Scraped from official sources. Verify against "
+                f"{self.SOURCE_URL} before making payroll decisions."
+            ),
+            "official_reference": self.SOURCE_NAME,
         }
 
         # Append changelog entry before writing new data
