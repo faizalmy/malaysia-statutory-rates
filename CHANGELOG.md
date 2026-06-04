@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.2.0 — 2026-06-04
+
+### Features
+- **Audit changelog** — field-level diffs appended to `data/_changelog.jsonl` on every scrape. CLI: `malaysia-statutory-rates changelog [--last N]`
+- **Validation layer** — range checks, magnitude checks (>30-50% change flags), schema validation. Blocks saves on missing required fields. `--strict` flag blocks on any warning
+- **Status command** — data freshness table. CLI: `malaysia-statutory-rates status`. Python API: `rates_status()`
+- **Disclaimer** — `DISCLAIMER` constant in package, disclaimer/official_reference in `_metadata` for all new saves. CLI prints disclaimer to stderr
+- **Coverage docs** — `COVERAGE.md` documenting foreign worker derivation rules, PCB verification process, state holiday coverage (13 states + 3 FTs), historical rates policy
+
+### CI/CD
+- `test.yml` — runs tests on Python 3.10–3.13 + ruff lint (push/PR)
+- `scrape.yml` — weekly scheduled scrape (Mon 10am MYT) with `--strict`, creates PR if data changed
+- `publish.yml` — publishes to PyPI on merge when data/ or pyproject.toml changes
+
+### Docs
+- Versioning strategy documented (hybrid: semver for code, patch bumps for data)
+- README updated with all new CLI commands, Python APIs, and CI/CD docs
+
+### Tests
+- 328 tests (was 265)
+- New: test_changelog.py (16), test_validator.py (14), test_status.py (12), test_disclaimer.py (8), test_e2e.py (18)
+- E2E tests cover full pipeline: scrape → validate → changelog → save → status
+
 ## 0.1.0 — 2026-05-29
 
 ### Data (8 statutory rates)

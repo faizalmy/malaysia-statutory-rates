@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "malaysia-statutory-rates"
-version = "0.1.1"
+version = "0.2.0"
 description = "Open-source Malaysian statutory rate data — EPF, SOCSO, EIS, PCB, minimum wage, HRDF, public holidays. Scraper + data only."
 readme = "README.md"
 license = "MIT"
