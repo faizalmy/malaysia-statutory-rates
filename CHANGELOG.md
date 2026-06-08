@@ -7,7 +7,6 @@
 - **Validation layer** — range checks, magnitude checks (>30-50% change flags), schema validation. Blocks saves on missing required fields. `--strict` flag blocks on any warning
 - **Status command** — data freshness table. CLI: `malaysia-statutory-rates status`. Python API: `rates_status()`
 - **Disclaimer** — `DISCLAIMER` constant in package, disclaimer/official_reference in `_metadata` for all new saves. CLI prints disclaimer to stderr
-- **Coverage docs** — `COVERAGE.md` documenting foreign worker derivation rules, PCB verification process, state holiday coverage (13 states + 3 FTs), historical rates policy
 
 ### CI/CD
 - `test.yml` — runs tests on Python 3.10–3.13 + ruff lint (push/PR)
