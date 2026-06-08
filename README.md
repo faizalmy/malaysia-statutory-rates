@@ -10,13 +10,7 @@ Data only, no calculation engine.
 pip install malaysia-statutory-rates
 ```
 
-For scraping:
-
-```bash
-pip install malaysia-statutory-rates[scraper]
-```
-
-## Quick Start
+## Usage
 
 ### Python
 
@@ -28,7 +22,6 @@ rates = load_rates()
 # EPF rates
 epf = rates["epf_rates"]
 employee_rate = epf["rates"]["malaysian_pr_nonmy_before_aug98_below_60"]["employee"]["rate"]  # 0.11
-employer_rate = epf["rates"]["malaysian_pr_nonmy_before_aug98_below_60"]["employer"]["wage_lte_5000"]["rate"]  # 0.13
 
 # Minimum wage
 mw = rates["minimum_wage"]
@@ -40,214 +33,36 @@ ceiling = socso["wage_ceiling"]  # 6000
 
 # Public holidays
 holidays = rates["public_holidays"]
-national = [h for h in holidays["holidays"] if h.get("national")]
+national = holidays["national"]  # list of national holidays
 ```
 
 ### CLI
 
 ```bash
-malaysia-statutory-rates show
-malaysia-statutory-rates show epf
-malaysia-statutory-rates show holidays
-malaysia-statutory-rates scrape --all
-malaysia-statutory-rates changelog          # view data change history
-malaysia-statutory-rates changelog --last 5 # last 5 entries
-malaysia-statutory-rates status             # show data freshness
-malaysia-statutory-rates scrape --all --strict  # strict validation mode
+malaysia-statutory-rates show           # all rates
+malaysia-statutory-rates show epf       # specific rate
+malaysia-statutory-rates status         # data freshness
+malaysia-statutory-rates changelog      # change history
 ```
 
-## Data Files (malaysia_statutory_rates/data/)
+## Data Files
 
-| File | Source | Content |
-|---|---|---|
-| `epf_rates.json` | kwsp.gov.my | EPF contribution rates by citizenship, age, wage bracket |
-| `socso_rates.json` | perkeso.gov.my + booklet PDF | SOCSO metadata + 65-bracket rate table (2 schedules) |
-| `eis_rates.json` | perkeso.gov.my + booklet PDF | EIS metadata + 65-bracket rate table |
-| `pcb_table.json` | LHDN e-CP39 | PCB/MTD tax brackets and reliefs |
-| `minimum_wage.json` | gajiminimum.mohr.gov.my | Minimum wage (monthly + hourly) |
-| `hrdf_rates.json` | hrdcorp.gov.my | HRDF levy rates and formula |
-| `public_holidays.json` | publicholidays.com.my | National + state public holidays |
-| `foreign_worker_rates.json` | Derived | EPF/SOCSO/EIS rates for foreign workers |
+| File | Content |
+|---|---|
+| `epf_rates.json` | EPF contribution rates by citizenship, age, wage bracket |
+| `socso_rates.json` | SOCSO rates (65 wage brackets, 2 schedules) |
+| `eis_rates.json` | EIS rates (65 wage brackets) |
+| `pcb_table.json` | PCB/MTD tax brackets and reliefs |
+| `minimum_wage.json` | Minimum wage (monthly + hourly) |
+| `hrdf_rates.json` | HRDF levy rates |
+| `public_holidays.json` | National + state public holidays |
+| `foreign_worker_rates.json` | EPF/SOCSO/EIS for foreign workers |
 
-## Scraping
-
-Scrapers fetch data from government websites. httpx is used first; blocked sites (kwsp.gov.my, hrdcorp.gov.my) fall back to [Firecrawl](https://firecrawl.dev).
-
-`firecrawl` is included in the `[scraper]` extras.
-
-### Setup
-
-```bash
-pip install malaysia-statutory-rates[scraper]
-cp .env.example .env  # add Firecrawl API key if needed
-```
-
-### Run
-
-```bash
-malaysia-statutory-rates scrape --all
-```
-
-```python
-from malaysia_statutory_rates.scrapers import run_scrapers
-results = run_scrapers()  # {"epf_rates": True, "minimum_wage": False, ...}
-```
-
-### How it works
-
-1. Checks local cache (`.cache/fetch/`) — returns if < 24h old
-2. Checks `robots.txt` — skips if disallowed
-3. Tries httpx first (no API cost)
-4. Falls back to Firecrawl on 403/429 or JS-only pages (1 credit)
-5. Caches responses for 24 hours
-6. Writes to `data/*.json` with `_metadata` (scraped_at, source)
-7. Change detection — only writes if data changed
-8. Audit changelog — appends field-level diffs to `data/_changelog.jsonl`
-9. Validation — range, magnitude, and schema checks before saving
-
-### Validation
-
-After scraping, data is validated before saving:
-
-- **Range checks** — each rate has an expected range (e.g. EPF: 0.08–0.15)
-- **Magnitude checks** — flags if a rate changes by more than 30–50%
-- **Schema checks** — required fields must exist
-
-```bash
-# Normal mode: warns but still saves
-malaysia-statutory-rates scrape --all
-
-# Strict mode: blocks saving on any warning
-malaysia-statutory-rates scrape --all --strict
-```
-
-```python
-from malaysia_statutory_rates.validator import RateValidator
-v = RateValidator()
-errors = v.validate("epf_rates", data, old_data=old_data)
-# errors is empty list if clean, or list of ValidationError
-```
-
-### Data Freshness Status
-
-```bash
-malaysia-statutory-rates status
-```
-
-```python
-from malaysia_statutory_rates.status import rates_status
-for rate in rates_status():
-    print(rate["name"], rate["last_scraped"], rate["freshness"])
-    # freshness: "fresh" (<7d), "stale" (7-30d), "old" (>30d), "missing"
-```
-
-### Audit Changelog
-
-Every scrape that detects changes writes a field-level diff to `data/_changelog.jsonl`.
-This enables:
-
-- **Change tracking** — when did a rate actually change, and what specifically changed
-- **Error detection** — spot suspicious jumps (e.g. EPF rate 13% → 80%)
-- **Investigation** — trace which scrape introduced a bad value
-
-```bash
-# View all changes
-malaysia-statutory-rates changelog
-
-# Last 5 entries
-malaysia-statutory-rates changelog --last 5
-```
-
-```python
-from malaysia_statutory_rates.changelog import read_changelog
-from pathlib import Path
-
-entries = read_changelog(Path("malaysia_statutory_rates/data"), last_n=10)
-for entry in entries:
-    print(entry["scraper"], entry["ts"], entry["change_count"], "changes")
-```
-
-### Versioning Strategy
-
-**Hybrid approach** — code follows semver, data updates are patch bumps:
-
-| Change type | Version bump | Example |
-|---|---|---|
-| Bug fix / feature in code | Minor or patch | `0.1.1` → `0.2.0` |
-| Data update (rate changed) | Patch | `0.2.0` → `0.2.1` |
-| Breaking API change | Major | `0.2.1` → `1.0.0` |
-
-**Rationale:**
-- Users can `pip install --upgrade` to get latest data without API breakage
-- Patch bumps are cheap — automated scraper can bump and publish
-- Semver signals code stability separately from data freshness
-- `_metadata.scraped_at` in each data file tells you exactly when data was last updated
-
-**Data freshness check:**
-```python
-from malaysia_statutory_rates import load_rates
-rates = load_rates()
-print(rates["epf_rates"]["_metadata"]["scraped_at"])  # 2025-06-03T09:00:00+00:00
-```
-
-### Sources
-
-| Source | Method | Notes |
-|---|---|---|
-| kwsp.gov.my (EPF) | Firecrawl fallback | Returns 403 to httpx |
-| perkeso.gov.my (SOCSO/EIS) | httpx + PDF parse | Metadata from HTML; rate tables from booklet PDF |
-| gajiminimum.mohr.gov.my | httpx | Minimum wage gazette |
-| hrdcorp.gov.my (HRDF) | Firecrawl fallback | JS SPA — httpx gets empty shell |
-| publicholidays.com.my | httpx | Third-party, scrapes table |
-| LHDN (PCB) | Manual | e-CP39 requires login |
-
-### Scraper Status
-
-| Scraper | Status | Data Source |
-|---|---|---|
-| `minimum_wage.py` | Done | HTML |
-| `hrdf.py` | Done | Firecrawl HTML |
-| `holidays.py` | Done | HTML |
-| `epf.py` | Done | HTML |
-| `socso.py` | Done | HTML + PDF |
-| `eis.py` | Done | HTML + PDF |
-| `pcb.py` | Done | PDF download + metadata (data manually verified against LHDN spec) |
-| `foreign_worker_rates.json` | Done | Derived from EPF/SOCSO/EIS |
-
-### PDF Parsing
-
-SOCSO and EIS rate tables (65 wage brackets each) are parsed from the
-[PERKESO 2025 Booklet](https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf)
-using pymupdf. Pages 36–39 for Act 4, 52–55 for Act 800.
+All data in `malaysia_statutory_rates/data/`. Each file includes `_metadata.scraped_at` for freshness.
 
 ## Disclaimer
 
 Data scraped from official government websites. Verify rates against [official sources](DISCLAIMER.md) before making payroll or tax decisions.
-
-## CI/CD
-
-### Automated Pipeline
-
-| Workflow | Trigger | What it does |
-|---|---|---|
-| `test.yml` | Push/PR to main | Runs tests on Python 3.10–3.13, lints with ruff |
-| `scrape.yml` | Weekly (Mon 10am MYT) + manual | Scrapes all sources with --strict, creates PR if data changed |
-| `publish.yml` | Push to main (data/ or pyproject.toml changed) | Runs tests, builds, publishes to PyPI |
-
-### How it works
-
-1. **Weekly scrape** — GitHub Actions runs `scrape --all` every Monday
-2. **PR-based review** — if data changed, creates a PR with the diff
-3. **Version bump** — auto-bumps patch version (e.g. 0.2.0 → 0.2.1)
-4. **Publish on merge** — merge the PR to publish to PyPI
-
-### Required Secrets
-
-| Secret | Purpose |
-|---|---|
-| `FIRECRAWL_API_KEY` | For scraping blocked sites (kwsp.gov.my, hrdcorp.gov.my) |
-| `PYPI_API_TOKEN` | For publishing to PyPI |
-| `GITHUB_TOKEN` | Auto-provided by GitHub Actions |
 
 ## License
 
