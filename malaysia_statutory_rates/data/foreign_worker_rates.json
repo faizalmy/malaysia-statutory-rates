@@ -47,10 +47,10 @@
         "employer": 104.15,
         "note": "RM 104.15 per month at RM6000 wage"
       },
-      "note": "Rate in Third Schedule (Act 4) PDF"
+      "note": null
     },
     "invalidity": {
-      "note": "Rate in Third Schedule (Act 4) PDF"
+      "note": null
     }
   },
   "eis": {
@@ -73,9 +73,11 @@
     "Second Schedule, Act 800."
   ],
   "_metadata": {
-    "scraped_at": "2026-05-30T04:07:42.102825+00:00",
+    "scraped_at": "2026-08-31T07:58:26.178998+00:00",
     "source": "Combined — KWSP and PERKESO",
     "source_name": "KWSP + PERKESO",
-    "scraper_version": "0.1.0"
+    "scraper_version": "0.1.0",
+    "disclaimer": "Scraped from official sources. Verify against Combined — KWSP and PERKESO before making payroll decisions.",
+    "official_reference": "KWSP + PERKESO"
   }
 }
