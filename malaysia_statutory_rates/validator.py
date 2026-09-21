@@ -268,8 +268,8 @@ def validate_and_report(
         return [], True
 
     for err in errors:
-        prefix = "BLOCKED" if strict and err.severity == "warning" else err.severity.upper()
-        logger.warning("[%s] %s: %s (%s)", prefix, err.path, err.message, err.rule)
+        level = logging.ERROR if err.severity == "error" else logging.WARNING
+        logger.log(level, "%s: %s (%s)", err.path, err.message, err.rule)
 
     if strict:
         any_errors = any(e.severity == "error" for e in errors)
