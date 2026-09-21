@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.3.0 — 2026-09-21
+
+### Changed
+- **Library code logs instead of printing** — 21 `print()` calls in the scrapers and validator wrote to stdout, which made the package unusable when imported. They now go through module loggers. The CLI is the only layer that configures handlers, at WARNING by default. **Breaking for anyone who parsed scraper stdout.**
+- `scrape -v/--verbose` raises the level to INFO, restoring the progress output that used to print unconditionally
+- Validator rows now log at ERROR or WARNING by severity rather than all at one level with a text prefix
+
+### Fixed
+- `USER_AGENT` reported `0.1` while the package was at `0.2.0`, so every outbound request misidentified itself. Now derived from `__version__`
+- `pip install -e ".[dev]"` installed no scraper dependencies, so seven test modules failed at import on `bs4` and `fitz`. `dev` now pulls the `scraper` extra
+- `-v` was registered after `add_subparsers` and so was rejected by the one command it applied to (`scrape -v` exited 2)
+
+### Build
+- Version is declared once, in `malaysia_statutory_rates/__init__.py`, and read by hatchling via `dynamic = ["version"]`. `pyproject.toml` no longer carries a second copy to drift
+
 ## 0.2.0 — 2026-06-04
 
 ### Features

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "malaysia-statutory-rates"
-version = "0.2.0"
+dynamic = ["version"]
 description = "Open-source Malaysian statutory rate data — EPF, SOCSO, EIS, PCB, minimum wage, HRDF, public holidays. Scraper + data only."
 readme = "README.md"
 license = "MIT"
@@ -50,6 +50,9 @@ malaysia-statutory-rates = "malaysia_statutory_rates.cli:main"
 Homepage = "https://github.com/faizalmy/malaysia-statutory-rates"
 Repository = "https://github.com/faizalmy/malaysia-statutory-rates"
 Issues = "https://github.com/faizalmy/malaysia-statutory-rates/issues"
+
+[tool.hatch.version]
+path = "malaysia_statutory_rates/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["malaysia_statutory_rates"]
