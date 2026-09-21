@@ -4,6 +4,7 @@ EIS (Act 800) shares the same source page as SOCSO (Act 4).
 The full 65-bracket rate table is parsed live from the PERKESO booklet PDF.
 """
 
+import logging
 import re
 from datetime import datetime
 from pathlib import Path
@@ -12,6 +13,8 @@ from bs4 import BeautifulSoup
 
 from malaysia_statutory_rates.scrapers.base import BaseScraper
 from malaysia_statutory_rates.scrapers.pdf_parser import extract_eis_table
+
+logger = logging.getLogger(__name__)
 
 # PERKESO booklet PDF URL (shared with SOCSO scraper)
 BOOKLET_URL = "https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf"
@@ -98,7 +101,7 @@ class EISScraper(BaseScraper):
             finally:
                 doc.close()
         except Exception as e:
-            print(f"    WARNING: Could not parse EIS rate table: {e}")
+            logger.warning("Could not parse EIS rate table: %s", e)
 
         if self.has_changed("eis_rates.json", data):
             return data

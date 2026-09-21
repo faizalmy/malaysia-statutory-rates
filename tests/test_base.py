@@ -1,6 +1,7 @@
 """Tests for the BaseScraper class and module-level functions."""
 
 import json
+import logging
 import time
 from unittest.mock import MagicMock, patch
 
@@ -149,14 +150,14 @@ class TestCheckRobots:
         assert scraper._check_robots("https://example.com/page") is True
 
     @patch("malaysia_statutory_rates.scrapers.base._get_robots")
-    def test_check_robots_blocked(self, mock_get_robots, tmp_path, capsys):
+    def test_check_robots_blocked(self, mock_get_robots, tmp_path, caplog):
         rp = MagicMock()
         rp.can_fetch.return_value = False
         mock_get_robots.return_value = rp
         scraper = ConcreteScraper(data_dir=tmp_path, respect_robots=True)
-        assert scraper._check_robots("https://example.com/page") is False
-        captured = capsys.readouterr()
-        assert "BLOCKED" in captured.out
+        with caplog.at_level(logging.WARNING, logger="malaysia_statutory_rates.scrapers.base"):
+            assert scraper._check_robots("https://example.com/page") is False
+        assert "BLOCKED" in caplog.text
 
 
 # --- Cache tests ---

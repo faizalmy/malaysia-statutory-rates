@@ -5,7 +5,10 @@ extras (pymupdf, httpx, etc.) installed.
 """
 
 import json
+import logging
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 __all__ = ["SCRAPERS", "run_scrapers"]
 
@@ -85,7 +88,7 @@ def run_scrapers(
 
     for name in to_run:
         if name not in SCRAPERS:
-            print(f"  WARNING: Unknown scraper '{name}', skipping")
+            logger.warning("Unknown scraper '%s', skipping", name)
             continue
         scraper = SCRAPERS[name]()
         try:
@@ -106,15 +109,15 @@ def run_scrapers(
                     scraper.save(f"{name}.json", data)
                     results[name] = True
                     if errors:
-                        print(f"  {name}: UPDATED (with {len(errors)} warning(s))")
+                        logger.info("%s: UPDATED (with %d warning(s))", name, len(errors))
                 else:
                     results[name] = False
-                    print(f"  {name}: BLOCKED by validation")
+                    logger.error("%s: BLOCKED by validation", name)
             else:
                 results[name] = False
         except Exception as e:
             results[name] = False
-            print(f"  {name}: ERROR — {e}")
+            logger.error("%s: ERROR — %s", name, e)
         finally:
             scraper.close()
 

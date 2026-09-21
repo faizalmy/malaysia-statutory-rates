@@ -6,8 +6,11 @@ Runs after scraping, before saving. Catches:
 - Schema issues (missing fields, wrong types)
 """
 
+import logging
 from dataclasses import dataclass
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -266,18 +269,18 @@ def validate_and_report(
 
     for err in errors:
         prefix = "BLOCKED" if strict and err.severity == "warning" else err.severity.upper()
-        print(f"    [{prefix}] {err.path}: {err.message} ({err.rule})")
+        logger.warning("[%s] %s: %s (%s)", prefix, err.path, err.message, err.rule)
 
     if strict:
         any_errors = any(e.severity == "error" for e in errors)
         any_warnings = any(e.severity == "warning" for e in errors)
         if any_errors or any_warnings:
-            print(f"    STRICT MODE: {len(errors)} issue(s) found, not saving.")
+            logger.error("STRICT MODE: %d issue(s) found, not saving.", len(errors))
             return errors, False
     else:
         # Even without strict, block on schema errors (missing required fields)
         if any(e.severity == "error" for e in errors):
-            print(f"    BLOCKED: {sum(1 for e in errors if e.severity == 'error')} schema error(s).")
+            logger.error("BLOCKED: %d schema error(s).", sum(1 for e in errors if e.severity == "error"))
             return errors, False
 
     return errors, True
