@@ -242,7 +242,7 @@ class TestE2ERunScrapers:
         mock_scrapers.__contains__ = MagicMock(side_effect=lambda x: x == "minimum_wage")
 
         results = run_scrapers(["minimum_wage"])
-        assert results["minimum_wage"] is True
+        assert results["minimum_wage"] == "updated"
         scraper.save.assert_called_once()
         scraper.close.assert_called_once()
 
@@ -269,7 +269,7 @@ class TestE2ERunScrapers:
         mock_scrapers.__contains__ = MagicMock(side_effect=lambda x: x == "test")
 
         results = run_scrapers(["test"], strict=True)
-        assert results["test"] is False
+        assert results["test"] == "blocked"
         scraper.save.assert_not_called()
         scraper.close.assert_called_once()
 

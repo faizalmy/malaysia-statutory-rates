@@ -74,8 +74,17 @@ SCRAPERS = _ScraperRegistry()
 
 def run_scrapers(
     targets: list[str] | None = None, strict: bool = False
-) -> dict[str, bool]:
-    """Run scrapers. Returns {name: changed}.
+) -> dict[str, str]:
+    """Run scrapers. Returns {name: status}.
+
+    Status is one of:
+        "updated"   — scraped, validated and saved
+        "unchanged" — scraped, identical to what is on disk
+        "blocked"   — scraped, but validation refused the save
+        "failed"    — could not scrape (fetch blocked, parse error, no API key)
+
+    "unchanged" and "failed" are deliberately distinct: a scraper that never
+    reached its source has not confirmed the data is current.
 
     Args:
         targets: Specific scrapers to run, or None for all.
@@ -107,16 +116,16 @@ def run_scrapers(
 
                 if proceed:
                     scraper.save(f"{name}.json", data)
-                    results[name] = True
+                    results[name] = "updated"
                     if errors:
                         logger.info("%s: UPDATED (with %d warning(s))", name, len(errors))
                 else:
-                    results[name] = False
+                    results[name] = "blocked"
                     logger.error("%s: BLOCKED by validation", name)
             else:
-                results[name] = False
+                results[name] = "unchanged"
         except Exception as e:
-            results[name] = False
+            results[name] = "failed"
             logger.error("%s: %s", name, e)
         finally:
             scraper.close()

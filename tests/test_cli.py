@@ -60,12 +60,25 @@ class TestCmdScrape:
         args.targets = []
         args.strict = False
         with patch("malaysia_statutory_rates.scrapers.run_scrapers") as mock_run:
-            mock_run.return_value = {"epf_rates": True, "socso_rates": False}
+            mock_run.return_value = {"epf_rates": "updated", "socso_rates": "unchanged"}
             cmd_scrape(args)
         out = capsys.readouterr().out
-        assert "UPDATED" in out
-        assert "unchanged" in out
+        assert "epf_rates: updated" in out
+        assert "socso_rates: unchanged" in out
         mock_run.assert_called_once_with(None, strict=False)
+
+    def test_cmd_scrape_exits_nonzero_when_a_scraper_fails(self, capsys):
+        from malaysia_statutory_rates.cli import cmd_scrape
+        args = MagicMock()
+        args.all = True
+        args.targets = []
+        args.strict = False
+        with patch("malaysia_statutory_rates.scrapers.run_scrapers") as mock_run:
+            mock_run.return_value = {"epf_rates": "failed", "socso_rates": "unchanged"}
+            with pytest.raises(SystemExit) as exc_info:
+                cmd_scrape(args)
+        assert exc_info.value.code == 1
+        assert "did not complete" in capsys.readouterr().err
 
     def test_cmd_scrape_targets(self, capsys):
         from malaysia_statutory_rates.cli import cmd_scrape
@@ -74,7 +87,7 @@ class TestCmdScrape:
         args.targets = ["epf_rates"]
         args.strict = False
         with patch("malaysia_statutory_rates.scrapers.run_scrapers") as mock_run:
-            mock_run.return_value = {"epf_rates": True}
+            mock_run.return_value = {"epf_rates": "updated"}
             cmd_scrape(args)
         mock_run.assert_called_once_with(["epf_rates"], strict=False)
 

@@ -89,9 +89,15 @@ def cmd_scrape(args: argparse.Namespace) -> None:
         sys.exit(1)
 
     results = run_scrapers(targets, strict=args.strict)
-    for name, changed in results.items():
-        status = "UPDATED" if changed else "unchanged"
+    for name, status in results.items():
         print(f"  {name}: {status}")
+
+    # A scraper that never reached its source has not confirmed anything, so the
+    # run must not look successful to the weekly workflow.
+    broken = [n for n, s in results.items() if s in ("failed", "blocked")]
+    if broken:
+        print(f"\n{len(broken)} scraper(s) did not complete: {', '.join(broken)}", file=sys.stderr)
+        sys.exit(1)
 
 
 def main() -> None:
