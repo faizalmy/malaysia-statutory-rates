@@ -4,12 +4,15 @@ Parses the contribution rate table from the live HTML page.
 Extracts: employee/employer rates by wage bracket, Third Schedule PDF link.
 """
 
+import logging
 import re
 from datetime import datetime
 
 from bs4 import BeautifulSoup
 
 from malaysia_statutory_rates.scrapers.base import BaseScraper
+
+logger = logging.getLogger(__name__)
 
 
 class EPFScraper(BaseScraper):
@@ -338,7 +341,7 @@ class EPFScraper(BaseScraper):
         try:
             md = self._fetch_firecrawl_markdown(url)
         except Exception as e:
-            print(f"    WARNING: Could not fetch Third Schedule PDF: {e}")
+            logger.warning("Could not fetch Third Schedule PDF: %s", e)
             return {}
 
         if not md:

@@ -2,6 +2,7 @@
 
 import argparse
 import json
+import logging
 import sys
 from pathlib import Path
 
@@ -127,7 +128,18 @@ def main() -> None:
     # status
     sub.add_parser("status", help="Show data freshness status")
 
+    parser.add_argument(
+        "-v", "--verbose", action="store_true", help="Show scraper progress logs"
+    )
+
     args = parser.parse_args()
+
+    # Library code logs; the CLI is what turns those logs into visible output.
+    logging.basicConfig(
+        level=logging.INFO if args.verbose else logging.WARNING,
+        format="    %(message)s",
+        stream=sys.stderr,
+    )
 
     if args.command == "show":
         cmd_show(args)

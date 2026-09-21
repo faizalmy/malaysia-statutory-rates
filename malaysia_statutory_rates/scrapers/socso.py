@@ -5,6 +5,7 @@ scheme descriptions, effective dates). The full 65-bracket rate table is
 parsed live from the PERKESO booklet PDF.
 """
 
+import logging
 import re
 from datetime import datetime
 from pathlib import Path
@@ -13,6 +14,8 @@ from bs4 import BeautifulSoup
 
 from malaysia_statutory_rates.scrapers.base import BaseScraper
 from malaysia_statutory_rates.scrapers.pdf_parser import extract_socso_table
+
+logger = logging.getLogger(__name__)
 
 # PERKESO booklet PDF URL
 BOOKLET_URL = "https://www.perkeso.gov.my/images/dokumen/risalah/2025-BOOKLET_PERKESO_BI.pdf"
@@ -145,7 +148,7 @@ class SOCSOScraper(BaseScraper):
             finally:
                 doc.close()
         except Exception as e:
-            print(f"    WARNING: Could not parse SOCSO rate table: {e}")
+            logger.warning("Could not parse SOCSO rate table: %s", e)
 
         if self.has_changed("socso_rates.json", data):
             return data

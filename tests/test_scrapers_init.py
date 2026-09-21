@@ -1,5 +1,6 @@
 """Tests for the scrapers __init__ module (SCRAPERS dict, run_scrapers)."""
 
+import logging
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -55,17 +56,17 @@ class TestRunScrapers:
         scraper.save.assert_not_called()
 
     @patch("malaysia_statutory_rates.scrapers.SCRAPERS")
-    def test_run_scrapers_unknown_skipped(self, mock_scrapers, capsys):
+    def test_run_scrapers_unknown_skipped(self, mock_scrapers, caplog):
         mock_scrapers.__contains__ = MagicMock(return_value=False)
         mock_scrapers.keys.return_value = []
 
-        results = run_scrapers(["unknown_scraper"])
+        with caplog.at_level(logging.WARNING, logger="malaysia_statutory_rates.scrapers"):
+            results = run_scrapers(["unknown_scraper"])
         assert results == {}
-        out = capsys.readouterr().out
-        assert "WARNING" in out
+        assert "Unknown scraper" in caplog.text
 
     @patch("malaysia_statutory_rates.scrapers.SCRAPERS")
-    def test_run_scrapers_exception_returns_false(self, mock_scrapers, capsys):
+    def test_run_scrapers_exception_returns_false(self, mock_scrapers, caplog):
         scraper = MagicMock()
         scraper.scrape.side_effect = ValueError("parse error")
         mock_cls = MagicMock(return_value=scraper)
@@ -74,10 +75,10 @@ class TestRunScrapers:
         mock_scrapers.keys.return_value = ["test_scraper"]
         mock_scrapers.__contains__ = MagicMock(side_effect=lambda x: x == "test_scraper")
 
-        results = run_scrapers(["test_scraper"])
+        with caplog.at_level(logging.ERROR, logger="malaysia_statutory_rates.scrapers"):
+            results = run_scrapers(["test_scraper"])
         assert results["test_scraper"] is False
-        out = capsys.readouterr().out
-        assert "ERROR" in out
+        assert "ERROR" in caplog.text
 
     @patch("malaysia_statutory_rates.scrapers.SCRAPERS")
     def test_run_scrapers_none_targets_runs_all(self, mock_scrapers):

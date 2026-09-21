@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import logging
 import os
 import time
 from datetime import datetime, timezone
@@ -11,6 +12,10 @@ from urllib.robotparser import RobotFileParser
 
 import httpx
 from dotenv import load_dotenv
+
+from malaysia_statutory_rates import __version__
+
+logger = logging.getLogger(__name__)
 
 # Load .env from project root
 load_dotenv(Path(__file__).parent.parent.parent / ".env")
@@ -56,7 +61,10 @@ def _get_robots(url: str):
     return _robots_cache[origin]
 
 
-USER_AGENT = "malaysia-statutory-rates/0.1 (+https://github.com/faizalmy/malaysia-statutory-rates)"
+USER_AGENT = (
+    f"malaysia-statutory-rates/{__version__} "
+    "(+https://github.com/faizalmy/malaysia-statutory-rates)"
+)
 
 
 class BaseScraper:
@@ -95,7 +103,7 @@ class BaseScraper:
         rp = _get_robots(url)
         allowed = rp.can_fetch(USER_AGENT, url)
         if not allowed:
-            print(f"    BLOCKED by robots.txt: {url}")
+            logger.warning("BLOCKED by robots.txt: %s", url)
         return allowed
 
     def _cache_key(self, url: str) -> Path:
@@ -164,7 +172,7 @@ class BaseScraper:
         # Check cache first
         cached = self._cache_get(url)
         if cached is not None:
-            print(f"    {url}: cached (24h)")
+            logger.info("%s: cached (24h)", url)
             return cached
 
         # Try httpx first
@@ -178,7 +186,7 @@ class BaseScraper:
                 soup = BeautifulSoup(html, "html.parser")
                 body_text = soup.get_text(strip=True)
                 if len(body_text) < 200 and soup.find_all("script"):
-                    print(f"    {url}: JS-only SPA shell detected, falling back to Firecrawl...")
+                    logger.info("%s: JS-only SPA shell detected, falling back to Firecrawl", url)
                     result = self._fetch_firecrawl(url)
                     self._cache_put(url, result)
                     return result
@@ -186,24 +194,24 @@ class BaseScraper:
                 return html
             except httpx.HTTPStatusError as e:
                 if e.response.status_code in (403, 429):
-                    print(f"    {url}: {e.response.status_code}, falling back to Firecrawl...")
+                    logger.warning("%s: %s, falling back to Firecrawl", url, e.response.status_code)
                     result = self._fetch_firecrawl(url)
                     self._cache_put(url, result)
                     return result
                 if attempt == retries - 1:
                     raise
                 wait = 2**attempt
-                print(f"    Retry {attempt + 1}/{retries} ({e}), waiting {wait}s...")
+                logger.warning("Retry %d/%d (%s), waiting %ds", attempt + 1, retries, e, wait)
                 time.sleep(wait)
             except httpx.HTTPError as e:
                 if attempt == retries - 1:
                     # Last attempt failed, try Firecrawl
-                    print(f"    httpx failed ({e}), trying Firecrawl...")
+                    logger.warning("httpx failed (%s), trying Firecrawl", e)
                     result = self._fetch_firecrawl(url)
                     self._cache_put(url, result)
                     return result
                 wait = 2**attempt
-                print(f"    Retry {attempt + 1}/{retries} ({e}), waiting {wait}s...")
+                logger.warning("Retry %d/%d (%s), waiting %ds", attempt + 1, retries, e, wait)
                 time.sleep(wait)
         raise RuntimeError(f"Failed to fetch {url}")
 
@@ -228,26 +236,26 @@ class BaseScraper:
         if cache_path.exists():
             age = time.time() - cache_path.stat().st_mtime
             if age < cache_ttl:
-                print(f"    Cached: {cache_path.name}")
+                logger.info("Cached: %s", cache_path.name)
                 return cache_path
 
         if not self._check_robots(url):
             raise RuntimeError(f"Blocked by robots.txt: {url}")
 
         cache_path.parent.mkdir(parents=True, exist_ok=True)
-        print(f"    Downloading {url}...")
+        logger.info("Downloading %s", url)
         for attempt in range(3):
             try:
                 resp = self.client.get(url)
                 resp.raise_for_status()
                 cache_path.write_bytes(resp.content)
-                print(f"    Downloaded {len(resp.content)} bytes to {cache_path.name}")
+                logger.info("Downloaded %d bytes to %s", len(resp.content), cache_path.name)
                 return cache_path
             except httpx.HTTPError as e:
                 if attempt == 2:
                     raise
                 wait = 2 ** attempt
-                print(f"    Retry {attempt + 1}/3 ({e}), waiting {wait}s...")
+                logger.warning("Retry %d/3 (%s), waiting %ds", attempt + 1, e, wait)
                 time.sleep(wait)
         raise RuntimeError(f"Failed to download {url}")
 

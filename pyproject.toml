@@ -37,6 +37,7 @@ api = [
     "uvicorn>=0.32",
 ]
 dev = [
+    "malaysia-statutory-rates[scraper]",
     "pytest>=8.0",
     "pytest-cov>=5.0",
     "ruff>=0.6",
