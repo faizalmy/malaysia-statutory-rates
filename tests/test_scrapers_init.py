@@ -38,7 +38,7 @@ class TestRunScrapers:
         mock_scrapers.__contains__ = MagicMock(side_effect=lambda x: x == "test_scraper")
 
         results = run_scrapers(["test_scraper"])
-        assert results["test_scraper"] is True
+        assert results["test_scraper"] == "updated"
         scraper.save.assert_called_once_with("test_scraper.json", {"key": "value"})
 
     @patch("malaysia_statutory_rates.scrapers.SCRAPERS")
@@ -52,7 +52,7 @@ class TestRunScrapers:
         mock_scrapers.__contains__ = MagicMock(side_effect=lambda x: x == "test_scraper")
 
         results = run_scrapers(["test_scraper"])
-        assert results["test_scraper"] is False
+        assert results["test_scraper"] == "unchanged"
         scraper.save.assert_not_called()
 
     @patch("malaysia_statutory_rates.scrapers.SCRAPERS")
@@ -66,7 +66,7 @@ class TestRunScrapers:
         assert "Unknown scraper" in caplog.text
 
     @patch("malaysia_statutory_rates.scrapers.SCRAPERS")
-    def test_run_scrapers_exception_returns_false(self, mock_scrapers, caplog):
+    def test_run_scrapers_exception_reports_failed(self, mock_scrapers, caplog):
         scraper = MagicMock()
         scraper.scrape.side_effect = ValueError("parse error")
         mock_cls = MagicMock(return_value=scraper)
@@ -77,8 +77,8 @@ class TestRunScrapers:
 
         with caplog.at_level(logging.ERROR, logger="malaysia_statutory_rates.scrapers"):
             results = run_scrapers(["test_scraper"])
-        assert results["test_scraper"] is False
-        assert "ERROR" in caplog.text
+        assert results["test_scraper"] == "failed"
+        assert "parse error" in caplog.text
 
     @patch("malaysia_statutory_rates.scrapers.SCRAPERS")
     def test_run_scrapers_none_targets_runs_all(self, mock_scrapers):
