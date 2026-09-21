@@ -117,6 +117,9 @@ def main() -> None:
         "--strict", action="store_true",
         help="Block saving if validation warnings are found"
     )
+    scrape_p.add_argument(
+        "-v", "--verbose", action="store_true", help="Show scraper progress logs"
+    )
     scrape_p.add_argument("targets", nargs="*", help="Specific scrapers to run")
 
     # changelog
@@ -128,16 +131,12 @@ def main() -> None:
     # status
     sub.add_parser("status", help="Show data freshness status")
 
-    parser.add_argument(
-        "-v", "--verbose", action="store_true", help="Show scraper progress logs"
-    )
-
     args = parser.parse_args()
 
     # Library code logs; the CLI is what turns those logs into visible output.
     logging.basicConfig(
-        level=logging.INFO if args.verbose else logging.WARNING,
-        format="    %(message)s",
+        level=logging.INFO if getattr(args, "verbose", False) else logging.WARNING,
+        format="%(message)s",
         stream=sys.stderr,
     )
 
